@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <defs>
+    <!-- Le verre : clair en haut a gauche ou porte la lumiere, profond au bord. -->
+    <radialGradient id="glass" cx="38%" cy="32%" r="72%">
+      <stop offset="0%"   stop-color="#eaf6ff" stop-opacity="0.98"/>
+      <stop offset="26%"  stop-color="#9fd8f0" stop-opacity="0.95"/>
+      <stop offset="58%"  stop-color="#6f7fd6" stop-opacity="0.95"/>
+      <stop offset="86%"  stop-color="#3b3a86" stop-opacity="0.97"/>
+      <stop offset="100%" stop-color="#241f52" stop-opacity="1"/>
+    </radialGradient>
+    <!-- La brume interieure, qui evite la bille de verre inerte. -->
+    <radialGradient id="mist" cx="62%" cy="66%" r="46%">
+      <stop offset="0%"   stop-color="#c9a8ff" stop-opacity="0.55"/>
+      <stop offset="70%"  stop-color="#8a6ad0" stop-opacity="0.16"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="stand" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#7a5c33"/>
+      <stop offset="55%"  stop-color="#4e3a20"/>
+      <stop offset="100%" stop-color="#2c2013"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#a48cff" stop-opacity="0.30"/>
+      <stop offset="100%" stop-color="#a48cff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Halo : la lueur du CompGlower est reelle, celle-ci ne fait que la rendre credible. -->
+  <circle cx="128" cy="112" r="116" fill="url(#halo)"/>
+
+  <!-- Socle : trois griffes et un anneau, vus de trois quarts comme tout RimWorld. -->
+  <path d="M74 176 q54 30 108 0 l-6 26 q-48 22 -96 0 z" fill="url(#stand)"/>
+  <ellipse cx="128" cy="176" rx="54" ry="17" fill="#5c4526"/>
+  <ellipse cx="128" cy="174" rx="44" ry="12" fill="#31240f"/>
+  <path d="M84 196 q-10 20 4 30 q10 -14 14 -24 z" fill="#3a2a17"/>
+  <path d="M172 196 q10 20 -4 30 q-10 -14 -14 -24 z" fill="#3a2a17"/>
+  <path d="M120 206 h16 q3 16 -8 22 q-11 -6 -8 -22 z" fill="#45311b"/>
+
+  <!-- La sphere. -->
+  <circle cx="128" cy="112" r="80" fill="url(#glass)"/>
+  <circle cx="128" cy="112" r="80" fill="url(#mist)"/>
+  <!-- Liseré de bord : c'est lui qui fait lire "verre" plutot que "boule peinte". -->
+  <circle cx="128" cy="112" r="79" fill="none" stroke="#b9e6ff" stroke-opacity="0.45" stroke-width="3"/>
+  <circle cx="128" cy="112" r="79" fill="none" stroke="#1a1636" stroke-opacity="0.55" stroke-width="1.5"/>
+
+  <!-- Reflets speculaires. -->
+  <ellipse cx="98" cy="78" rx="26" ry="17" fill="#ffffff" opacity="0.72" transform="rotate(-28 98 78)"/>
+  <ellipse cx="86" cy="96" rx="9" ry="6" fill="#ffffff" opacity="0.42" transform="rotate(-28 86 96)"/>
+  <path d="M156 146 q22 -12 26 -36 q6 30 -26 42 z" fill="#ffffff" opacity="0.18"/>
+</svg>

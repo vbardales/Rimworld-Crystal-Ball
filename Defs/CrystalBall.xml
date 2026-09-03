@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <!-- Une boule de cristal dans laquelle on vient regarder son avenir.
+
+       POURQUOI UN TYPE DE LOISIR NEUF. C'est la denree rare, et c'est le fil de tout ce dossier :
+       le jeu de base n'offre que dix types - Meditative, Social, Gaming_Dexterity,
+       Gaming_Cerebral, Television, Telescope, HighCulture, Chemical, Gluttonous, Reading - dont
+       quatre seulement viennent d'un batiment. Les attentes en reclament jusqu'a six differents,
+       et la tolerance se compte PAR TYPE : dix tables d'echecs lassent exactement comme une
+       seule. Un onzieme type vaut donc mieux qu'un dixieme meuble sur un type deja servi.
+
+       Et la divination n'a pas eu besoin d'etre inventee pour l'occasion : une boule de cristal
+       porte son usage avec elle, ce qui evite le travers du type de loisir artificiel qu'on
+       ajoute pour le compte et que rien ne justifie en jeu.
+
+       AUCUN CODE. `JoyGiver_InteractBuildingSitAdjacent` et `JobDriver_SitFacingBuilding` sont
+       ceux des echecs vanilla, et ils fonctionnent tels quels ici parce qu'une boule de cristal
+       est un `Building` - contrairement a l'arbre anima, une `Plant`, sur laquelle le meme pilote
+       levait une InvalidCastException. Ce mod n'embarque donc pas d'assemblage du tout.
+
+       `requireChair` A FAUX, comme pour le jeu des trois pierres et le feu a recits : on
+       s'accroupit devant une boule de cristal, on n'y tire pas une chaise de salle a manger. Sans
+       ca, une roulotte de diseuse de bonne aventure ne servirait jamais.
+
+       LA LUEUR EST UNE VRAIE LUMIERE et elle est permanente, a la difference de celle de la rampe
+       a feux d'artifice qui ne s'allume qu'au tir. Ici c'est voulu : une boule de cristal eteinte
+       n'est qu'un presse-papier, et un petit rayon de 3 en fait un point de repere la nuit sans
+       remplacer une lampe.
+
+       LE JADE N'EST PAS UN CAPRICE : c'est la seule matiere translucide et precieuse du jeu de
+       base, elle se mine et se troque, et son cout situe l'objet - un luxe de colonie etablie,
+       pas un meuble de depart. -->
+
+  <JoyKindDef>
+    <defName>CB_Divination</defName>
+    <label>divination</label>
+  </JoyKindDef>
+
+  <ThingDef ParentName="BuildingBase">
+    <defName>CB_CrystalBall</defName>
+    <label>crystal ball</label>
+    <description>A polished sphere of jade set on a clawed stand. Whether anything is actually seen in it is beside the point: people sit down in front of it, look for a long while, and get up in a better mood than they sat down in.\n\nColonists gaze into it on their own, as recreation. No chair required.</description>
+    <graphicData>
+      <texPath>Things/Building/Joy/CrystalBall</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(1.15,1.15)</drawSize>
+      <shadowData>
+        <volume>(0.45,0.5,0.45)</volume>
+        <offset>(0,0,-0.1)</offset>
+      </shadowData>
+      <damageData>
+        <rect>(0.2,0.2,0.6,0.6)</rect>
+      </damageData>
+    </graphicData>
+    <altitudeLayer>Building</altitudeLayer>
+    <rotatable>false</rotatable>
+    <passability>PassThroughOnly</passability>
+    <pathCost>30</pathCost>
+    <fillPercent>0.35</fillPercent>
+    <socialPropernessMatters>true</socialPropernessMatters>
+    <!-- Minifiable ET range dans une categorie d'objets : les deux vont ensemble. Une def qui a
+         des `thingCategories` sans `minifiedDef` fait lever « is not minifiable yet has thing
+         categories » au chargement. -->
+    <minifiedDef>MinifiedThing</minifiedDef>
+    <thingCategories>
+      <li>BuildingsJoy</li>
+    </thingCategories>
+    <minTechLevelToBuild>Neolithic</minTechLevelToBuild>
+    <building>
+      <joyKind>CB_Divination</joyKind>
+    </building>
+    <statBases>
+      <MaxHitPoints>80</MaxHitPoints>
+      <WorkToBuild>9000</WorkToBuild>
+      <Mass>6</Mass>
+      <Flammability>0.4</Flammability>
+      <Beauty>10</Beauty>
+      <JoyGainFactor>1</JoyGainFactor>
+    </statBases>
+    <costList>
+      <Jade>40</Jade>
+      <Gold>5</Gold>
+    </costList>
+    <comps>
+      <!-- La qualite fait varier la beaute toute seule, par le StatPart vanilla. Elle donne aussi
+           son prefixe au nom : une boule de cristal chef-d'oeuvre se raconte. -->
+      <li>
+        <compClass>CompQuality</compClass>
+      </li>
+      <li Class="CompProperties_Glower">
+        <glowRadius>3</glowRadius>
+        <glowColor>(140,120,220,0)</glowColor>
+      </li>
+    </comps>
+    <designationCategory>Joy</designationCategory>
+    <designationHotKey>Misc3</designationHotKey>
+  </ThingDef>
+
+  <JobDef>
+    <defName>CB_GazeIntoCrystalBall</defName>
+    <driverClass>JobDriver_SitFacingBuilding</driverClass>
+    <reportString>gazing into the crystal ball.</reportString>
+    <joyDuration>4000</joyDuration>
+    <!-- Deux : on lit l'avenir a quelqu'un, ou on le lit seul. Pas a huit. -->
+    <joyMaxParticipants>2</joyMaxParticipants>
+    <joyKind>CB_Divination</joyKind>
+    <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+  </JobDef>
+
+  <JoyGiverDef>
+    <defName>CB_GazeIntoCrystalBall</defName>
+    <giverClass>JoyGiver_InteractBuildingSitAdjacent</giverClass>
+    <baseChance>2</baseChance>
+    <requireChair>false</requireChair>
+    <thingDefs>
+      <li>CB_CrystalBall</li>
+    </thingDefs>
+    <jobDef>CB_GazeIntoCrystalBall</jobDef>
+    <joyKind>CB_Divination</joyKind>
+    <!-- La vue seule : tout est dans le regard, les mains ne servent a rien. -->
+    <requiredCapacities>
+      <li>Sight</li>
+    </requiredCapacities>
+  </JoyGiverDef>
+
+</Defs>
