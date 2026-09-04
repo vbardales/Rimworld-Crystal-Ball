@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-  <!-- Une boule de cristal dans laquelle on vient regarder son avenir.
+  <!-- A crystal ball people come to look into for their future.
 
-       POURQUOI UN TYPE DE LOISIR NEUF. C'est la denree rare, et c'est le fil de tout ce dossier :
-       le jeu de base n'offre que dix types - Meditative, Social, Gaming_Dexterity,
-       Gaming_Cerebral, Television, Telescope, HighCulture, Chemical, Gluttonous, Reading - dont
-       quatre seulement viennent d'un batiment. Les attentes en reclament jusqu'a six differents,
-       et la tolerance se compte PAR TYPE : dix tables d'echecs lassent exactement comme une
-       seule. Un onzieme type vaut donc mieux qu'un dixieme meuble sur un type deja servi.
+       WHY A NEW RECREATION TYPE. That is the scarce commodity, and the thread running through
+       this whole mod: the base game offers only ten types - Meditative, Social, Gaming_Dexterity,
+       Gaming_Cerebral, Television, Telescope, HighCulture, Chemical, Gluttonous, Reading - and
+       only four of them come from a building. Expectations ask for up to six different ones, and
+       tolerance is counted PER TYPE: ten chess tables tire a colonist exactly as fast as one. An
+       eleventh type is therefore worth more than a tenth piece of furniture on a type already
+       served.
 
-       Et la divination n'a pas eu besoin d'etre inventee pour l'occasion : une boule de cristal
-       porte son usage avec elle, ce qui evite le travers du type de loisir artificiel qu'on
-       ajoute pour le compte et que rien ne justifie en jeu.
+       Divination did not have to be invented for the occasion either: a crystal ball carries its
+       own use, which avoids the usual trap of a recreation type bolted on for the count and
+       justified by nothing in play.
 
-       AUCUN CODE. `JoyGiver_InteractBuildingSitAdjacent` et `JobDriver_SitFacingBuilding` sont
-       ceux des echecs vanilla, et ils fonctionnent tels quels ici parce qu'une boule de cristal
-       est un `Building` - contrairement a l'arbre anima, une `Plant`, sur laquelle le meme pilote
-       levait une InvalidCastException. Ce mod n'embarque donc pas d'assemblage du tout.
+       NO CODE. `JoyGiver_InteractBuildingSitAdjacent` and `JobDriver_SitFacingBuilding` are the
+       vanilla chess ones, and they work here as they are because a crystal ball is a `Building` -
+       unlike the anima tree, a `Plant`, on which that same driver raised an InvalidCastException.
+       So this mod ships no assembly at all.
 
-       `requireChair` A FAUX, comme pour le jeu des trois pierres et le feu a recits : on
-       s'accroupit devant une boule de cristal, on n'y tire pas une chaise de salle a manger. Sans
-       ca, une roulotte de diseuse de bonne aventure ne servirait jamais.
+       `requireChair` FALSE, as for the game of stones and the campfire storytelling: you crouch
+       in front of a crystal ball, you do not pull a dining chair up to it. Without this, a
+       fortune teller's caravan would never be used.
 
-       LA LUEUR EST UNE VRAIE LUMIERE et elle est permanente, a la difference de celle de la rampe
-       a feux d'artifice qui ne s'allume qu'au tir. Ici c'est voulu : une boule de cristal eteinte
-       n'est qu'un presse-papier, et un petit rayon de 3 en fait un point de repere la nuit sans
-       remplacer une lampe.
+       THE GLOW IS A REAL LIGHT and it is permanent, unlike the firework stand's, which only comes
+       on when firing. Here that is deliberate: an unlit crystal ball is just a paperweight, and a
+       small radius of 3 makes it a landmark at night without replacing a lamp.
 
-       LE JADE N'EST PAS UN CAPRICE : c'est la seule matiere translucide et precieuse du jeu de
-       base, elle se mine et se troque, et son cout situe l'objet - un luxe de colonie etablie,
-       pas un meuble de depart. -->
+       JADE IS NOT A WHIM: it is the only translucent precious material in the base game, it is
+       mined and traded, and its cost places the object - a luxury for an established colony, not
+       a starting bench. -->
 
   <JoyKindDef>
     <defName>CB_Divination</defName>
@@ -59,9 +59,9 @@
     <pathCost>30</pathCost>
     <fillPercent>0.35</fillPercent>
     <socialPropernessMatters>true</socialPropernessMatters>
-    <!-- Minifiable ET range dans une categorie d'objets : les deux vont ensemble. Une def qui a
-         des `thingCategories` sans `minifiedDef` fait lever « is not minifiable yet has thing
-         categories » au chargement. -->
+    <!-- Minifiable AND filed under a thing category: the two go together. A def with
+         `thingCategories` but no `minifiedDef` raises "is not minifiable yet has thing
+         categories" at load time. -->
     <minifiedDef>MinifiedThing</minifiedDef>
     <thingCategories>
       <li>BuildingsJoy</li>
@@ -83,8 +83,8 @@
       <Gold>5</Gold>
     </costList>
     <comps>
-      <!-- La qualite fait varier la beaute toute seule, par le StatPart vanilla. Elle donne aussi
-           son prefixe au nom : une boule de cristal chef-d'oeuvre se raconte. -->
+      <!-- Quality scales beauty on its own, through the vanilla StatPart. It also gives the name
+           its prefix: a masterwork crystal ball is worth talking about. -->
       <li>
         <compClass>CompQuality</compClass>
       </li>
@@ -102,7 +102,7 @@
     <driverClass>JobDriver_SitFacingBuilding</driverClass>
     <reportString>gazing into the crystal ball.</reportString>
     <joyDuration>4000</joyDuration>
-    <!-- Deux : on lit l'avenir a quelqu'un, ou on le lit seul. Pas a huit. -->
+    <!-- Two: you read someone's future, or you read your own. Not eight of you at once. -->
     <joyMaxParticipants>2</joyMaxParticipants>
     <joyKind>CB_Divination</joyKind>
     <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
@@ -118,7 +118,7 @@
     </thingDefs>
     <jobDef>CB_GazeIntoCrystalBall</jobDef>
     <joyKind>CB_Divination</joyKind>
-    <!-- La vue seule : tout est dans le regard, les mains ne servent a rien. -->
+    <!-- Sight alone: it is all in the looking, the hands do nothing. -->
     <requiredCapacities>
       <li>Sight</li>
     </requiredCapacities>
