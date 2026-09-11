@@ -3,6 +3,15 @@
 Format inspired by [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 This file serves the repository and the writing of Steam patch notes; RimWorld does not display it in game.
 
+## [Unreleased]
+
+### Added
+
+- A test suite, `_tools/Run-Tests.ps1`: twenty-four tests, no RimWorld launched. Nothing a player
+  sees changes. It reads the game's own classes and data to check what the mod assumes rather
+  than what its prose claims, and every test in it has been seen to fail against a deliberately
+  broken copy.
+
 ## [1.0.0] — 2026-09-04
 
 First release, for RimWorld 1.6.

@@ -46,6 +46,19 @@ They work here unmodified because a crystal ball is a `Building`. That is not a 
 driver raises an `InvalidCastException` on a `Plant`, which is why an anima tree cannot be wired
 up this way. Being a building is what lets this mod ship no code at all.
 
+## Tests
+
+```
+powershell -NoProfile -ExecutionPolicy Bypass -File _tools/Run-Tests.ps1
+```
+
+Twenty-four tests, no RimWorld launched, about twenty seconds. They read the installed game — its
+`Data` folder and `Assembly-CSharp` — so they check what this mod assumes rather than what this
+page claims. The three sentences above about the ten recreation types, the four that come from a
+building, and the `Building` the driver casts to are each computed from the game at every run: if
+a RimWorld release moves one of those numbers, the suite says so instead of the README quietly
+ageing.
+
 ## Languages
 
 English and French.
