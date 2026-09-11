@@ -11,6 +11,11 @@ This file serves the repository and the writing of Steam patch notes; RimWorld d
   sees changes. It reads the game's own classes and data to check what the mod assumes rather
   than what its prose claims, and every test in it has been seen to fail against a deliberately
   broken copy.
+- A second suite, `_tools/Run-Functional-Tests.ps1`: eleven tests on what the game does with
+  these defs rather than on their shape. It reads the IL of the vanilla driver, builds the joy
+  giver through the game's own accessor, and scans every method body in the game to find which
+  class reads each setting the mod writes — which is how an inert setting, one nothing on its
+  code path ever reads, gets caught.
 
 ## [1.0.0] — 2026-09-04
 

@@ -50,14 +50,28 @@ up this way. Being a building is what lets this mod ship no code at all.
 
 ```
 powershell -NoProfile -ExecutionPolicy Bypass -File _tools/Run-Tests.ps1
+powershell -NoProfile -ExecutionPolicy Bypass -File _tools/Run-Functional-Tests.ps1
 ```
 
-Twenty-four tests, no RimWorld launched, about twenty seconds. They read the installed game — its
-`Data` folder and `Assembly-CSharp` — so they check what this mod assumes rather than what this
-page claims. The three sentences above about the ten recreation types, the four that come from a
-building, and the `Building` the driver casts to are each computed from the game at every run: if
-a RimWorld release moves one of those numbers, the suite says so instead of the README quietly
-ageing.
+Thirty-five tests in two suites, no RimWorld launched, half a minute for both. They read the
+installed game — its `Data` folder and `Assembly-CSharp` — so they check what this mod assumes
+rather than what this page claims. Every test in both has been seen to fail against a
+deliberately broken copy.
+
+The first suite is about the defs: well formed, every element a field 1.6 still has, every class
+and def reference resolving, translations complete and correctly spelt. The three sentences above
+about the ten recreation types, the four that come from a building, and the `Building` the driver
+casts to are computed from the game at every run, so a RimWorld release that moves one of those
+numbers is reported rather than quietly ageing this page.
+
+The second is about behaviour. The mod hands its whole conduct to vanilla classes, so that suite
+asks whether those classes still do what it hands it to them for. It reads the IL of
+`JobDriver_SitFacingBuilding.Building` to find the `castclass` this mod rests on, instantiates the
+giver through the game's own `Worker` accessor, and scans every method body in the game to find
+out who reads each setting these defs write. That last one catches a fault nothing else does: a
+setting the mod writes that no code on its path ever reads. Point the def at another joy giver and
+`requireChair` goes inert — no error, no log line, colonists refusing to use the building for want
+of a chair that is not there — and only that scan notices.
 
 ## Languages
 
