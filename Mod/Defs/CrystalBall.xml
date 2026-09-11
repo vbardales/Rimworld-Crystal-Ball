@@ -40,7 +40,7 @@
   <ThingDef ParentName="BuildingBase">
     <defName>CB_CrystalBall</defName>
     <label>crystal ball</label>
-    <description>A polished sphere of jade set on a clawed stand. Whether anything is actually seen in it is beside the point: people sit down in front of it, look for a long while, and get up in a better mood than they sat down in.\n\nColonists gaze into it on their own, as recreation. No chair required.</description>
+    <description>A polished sphere set on a clawed stand, glowing faintly violet from within. Whether anything is actually seen in it is beside the point: people sit down in front of it, look for a long while, and get up in a better mood than they sat down in.\n\nColonists gaze into it on their own, as recreation. No chair required.</description>
     <graphicData>
       <texPath>Things/Building/Joy/CrystalBall</texPath>
       <graphicClass>Graphic_Single</graphicClass>

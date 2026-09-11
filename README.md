@@ -1,7 +1,7 @@
 # Crystal Ball
 
-A RimWorld 1.6 mod that adds a jade crystal ball colonists gaze into as recreation — and, with it,
-a recreation type the base game does not have.
+A RimWorld 1.6 mod that adds a violet-glowing crystal ball colonists gaze into as recreation — and,
+with it, a recreation type the base game does not have.
 
 No DLC required. No assembly: the mod is defs, one texture, and nothing else.
 
