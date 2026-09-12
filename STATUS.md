@@ -58,7 +58,8 @@ known fault left unfixed, `unverified` for what could not be checked.
 The `session` field was not touched: it comes from the sweep.
 
 The `licence` vocabulary: `open` an explicit licence, `silent` no licence and a dead source,
-`alive` no licence but a living source, `forbidden` a written refusal, `original` nothing reused.
+`alive` no licence but a living source, `forbidden` a written refusal, `original` owing nothing
+to anyone — not a name, not an idea traceable to one mod, not a value derived from its assets.
 
 The `dependencies` vocabulary: `declared` when every mod this one needs is named in the About's
 `modDependencies`, `to check` when a non-vanilla `loadAfter` suggests one that is not declared,
