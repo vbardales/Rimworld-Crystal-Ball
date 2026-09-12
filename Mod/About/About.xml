@@ -40,7 +40,11 @@ THANKS
 Claude Code (Anthropic) and DALL-E (OpenAI).
 Ludeon Studios, whose chess table and game of Ur carry every bit of this mod's behaviour: it ships no code of its own.
 
-This mod is MIT licensed.</description>
+This mod is MIT licensed.
+
+SOURCE CODE
+
+https://github.com/vbardales/Rimworld-Crystal-Ball</description>
   <loadAfter>
     <li>Ludeon.RimWorld</li>
   </loadAfter>
