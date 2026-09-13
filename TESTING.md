@@ -190,7 +190,11 @@ A room's role is worked out from what stands in it, and the buildings a joy give
 
 **Pass:** the room is read as a **recreation room**, and its impressiveness is worked out as one.
 
-## 14. French
+## 14. English and French
+
+First run scenarios 1, 4 and 8 in English. Check *crystal ball*, its full description,
+the job report *gazing into the crystal ball.* and the recreation type *divination*.
+In both languages, check for raw keys, missing text, formatting errors and clipping.
 
 Switch the game to French and walk scenarios 1, 4 and 8 again.
 

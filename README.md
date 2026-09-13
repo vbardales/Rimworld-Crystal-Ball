@@ -83,6 +83,8 @@ English and French.
 
 ## Credits
 
+See [ATTRIBUTION.md](ATTRIBUTION.md) for provenance, vanilla references and licence scope.
+
 Written with Claude Code (Anthropic); the in-game texture drawn as vector art with the same tool,
 the Workshop preview image generated with DALL-E (OpenAI) — under human direction, review and
 testing.
