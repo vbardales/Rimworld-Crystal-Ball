@@ -42,9 +42,7 @@ Ludeon Studios, whose chess table and game of Ur carry every bit of this mod's b
 
 This mod is MIT licensed.
 
-SOURCE CODE
-
-https://github.com/vbardales/Rimworld-Crystal-Ball</description>
+[url=https://github.com/vbardales/Rimworld-Crystal-Ball]Source code on GitHub[/url]</description>
   <loadAfter>
     <li>Ludeon.RimWorld</li>
   </loadAfter>

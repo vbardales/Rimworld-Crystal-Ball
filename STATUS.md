@@ -9,7 +9,7 @@ remote:       https://github.com/vbardales/Rimworld-Crystal-Ball.git
 local_path:   C:\Users\nelim\Documents\rimworld\CrystalBall
 visibility:   public
 detached:     yes
-stage:        Preview générée
+stage:        done
 settings_audit: not_applicable
 licence:      original
 licence_at:   MIT; original mod according to repository provenance
@@ -19,7 +19,6 @@ showcase:     complete
 tested_on:
 workshop:
 remaining:
-  - defect: About.xml ends with a raw GitHub URL instead of the prescribed Steam Source code on GitHub link
   - unverified: the fifteen manual scenarios in TESTING.md have no recorded in-game pass
   - unverified: chairless use and the vanilla chair alert (scenarios 5 and 6)
   - unverified: Workshop publication and in-place showcase review
@@ -30,7 +29,29 @@ updated:      2026-09-13
 
 # Crystal Ball — status
 
-## Attribution fix — 2026-09-13 (current decision)
+## Description link fix — 2026-09-13 (current decision)
+
+Committed attribution and audit documentation as
+`8401071d250fc2f9258d3914c9c43cab8149be25`, then replaced the raw source URL and
+SOURCE CODE heading in `Mod/About/About.xml` with the prescribed final
+`[url=https://github.com/vbardales/Rimworld-Crystal-Ball]Source code on GitHub[/url]`
+link. This follow-up is a local change to About.xml and STATUS.md only.
+
+Stage: `Preview générée` -> `done`. The description convention defect is resolved;
+all cumulative criteria through offline readiness are now established using the
+independent validations recorded below. `done` means ready for final in-game
+validation, not `tested`.
+
+Verification: `powershell -NoProfile -ExecutionPolicy Bypass -File
+_tools/Run-Tests.ps1` returned exit 0, **24/24 passing** after the edit. A separate
+XML parse and exact description-suffix assertion passed. The previously verified
+GitHub URL is unchanged. The 11 offline behaviour tests, translation-path checks,
+settings audit and direct image inspections remain applicable: no behaviour,
+Def, translation, settings or image changed. No game run or Workshop update was
+performed. The 15 manual scenarios and associated logs/FR/EN/save checks remain
+unverified and are required for `tested`.
+
+## Attribution fix — 2026-09-13 (historical decision before description link fix)
 
 Added English `ATTRIBUTION.md` and an identical distributed copy at
 `Mod/ATTRIBUTION.md`, with a README link. The document records the existing author
