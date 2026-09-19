@@ -33,7 +33,7 @@ this document grants no rights to redistribute them.
 
 ## Licence and continuation
 
-The repository's existing licence is MIT, copyright (c) 2026 nelim. See `LICENSE`,
+The repository's existing licence is MIT, copyright (c) 2026 Nelim. See `LICENSE`,
 included beside this document both in the repository and in the distributed mod.
 The licence notice must accompany distributions as required by its terms; it does
 not relicense RimWorld or any third-party material.

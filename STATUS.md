@@ -186,14 +186,14 @@ with its own `.git` directory and no Git superproject. This task manages this si
 repository, no longer the former monorepo. Origin fetch and push both point to the remote above.
 GitHub reports `PUBLIC` through `gh repo view --json name,visibility,url`.
 
-The mod title is **Crystal Ball**, author **nelim**, packageId **nelim.crystalball**.
+The mod title is **Crystal Ball**, author **Nelim**, packageId **nelim.crystalball**.
 No continuation or fork suffix is justified by the provenance documented here: this is presented
 as an original mod, not a maintained copy of someone else's mod. Keep the title unchanged.
 The GitHub link is present in both `About.xml`'s `url` and, after this audit, its description.
 
 ## Licence and justification
 
-The actual licence is **MIT**, copyright (c) 2026 nelim. `LICENSE` and `Mod/LICENSE` carry
+The actual licence is **MIT**, copyright (c) 2026 Nelim. `LICENSE` and `Mod/LICENSE` carry
 that licence. `licence: original` is the status catalogue's provenance category, not a licence name.
 
 The repository credits original defs and vector texture made with Claude Code and a preview made
