@@ -1,6 +1,6 @@
 # Crystal Ball — attribution
 
-Crystal Ball is an original mod by **nelim**, package ID `nelim.crystalball`.
+Crystal Ball is an original mod by **Nelim**, package ID `nelim.crystalball`.
 Repository: https://github.com/vbardales/Rimworld-Crystal-Ball
 
 ## Original work and tools
