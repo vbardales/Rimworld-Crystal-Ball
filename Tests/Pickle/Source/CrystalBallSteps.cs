@@ -527,7 +527,13 @@ namespace CrystalBall.PickleSteps
         [Then("Crystal Ball: the four owned texts read in the language of the pass")]
         public void TextsInLanguage(PickleContext ctx)
         {
-            string language = LanguageDatabase.activeLanguage.folderName;
+            // The game names a language folder after the language itself, "French (Français)", while the launcher's
+            // -Language takes a prefix, "French". The first run of this step compared the whole name with "French"
+            // and refused the pass it had been staged for, so the language is recognised by its prefix.
+            string folderName = LanguageDatabase.activeLanguage.folderName;
+            string language = folderName.StartsWith("English", StringComparison.OrdinalIgnoreCase) ? "English"
+                : folderName.StartsWith("French", StringComparison.OrdinalIgnoreCase) ? "French"
+                : folderName;
             ModContentPack pack = LoadedModManager.RunningModsListForReading.FirstOrDefault(m =>
                 string.Equals(m.PackageIdPlayerFacing, ModPackageId, StringComparison.OrdinalIgnoreCase));
             ctx.Require(pack != null, $"the mod {ModPackageId} is not among the running mods");
@@ -562,7 +568,7 @@ namespace CrystalBall.PickleSteps
             }
             else
             {
-                ctx.Assert(false, $"this pass runs in \"{language}\"; the suite knows English and French");
+                ctx.Assert(false, $"this pass runs in \"{folderName}\"; the suite knows English and French");
             }
 
             var actual = new Dictionary<string, string>
