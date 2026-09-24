@@ -63,6 +63,11 @@
     CompProperties_Glower misspelt                -> the class test, the field walk under it,
                                                      and the alpha test
     jobDef pointed at a job that does not exist   -> the reference test and the agreement test
+    the JobDef deleted, its giver kept, the two   -> the reference test, naming "no JobDef named
+    sharing one defName                              CB_GazeIntoCrystalBall". It stayed green
+                                                     while the reference check compared names
+                                                     only, and the mutation above hid that by
+                                                     choosing a name nothing carried.
     ParentName changed to a template nobody has   -> the parent test and the Building test
     requireChair removed                          -> the chair test
     the JoyKindDef renamed Meditative             -> the eleventh-type test, naming the
@@ -438,6 +443,21 @@ function Test-VanillaDef([string]$type, [string]$name) {
     return ($vanilla.ContainsKey($type) -and $vanilla[$type].ContainsKey($name))
 }
 
+# A def of THIS mod that answers to a reference, by name AND by type. The name alone is not enough
+# here: the job and the giver deliberately share CB_GazeIntoCrystalBall, so with the JobDef deleted
+# the giver's jobDef reference would still find "a def of that name" - the giver itself. A
+# reference typed as a base class is satisfied by any def of a subclass, as the loader would.
+function Test-ModDef([string]$refType, [string]$name) {
+    if (-not $modDefs.ContainsKey($name)) { return $false }
+    $want = $byName[$refType]
+    foreach ($kind in $modDefs[$name]) {
+        if ($kind -eq $refType) { return $true }
+        $have = $byName[$kind]
+        if ($want -and $have -and $want.IsAssignableFrom($have)) { return $true }
+    }
+    return $false
+}
+
 # ---------------------------------------------------------------------------------------------
 
 Write-Output 'Crystal Ball - test suite'
@@ -622,7 +642,7 @@ It 'every def the mod points at exists, here or in the game' {
     if ($byName.Count -eq 0) { 'Assembly-CSharp is not loaded'; return }
     if ($script:defRefs.Count -eq 0) { 'not one def reference was collected, which cannot be right'; return }
     foreach ($r in $script:defRefs) {
-        if ($modDefs.ContainsKey($r.Name)) { continue }
+        if (Test-ModDef $r.Type $r.Name) { continue }
         if (Test-VanillaDef $r.Type $r.Name) { continue }
         "$($r.Where): no $($r.Type) named $($r.Name)"
     }
