@@ -77,6 +77,10 @@
     glowColor given a 255 alpha                   -> the alpha test
     the French label deleted                      -> the MustTranslate test
     a French key pointed at a field that is gone  -> the handle test and the MustTranslate one
+    a nested French key, CB_CrystalBall.comps.0   -> nothing, it is a correct handle. Splitting at
+    .label, added beside the four                    the LAST dot read its def as "CB_CrystalBall
+                                                     .comps.0" and failed it.
+    the same key with comps misspelt compz        -> the handle test, naming the field 'compz'
     DefInjected/ThingDef renamed thingdef         -> the folder-spelling test
     a French paragraph break dropped              -> the last test
 
@@ -823,10 +827,15 @@ It 'every French key names a def of this mod and a field that def has' {
     foreach ($k in $frKeys.Keys) {
         $folder = $k.Split('/', 2)[0]
         $rest   = $k.Split('/', 2)[1]
-        $dot = $rest.LastIndexOf('.')
+        # A handle is <defName>.<path>. A defName carries no dot, so the FIRST dot ends it, and the
+        # path after it may be nested: stages.0.label, comps.1.label. Splitting at the last dot
+        # would read the def of CB_X.comps.0.label as "CB_X.comps.0" and fail a correct key. Only
+        # the first segment of the path is checked here; the monorepo's Check-DefInjected.ps1
+        # walks the whole of it.
+        $dot = $rest.IndexOf('.')
         if ($dot -lt 1) { "$k is not a defName.field handle"; continue }
         $defName = $rest.Substring(0, $dot)
-        $field   = $rest.Substring($dot + 1)
+        $field   = $rest.Substring($dot + 1).Split('.')[0]
         if (-not (Get-ModDef $folder $defName)) { "$k names no $folder called $defName in this mod"; continue }
         $t = $byName[$folder]
         if (-not $t) { "$k sits in a folder named after no class"; continue }
