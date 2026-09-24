@@ -22,7 +22,7 @@ Feature: a colonist gazes into the ball
     Given the save "test-colony" is loaded
 
   @timeout:180
-  Scenario: a colonist with low joy is sent to the ball and sits beside it, with no seat anywhere near
+  Scenario: a colonist with low joy is sent to the ball and sits beside it with no seat anywhere near
     Given a colonist "Gazer" exists
     And "Gazer" needs "Joy" is set to 10 percent
     And Crystal Ball: a crystal ball "Bare" stands on open ground with no seat within 6 cells
@@ -65,7 +65,7 @@ Feature: a colonist gazes into the ball
     Then Crystal Ball: "Tired" has built up tolerance for divination
 
   @timeout:240
-  Scenario: a colonist who cannot see is offered nothing, one who cannot hear is sent and sits
+  Scenario: a colonist who cannot see is offered nothing and one who cannot hear is sent and sits
     Given a colonist "Blind" exists
     And a colonist "Deaf" exists
     And Crystal Ball: "Blind" is made blind

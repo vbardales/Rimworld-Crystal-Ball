@@ -83,8 +83,7 @@ criterion of `done -> tested`, not of this step.
 
 ### Next work for the next transition
 
-`done -> tested` needs, per `TESTING.md`: both passes played, English and then French, each through
-`Run-PickleWsl.ps1` under the machine's lock and with the queue's ticket watched read-only; `exitReason`
+`done -> tested` needs, per `TESTING.md`: both passes played, English and then French, each as a request dropped with the ticket dispatcher's `Submit-PickleRun.ps1`, which runs `Run-PickleWsl.ps1` under the machine's lock while this session keeps no process and watches nothing (the dispatcher wakes it). The first requests are explorations of one scenario each, and only the two validation passes ask for every scenario; `exitReason`
 read before the counts, and scenarios played compared with features discovered; the two `@review`
 captures opened; no scenario in `@wip` (none exists) and no `@requires` scenario left unrun (none exists);
 the logs read; and a correction followed by the regression run for whatever the first run turns up. Expect

@@ -304,10 +304,11 @@ the language fixed when the game starts and never switched during a run:
 2. **Same set, French.** `03-language.feature` says something only in the language it runs in, and
    this is where the interface is read in French.
 
-```powershell
-powershell.exe -ExecutionPolicy Bypass -File scripts/Run-PickleWsl.ps1 -Mod CrystalBall
-powershell.exe -ExecutionPolicy Bypass -File scripts/Run-PickleWsl.ps1 -Mod CrystalBall -Language French
-```
+Each pass is one request dropped with the ticket dispatcher's `Submit-PickleRun.ps1`, which starts the worker that
+calls `Run-PickleWsl.ps1` under the machine's lock; the session keeps no process and watches nothing, and the dispatcher
+wakes it. An exploration or a fix asks for the fewest scenarios, `-Filter '::<scenario name>'`. A validation pass, initial
+or final, asks for all of them: no `-Filter`, one request per language. `Tests/Pickle/README.md` lists the first three
+exploration requests.
 
 **No pass without a DLC.** An earlier version of this file declared one, to play the claim that no
 DLC is required. It is not the mod's guard or fallback that would be played: the mod has none, it

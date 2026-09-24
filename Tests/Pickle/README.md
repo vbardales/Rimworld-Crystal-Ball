@@ -37,12 +37,32 @@ with them. This mod names no optional mod, so the passes are the two languages. 
 switched inside a run: `SelectLanguage` reloads every def under the runner and the run dies with it.
 
 ```powershell
-powershell.exe -ExecutionPolicy Bypass -File scripts/Run-PickleWsl.ps1 -Mod CrystalBall
-powershell.exe -ExecutionPolicy Bypass -File scripts/Run-PickleWsl.ps1 -Mod CrystalBall -Language French
+powershell.exe -ExecutionPolicy Bypass -File Rimworld-Ticket-Dispatcher/scripts/Submit-PickleRun.ps1 `
+  -Mod CrystalBall -Owner local_<session id> -Label "validation English" `
+  -EvidenceDir CrystalBall/Tests/Pickle/Evidence/<run>
+# the same with -Language French, as a second request
 ```
 
 There is no `wsl-deps` map: nothing has to be staged beside the mod. There is no pass without the DLCs either; the claim
 that none is required is proved offline, and `TESTING.md` says why.
+
+## What to run, and when
+
+Runs are not started from a session: a request is dropped with the ticket dispatcher's `Submit-PickleRun.ps1`, one pass
+per request, and the dispatcher wakes the session. Its `WELCOME.md` sets the sizes.
+
+- **Exploration or a fix**: the fewest scenarios, one request per scenario: `-Filter '::<scenario name>'`.
+- **An initial or a final validation pass**: every scenario, no `-Filter`, one request per language.
+
+A filter is one string whose terms are separated by commas, and `::text` picks the scenarios whose name contains `text`.
+**A scenario name therefore carries no comma**, or the filter would read it as two terms. The first exploration requests,
+before this suite has ever been played:
+
+| What it settles | Filter | Language |
+| --- | --- | --- |
+| the fixture loads with the mod, its four defs are in the game, no error | `'::the mod loads and the game holds its four defs'` | English |
+| the whole gaze: the spot for the ball, the giver, the walk, the seat, joy rising | `'::sent to the ball and sits beside it'` | English |
+| the texts in French, and the language machinery | `'::the four owned texts read in the language of the pass'` | French |
 
 ## The fixture, and where the ball goes
 

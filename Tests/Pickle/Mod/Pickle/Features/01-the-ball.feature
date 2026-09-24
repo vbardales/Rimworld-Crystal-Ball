@@ -31,7 +31,7 @@ Feature: the crystal ball as an object
   # TESTING.md 1. Skill and priority are set as Pickle's own construction feature does it. 9000 units of work at
   # ultrafast speed still takes thousands of ticks, hence the long timeout.
   @slow @timeout:900
-  Scenario: a colonist builds the ball from jade and gold, with no research
+  Scenario: a colonist builds the ball from jade and gold with no research
     Given a colonist "Builder" exists
     And "Builder" has childhood "ShopKid36"
     And "Builder" has backstory "Blacksmith7"
