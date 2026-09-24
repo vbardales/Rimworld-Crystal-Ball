@@ -64,7 +64,7 @@ about the ten recreation types, the four that come from a building, and the `Bui
 casts to are computed from the game at every run, so a RimWorld release that moves one of those
 numbers is reported rather than quietly ageing this page.
 
-What neither suite does is play. [TESTING.md](TESTING.md) holds the fifteen scenarios that have to
+What neither suite does is play. [TESTING.md](TESTING.md) holds the fourteen scenarios that have to
 be watched in a running colony — the gaze itself, the chairless room, the tolerance that is counted
 per type — with what counts as a pass for each.
 

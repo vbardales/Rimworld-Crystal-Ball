@@ -96,16 +96,21 @@ front of a crystal ball, you do not pull a dining chair up to it.
 **Fail:** they ignore it, or they walk off to find a chair. That is what the def's `requireChair`
 guards against, and a fortune teller's caravan full of balls and no seating would stand idle.
 
-## 6. The game must not ask for chairs
+## 6. The game must not ask for chairs — not applicable
 
-RimWorld has an alert for recreation buildings left without a chair beside them. It inspects the
-buildings of one joy giver and looks for a sittable thing in the four cardinal cells.
+Withdrawn on 2026-09-24. It watched for RimWorld's alert about recreation buildings left without a
+chair, and asked that it never name the crystal ball. That alert cannot reach the ball, so there is
+nothing to watch.
 
-1. Leave the chairless ball of scenario 5 standing for a while, with colonists using it.
+What the compiled game says: `Alert_JoyBuildingNoChairs` is abstract, and it has exactly two
+subclasses. `Alert_ChessTableNoChairs` gets its joy giver from `JoyGiverDefOf.Play_Chess` and
+`Alert_PokerTableNoChairs` from `JoyGiverDefOf.Play_Poker`. The alert lists the buildings named by
+that one giver's `thingDefs`, and the ball belongs to `CB_GazeIntoCrystalBall`, a giver of its own.
+No alert of the game can list it, with or without a chair beside it.
 
-**Pass:** no alert in the top-right corner naming the crystal ball.
-**Fail:** an alert asking for chairs around something that needs none — a nag with no cure, since
-adding a chair would change nothing about how the ball is used.
+The slot keeps its number so that the others do not move. The scenario was wrong for the reason
+`../AUDIT.md` gives for deleting one: it asked a running game for what is settled by reading it.
+The premise had been written down without resolving which giver the alert watches.
 
 ## 7. Two may share it, a third may not
 
@@ -225,7 +230,8 @@ and plays. The balls are gone; nothing else is.
 
 ## What `tested` requires
 
-The fifteen scenarios above are what has to be watched. This section is what has to be true before
+The fourteen applicable scenarios above are what has to be watched, the sixth being withdrawn. This
+section is what has to be true before
 `STATUS.md` may say `tested`. It restates the step `done -> tested` of `../AUDIT.md` for this mod,
 with what each rule comes to here.
 
@@ -238,11 +244,11 @@ with what each rule comes to here.
   report folder is shared by the whole machine. A scenario skipped for want of its condition is not
   a passed scenario. This mod names no optional mod, so it has no `@requires:<mod>` scenario. What it
   does claim, *no DLC required*, is the reason for the DLC-less pass below.
-- **No manual test left to validate.** Each of the fifteen scenarios ends up automated and green,
+- **No manual test left to validate.** Each of the fourteen applicable scenarios ends up automated and green,
   or listed as not applicable with its reason. Nothing is left to tick by hand. The `@review`
   captures still have to be opened and looked at, but that is the reading of an image a scenario
   has already proved to be in the intended state, not one more manual test. Until the suite exists,
-  all fifteen are manual and all fifteen are pending.
+  all fourteen are manual and all fourteen are pending.
 - **A green run is not the proof.** Read `exitReason` before the numbers, compare the scenarios
   played with the features discovered, and open every `@review` capture. A green says the path was
   walked, not that the image shows a ball, a colonist sitting, or a tolerance bar.

@@ -38,7 +38,7 @@ Nothing here reaches a player.
   giver through the game's own accessor, and scans every method body in the game to find which
   class reads each setting the mod writes — which is how an inert setting, one nothing on its
   code path ever reads, gets caught.
-- `TESTING.md`, the fifteen scenarios only a running colony can settle.
+- `TESTING.md`, the fourteen scenarios only a running colony can settle.
 
 ## [0.1.0] — 2026-09-23
 

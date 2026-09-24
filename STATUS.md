@@ -20,8 +20,8 @@ tested_on:
 workshop:     3806709786
 remaining:
   - feature: the Pickle (Gherkin) suite is not written, and `preTest -> done` requires it, with its scope justified
-  - unverified: the fifteen manual scenarios in TESTING.md have no recorded in-game pass
-  - unverified: chairless use and the vanilla chair alert (scenarios 5 and 6)
+  - unverified: the fourteen applicable manual scenarios in TESTING.md have no recorded in-game pass
+  - unverified: chairless use of the ball, with no seat of any kind in reach (TESTING.md scenario 5)
   - unverified: English and French in-game display of all four owned texts (TESTING.md scenario 14)
   - unverified: the private 0.1.0 item was never subscribed to, so its page and showcase have not been seen in place
   - defect: the Steam description has no line pointing to ATTRIBUTION.md; SetItemDescription runs at creation only, so it is a by-hand edit on the Steam page (`tested -> prepublished`)
@@ -43,7 +43,7 @@ tracked file differed from HEAD, so the offline results below describe the deliv
 readiness alone. The step `preTest -> done`, as now worded, also requires the Pickle (Gherkin) tests
 to be **written**, with their scope justified. There is no `Tests/` directory in this repository.
 Not applicable is not defensible either: what the mod does is a colonist walking over, sitting down
-and getting up in a better mood, and every one of the fifteen scenarios is behaviour that only a
+and getting up in a better mood, and every one of the fourteen applicable scenarios is behaviour that only a
 running game shows. Every other criterion of the transition holds. Executing the suite is not a
 criterion of `done`, only of `tested`.
 
@@ -60,7 +60,7 @@ This is a step back on a paper requirement, not a fault found in the mod: nothin
 | preOptions -> options | Not applicable, justified | No `MainButtonDef`, no settings class or storage in `Mod/`; the fixed values (cost, radius, duration, capacity) are balance choices, not a promised configuration. No empty page or shortcut is registered. The 2026-09-13 inventory below still holds. |
 | options -> l10n | Validated | `Run-Tests.ps1` 24/24 with MustTranslate coverage, folder spelling and paragraph breaks; `Check-DefInjected.ps1` 4 keys, 0 errors. |
 | l10n -> preTest | Validated | No dependency, DLC, patch or `LoadFolders`; `loadAfter` names only `Ludeon.RimWorld`. |
-| preTest -> done | **Not established** | Scenarios written (15, with setup, steps, expected results). Automated and XML suites green today on HEAD: `Run-Tests.ps1` 24/24, `Run-Functional-Tests.ps1` 11/11. **The Pickle suite is absent.** |
+| preTest -> done | **Not established** | Scenarios written (14 applicable, the sixth withdrawn, with setup, steps, expected results). Automated and XML suites green today on HEAD: `Run-Tests.ps1` 24/24, `Run-Functional-Tests.ps1` 11/11. **The Pickle suite is absent.** |
 | done -> tested | Not verified | Nothing played. See the criteria in `TESTING.md`, "What `tested` requires". |
 
 ### Prepublication of 0.1.0
@@ -93,13 +93,37 @@ in place: `Tests/Pickle/Evidence/` and `evidence/` are in `.gitignore`, and `TES
 proofs to keep, where, and how to minify them. No `.dds` was tracked; `*.dds` is ignored so none can
 be added by mistake.
 
+### Corrected after a review of this audit, the same day
+
+A code review of the work above found five things wrong and confirmed each by running it. All five
+are fixed, and none changes what ships.
+
+- **Scenario 6 tested an alert that cannot name the ball.** `Alert_JoyBuildingNoChairs` is abstract
+  with two subclasses, chess table and poker table, watching `Play_Chess` and `Play_Poker`. The
+  ball's giver is its own. The scenario is now recorded in `TESTING.md` as not applicable with that
+  reason, keeping its number, and the `unverified` line that repeated the premise is gone. Fourteen
+  scenarios remain applicable, not fifteen.
+- **The reader scan of `Run-Functional-Tests.ps1` missed reads by address.** It matched `ldfld`
+  only, so a struct field such as `startingHpRange` was reported as read by nothing. Seven of the
+  fourteen fields called unread are in fact read. It matches `ldflda` too now, and the fault that
+  showed it is the new row of the suite's mutation table.
+- **The def-reference test ignored types.** With the JobDef deleted, the giver's reference found the
+  giver, which carries the same defName. It now checks name and type, and fails on that copy.
+- **Two texts were false.** The suite's header named a field as unread that the game reads, and gave
+  timings three to four times too high. Both are corrected.
+
+Not changed, and still open from the same review: nested DefInjected handles split at the last dot,
+the vanilla-range comparisons collapse to one value for duration and participants, the cast test
+duplicates a template walk, and the upload path of 0.1.0 is stated as fact in two places while only
+two file timestamps support it.
+
 ### Next work for the next transition
 
-Write the Pickle suite for the fifteen scenarios, and justify its scope in `TESTING.md`. Start from
+Write the Pickle suite for the fourteen applicable scenarios, and justify its scope in `TESTING.md`. Start from
 `../PickleTools/Authoring/README.md`. Everything above the running game (the defs, the readers of
 each setting, the translation keys) is already proved offline by the two suites and does not belong
 in Gherkin. That takes the mod to `done`. `tested` then needs the three passes declared in
-`TESTING.md`, the fifteen scenarios automated and green or explicitly not applicable, no scenario
+`TESTING.md`, the fourteen applicable scenarios automated and green or explicitly not applicable, no scenario
 left in `@wip`, every `@requires` scenario run (none exists for this mod), and every `@review`
 capture opened.
 
