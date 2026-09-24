@@ -15,6 +15,7 @@ The mod under test needs no DLC and this companion declares none: the fixture is
     <li>
       <packageId>nelim.crystalball</packageId>
       <displayName>Crystal Ball</displayName>
+      <downloadUrl>https://github.com/vbardales/Rimworld-Crystal-Ball</downloadUrl>
     </li>
     <li>
       <packageId>rimworks.pickle</packageId>
