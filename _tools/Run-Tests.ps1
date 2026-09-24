@@ -12,12 +12,12 @@
   vanilla side: the suite loads Assembly-CSharp by reflection and asks the game's own classes
   what this mod is allowed to assume.
 
-  Four groups, twenty-four tests:
+  Four groups, twenty-five tests:
 
     About and images   the identity that must never change, the two pictures, the texture, and
                        the cost the showcase text claims against the cost the def charges
     The defs           parses, prefixes, every element a real 1.6 field, every class and every
-                       def reference resolving
+                       def reference resolving, and all of it defined in Core
     The rules          the things this mod rests on, each tested against the game rather than
                        against its own prose
     Translations       every [MustTranslate] string covered, every French key pointing at
@@ -46,7 +46,7 @@
   Exit code 0 when everything passes, 1 otherwise.
 
   EVERY TEST HERE HAS BEEN SEEN TO FAIL. A suite that goes green on its first run has proved
-  nothing, so twenty-three faults were introduced one at a time into a copy of the mod in a
+  nothing, so faults were introduced one at a time into a copy of the mod in a
   scratch directory - never into the real files - and each had to be named by the right test:
 
     packageId changed                             -> the identity test, alone
@@ -81,6 +81,11 @@
     .label, added beside the four                    the LAST dot read its def as "CB_CrystalBall
                                                      .comps.0" and failed it.
     the same key with comps misspelt compz        -> the handle test, naming the field 'compz'
+    a cost paid in Bioferrite, Anomaly's only     -> the Core test, naming Anomaly
+    compClass set to CompAbilityEffect_Stun, a    -> the Core test, naming the class, and the
+    class only a Royalty def names                   class test
+    ParentName set to AncientTurretBase, Odyssey's -> the Core test, naming Odyssey
+    the unchanged copy                            -> nothing: the Core test stays green
     DefInjected/ThingDef renamed thingdef         -> the folder-spelling test
     a French paragraph break dropped              -> the last test
 
@@ -384,6 +389,24 @@ $templates    = @{}   # ThingDef Name=   -> @{ Class; Parent }
 $thingInfo    = @{}   # ThingDef defName -> @{ Class; Parent; Label }
 $glowColors   = @{}   # every glowColor a vanilla CompProperties_Glower writes
 $coreGivers   = @{}   # Core JoyGiverDef defName -> @{ Kind; Things }
+$vanillaHome  = @{}   # "Type/defName"   -> the data folders that define it (Core, Royalty, ...)
+$templateHome = @{}   # ThingDef Name=   -> the data folders that define that template
+$coreClasses  = @{}   # every C# class a Core def names: giverClass, driverClass, compClass, graphicClass,
+                      # thingClass, and any Class= attribute
+
+# Every C# class a def node names, in the five elements that take a class and in any Class= attribute,
+# the node's own and its descendants'. Used on the game's Core defs and on this mod's, so that "a class
+# the mod names" and "a class Core names" are the same question asked the same way.
+function Get-NamedClasses($node) {
+    $names = @{}
+    foreach ($c in $node.SelectNodes('.//giverClass | .//driverClass | .//compClass | .//graphicClass | .//thingClass')) {
+        if ($c.InnerText.Trim()) { $names[$c.InnerText.Trim()] = $true }
+    }
+    foreach ($a in $node.SelectNodes('.//@Class')) { if ($a.Value.Trim()) { $names[$a.Value.Trim()] = $true } }
+    $own = $node.GetAttribute('Class')
+    if ($own) { $names[$own.Trim()] = $true }
+    return @($names.Keys)
+}
 
 foreach ($dir in (Get-ChildItem $GameData -Directory)) {
     $defsRoot = Join-Path $dir.FullName 'Defs'
@@ -399,6 +422,12 @@ foreach ($dir in (Get-ChildItem $GameData -Directory)) {
             if ($dnNode) {
                 if (-not $vanilla.ContainsKey($type)) { $vanilla[$type] = @{} }
                 $vanilla[$type][$dnNode.InnerText] = $true
+                $hk = "$type/$($dnNode.InnerText)"
+                if (-not $vanillaHome.ContainsKey($hk)) { $vanillaHome[$hk] = @{} }
+                $vanillaHome[$hk][$dir.Name] = $true
+            }
+            if ($dir.Name -eq 'Core') {
+                foreach ($c in (Get-NamedClasses $n)) { $coreClasses[$c] = $true }
             }
             if ($type -eq 'ThingDef') {
                 $cls = $n.SelectSingleNode('thingClass')
@@ -409,7 +438,11 @@ foreach ($dir in (Get-ChildItem $GameData -Directory)) {
                     Label  = $(if ($lbl) { $lbl.InnerText } else { $null })
                 }
                 $nm = $n.GetAttribute('Name')
-                if ($nm)     { $templates[$nm] = $info }
+                if ($nm) {
+                    $templates[$nm] = $info
+                    if (-not $templateHome.ContainsKey($nm)) { $templateHome[$nm] = @{} }
+                    $templateHome[$nm][$dir.Name] = $true
+                }
                 if ($dnNode) { $thingInfo[$dnNode.InnerText] = $info }
                 foreach ($g in $n.SelectNodes('.//li[@Class="CompProperties_Glower"]/glowColor')) {
                     $glowColors[$g.InnerText] = $true
@@ -649,6 +682,35 @@ It 'every def the mod points at exists, here or in the game' {
         if (Test-ModDef $r.Type $r.Name) { continue }
         if (Test-VanillaDef $r.Type $r.Name) { continue }
         "$($r.Where): no $($r.Type) named $($r.Name)"
+    }
+}
+
+It 'everything the mod points at is defined in Core, so no DLC is required' {
+    # "No DLC required" is a claim the description and the README make, and the reference test above cannot
+    # check it: it looks a def up in every data folder, so a def that only Odyssey defines resolves as well as
+    # one from Core. This asks the narrower question. Every def a field points at, every template the def
+    # inherits, and every C# class it names must be one Core itself defines or uses. A class is judged by
+    # whether a Core def names it, which is conservative: a DLC-only class fails, a Core class no Core def
+    # happens to name would too, and that is the fault to look at rather than to wave through.
+    if ($byName.Count -eq 0) { 'Assembly-CSharp is not loaded'; return }
+    if ($vanillaHome.Count -eq 0) { 'the game data holds no def at all'; return }
+    if ($coreClasses.Count -eq 0) { 'Core names no C# class at all, which cannot be right'; return }
+    foreach ($r in $script:defRefs) {
+        if (Test-ModDef $r.Type $r.Name) { continue }
+        $folders = $vanillaHome["$($r.Type)/$($r.Name)"]
+        if (-not $folders) { continue }                    # the reference test names what does not exist
+        if (-not $folders.ContainsKey('Core')) {
+            "$($r.Where): $($r.Type) $($r.Name) is defined only in $((@($folders.Keys) | Sort-Object) -join ', ')"
+        }
+    }
+    foreach ($n in $defNodes) {
+        $p = $n.GetAttribute('ParentName')
+        if ($p -and $templateHome.ContainsKey($p) -and -not $templateHome[$p].ContainsKey('Core')) {
+            "$($n.defName): the template $p is defined only in $((@($templateHome[$p].Keys) | Sort-Object) -join ', ')"
+        }
+        foreach ($c in (Get-NamedClasses $n)) {
+            if (-not $coreClasses.ContainsKey($c)) { "$($n.defName): the class $c is named by no Core def, so it may belong to a DLC" }
+        }
     }
 }
 
