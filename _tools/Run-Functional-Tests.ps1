@@ -26,7 +26,8 @@
     Every setting read   no setting inert, and each read by the class this mod chose
     The type             what makes an eleventh recreation type worth having, traced to the
                          methods that count it
-    The numbers          against the vanilla defs that run on the same driver and giver
+    The numbers          against the range of vanilla recreation, the values on this driver and
+                         giver being named beside it
 
   Two findings worth keeping, both from writing this:
 
@@ -46,8 +47,8 @@
       barDrawData are all read. Both loads are matched now, and a field written as
       <startingHpRange> is the fault that was used to see it.
 
-  Exit code 0 when everything passes, 1 otherwise. Three to eight seconds, cold or warm, two to
-  three of them the scan.
+  Exit code 0 when everything passes, 1 otherwise. Three to twenty seconds depending on the load of
+  the machine, two to six of them the scan.
 
   EVERY TEST HERE HAS BEEN SEEN TO FAIL, the same way as next door: one fault at a time in a copy
   of the mod in a scratch directory, never in the real files.
@@ -66,10 +67,19 @@
     driverClass moved to the skygazing driver         -> the cast test and joyMaxParticipants
     the joyKind taken off the job                     -> the credit test
     the joyKind taken off the building                -> the tally test
-    joyDuration raised to 12000                       -> the length comparison, naming the 4000
-                                                         its two vanilla cousins use
-    joyMaxParticipants raised to 9                    -> the participants comparison
-    baseChance raised to 40                           -> the chance comparison, naming 2 and 4
+    joyDuration raised to 12000                       -> the length comparison, naming the range
+                                                         of the 22 vanilla recreation jobs,
+                                                         1500 to 8000, and the 4000 of the two
+                                                         on this driver
+    joyDuration lowered to 3500, a rebalance          -> nothing. It failed while the range was
+                                                         the two vanilla jobs on this driver,
+                                                         both at 4000: a range of one point.
+    joyMaxParticipants raised to 9                    -> the participants comparison, naming 1 to 8
+    joyMaxParticipants set to 5                       -> nothing, for the same reason
+    baseChance raised to 40                           -> the chance comparison, naming 2 to 4
+    ParentName pointed at ResourceBase, which lives   -> the cast test, naming ThingWithComps. It
+    outside ThingDefs_Buildings                          said "no thingClass at all" while the
+                                                         template walk looked in that folder only
 
   The fifth of those is the one worth reading twice. Moving the def to another giver breaks
   nothing a validator could see: the class exists, the fields exist, the mod loads. Only
@@ -287,11 +297,14 @@ function Show-Readers($names) {
 }
 
 # ---------------------------------------------------------------------------------------------
-# The vanilla defs that run on the same classes
+# The game's own defs, indexed in one pass over every Defs folder
 # ---------------------------------------------------------------------------------------------
+#
+# Strings and numbers only, never the XML nodes: a node keeps its whole document alive.
 
-$vanillaJobs   = @{}    # defName -> @{ Driver; Duration; Participants }
-$vanillaGivers = @{}    # defName -> @{ Giver; Chance }
+$vanillaJobs   = @{}    # defName -> @{ Driver; Recreation; Duration; Participants }
+$vanillaGivers = @{}    # defName -> @{ Giver; HasThings; Chance }
+$templates     = @{}    # ThingDef Name= -> @{ Class; Parent }, what a ParentName resolves through
 foreach ($dir in (Get-ChildItem $GameData -Directory)) {
     $defsRoot = Join-Path $dir.FullName 'Defs'
     if (-not (Test-Path $defsRoot)) { continue }
@@ -305,12 +318,20 @@ foreach ($dir in (Get-ChildItem $GameData -Directory)) {
                 $d = Get-Text $n 'driverClass'
                 if ($d) { $vanillaJobs[[string]$n.defName] = @{
                     Driver       = $d
+                    Recreation   = [bool](Get-Text $n 'joyKind')
                     Duration     = Get-Text $n 'joyDuration'
                     Participants = Get-Text $n 'joyMaxParticipants' } }
             }
             if ($n.LocalName -eq 'JoyGiverDef') {
                 $g = Get-Text $n 'giverClass'
-                if ($g) { $vanillaGivers[[string]$n.defName] = @{ Giver = $g; Chance = Get-Text $n 'baseChance' } }
+                if ($g) { $vanillaGivers[[string]$n.defName] = @{
+                    Giver     = $g
+                    HasThings = ($null -ne $n.SelectSingleNode('thingDefs'))
+                    Chance    = Get-Text $n 'baseChance' } }
+            }
+            if ($n.LocalName -eq 'ThingDef') {
+                $nm = $n.GetAttribute('Name')
+                if ($nm) { $templates[$nm] = @{ Class = Get-Text $n 'thingClass'; Parent = $n.GetAttribute('ParentName') } }
             }
         }
     }
@@ -373,26 +394,17 @@ It 'the driver really does cast what it sits at to a Building, and this is one' 
     }
     if (-not $castTo) { 'its Building accessor no longer casts anything'; return }
 
-    # What this def will be instantiated as, resolved through the vanilla parent templates.
+    # What this def will be instantiated as, resolved through the game's parent templates. They
+    # come from the index built once above, over every Defs folder, so a template that lives
+    # outside ThingDefs_Buildings is found as well and nothing is parsed a second time.
     $className = Get-Text $ballNode 'thingClass'
     $parent    = $ballNode.GetAttribute('ParentName')
     $hops = 0
     while (-not $className -and $parent -and $hops -lt 12) {
-        $found = $null
-        foreach ($dir in (Get-ChildItem $GameData -Directory)) {
-            $p = Join-Path $dir.FullName 'Defs\ThingDefs_Buildings'
-            if (-not (Test-Path $p)) { continue }
-            foreach ($f in Get-ChildItem $p -Recurse -Filter *.xml) {
-                $x = New-Object System.Xml.XmlDocument
-                try { $x.Load($f.FullName) } catch { continue }
-                $node = $x.DocumentElement.SelectSingleNode("ThingDef[@Name='$parent']")
-                if ($node) { $found = $node; break }
-            }
-            if ($found) { break }
-        }
-        if (-not $found) { break }
-        $className = Get-Text $found 'thingClass'
-        $parent    = $found.GetAttribute('ParentName')
+        $tpl = $templates[$parent]
+        if (-not $tpl) { break }
+        $className = $tpl.Class
+        $parent    = $tpl.Parent
         $hops++
     }
     if (-not $className) { 'this def resolves to no thingClass at all'; return }
@@ -482,39 +494,60 @@ It 'the tally of recreation available on the map reads the building''s joyKind a
 }
 
 # =============================================================================================
-Section 'The numbers, against the vanilla defs on the same classes'
+Section 'The numbers, against the vanilla recreation defs'
 # =============================================================================================
+#
+# The range a value has to sit in is the whole of vanilla's recreation, not only the jobs that
+# happen to share this driver. Those are chess and the game of Ur, both at 4000 ticks and both for
+# two players, so a range built from them alone is a single point, and every deliberate rebalance
+# reads as a fault. The values on the same driver or giver are still named in the message: they
+# are the nearest comparison, only no longer the whole rule. A wide range still catches what these
+# are for - a typo of a zero, a copy-paste from another mod - and lets a decision through.
 
-It 'the gaze lasts what vanilla''s jobs on this driver last' {
+function Get-Range($values) {
+    $v = @($values | Sort-Object)
+    return @{ Min = $v[0]; Max = $v[-1]; Count = $v.Count }
+}
+
+It 'the gaze lasts within the range of vanilla''s recreation jobs' {
     $mine = Get-Text $jobNode 'joyDuration'
     if (-not $mine) { 'the job declares no joyDuration'; return }
-    $cousins = @($vanillaJobs.GetEnumerator() | Where-Object { $_.Value.Driver -eq $driverClassName -and $_.Value.Duration })
-    if ($cousins.Count -eq 0) { "no vanilla job runs on $driverClassName, so there is nothing to compare with"; return }
-    $values = @($cousins | ForEach-Object { [int]$_.Value.Duration } | Sort-Object -Unique)
-    if ([int]$mine -lt $values[0] -or [int]$mine -gt $values[-1]) {
-        "$mine ticks, where $($cousins.Count) vanilla job(s) on this driver use $($values -join ', ')"
+    $pool = @($vanillaJobs.Values | Where-Object { $_.Recreation -and $_.Duration } | ForEach-Object { [int]$_.Duration })
+    if ($pool.Count -eq 0) { 'the game data holds no recreation job with a joyDuration, so there is nothing to compare with'; return }
+    $r = Get-Range $pool
+    if ([int]$mine -lt $r.Min -or [int]$mine -gt $r.Max) {
+        $near = @($vanillaJobs.Values | Where-Object { $_.Driver -eq $driverClassName -and $_.Duration } |
+                  ForEach-Object { [int]$_.Duration } | Sort-Object -Unique)
+        "$mine ticks, where the $($r.Count) vanilla recreation jobs run $($r.Min) to $($r.Max)" +
+            $(if ($near.Count) { " and the ones on this driver use $($near -join ', ')" })
     }
 }
 
-It 'no more may share the ball than share vanilla''s buildings on this driver' {
+It 'no more may share the ball than share a vanilla recreation job' {
     $mine = Get-Text $jobNode 'joyMaxParticipants'
     if (-not $mine) { 'the job declares no joyMaxParticipants'; return }
-    $cousins = @($vanillaJobs.GetEnumerator() | Where-Object { $_.Value.Driver -eq $driverClassName -and $_.Value.Participants })
-    if ($cousins.Count -eq 0) { "no vanilla job on $driverClassName sets it, so there is nothing to compare with"; return }
-    $values = @($cousins | ForEach-Object { [int]$_.Value.Participants } | Sort-Object -Unique)
-    if ([int]$mine -lt $values[0] -or [int]$mine -gt $values[-1]) {
-        "$mine, where the vanilla jobs on this driver use $($values -join ', ')"
+    $pool = @($vanillaJobs.Values | Where-Object { $_.Recreation -and $_.Participants } | ForEach-Object { [int]$_.Participants })
+    if ($pool.Count -eq 0) { 'the game data holds no recreation job with joyMaxParticipants, so there is nothing to compare with'; return }
+    $r = Get-Range $pool
+    if ([int]$mine -lt $r.Min -or [int]$mine -gt $r.Max) {
+        $near = @($vanillaJobs.Values | Where-Object { $_.Driver -eq $driverClassName -and $_.Participants } |
+                  ForEach-Object { [int]$_.Participants } | Sort-Object -Unique)
+        "$mine, where the $($r.Count) vanilla recreation jobs that set it run $($r.Min) to $($r.Max)" +
+            $(if ($near.Count) { " and the ones on this driver use $($near -join ', ')" })
     }
 }
 
-It 'the ball is picked about as often as vanilla''s buildings on this giver' {
+It 'the ball is picked about as often as the things vanilla''s joy givers name' {
     $mine = Get-Text $giverNode 'baseChance'
     if (-not $mine) { 'the giver declares no baseChance'; return }
-    $cousins = @($vanillaGivers.GetEnumerator() | Where-Object { $_.Value.Giver -eq $giverClassName -and $_.Value.Chance })
-    if ($cousins.Count -eq 0) { "no vanilla giver uses $giverClassName, so there is nothing to compare with"; return }
-    $values = @($cousins | ForEach-Object { [double]$_.Value.Chance } | Sort-Object -Unique)
-    if ([double]$mine -lt $values[0] -or [double]$mine -gt $values[-1]) {
-        "$mine, where the vanilla givers on this class use $($values -join ', ')"
+    $pool = @($vanillaGivers.Values | Where-Object { $_.HasThings -and $_.Chance } | ForEach-Object { [double]$_.Chance })
+    if ($pool.Count -eq 0) { 'the game data holds no joy giver that names things, so there is nothing to compare with'; return }
+    $r = Get-Range $pool
+    if ([double]$mine -lt $r.Min -or [double]$mine -gt $r.Max) {
+        $near = @($vanillaGivers.Values | Where-Object { $_.Giver -eq $giverClassName -and $_.Chance } |
+                  ForEach-Object { [double]$_.Chance } | Sort-Object -Unique)
+        "$mine, where the $($r.Count) vanilla joy givers that name things run $($r.Min) to $($r.Max)" +
+            $(if ($near.Count) { " and the ones on this class use $($near -join ', ')" })
     }
 }
 
