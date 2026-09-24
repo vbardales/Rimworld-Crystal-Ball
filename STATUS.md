@@ -9,7 +9,7 @@ remote:       https://github.com/vbardales/Rimworld-Crystal-Ball.git
 local_path:   C:\Users\nelim\Documents\rimworld\CrystalBall
 visibility:   public
 detached:     yes
-stage:        preTest
+stage:        done
 settings_audit: not_applicable
 licence:      original
 licence_at:   MIT; original mod according to repository provenance
@@ -19,10 +19,9 @@ showcase:     complete
 tested_on:
 workshop:     3806709786
 remaining:
-  - feature: the Pickle (Gherkin) suite is not written, and `preTest -> done` requires it, with its scope justified
-  - unverified: the fourteen applicable manual scenarios in TESTING.md have no recorded in-game pass
-  - unverified: chairless use of the ball, with no seat of any kind in reach (TESTING.md scenario 5)
-  - unverified: English and French in-game display of all four owned texts (TESTING.md scenario 14)
+  - unverified: no Pickle scenario has been played, and `tested` needs both passes, English and French
+  - unverified: the spots the suite guesses, a ball's cell near (146, 156), the build at (146, 157) with its stockpile at (150..152, 160..162), and the 900 s allowed for a 9000-unit build
+  - unverified: the two `@review` captures, the ball at night and the inspect pane in each language, are not produced and not opened
   - unverified: the private 0.1.0 item was never subscribed to, so its page and showcase have not been seen in place
   - defect: the Steam description has no line pointing to ATTRIBUTION.md; SetItemDescription runs at creation only, so it is a by-hand edit on the Steam page (`tested -> prepublished`)
 session:      01a09736-2cfc-72d3-8b3c-4ffe79ef572c
@@ -31,7 +30,76 @@ updated:      2026-09-24
 
 # Crystal Ball — status
 
-## Audit — 2026-09-24 (current decision)
+## Audit — 2026-09-24, second pass: done (current decision)
+
+Audited revision `5924c85`, three commits on `5a8fc0b` (`8cc4d2d` the Pickle suite, `ec91a29` the offline
+Core test, `5924c85` the documentation), read against the current `../AUDIT.md`, which had not changed
+since the first pass. No tracked file differed from HEAD, and nothing under `Mod/` changed since `3d1243e`,
+so the results below describe the delivered files.
+
+**Previous stage: preTest. Retained stage: done.** The first pass stopped at `preTest -> done` for one
+reason: the Pickle (Gherkin) tests were not written. They are now, with their scope justified in
+`TESTING.md`, and every other criterion of the transition holds. `done` means ready for the final in-game
+validation. It does not mean tested: **no scenario has been played**, and executing the suite is a
+criterion of `done -> tested`, not of this step.
+
+### The transition `preTest -> done`
+
+| Criterion | Result | Evidence |
+| --- | --- | --- |
+| Functional scenarios written, with preconditions, actions and expected results | Validated | The fifteen scenarios of `TESTING.md`. Ten are written in Gherkin, one is withdrawn, four are not applicable. |
+| Automated tests written, run and green | Validated | `Run-Tests.ps1` 25/25, `Run-Functional-Tests.ps1` 11/11, both re-run on `5924c85`. |
+| Pickle (Gherkin) tests written, scope justified | Validated | `Tests/Pickle/`: four features, ten scenarios, twenty-two steps. The table "Which scenarios are written as Gherkin, and which are not" in `TESTING.md` says where each of the fifteen is settled. |
+| XML tests written, run and green | Validated | `Run-Tests.ps1`, and `Check-DefInjected.ps1` at 4 keys, 0 errors. |
+| Every non-applicability justified, no artificial test | Validated | Scenario 6 (the alert cannot name the ball), 10 to 13 (the game's reaction to a flag the mod declares), and the pieces of 8, 1 and 15 named in the table. Each gives its reason in the table, and 10 to 13 name the reader the offline scan finds. |
+| Results match the delivered version | Validated | `Mod/` is unchanged since `3d1243e`. |
+| No in-game test required for `done` | Noted | The explicit clarification of 2026-09-21. |
+
+### What was done, and how each part was checked without a game
+
+- **The suite compiles.** `dotnet build Tests/Pickle/Source/CrystalBall.PickleSteps.csproj -c Release`
+  against the game and Pickle stubs: 0 warnings, 0 errors. The DLL is a build artefact and is ignored.
+- **`Tests/Pickle/Check-Steps.ps1`** compiles the 22 step patterns with Pickle's own expression engine and
+  resolves each of the 111 step lines to exactly one expression among the suite's, Pickle's 203 and the 746
+  of 23 other suites. It passes, and each of its four checks was seen to fail on a broken copy: a pattern
+  with an unknown parameter type, a feature line with a typo, a pattern declared twice, a pattern that
+  collides with one of Pickle's.
+- **A new offline test, 25th of `Run-Tests.ps1`**, proves the claim "no DLC required" statically: every def
+  a field points at, every template the def inherits and every class it names must be one Core defines or
+  names. Seen to fail on a cost paid in Bioferrite (Anomaly), a comp class only a Royalty def names, and a
+  parent template only Odyssey defines; the unchanged copy stays green.
+- **The passes fall from three to two**, English and French. The DLC-less pass declared earlier would not
+  have played a guard, the mod has none, and it would have had to load a fixture saved with Royalty
+  content. `TESTING.md` says so and the static proof replaces it.
+
+### What has NOT been done, and is not a defect
+
+- **No scenario was played.** Whether the spot the suite picks for the ball, the time the build takes,
+  the seat a colonist takes, or the tolerance a sitting builds come out as the steps expect is what the
+  first run will say. The suite has never touched a game.
+- **The machine was not used.** No RimWorld was launched. The Pickle queue held 32 tickets at the last look,
+  none for this mod, and the passes each take tens of minutes.
+- **The `@review` captures do not exist yet**, so none was opened.
+
+### Next work for the next transition
+
+`done -> tested` needs, per `TESTING.md`: both passes played, English and then French, each through
+`Run-PickleWsl.ps1` under the machine's lock and with the queue's ticket watched read-only; `exitReason`
+read before the counts, and scenarios played compared with features discovered; the two `@review`
+captures opened; no scenario in `@wip` (none exists) and no `@requires` scenario left unrun (none exists);
+the logs read; and a correction followed by the regression run for whatever the first run turns up. Expect
+the first run to find something: the suite is written against a fixture it has never loaded.
+
+### Reservations and recommendations, separate from the blockers
+
+- **A namesake on the Workshop**, `CrystalBall (Continued)`, item 2483367722, is unchanged from the first
+  pass: no technical clash, a shared name in a search.
+- **The description says *This mod is MIT licensed.* without pointing to `ATTRIBUTION.md`**, which the
+  prepublished step asks for. Only a by-hand edit on the Steam page changes it now.
+- **`v0.1.0` has no tag and no release.** The repository has no workflow, so the CI did not create the item;
+  whether 0.1.0 gets a tag is Virginie's call.
+
+## Audit — 2026-09-24, first pass: preTest (historical, superseded by the one above)
 
 Audited revision `3d1243e824686edb5841addcfa72432f7b4e3c51`, equal to `origin/main` (zero ahead,
 zero behind), read against the current `../AUDIT.md`. Two files were untracked at entry:
