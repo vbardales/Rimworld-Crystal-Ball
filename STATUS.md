@@ -9,7 +9,7 @@ remote:       https://github.com/vbardales/Rimworld-Crystal-Ball.git
 local_path:   C:\Users\nelim\Documents\rimworld\CrystalBall
 visibility:   public
 detached:     yes
-stage:        done
+stage:        preTest
 settings_audit: not_applicable
 licence:      original
 licence_at:   MIT; original mod according to repository provenance
@@ -17,19 +17,105 @@ license_spdx: MIT
 dependencies: none
 showcase:     complete
 tested_on:
-workshop:
+workshop:     3806709786
 remaining:
+  - feature: the Pickle (Gherkin) suite is not written, and `preTest -> done` requires it, with its scope justified
   - unverified: the fifteen manual scenarios in TESTING.md have no recorded in-game pass
   - unverified: chairless use and the vanilla chair alert (scenarios 5 and 6)
-  - unverified: Workshop publication and in-place showcase review
   - unverified: English and French in-game display of all four owned texts (TESTING.md scenario 14)
+  - unverified: the private 0.1.0 item was never subscribed to, so its page and showcase have not been seen in place
+  - defect: the Steam description has no line pointing to ATTRIBUTION.md; SetItemDescription runs at creation only, so it is a by-hand edit on the Steam page (`tested -> prepublished`)
 session:      01a09736-2cfc-72d3-8b3c-4ffe79ef572c
-updated:      2026-09-13
+updated:      2026-09-24
 ---
 
 # Crystal Ball — status
 
-## Description link fix — 2026-09-13 (current decision)
+## Audit — 2026-09-24 (current decision)
+
+Audited revision `3d1243e824686edb5841addcfa72432f7b4e3c51`, equal to `origin/main` (zero ahead,
+zero behind), read against the current `../AUDIT.md`. Two files were untracked at entry:
+`Mod/About/PublishedFileId.txt`, written on 2026-09-23 at 14:31 by the 0.1.0 prepublication, and
+`Mod/Textures/Things/Building/Joy/CrystalBall.dds`, RimWorld's texture cache, written at 14:13. No
+tracked file differed from HEAD, so the offline results below describe the delivered files.
+
+**Previous stage: done. Retained stage: preTest.** The 2026-09-13 audit recorded `done` on offline
+readiness alone. The step `preTest -> done`, as now worded, also requires the Pickle (Gherkin) tests
+to be **written**, with their scope justified. There is no `Tests/` directory in this repository.
+Not applicable is not defensible either: what the mod does is a colonist walking over, sitting down
+and getting up in a better mood, and every one of the fifteen scenarios is behaviour that only a
+running game shows. Every other criterion of the transition holds. Executing the suite is not a
+criterion of `done`, only of `tested`.
+
+This is a step back on a paper requirement, not a fault found in the mod: nothing shipped changed.
+
+### Transitions, in order
+
+| Transition | Result | What was checked now |
+| --- | --- | --- |
+| dansMonoRepo -> horsMonoRepo | Validated | Git root is this folder, `origin` is the GitHub repository, PUBLIC, `origin/main` equals HEAD. STATUS, README, CHANGELOG, LICENSE and ATTRIBUTION exist in English. `Mod/LICENSE` and `Mod/ATTRIBUTION.md` are byte-identical to the root copies. Identity coherent. |
+| horsMonoRepo -> ModIcon generated | Validated, build not applicable | Four defs, one texture, no assembly. `ModIcon.png` is 128 x 128, 21,171 bytes, opened: a winking amber crystal ball on a stand. Not generated, changed or requested by this audit. |
+| ModIcon generated -> Preview generated | Validated | `Preview.png` is 896 x 504, 498,300 bytes, below 1 MB. Opened: title and 1.6 badge readable, subject identifiable, nothing clipped. |
+| Preview generated -> preOptions | Validated | English description and title. Cyan accent against the blue-indigo scene, as opened above. No prefix, suffix or linking word to handle. |
+| preOptions -> options | Not applicable, justified | No `MainButtonDef`, no settings class or storage in `Mod/`; the fixed values (cost, radius, duration, capacity) are balance choices, not a promised configuration. No empty page or shortcut is registered. The 2026-09-13 inventory below still holds. |
+| options -> l10n | Validated | `Run-Tests.ps1` 24/24 with MustTranslate coverage, folder spelling and paragraph breaks; `Check-DefInjected.ps1` 4 keys, 0 errors. |
+| l10n -> preTest | Validated | No dependency, DLC, patch or `LoadFolders`; `loadAfter` names only `Ludeon.RimWorld`. |
+| preTest -> done | **Not established** | Scenarios written (15, with setup, steps, expected results). Automated and XML suites green today on HEAD: `Run-Tests.ps1` 24/24, `Run-Functional-Tests.ps1` 11/11. **The Pickle suite is absent.** |
+| done -> tested | Not verified | Nothing played. See the criteria in `TESTING.md`, "What `tested` requires". |
+
+### Prepublication of 0.1.0
+
+The Workshop item exists, id `3806709786`, created by hand from the game on 2026-09-23. The
+anonymous Steam API does not return it, which fits a private item and proves nothing more. It was
+sent from disk at HEAD `3d1243e` with the `.dds` cache file written eighteen minutes earlier
+lying next to the PNG, so the item very likely carries it. That file is a per-machine cache and
+harmless, but it is now in `.gitignore` and stays out of git.
+
+The id file is committed and pushed (`b26a5ac`, `Add published Workshop file ID for 0.1.0`) and
+`CHANGELOG.md` opens on `0.1.0`, with `1.0.0` kept `unreleased` above it. The repository has no tag
+and no release, and `1.0.0` had been dated 2026-09-04 as though it had shipped, which it never did:
+that is corrected. **Not done here:** a `v0.1.0` tag and release. `AGENTS.md` gives tags and
+releases to the CI after an upload it made; this one was made by hand, so whether 0.1.0 gets a tag
+is Virginie's call.
+
+### Game state, without a run
+
+`nelim.crystalball` is now listed in `ModsConfig.xml`, so the mod is enabled in the game. The
+`Player.log` last written on 2026-09-23 at 16:49 holds no line about this mod, and it is not
+attributed to any run of it. Neither is evidence of a test, and `tested_on` stays empty. No RimWorld
+was launched by this audit: the machine's Pickle queue held 23 tickets, none for this mod.
+
+### Evidence and texture cache
+
+No evidence folder exists on disk and none is in git (`git ls-files` holds no `Evidence` or
+`evidence` path, and no run has been played), so nothing was deleted. The rules that will apply are
+in place: `Tests/Pickle/Evidence/` and `evidence/` are in `.gitignore`, and `TESTING.md` says which
+proofs to keep, where, and how to minify them. No `.dds` was tracked; `*.dds` is ignored so none can
+be added by mistake.
+
+### Next work for the next transition
+
+Write the Pickle suite for the fifteen scenarios, and justify its scope in `TESTING.md`. Start from
+`../PickleTools/Authoring/README.md`. Everything above the running game (the defs, the readers of
+each setting, the translation keys) is already proved offline by the two suites and does not belong
+in Gherkin. That takes the mod to `done`. `tested` then needs the three passes declared in
+`TESTING.md`, the fifteen scenarios automated and green or explicitly not applicable, no scenario
+left in `@wip`, every `@requires` scenario run (none exists for this mod), and every `@review`
+capture opened.
+
+### Reservations and recommendations, separate from the blockers
+
+- **A namesake on the Workshop.** `CrystalBall (Continued)`, item 2483367722, `Mlie.CrystalBall`,
+  is an incident-prediction mod with a Production bench, a Scry work type and Harmony. No technical
+  clash: packageIds, defNames and texture paths all differ. But a search for "crystal ball" lists
+  both, and nothing in this repository records that the name was checked. Worth a sentence in the
+  future `PUBLICATION.md`.
+- The description says *This mod is MIT licensed.* without pointing to `ATTRIBUTION.md`, which the
+  prepublished step asks for. Only a by-hand edit on the Steam page changes it now.
+- The icon is amber where the ball is violet. It is a mascot and only Virginie generates icons,
+  so this is a remark and not a request.
+
+## Description link fix — 2026-09-13 (historical decision before the audit above)
 
 Committed attribution and audit documentation as
 `8401071d250fc2f9258d3914c9c43cab8149be25`, then replaced the raw source URL and

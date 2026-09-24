@@ -222,3 +222,77 @@ glow is there, and the quality of each ball survived.
 
 **Pass:** the game warns about missing content, as it does for any removed mod, and the colony loads
 and plays. The balls are gone; nothing else is.
+
+## What `tested` requires
+
+The fifteen scenarios above are what has to be watched. This section is what has to be true before
+`STATUS.md` may say `tested`. It restates the step `done -> tested` of `../AUDIT.md` for this mod,
+with what each rule comes to here.
+
+- **No scenario left in `@wip`.** A scenario set aside is either repaired and replayed, or deleted
+  with its reason. One left standing is a scenario waiting, not one passed. None exists today,
+  because the Gherkin suite is not written yet.
+- **Every conditional scenario has run.** Each `@requires:<packageId>` scenario, whether it needs
+  an optional mod, a DLC or a companion tool, gets its own pass on a map that mounts it, and its
+  report is read: `setName`, suite and scenario names are checked before it is cited, since the
+  report folder is shared by the whole machine. A scenario skipped for want of its condition is not
+  a passed scenario. This mod names no optional mod, so it has no `@requires:<mod>` scenario. What it
+  does claim, *no DLC required*, is the reason for the DLC-less pass below.
+- **No manual test left to validate.** Each of the fifteen scenarios ends up automated and green,
+  or listed as not applicable with its reason. Nothing is left to tick by hand. The `@review`
+  captures still have to be opened and looked at, but that is the reading of an image a scenario
+  has already proved to be in the intended state, not one more manual test. Until the suite exists,
+  all fifteen are manual and all fifteen are pending.
+- **A green run is not the proof.** Read `exitReason` before the numbers, compare the scenarios
+  played with the features discovered, and open every `@review` capture. A green says the path was
+  walked, not that the image shows a ball, a colonist sitting, or a tolerance bar.
+- Logs read; interface checked in French and in English; a new colony and an existing save both
+  covered (scenario 15).
+
+## Passes this mod needs
+
+A mod whose `TESTING.md` does not say how many passes it needs is tried, not tested. Three, each
+with the language fixed when the game starts, never switched during a run:
+
+1. **Minimal set, English.** Core, the DLCs, Harmony, RimLogging, Pickle and the mod. The only pass
+   where a capture is clean.
+2. **Same set, French.** Covers what the mod shows in French: scenario 14, and the four owned
+   texts in the build menu, the inspect pane, the job line and the needs tab.
+3. **DLC-less set, English.** The DLCs left out of the pass map. It plays the claim the description
+   and the README make, that no DLC is required, and it is the only pass that can.
+
+There is no pass with optional mods, because `loadAfter` names only the game, and no pass per
+incompatibility, because none is declared. If either appears, this list changes first.
+
+## Evidence to keep
+
+Every run writes into a report folder that the whole machine shares, and the next run overwrites
+it. What is kept is decided at the run, never left to the next one.
+
+**Keep**, per scenario, the latest report for the revision now in the repository, and nothing else
+that a newer report has replaced:
+
+- the report's `exitReason` and its played and discovered counts;
+- `summary.md` and `junit.xml`;
+- the `@review` captures a person has actually opened, one per scenario that needs one;
+- the `Player.log` of the run.
+
+**Keep an older report** only when it is the sole proof of a check the latest run did not repeat.
+A report about a superseded build proves nothing about the current one, so it goes as soon as a
+newer one replaces it.
+
+**Where.** On disk, under `Tests/Pickle/Evidence/<run>/`, passed to the launcher as
+`-EvidenceDir`. It is not in git: the folder is in `.gitignore`, because captures and logs make it
+grow without limit and the disk is full. The history is one text line per run in `docs/runs/`,
+never a folder, and a run worth citing gets a short text summary there that `STATUS.md` points to.
+
+**Minify what stays.** Crop captures to the part that proves something and re-encode them as
+optimized PNG, or JPEG for a full-screen shot; compress the log. Drop `messages.ndjson` once
+`exitReason` and the counts are read.
+
+**Never** copy the shared Pickle report folder whole into the mod: keep only the files of this
+mod's own scenarios. Never delete a report that a `STATUS.md` field still points to, repoint that
+field first. Before deleting, list what goes and what stays.
+
+Nothing exists to trim yet: no run has been played, so there is no evidence folder on disk and none
+in git.
