@@ -10,3 +10,16 @@
 # Until this folder became a repository of its own the rule lived in the monorepo's .gitignore,
 # a file this repository does not carry.
 .claude/
+
+# RimWorld converts every PNG to a .dds next to it the first time the game loads the mod. They are
+# a per-machine cache, regenerated on demand. Ignoring them here does not keep them out of a folder
+# uploaded straight from disk: the 0.1.0 prepublication was sent that way, eighteen minutes after
+# the game wrote Mod/Textures/Things/Building/Joy/CrystalBall.dds beside its PNG.
+*.dds
+
+# Test evidence: Pickle's -EvidenceDir target. Proof kept on disk for the session that reads it, not
+# something the repository carries: captures and Player.log make it grow without bound (PickleTools
+# saw 10 GB in a day). What is worth keeping goes to docs/runs/ as a short text summary. TESTING.md
+# says which proofs to keep.
+Tests/Pickle/Evidence/
+evidence/
