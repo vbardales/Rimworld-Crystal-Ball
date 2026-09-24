@@ -4,6 +4,8 @@ Two test suites run beside this file and neither of them starts the game. They c
 are well formed, that the game still has every field and class they name, and that the classes this
 mod hands its behaviour to still read the settings it writes. None of that is a single tick of play.
 This file is the list of what has to be watched in a running colony, and what counts as a pass.
+Most of it is written as Gherkin in `Tests/Pickle/`: the table "Which scenarios are written as
+Gherkin, and which are not" says where each one is settled.
 
 It is not shipped: it lives beside `Mod/`, never inside it, so Steam never receives it.
 
@@ -228,47 +230,95 @@ glow is there, and the quality of each ball survived.
 **Pass:** the game warns about missing content, as it does for any removed mod, and the colony loads
 and plays. The balls are gone; nothing else is.
 
+## Which scenarios are written as Gherkin, and which are not
+
+`Tests/Pickle/` holds the suite Pickle plays in the headless WSL game: four features, twenty-two
+steps of the mod's own in `Source/`, and for everything else Pickle's own vocabulary. What goes to
+Gherkin is what only a running game can show. What the two offline suites already prove is not said
+again there, because a run takes the whole machine for tens of minutes. What is the game's own
+reaction to a flag this mod merely declares is not tested at all, following `../AUDIT.md` ("on ne
+teste pas le jeu"): the mod answers for what it declares, not for what the engine does with it.
+
+The joy giver is asked directly, the way the game asks each giver during recreation time, instead of
+waiting for recreation time to pick it. How often it picks it is `baseChance`, a die roll the base
+game owns and this mod only sets, so it is not measured.
+
+| # | Scenario | Where it is settled |
+| --- | --- | --- |
+| 1 | It loads, and is buildable | `01-the-ball.feature`: the defs after the game's own loader, with no error and no warning from the mod, then a colonist builds the ball with the real designator from jade and gold and no research. That the Architect tab lists it is the game's; the `designationCategory` it names is resolved offline. |
+| 2 | It looks like what it is | `01`: the glow radius, lit by itself, the ground on the ball's cell lit at night with the sky left out, nobody gazing. The violet sphere, the stand, the size and the shadow are a judgement about a picture: a `@review` capture, opened by a person. |
+| 3 | Quality, beauty, name | `01`: a legendary ball is more beautiful than a poor one, and both names carry their quality. |
+| 4 | A colonist gazes | `02-the-gaze.feature`: the giver sends a colonist, who walks over, sits on a cell beside the ball with the game's own sit-facing driver, and whose joy rises. |
+| 5 | No chair, anywhere | `02`, the same scenario: the spot is chosen with no seat of any kind within six cells, so this is scenario 4 at its stricter setting. |
+| 6 | The chair alert | Withdrawn, see above. |
+| 7 | Two may share it | `02`: two colonists sit at one ball, a third is offered nothing. |
+| 8 | Divination is a type | `02`: a sitting credits tolerance to the kind the mod added, and the map's recreation lists it. That four balls tire a colonist as fast as one is `JoyToleranceSet` counting per kind, the engine's rule and not the mod's, so it is not a scenario. |
+| 9 | It takes eyes | `02`: a blind colonist is offered nothing, a deaf one is sent and sits. |
+| 10 | Prison cell | **Not applicable.** The mod declares `socialPropernessMatters`; what a prison room does with it is `SocialProperness`. Offline, the functional suite requires a reader in the game for every setting the mod writes, and the scan names `SocialProperness` for this one. |
+| 11 | It moves house | **Not applicable.** The mod declares `minifiedDef` and a thing category; uninstalling and reinstalling is `MinifyUtility`, which the scan names as the reader. The pairing the game's config check enforces is tested offline, and `01` fails on any error the loader raises. |
+| 12 | Walking past it | **Not applicable.** `passability` and `pathCost` are declared, and `Pathing` reads the cost. |
+| 13 | A recreation room | **Not applicable.** The ball is named by the giver's `thingDefs`, which `RoomRoleWorker_RecRoom` reads. What the room is called is the game's scoring. |
+| 14 | English and French | `03-language.feature`, played once per language, and a `@review` capture of the inspect pane. |
+| 15 | Saves | `04-save.feature`: a save with two colonists gazing loads clean, the ball keeps its cell and its quality, and the giver still sends a new colonist. Adding the mod to a colony that never had it is what every run does, since the fixture predates the mod. Removing it from a save is a change of modlist between two games and the game's own missing-content warning: not applicable. |
+
+Ten scenarios are written in Gherkin, scenarios 4 and 5 by one of them. One is withdrawn and four are
+not applicable, each for a reason the table gives. Parts of three of the ten are not applicable for
+the same reason: the Architect tab, four balls, and removal. Nothing is left for a person except to
+open the `@review` captures.
+
+The suite is built and checked without a game: `dotnet build Tests/Pickle/Source/CrystalBall.PickleSteps.csproj -c Release`,
+then `Tests/Pickle/Check-Steps.ps1`, which compiles every step pattern with Pickle's own expression
+engine and checks that each step line of the features resolves to exactly one expression. A run has
+not been played yet.
+
 ## What `tested` requires
 
-The fourteen applicable scenarios above are what has to be watched, the sixth being withdrawn. This
-section is what has to be true before
+The scenarios above are what has to be watched. This section is what has to be true before
 `STATUS.md` may say `tested`. It restates the step `done -> tested` of `../AUDIT.md` for this mod,
 with what each rule comes to here.
 
 - **No scenario left in `@wip`.** A scenario set aside is either repaired and replayed, or deleted
-  with its reason. One left standing is a scenario waiting, not one passed. None exists today,
-  because the Gherkin suite is not written yet.
+  with its reason. One left standing is a scenario waiting, not one passed. The suite has none.
 - **Every conditional scenario has run.** Each `@requires:<packageId>` scenario, whether it needs
   an optional mod, a DLC or a companion tool, gets its own pass on a map that mounts it, and its
   report is read: `setName`, suite and scenario names are checked before it is cited, since the
   report folder is shared by the whole machine. A scenario skipped for want of its condition is not
-  a passed scenario. This mod names no optional mod, so it has no `@requires:<mod>` scenario. What it
-  does claim, *no DLC required*, is the reason for the DLC-less pass below.
-- **No manual test left to validate.** Each of the fourteen applicable scenarios ends up automated and green,
-  or listed as not applicable with its reason. Nothing is left to tick by hand. The `@review`
-  captures still have to be opened and looked at, but that is the reading of an image a scenario
-  has already proved to be in the intended state, not one more manual test. Until the suite exists,
-  all fourteen are manual and all fourteen are pending.
+  a passed scenario. This mod names no optional mod and no DLC, so the suite has no `@requires`
+  scenario to run.
+- **No manual test left to validate.** Each scenario is written in Gherkin and green, or listed
+  above as not applicable with its reason. Nothing is left to tick by hand. The `@review` captures
+  still have to be opened and looked at, but that is the reading of an image a scenario has already
+  proved to be in the intended state, not one more manual test.
 - **A green run is not the proof.** Read `exitReason` before the numbers, compare the scenarios
   played with the features discovered, and open every `@review` capture. A green says the path was
   walked, not that the image shows a ball, a colonist sitting, or a tolerance bar.
-- Logs read; interface checked in French and in English; a new colony and an existing save both
-  covered (scenario 15).
+- Logs read; interface checked in French and in English.
 
 ## Passes this mod needs
 
-A mod whose `TESTING.md` does not say how many passes it needs is tried, not tested. Three, each
-with the language fixed when the game starts, never switched during a run:
+A mod whose `TESTING.md` does not say how many passes it needs is tried, not tested. Two, each with
+the language fixed when the game starts and never switched during a run:
 
 1. **Minimal set, English.** Core, the DLCs, Harmony, RimLogging, Pickle and the mod. The only pass
    where a capture is clean.
-2. **Same set, French.** Covers what the mod shows in French: scenario 14, and the four owned
-   texts in the build menu, the inspect pane, the job line and the needs tab.
-3. **DLC-less set, English.** The DLCs left out of the pass map. It plays the claim the description
-   and the README make, that no DLC is required, and it is the only pass that can.
+2. **Same set, French.** `03-language.feature` says something only in the language it runs in, and
+   this is where the interface is read in French.
+
+```powershell
+powershell.exe -ExecutionPolicy Bypass -File scripts/Run-PickleWsl.ps1 -Mod CrystalBall
+powershell.exe -ExecutionPolicy Bypass -File scripts/Run-PickleWsl.ps1 -Mod CrystalBall -Language French
+```
+
+**No pass without a DLC.** An earlier version of this file declared one, to play the claim that no
+DLC is required. It is not the mod's guard or fallback that would be played: the mod has none, it
+simply never names anything a DLC defines. That is a static fact, so it is proved as one, by
+`_tools/Run-Tests.ps1`: every def a field points at, every template the def inherits and every C#
+class it names must be one Core defines or names, and the test fails on a def, a template and a
+class that only a DLC has. A run without the DLCs would also have to load Pickle's `test-colony`
+fixture, which was saved with Royalty content.
 
 There is no pass with optional mods, because `loadAfter` names only the game, and no pass per
-incompatibility, because none is declared. If either appears, this list changes first.
+incompatibility, because none is declared. If any of them appears, this list changes first.
 
 ## Evidence to keep
 

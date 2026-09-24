@@ -53,20 +53,17 @@ powershell -NoProfile -ExecutionPolicy Bypass -File _tools/Run-Tests.ps1
 powershell -NoProfile -ExecutionPolicy Bypass -File _tools/Run-Functional-Tests.ps1
 ```
 
-Thirty-five tests in two suites, no RimWorld launched, half a minute for both. They read the
+Thirty-six tests in two suites, no RimWorld launched, half a minute for both. They read the
 installed game — its `Data` folder and `Assembly-CSharp` — so they check what this mod assumes
 rather than what this page claims. Every test in both has been seen to fail against a
 deliberately broken copy.
 
 The first suite is about the defs: well formed, every element a field 1.6 still has, every class
-and def reference resolving, translations complete and correctly spelt. The three sentences above
-about the ten recreation types, the four that come from a building, and the `Building` the driver
-casts to are computed from the game at every run, so a RimWorld release that moves one of those
-numbers is reported rather than quietly ageing this page.
-
-What neither suite does is play. [TESTING.md](TESTING.md) holds the fourteen scenarios that have to
-be watched in a running colony — the gaze itself, the chairless room, the tolerance that is counted
-per type — with what counts as a pass for each.
+and def reference resolving, all of it defined in Core so that no DLC is required, translations
+complete and correctly spelt. The three sentences above about the ten recreation types, the four
+that come from a building, and the `Building` the driver casts to are computed from the game at
+every run, so a RimWorld release that moves one of those numbers is reported rather than quietly
+ageing this page.
 
 The second is about behaviour. The mod hands its whole conduct to vanilla classes, so that suite
 asks whether those classes still do what it hands it to them for. It reads the IL of
@@ -76,6 +73,12 @@ out who reads each setting these defs write. That last one catches a fault nothi
 setting the mod writes that no code on its path ever reads. Point the def at another joy giver and
 `requireChair` goes inert — no error, no log line, colonists refusing to use the building for want
 of a chair that is not there — and only that scan notices.
+
+What neither suite does is play. [Tests/Pickle](Tests/Pickle/README.md) holds the four features
+Pickle plays in a real game: a colonist building the ball, sitting beside it with no chair anywhere
+near, the recreation type it feeds, a save taken mid-gaze, the mod's texts in each language.
+[TESTING.md](TESTING.md) says, for each of its fifteen scenarios, where it is settled, and why four
+are not applicable. They have been written and checked without a game; **none has been played yet**.
 
 ## Languages
 

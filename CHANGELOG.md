@@ -30,7 +30,7 @@ First version, for RimWorld 1.6. It is not tested in game yet.
 
 Nothing here reaches a player.
 
-- A test suite, `_tools/Run-Tests.ps1`: twenty-four tests, no RimWorld launched. It reads the
+- A test suite, `_tools/Run-Tests.ps1`: twenty-five tests, no RimWorld launched. It reads the
   game's own classes and data to check what the mod assumes rather than what its prose claims, and
   every test in it has been seen to fail against a deliberately broken copy.
 - A second suite, `_tools/Run-Functional-Tests.ps1`: eleven tests on what the game does with
@@ -38,7 +38,11 @@ Nothing here reaches a player.
   giver through the game's own accessor, and scans every method body in the game to find which
   class reads each setting the mod writes — which is how an inert setting, one nothing on its
   code path ever reads, gets caught.
-- `TESTING.md`, the fourteen scenarios only a running colony can settle.
+- `TESTING.md`, the fourteen scenarios only a running colony can settle, and where each one is settled.
+- A Pickle suite, `Tests/Pickle/`: four features and a step assembly, ten scenarios written for a real
+  game, with a checker that compiles every step pattern with Pickle's own engine. Written and checked
+  without a game; none has been played. The claim that no DLC is required is proved offline instead,
+  by a test of `_tools/Run-Tests.ps1` that fails on any def, template or class only a DLC defines.
 
 ## [0.1.0] — 2026-09-23
 
