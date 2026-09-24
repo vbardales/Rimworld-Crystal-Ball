@@ -15,7 +15,8 @@
                      in it resolve. That is how the cast the whole mod rests on is read off the
                      compiled game rather than asserted.
     reverse lookup   scanning every method of Assembly-CSharp for the field tokens this mod
-                     writes says WHO reads each of its settings. Twelve seconds for 16 000 types.
+                     writes says WHO reads each of its settings. Two to three seconds for
+                     16 000 types.
     construction     the classes without Unity state - JoyGiverDef, JobDef, the giver, the driver
                      - really are instantiated here, through the game's own accessors.
 
@@ -33,11 +34,20 @@
       JoyGiver_InteractBuildingSitAdjacent, which is the one this mod names. Point the def at
       another giver and the setting goes silently inert - no error, no log line, and pawns that
       refuse to use the building for want of a chair that is not there.
-    - the game keeps fields nothing reads any more. ThingDef.pathfinderDangerous,
-      GraphicData.name, BuildingProperties.turretTopOffset and eleven others have no reader left
-      in 1.6. A mod that writes one of those is writing a comment, so the suite says so.
+    - the game keeps fields nothing reads any more. Seven public fields of ThingDef, GraphicData
+      and BuildingProperties have no reader left in 1.6: ThingDef.pathfinderDangerous,
+      GraphicData.overlayOpacity, GraphicData.name, BuildingProperties.workTableCompleteSoundDef,
+      trapUnarmedGraphic, trapUnarmedGraphicData and mineableNonMinedEfficiency. A mod that writes
+      one of those is writing a comment, so the suite says so.
+    - and one way to get that list wrong. A first scan matched ldfld only and reported fourteen,
+      because a struct field is read by address (ldflda) whenever a method is called on it:
+      ThingDef.startingHpRange and displayNumbersBetweenSameDefDistRange, highlightColor,
+      BuildingProperties.turretTopOffset, turretBurstWarmupTime, maxFormedMechDrawSize and
+      barDrawData are all read. Both loads are matched now, and a field written as
+      <startingHpRange> is the fault that was used to see it.
 
-  Exit code 0 when everything passes, 1 otherwise. About thirty seconds, most of it the scan.
+  Exit code 0 when everything passes, 1 otherwise. Three to eight seconds, cold or warm, two to
+  three of them the scan.
 
   EVERY TEST HERE HAS BEEN SEEN TO FAIL, the same way as next door: one fault at a time in a copy
   of the mod in a scratch directory, never in the real files.
@@ -49,6 +59,8 @@
     thingClass forced to Plant, the anima tree case   -> the cast test: "the driver casts to
                                                          Building and this def loads as Plant"
     pathfinderDangerous written                       -> the inert-setting test, alone
+    startingHpRange written, a struct read by address -> nothing. It failed before ldflda was
+                                                         matched, naming a field the game reads.
     giverClass moved to the telescope giver           -> the settings test, naming requireChair
                                                          and nothing else
     driverClass moved to the skygazing driver         -> the cast test and joyMaxParticipants
@@ -216,9 +228,13 @@ if ($byName.Count -gt 0) {
 # Who reads what: one pass over every method body in the game
 # ---------------------------------------------------------------------------------------------
 #
-# ldfld is 0x7B and carries a four-byte token. Inside one module that token IS the field's
-# MetadataToken, so the whole scan is an integer comparison - no ResolveMember per instruction,
-# which is what keeps it to a dozen seconds rather than an afternoon.
+# ldfld (0x7B) and ldflda (0x7C) carry a four-byte token. Inside one module that token IS the
+# field's MetadataToken, so the whole scan is an integer comparison - no ResolveMember per
+# instruction, which is what keeps it to a few seconds rather than an afternoon.
+#
+# The bytes are scanned, not decoded. A match needs the opcode byte followed by four bytes equal
+# to a hunted token, and field tokens are 0x04xxxxxx, so an accidental hit inside another
+# instruction's operand is not a realistic risk. Decoding would be the answer if it became one.
 #
 # The reader is recorded as the OUTERMOST declaring type. A driver's MakeNewToils compiles to a
 # nested <MakeNewToils>d__5 state machine, and a lambda to a <>c: reporting those would name
@@ -240,7 +256,10 @@ if ($hunted.Count -gt 0) {
             $il = $body.GetILAsByteArray()
             if (-not $il -or $il.Length -lt 5) { continue }
             for ($i = 0; $i -lt $il.Length - 4; $i++) {
-                if ($il[$i] -ne 0x7B) { continue }
+                # 0x7B is ldfld, 0x7C is ldflda. A struct field - a FloatRange, a Vector2 - is read
+                # by ADDRESS whenever a method is called on it (startingHpRange.RandomInRange), so
+                # matching ldfld alone reports it as read by nothing.
+                if ($il[$i] -ne 0x7B -and $il[$i] -ne 0x7C) { continue }
                 $tok = [BitConverter]::ToInt32($il, $i + 1)
                 if (-not $hunted.ContainsKey($tok)) { continue }
                 $owner = $t
@@ -389,9 +408,9 @@ Section 'Every setting reaches code that reads it'
 # =============================================================================================
 
 It 'no setting in these defs is one the game stopped reading' {
-    # The game keeps fields nothing reads any more - ThingDef.pathfinderDangerous,
-    # GraphicData.name and a dozen others in 1.6. They load without a murmur and do nothing,
-    # which is the quietest way for a ported mod to be wrong. A field read only through
+    # The game keeps fields nothing reads any more - seven in 1.6, among them
+    # ThingDef.pathfinderDangerous and GraphicData.name. They load without a murmur and do
+    # nothing, which is the quietest way for a ported mod to be wrong. A field read only through
     # reflection would be a false positive here; this mod writes none.
     if ($written.Count -eq 0) { 'no field was resolved at all, which cannot be right'; return }
     foreach ($k in ($written.Values | Sort-Object -Unique)) {
