@@ -65,18 +65,21 @@ This is a step back on a paper requirement, not a fault found in the mod: nothin
 
 ### Prepublication of 0.1.0
 
-The Workshop item exists, id `3806709786`, created by hand from the game on 2026-09-23. The
-anonymous Steam API does not return it, which fits a private item and proves nothing more. It was
-sent from disk at HEAD `3d1243e` with the `.dds` cache file written eighteen minutes earlier
-lying next to the PNG, so the item very likely carries it. That file is a per-machine cache and
-harmless, but it is now in `.gitignore` and stays out of git.
+The Workshop item exists, id `3806709786`, created by the prepublication Virginie made on
+2026-09-23: its id file was written at 14:31. The anonymous Steam API does not return the item,
+which fits a private one and proves nothing more.
+
+Two things are not established. How it was sent is not recorded, and neither is whether the item
+carries the `.dds` cache file that the game wrote next to the texture PNG at 14:13. An upload from
+disk after that time would. The file is a per-machine cache and harmless, and it is now in
+`.gitignore`, so it stays out of git whatever the answer.
 
 The id file is committed and pushed (`b26a5ac`, `Add published Workshop file ID for 0.1.0`) and
 `CHANGELOG.md` opens on `0.1.0`, with `1.0.0` kept `unreleased` above it. The repository has no tag
 and no release, and `1.0.0` had been dated 2026-09-04 as though it had shipped, which it never did:
 that is corrected. **Not done here:** a `v0.1.0` tag and release. `AGENTS.md` gives tags and
-releases to the CI after an upload it made; this one was made by hand, so whether 0.1.0 gets a tag
-is Virginie's call.
+releases to the CI after an upload it made. This repository has no workflow, so the CI did not make
+this one, and whether 0.1.0 gets a tag is Virginie's call.
 
 ### Game state, without a run
 
@@ -95,8 +98,9 @@ be added by mistake.
 
 ### Corrected after a review of this audit, the same day
 
-A code review of the work above found five things wrong and confirmed each by running it. All five
-are fixed, and none changes what ships.
+A code review of the work above found nine things wrong. Five were confirmed by running them and
+fixed first, the four others afterwards, each proved on a copy of the mod that has the fault. None
+changes what ships.
 
 - **Scenario 6 tested an alert that cannot name the ball.** `Alert_JoyBuildingNoChairs` is abstract
   with two subclasses, chess table and poker table, watching `Play_Chess` and `Play_Poker`. The
@@ -111,11 +115,24 @@ are fixed, and none changes what ships.
   giver, which carries the same defName. It now checks name and type, and fails on that copy.
 - **Two texts were false.** The suite's header named a field as unread that the game reads, and gave
   timings three to four times too high. Both are corrected.
+- **Nested DefInjected handles were split at the last dot.** A correct key such as
+  `CB_CrystalBall.comps.0.label` was read as a def called `CB_CrystalBall.comps.0` and failed. A
+  defName carries no dot, so the first dot ends it, and the first segment of the path is checked
+  as a field. The nested key passes, and fails with `compz` in place of `comps`.
+- **The three vanilla comparisons could not tell a decision from a fault.** The only jobs on the
+  chess driver are chess and the game of Ur, both at 4000 ticks, so a duration of 3500 failed. The
+  allowed range is now that of all vanilla recreation, 1500 to 8000 ticks, 1 to 8 participants and a
+  pick chance of 2 to 4, with the values on the same driver named in the message. 3500 ticks and 5
+  participants pass, 12000 ticks and 9 participants fail.
+- **The cast test walked the templates a second time and only in one folder.** It reads the index
+  the suite already builds over every Defs folder. A parent defined outside `ThingDefs_Buildings`,
+  `ResourceBase`, is now found and reported as loading as `ThingWithComps`, where it said the def
+  resolved to no class at all.
+- **The upload path of 0.1.0 was written as fact.** `.gitignore`, this file and the changelog now
+  say only what the timestamps show: the game wrote the `.dds` at 14:13, the id file appeared at
+  14:31, and how the item was sent is not recorded.
 
-Not changed, and still open from the same review: nested DefInjected handles split at the last dot,
-the vanilla-range comparisons collapse to one value for duration and participants, the cast test
-duplicates a template walk, and the upload path of 0.1.0 is stated as fact in two places while only
-two file timestamps support it.
+The two suites are otherwise as they were, 24 and 11, both green.
 
 ### Next work for the next transition
 

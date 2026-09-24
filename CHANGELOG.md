@@ -46,6 +46,7 @@ Nothing here reaches a player.
   exists, id `3806709786`. It was created by the prepublication and Steam keeps it private until
   it is switched by hand.
 
-The content of this version is `Mod/` as it stood at commit `3d1243e`, the one sent, and nothing in
-it has changed since: it is the first version described above. On release of 1.0.0, the tag and
-the GitHub release are created from that section, not from this one.
+The content of this version is `Mod/` as it stood at commit `3d1243e`, the last commit before the
+item was created, and nothing tracked in it has changed since: it is the first version described
+above. On release of 1.0.0, the tag and the GitHub release are created from that section, not from
+this one.
