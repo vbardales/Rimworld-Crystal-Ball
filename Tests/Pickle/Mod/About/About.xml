@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>Crystal Ball - Pickle tests</name>
+  <author>Nelim</author>
+  <packageId>nelim.crystalball.pickletests</packageId>
+  <supportedVersions>
+    <li>1.6</li>
+  </supportedVersions>
+  <description>In-game functional tests for Crystal Ball, run by Pickle. Development only: never published.
+
+The scenarios build or place a crystal ball on open ground of the Pickle fixture, send colonists to it through the game's own joy giver and read what happens: where they sit, what recreation does, what a save gives back, and which language the mod's four texts come out in. Everything they change lives in the loaded save, which is never written back except by the one scenario that saves and reloads on purpose.
+
+The mod under test needs no DLC and this companion declares none: the fixture is Pickle's own test-colony.</description>
+  <modDependencies>
+    <li>
+      <packageId>nelim.crystalball</packageId>
+      <displayName>Crystal Ball</displayName>
+    </li>
+    <li>
+      <packageId>rimworks.pickle</packageId>
+      <displayName>Pickle</displayName>
+      <steamWorkshopUrl>steam://url/CommunityFilePage/3791648678</steamWorkshopUrl>
+    </li>
+  </modDependencies>
+  <loadAfter>
+    <li>nelim.crystalball</li>
+    <li>rimworks.pickle</li>
+  </loadAfter>
+</ModMetaData>

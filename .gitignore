@@ -24,3 +24,13 @@
 # says which proofs to keep.
 Tests/Pickle/Evidence/
 evidence/
+
+# The Pickle step assembly is a build artefact of the test companion, rebuilt by
+# `dotnet build Tests/Pickle/Source/CrystalBall.PickleSteps.csproj -c Release` and read from this
+# folder when the game is staged. It stays on disk, never in git. This mod ships no assembly of its
+# own, so there is no Mod/Assemblies/ to keep apart from it.
+Tests/Pickle/Mod/Pickle/Assemblies/
+
+# Build intermediates. Tests/Pickle/Source/Directory.Build.props sends them here, outside the
+# companion mod folder, so that nothing of a build ever ends up in a folder the game stages.
+.build/

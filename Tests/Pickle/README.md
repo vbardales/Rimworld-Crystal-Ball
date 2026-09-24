@@ -1,0 +1,80 @@
+# In-game scenarios, run by Pickle
+
+The scenarios of [TESTING.md](../../TESTING.md) that a running game is needed for, and only those. `Mod/` is a
+companion mod, **Crystal Ball - Pickle tests**, never published: it lives beside the mod's own `Mod/`, outside the
+folder Steam receives. TESTING.md carries the table that says, scenario by scenario, where each one is settled and why
+four of them are not applicable.
+
+**Read `_tools/Run-Functional-Tests.ps1` and `_tools/Run-Tests.ps1` first.** Thirty-six checks against the installed
+game's own assembly and def files, in a few seconds, needing no RimWorld: the defs, the fields, who reads each setting,
+the numbers against vanilla, that nothing the mod points at needs a DLC. A Pickle run takes the machine for tens of
+minutes. Nothing here restates any of it.
+
+## What is here
+
+| File | What it holds |
+| --- | --- |
+| `Mod/Pickle/Features/01-the-ball.feature` | the four defs after the game's loader, a colonist building the ball, quality and beauty, the glow at night and its capture |
+| `Mod/Pickle/Features/02-the-gaze.feature` | a colonist sent to the ball sits beside it, two may share it and a third may not, the recreation type, sight |
+| `Mod/Pickle/Features/03-language.feature` | the four owned texts in the language of the pass, and a capture of the inspect pane |
+| `Mod/Pickle/Features/04-save.feature` | a save taken with two colonists gazing, reloaded |
+| `Source/` | the step assembly, `CrystalBall.PickleSteps.dll` |
+| `Check-Steps.ps1` | compiles every step pattern with Pickle's own engine and checks each feature line resolves to exactly one |
+
+The mod ships no assembly, so the steps reference none of the mod's own: a crystal ball is a plain `Building` that the
+game's chess-table joy giver and sit-facing driver put to use, and every step reaches it through those types and the
+mod's defNames. Everything a Pickle step already does (loading the save, making a colonist, setting a need, waiting,
+the screenshots, the log assertions, saving and reloading) is left to Pickle.
+
+**Every step text starts with `Crystal Ball:`.** Pickle loads the steps of every active suite into one namespace, and two
+suites declaring the same text produce "Ambiguous step" on scenarios that are perfectly healthy. `Check-Steps.ps1`
+compares this suite's lines with Pickle's vocabulary and, when the collection is around, with every other suite's.
+
+## Two passes, two languages
+
+`AUDIT.md` asks for the interface to be read in French and in English, and for a pass without the optional mods and one
+with them. This mod names no optional mod, so the passes are the two languages. The language is fixed at staging and never
+switched inside a run: `SelectLanguage` reloads every def under the runner and the run dies with it.
+
+```powershell
+powershell.exe -ExecutionPolicy Bypass -File scripts/Run-PickleWsl.ps1 -Mod CrystalBall
+powershell.exe -ExecutionPolicy Bypass -File scripts/Run-PickleWsl.ps1 -Mod CrystalBall -Language French
+```
+
+There is no `wsl-deps` map: nothing has to be staged beside the mod. There is no pass without the DLCs either; the claim
+that none is required is proved offline, and `TESTING.md` says why.
+
+## The fixture, and where the ball goes
+
+The suite loads Pickle's own `test-colony`. Its construction and map features place walls, stockpiles and stones between
+x 140..152 and z 150..165, so that patch is open ground. A step looks for a spot from (146, 156) outward: a cell the game
+agrees a ball can be placed on, with at least four open neighbours to sit on, unroofed, and **no seat of any kind within
+the radius the scenario asks for**. The chairless scenario is the same scenario as the gaze, only with that radius set to
+six, so a giver that still wanted a chair would offer nothing.
+
+The building scenario uses fixed cells, (146, 157) for the ball and (150..152, 160..162) for the stockpile, as Pickle's
+own feature does for its walls. If either is not free in a given build of the fixture, the scenario says which cell holds
+what.
+
+## The step assembly
+
+Build it with:
+
+```powershell
+dotnet build Tests/Pickle/Source/CrystalBall.PickleSteps.csproj -c Release
+```
+
+The DLL is a build artefact: it lands in `Mod/Pickle/Assemblies/` and stays out of git, and the intermediates go to
+`.build/`. Pickle loads step DLLs when the game starts, so a report produced without a restart after a rebuild does not
+test what was just changed. Then:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File Tests/Pickle/Check-Steps.ps1
+```
+
+## Status
+
+Written on 2026-09-24. **No scenario has been played.** The checker passes, the suite compiles, and each of the
+checker's four checks has been seen to fail on a broken copy. What a run will say about the spot the ball is placed on,
+the time the build takes, or whether the sit-facing driver leaves the colonist where the step expects is not known, and
+the first run is where that gets found.
