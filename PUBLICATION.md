@@ -94,7 +94,16 @@ RimLogging, whose pages already hold a posted thank-you in the global register (
   and does the two things that follow, by hand (`PUBLISHING.md`, "Mise en production d'une 1.0.0"): subscribe to the
   comments, and "Watch all activity" on the mod; it has no parent mod to watch.
 
-## 6. Update notes
+## 6. Rollback
+
+Decided by Virginie on 2026-09-25: the `1.0.0` goes out **privately**. The item stays private after the upload and only she
+makes it public, after subscribing to it and testing it, so no player is exposed to a red regression run after the
+publication, and there is no target to pick beforehand. If the non-regression comes back red before the switch, it is a
+defect of the published version and the answer is a new publication, `ref` the full SHA of the last good commit and the next
+patch number (`1.0.1`), never a lower one. The content of `0.1.0`, the prepublication, is commit `3d1243e`; it was never
+tested and carries no tag, so it is not a rollback target.
+
+## 7. Update notes
 
 Steam change note for the `1.0.0`, uploaded by the manual workflow, which reads the fenced block under the `### <version>`
 heading below. It begins with the version, alone on its line, as the Workshop page shows no version otherwise.
