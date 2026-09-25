@@ -11,8 +11,9 @@ param(
     [Parameter(Mandatory)][string]$Source,
     [int]$Width = 960,
     [int]$Height = 540,
-    [string]$Destination = (Join-Path $PSScriptRoot 'WorkshopScreenshots')
+    [string]$Destination
 )
+if (-not $Destination) { $Destination = Join-Path (Split-Path -Parent $MyInvocation.MyCommand.Path) 'WorkshopScreenshots' }
 Add-Type -AssemblyName System.Drawing
 $pictures = [ordered]@{
     '01-the-ball-by-day.png'      = 'workshop-1---the-ball-by-day'
