@@ -522,3 +522,4 @@ existing path. The delivered overlay is `Mod/About/Preview.png`.
 The revised title hierarchy was checked: both words in Crystal Ball are essential title words,
 so both retain 46 px / 600 in primary ink. There are no prefixes, suffixes or linking words
 to reduce, and no status tag. Illustration, exact title and summary remain unchanged.
+  - unverified: `tested -> prepublished` under way through the CI: `PUBLICATION.md` written, the manual publish workflow generated (`.github/`, 49 script tests green), CHANGELOG 1.0.0 dated 2026-09-25. Still open: the `steam-production` environment secrets (Virginie, `set-steam-secrets.sh --repo vbardales/Rimworld-Crystal-Ball`), the dry-run of the exact commit and its run ID, the gallery images (`Art/WorkshopScreenshots/`, none yet), the rollback target (no `v0.1.0` tag), and Virginie's approval of `publish`

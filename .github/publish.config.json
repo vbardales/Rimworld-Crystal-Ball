@@ -1,0 +1,18 @@
+{
+  "templateStamp": "683151266dd1",
+  "workshopId": "3806709786",
+  "packageId": "nelim.crystalball",
+  "releaseTitle": "Crystal Ball {version}",
+  "requirePaths": [
+    "Defs"
+  ],
+  "forbidPaths": [
+    "Assemblies"
+  ],
+  "previewFile": "About/Preview.png",
+  "galleryDir": "Art/WorkshopScreenshots",
+  "description": {
+    "file": "PUBLICATION.md",
+    "heading": "^## 1\\."
+  }
+}

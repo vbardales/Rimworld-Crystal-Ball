@@ -3,9 +3,9 @@
 Format inspired by [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 This file serves the repository and the writing of Steam patch notes; RimWorld does not display it in game.
 
-## [1.0.0] — unreleased
+## [1.0.0] — 2026-09-25
 
-On release: create the `v1.0.0` tag and the matching GitHub release.
+The publish workflow creates the `v1.0.0` tag and the matching GitHub release after a successful upload.
 
 First version, for RimWorld 1.6. It has been played in a real game through Pickle, in English and in
 French, with every scenario green (`docs/runs/README.md`).
@@ -54,6 +54,7 @@ Nothing here reaches a player.
   it is switched by hand.
 
 The content of this version is `Mod/` as it stood at commit `3d1243e`, the last commit before the
-item was created, and nothing tracked in it has changed since: it is the first version described
-above. On release of 1.0.0, the tag and the GitHub release are created from that section, not from
-this one.
+item was created, and nothing tracked in it has changed since except the description in `About.xml`
+(1.0.0 adds the thanks to Pickle and RimLogging, as development tools, and the line pointing to
+`ATTRIBUTION.md`): it is the first version described above. On release of 1.0.0, the tag and the
+GitHub release are created from that section, not from this one.
