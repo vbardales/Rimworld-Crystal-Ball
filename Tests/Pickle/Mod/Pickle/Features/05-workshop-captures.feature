@@ -21,6 +21,11 @@ Feature: the pictures of the Workshop page
     And I set the hour to 12
     And I set the weather to "Clear"
     And Nelim's Pickle Tools: I frame the studio "flowers"
+    And game speed is ultrafast
+    And I destroy the gear of "Miel"
+    And I dress "Miel" in "Apparel_Robe"
+    And "Miel" is wearing "Apparel_Robe"
+    And I draft "Miel"
     And Crystal Ball: a crystal ball "Day" stands on open ground near (154, 98)
     When Crystal Ball: I put the camera on the ball "Day"
     And I zoom all the way in
@@ -35,6 +40,11 @@ Feature: the pictures of the Workshop page
     And I set the hour to 2
     And I set the weather to "Clear"
     And Nelim's Pickle Tools: I frame the studio "flowers"
+    And game speed is ultrafast
+    And I destroy the gear of "Miel"
+    And I dress "Miel" in "Apparel_Robe"
+    And "Miel" is wearing "Apparel_Robe"
+    And I draft "Miel"
     And Crystal Ball: a crystal ball "Night" stands on open ground near (154, 98)
     When Crystal Ball: I put the camera on the ball "Night"
     And I zoom all the way in
@@ -43,16 +53,20 @@ Feature: the pictures of the Workshop page
     Then I take a screenshot "workshop 2 - the ball at night"
 
   # 3. What it does: a colonist sitting on the cell beside it, with no chair anywhere near. Miel is the studio's own colonist
-  # of the flower glade.
+  # of the flower glade. In all three pictures she is dressed in a robe first, the studio's colonists standing there without
+  # clothes to be seen, and drafted in the first two so that she stays where she stands.
   @timeout:240
   Scenario: a colonist gazing into the ball, close up
     Given the save "nelim-zen-meadow-studio" is loaded
     And I set the hour to 20
     And I set the weather to "Clear"
     And Nelim's Pickle Tools: I frame the studio "flowers"
+    And game speed is ultrafast
+    And I destroy the gear of "Miel"
+    And I dress "Miel" in "Apparel_Robe"
+    And "Miel" is wearing "Apparel_Robe"
     And "Miel" needs "Joy" is set to 10 percent
     And Crystal Ball: a crystal ball "Gazed" stands on open ground near (154, 98)
-    And game speed is ultrafast
     When Crystal Ball: the joy giver sends "Miel" to the ball "Gazed"
     Then Crystal Ball: "Miel" sits beside the ball "Gazed"
     When Crystal Ball: I put the camera on the ball "Gazed"
