@@ -18,6 +18,8 @@ minutes. Nothing here restates any of it.
 | `Mod/Pickle/Features/02-the-gaze.feature` | a colonist sent to the ball sits beside it, two may share it and a third may not, the recreation type, sight |
 | `Mod/Pickle/Features/03-language.feature` | the four owned texts in the language of the pass, and a capture of the inspect pane |
 | `Mod/Pickle/Features/04-save.feature` | a save taken with two colonists gazing, reloaded |
+| `Mod/Pickle/Features/05-workshop-captures.feature` | three close-up pictures for the Workshop gallery, on PickleTools' zen meadow studio; only the `workshop` pass plays it |
+| `wsl-deps.workshop.map` | the pass map of that pass: the screenshot studio and nothing else |
 | `Source/` | the step assembly, `CrystalBall.PickleSteps.dll` |
 | `Check-Steps.ps1` | compiles every step pattern with Pickle's own engine and checks each feature line resolves to exactly one |
 
@@ -30,10 +32,10 @@ the screenshots, the log assertions, saving and reloading) is left to Pickle.
 suites declaring the same text produce "Ambiguous step" on scenarios that are perfectly healthy. `Check-Steps.ps1`
 compares this suite's lines with Pickle's vocabulary and, when the collection is around, with every other suite's.
 
-## Two passes, two languages
+## Three passes: two languages, and the pictures
 
 `AUDIT.md` asks for the interface to be read in French and in English, and for a pass without the optional mods and one
-with them. This mod names no optional mod, so the passes are the two languages. The language is fixed at staging and never
+with them. This mod names no optional mod, so the passes are the two languages, and a third for the Workshop pictures. The language is fixed at staging and never
 switched inside a run: `SelectLanguage` reloads every def under the runner and the run dies with it.
 
 ```powershell
@@ -43,8 +45,10 @@ powershell.exe -ExecutionPolicy Bypass -File Rimworld-Ticket-Dispatcher/scripts/
 # the same with -Language French, as a second request
 ```
 
-There is no `wsl-deps` map: nothing has to be staged beside the mod. There is no pass without the DLCs either; the claim
-that none is required is proved offline, and `TESTING.md` says why.
+The two language passes need no `wsl-deps` map: nothing has to be staged beside the mod. The Workshop pictures are taken
+in a third pass, `-DepMap wsl-deps.workshop.map -Filter '05-workshop-captures'`, which stages PickleTools' screenshot studio;
+the other two passes skip that feature. There is no pass without the DLCs; the claim that none is required is proved
+offline, and `TESTING.md` says why.
 
 ## What to run, and when
 

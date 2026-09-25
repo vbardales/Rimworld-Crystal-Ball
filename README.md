@@ -74,8 +74,8 @@ setting the mod writes that no code on its path ever reads. Point the def at ano
 `requireChair` goes inert — no error, no log line, colonists refusing to use the building for want
 of a chair that is not there — and only that scan notices.
 
-What neither suite does is play. [Tests/Pickle](Tests/Pickle/README.md) holds the four features
-Pickle plays in a real game: a colonist building the ball, sitting beside it with no chair anywhere
+What neither suite does is play. [Tests/Pickle](Tests/Pickle/README.md) holds the five features
+Pickle plays in a real game (the fifth takes the Workshop pictures): a colonist building the ball, sitting beside it with no chair anywhere
 near, the recreation type it feeds, a save taken mid-gaze, the mod's texts in each language.
 [TESTING.md](TESTING.md) says, for each of its fifteen scenarios, where it is settled, and why four
 are not applicable. The eleven scenarios have been played in a real game, headless in the WSL, in English and in

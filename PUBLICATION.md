@@ -61,18 +61,22 @@ Full attribution: [url=https://github.com/vbardales/Rimworld-Crystal-Ball/blob/m
 `Mod/About/Preview.png` is the header image, already on the item from the prepublication; the workflow does not send it
 (`update_preview` stays off). `Mod/About/ModIcon.png` ships inside `Mod/`.
 
-The gallery is manual, on the Steam page, in the order below. **The images do not exist yet**: the two `@review` captures
-of the Pickle suite are 1920 x 1080 screenshots of a whole colony in which the ball is a few dozen pixels wide, so they
-prove the mod works but do not sell it. They have to be produced, cropped to the ball, and opened by Virginie before any
-of them goes up. The folder that will hold them, and be given to the dry-run as `--gallery-dir`, is `Art/WorkshopScreenshots/`
-(nothing in it but the images, numbered `01-`, `02-`, `03-` in upload order, nothing else).
+The gallery is manual, on the Steam page, in the order below. The three candidates come from the Pickle feature
+`05-workshop-captures.feature`, played on PickleTools' Nelim zen meadow studio (run `a0c6`, pass `workshop`, revision
+`768ae50`): the ball at (154, 98) in the studio's flower glade, the game's screenshot mode on so that no interface shows,
+the camera on the ball at the game's closest zoom. `Art/Crop-WorkshopScreenshots.ps1` cuts a 720 x 405 picture out of each
+1920 x 1080 capture, centred on the ball. They are not committed yet: Virginie qualifies them first, and the folder
+`Art/WorkshopScreenshots/` is uploaded as it is (nothing in it but the images, numbered `01-`, `02-`, `03-` in upload
+order). The dry-run lists it as a reminder once it exists.
 
-| # | Intended file | Shows |
+| # | File | Shows |
 | --- | --- | --- |
-| 1 | `01-the-ball-at-night.png` | The ball's violet glow on a dark ground, colonists near it: the landmark the description promises |
-| 2 | `02-gazing.png` | A colonist sitting on the cell beside the ball, no chair anywhere near |
-| 3 | `03-in-the-inspect-pane.png` | The name, the quality and the recreation type in the game's own pane, in English |
+| 1 | `01-the-ball-by-day.png` | The sphere on its stand in daylight, in the meadow: what the mod adds |
+| 2 | `02-the-ball-at-night.png` | The same ball in the dark: the landmark the description promises, though the glow is discreet |
+| 3 | `03-a-colonist-gazing.png` | Miel, the studio's colonist, sitting on the cell beside it with no chair anywhere near; her name label touches the ball |
 
+Known limits, said before she looks: the game's closest zoom keeps the ball about 30 pixels wide, so these are pictures of
+a small object in a meadow and not close-ups; the glow at night is faint; the label in the third picture overlaps the ball.
 ## 3. Dependencies to declare on Steam
 
 None. The mod needs no DLC and no other mod, and its `About.xml` declares none. `loadAfter` names `Ludeon.RimWorld` only.

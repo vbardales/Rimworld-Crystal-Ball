@@ -40,9 +40,9 @@ Nothing here reaches a player.
   class reads each setting the mod writes — which is how an inert setting, one nothing on its
   code path ever reads, gets caught.
 - `TESTING.md`, the fifteen scenarios only a running colony can settle, and where each one is settled.
-- A Pickle suite, `Tests/Pickle/`: four features and a step assembly, eleven scenarios for a real
+- A Pickle suite, `Tests/Pickle/`: five features and a step assembly, fourteen scenarios for a real
   game, with a checker that compiles every step pattern with Pickle's own engine. Played in English
-  and in French on 2026-09-25, all green. The claim that no DLC is required is proved offline instead,
+  and in French on 2026-09-25, all green, and its Workshop pictures in a third pass. The claim that no DLC is required is proved offline instead,
   by a test of `_tools/Run-Tests.ps1` that fails on any def, template or class only a DLC defines.
 - `docs/runs/README.md`, one line per Pickle run, and `docs/PROTOCOLS-READ.md`, which workflow
   documents were read and at which revision.

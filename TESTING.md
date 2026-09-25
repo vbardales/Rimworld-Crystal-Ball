@@ -232,8 +232,8 @@ and plays. The balls are gone; nothing else is.
 
 ## Which scenarios are written as Gherkin, and which are not
 
-`Tests/Pickle/` holds the suite Pickle plays in the headless WSL game: four features, twenty-two
-steps of the mod's own in `Source/`, and for everything else Pickle's own vocabulary. What goes to
+`Tests/Pickle/` holds the suite Pickle plays in the headless WSL game: five features (the fifth takes the
+pictures of the Workshop page and settles none of the fifteen scenarios), twenty-three steps of the mod's own in `Source/`, and for everything else Pickle's own vocabulary. What goes to
 Gherkin is what only a running game can show. What the two offline suites already prove is not said
 again there, because a run takes the whole machine for tens of minutes. What is the game's own
 reaction to a flag this mod merely declares is not tested at all, following `../AUDIT.md` ("on ne
@@ -296,12 +296,17 @@ with what each rule comes to here.
 ## Passes this mod needs
 
 A mod whose `TESTING.md` does not say how many passes it needs is tried, not tested. Two, each with
-the language fixed when the game starts and never switched during a run:
+the language fixed when the game starts and never switched during a run. Three, and the third
+is not a language:
 
 1. **Minimal set, English.** Core, the DLCs, Harmony, RimLogging, Pickle and the mod. The only pass
    where a capture is clean.
 2. **Same set, French.** `03-language.feature` says something only in the language it runs in, and
    this is where the interface is read in French.
+3. **`workshop`, English** (`-DepMap wsl-deps.workshop.map`). The same set plus PickleTools' screenshot
+   studio, the Nelim zen meadow. It plays `05-workshop-captures.feature` alone, three close-up pictures
+   for the Workshop gallery, a `@requires:nelim.pickletools.screenshotstudio` feature that the two
+   other passes skip. A skipped scenario is not a passed one, so this pass is what settles them.
 
 Each pass is one request dropped with the ticket dispatcher's `Submit-PickleRun.ps1`, which starts the worker that
 calls `Run-PickleWsl.ps1` under the machine's lock; the session keeps no process and watches nothing, and the dispatcher
