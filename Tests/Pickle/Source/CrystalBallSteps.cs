@@ -89,7 +89,8 @@ namespace CrystalBall.PickleSteps
         internal static Pawn Colonist(PickleContext ctx, string nickname)
         {
             Pawn pawn = CurrentMap(ctx).mapPawns.FreeColonists.FirstOrDefault(p =>
-                p.Name is NameTriple triple && triple.Nick == nickname);
+                p.Name is NameTriple triple && triple.Nick == nickname)
+                ?? CurrentMap(ctx).mapPawns.FreeColonists.FirstOrDefault(p => p.LabelShort == nickname);
             ctx.Assert(pawn != null, $"no colonist nicknamed \"{nickname}\"");
             return pawn;
         }
@@ -158,10 +159,10 @@ namespace CrystalBall.PickleSteps
         /// the radius asked for. The last is the whole point of the chairless scenario, so it is a condition of the
         /// spot rather than an assertion made afterwards about whatever spot happened to come up.
         /// </summary>
-        private static IntVec3 FindSpot(PickleContext ctx, Map map, ThingDef def, int seatFreeRadius, IEnumerable<IntVec3> taken)
+        private static IntVec3 FindSpot(PickleContext ctx, Map map, ThingDef def, int seatFreeRadius, IEnumerable<IntVec3> taken, IntVec3 anchor)
         {
             List<IntVec3> others = taken.ToList();
-            foreach (IntVec3 cell in GenRadial.RadialCellsAround(Anchor, 40f, true))
+            foreach (IntVec3 cell in GenRadial.RadialCellsAround(anchor, 40f, true))
             {
                 if (!cell.InBounds(map) || cell.Fogged(map) || cell.Roofed(map))
                 {
@@ -226,18 +227,18 @@ namespace CrystalBall.PickleSteps
             }
 
             ctx.Assert(false,
-                $"no cell within 40 of ({Anchor.x}, {Anchor.z}) fits a crystal ball with {seatFreeRadius} cells free of seats");
+                $"no cell within 40 of ({anchor.x}, {anchor.z}) fits a crystal ball with {seatFreeRadius} cells free of seats");
             return IntVec3.Invalid;
         }
 
-        private static void Place(PickleContext ctx, string name, QualityCategory quality, int seatFreeRadius)
+        private static void Place(PickleContext ctx, string name, QualityCategory quality, int seatFreeRadius, IntVec3 anchor)
         {
             Map map = CurrentMap(ctx);
             Ledger ledger = LedgerOf(ctx);
             ctx.Assert(!ledger.Balls.ContainsKey(name), $"a ball named \"{name}\" was already placed");
 
             ThingDef def = DefDatabase<ThingDef>.GetNamed(BallDefName);
-            IntVec3 cell = FindSpot(ctx, map, def, seatFreeRadius, ledger.Balls.Values.Select(b => b.Cell));
+            IntVec3 cell = FindSpot(ctx, map, def, seatFreeRadius, ledger.Balls.Values.Select(b => b.Cell), anchor);
 
             Thing ball = ThingMaker.MakeThing(def);
             ball.SetFaction(Faction.OfPlayer);
@@ -253,7 +254,18 @@ namespace CrystalBall.PickleSteps
         [Given("Crystal Ball: a crystal ball {string} stands on open ground with no seat within {int} cells")]
         public void PlaceBall(PickleContext ctx, string name, int seatFreeRadius)
         {
-            Place(ctx, name, QualityCategory.Normal, seatFreeRadius);
+            Place(ctx, name, QualityCategory.Normal, seatFreeRadius, Anchor);
+        }
+
+        /// <summary>
+        /// For a presentation picture on another fixture than the test colony: the same kind of spot, found from a cell
+        /// the scenario names instead of from the test colony's own. It asks for no seat-free radius, since a picture
+        /// is not a claim about chairs.
+        /// </summary>
+        [Given("Crystal Ball: a crystal ball {string} stands on open ground near \\({int}, {int}\\)")]
+        public void PlaceBallNear(PickleContext ctx, string name, int x, int z)
+        {
+            Place(ctx, name, QualityCategory.Normal, 0, new IntVec3(x, 0, z));
         }
 
         [Given("Crystal Ball: a {word} crystal ball {string} stands on open ground with no seat within {int} cells")]
@@ -262,7 +274,7 @@ namespace CrystalBall.PickleSteps
             QualityCategory parsed;
             ctx.Require(Enum.TryParse(quality, true, out parsed),
                 $"\"{quality}\" is not a quality: it is one of " + string.Join(", ", Enum.GetNames(typeof(QualityCategory))));
-            Place(ctx, name, parsed, seatFreeRadius);
+            Place(ctx, name, parsed, seatFreeRadius, Anchor);
         }
 
         // ------------------------------------------------------------------ the joy giver, asked as the game asks it

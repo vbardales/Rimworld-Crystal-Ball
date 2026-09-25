@@ -54,6 +54,12 @@ function Read-Patterns($dir, $source) {
         foreach ($m in [regex]::Matches($text, $attr)) {
             [pscustomobject]@{ Source = $source; File = $f.Name; Pattern = ($m.Groups[1].Value -replace '\\\\', '\' -replace '\\"', '"') }
         }
+        # A tool that keeps its prefix in a constant: [When(Prefix + "text")], the constant declared in the same file.
+        foreach ($m in [regex]::Matches($text, '\[(?:Given|When|Then)\((\w+) \+ "((?:[^"\\]|\\.)*)"')) {
+            $c = [regex]::Match($text, 'const string ' + $m.Groups[1].Value + ' = "((?:[^"\\]|\\.)*)"')
+            if (-not $c.Success) { continue }
+            [pscustomobject]@{ Source = $source; File = $f.Name; Pattern = (($c.Groups[1].Value + $m.Groups[2].Value) -replace '\\\\', '\' -replace '\\"', '"') }
+        }
     }
 }
 
@@ -105,6 +111,15 @@ foreach ($dir in Get-ChildItem -LiteralPath $collection -Directory -ErrorAction 
     if (-not (Test-Path -LiteralPath $src)) { continue }
     $suites++
     foreach ($p in Read-Patterns $src ('suite:' + $dir.Name)) { $others += $p }
+}
+# PickleTools is one repository holding a step assembly per tool, each under <Tool>\Source: a pass map can stage any of them, so a
+# feature may use their steps (the screenshot studio's, for the Workshop captures).
+$toolsRoot = Join-Path $collection 'PickleTools'
+foreach ($tool in Get-ChildItem -LiteralPath $toolsRoot -Directory -ErrorAction SilentlyContinue) {
+    $src = Join-Path $tool.FullName 'Source'
+    if (-not (Test-Path -LiteralPath $src)) { continue }
+    $suites++
+    foreach ($p in Read-Patterns $src ('tool:' + $tool.Name)) { $others += $p }
 }
 $otherExprs = @()
 foreach ($o in $others) {

@@ -1,51 +1,62 @@
 # The pictures of the Workshop page, PUBLICATION.md section 2, in the order to upload them. They are not the review captures
-# of 01 and 03: those show a whole colony around the ball at the game's default zoom, where the ball is a few dozen pixels
-# wide, and a Workshop page sells nothing with that.
+# of 01 and 03: those show the test colony's plain ground with its zone tints and the game's interface, and a Workshop page
+# sells nothing with that.
 #
-# Each scenario puts the ball on open ground of the fixture, frames it at the game's closest zoom and takes a picture.
-# The interface is left as it is: at that zoom the ball is in the middle of the screen and the picture is cropped around
-# it afterwards, which leaves the HUD out (Art/Crop-WorkshopScreenshots.ps1). Nothing asserts about the image: a person
-# opens each one, and a passing scenario says only that the route ran.
+# Each scenario loads PickleTools' disposable screenshot fixture, the Nelim zen meadow studio, frames its open glade of
+# flowers, puts the ball there, moves the camera onto it at the game's closest zoom and takes the picture with the studio's
+# presentation mode on (the game's own screenshot mode, Pickle's panel taken out of it), which leaves the interface and the
+# colonists' labels out. Nothing asserts about the image: a person opens each one, and a passing scenario says only that
+# the route ran.
+#
+# `@requires:nelim.pickletools.screenshotstudio`: only the pass of `-DepMap wsl-deps.workshop.map` stages the studio and plays
+# this feature; every other pass skips it. Aim at it with `-Filter '05-workshop-captures'`.
+@requires:nelim.pickletools.screenshotstudio
 @workshop @review
 Feature: the pictures of the Workshop page
 
-  Background:
-    Given the save "test-colony" is loaded
-
   # 1. What it is: the sphere on its stand, in daylight, where the glow is not what carries the picture.
-  @timeout:90
+  @timeout:120
   Scenario: the ball by day, close up
-    Given I set the hour to 12
+    Given the save "nelim-zen-meadow-studio" is loaded
+    And I set the hour to 12
     And I set the weather to "Clear"
-    And Crystal Ball: a crystal ball "Day" stands on open ground with no seat within 6 cells
+    And Nelim's Pickle Tools: I frame the studio "flowers"
+    And Crystal Ball: a crystal ball "Day" stands on open ground near (154, 98)
     When Crystal Ball: I put the camera on the ball "Day"
     And I zoom all the way in
+    And Nelim's Pickle Tools: studio presentation mode is enabled
     And I wait 60 ticks
     Then I take a screenshot "workshop 1 - the ball by day"
 
   # 2. The landmark the description promises: the same ball in the dark.
-  @timeout:90
+  @timeout:120
   Scenario: the ball at night, close up
-    Given I set the hour to 2
+    Given the save "nelim-zen-meadow-studio" is loaded
+    And I set the hour to 2
     And I set the weather to "Clear"
-    And Crystal Ball: a crystal ball "Night" stands on open ground with no seat within 6 cells
+    And Nelim's Pickle Tools: I frame the studio "flowers"
+    And Crystal Ball: a crystal ball "Night" stands on open ground near (154, 98)
     When Crystal Ball: I put the camera on the ball "Night"
     And I zoom all the way in
+    And Nelim's Pickle Tools: studio presentation mode is enabled
     And I wait 60 ticks
     Then I take a screenshot "workshop 2 - the ball at night"
 
-  # 3. What it does: a colonist sitting on the cell beside it, with no chair anywhere near.
-  @timeout:180
+  # 3. What it does: a colonist sitting on the cell beside it, with no chair anywhere near. Miel is the studio's own colonist
+  # of the flower glade.
+  @timeout:240
   Scenario: a colonist gazing into the ball, close up
-    Given I set the hour to 20
+    Given the save "nelim-zen-meadow-studio" is loaded
+    And I set the hour to 20
     And I set the weather to "Clear"
-    And a colonist "Pictured" exists
-    And "Pictured" needs "Joy" is set to 10 percent
-    And Crystal Ball: a crystal ball "Gazed" stands on open ground with no seat within 6 cells
+    And Nelim's Pickle Tools: I frame the studio "flowers"
+    And "Miel" needs "Joy" is set to 10 percent
+    And Crystal Ball: a crystal ball "Gazed" stands on open ground near (154, 98)
     And game speed is ultrafast
-    When Crystal Ball: the joy giver sends "Pictured" to the ball "Gazed"
-    Then Crystal Ball: "Pictured" sits beside the ball "Gazed"
+    When Crystal Ball: the joy giver sends "Miel" to the ball "Gazed"
+    Then Crystal Ball: "Miel" sits beside the ball "Gazed"
     When Crystal Ball: I put the camera on the ball "Gazed"
     And I zoom all the way in
+    And Nelim's Pickle Tools: studio presentation mode is enabled
     And I wait 30 ticks
     Then I take a screenshot "workshop 3 - a colonist gazing"
