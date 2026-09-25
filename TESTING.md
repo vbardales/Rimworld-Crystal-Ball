@@ -263,13 +263,12 @@ game owns and this mod only sets, so it is not measured.
 
 Ten scenarios are written in Gherkin, scenarios 4 and 5 by one of them. One is withdrawn and four are
 not applicable, each for a reason the table gives. Parts of three of the ten are not applicable for
-the same reason: the Architect tab, four balls, and removal. Nothing is left for a person except to
-open the `@review` captures.
+the same reason: the Architect tab, four balls, and removal. Nothing is left for a person: the `@review`\ncaptures were opened on 2026-09-25 (the inspect pane in each language, the ball at night).
 
 The suite is built and checked without a game: `dotnet build Tests/Pickle/Source/CrystalBall.PickleSteps.csproj -c Release`,
 then `Tests/Pickle/Check-Steps.ps1`, which compiles every step pattern with Pickle's own expression
-engine and checks that each step line of the features resolves to exactly one expression. A run has
-not been played yet.
+engine and checks that each step line of the features resolves to exactly one expression. The suite was played on
+2026-09-25, English and French, and every scenario has a green report (`docs/runs/README.md`).
 
 ## What `tested` requires
 

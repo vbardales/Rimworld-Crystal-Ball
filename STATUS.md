@@ -9,28 +9,51 @@ remote:       https://github.com/vbardales/Rimworld-Crystal-Ball.git
 local_path:   C:\Users\nelim\Documents\rimworld\CrystalBall
 visibility:   public
 detached:     yes
-stage:        done
+stage:        tested
 settings_audit: not_applicable
 licence:      original
 licence_at:   MIT; original mod according to repository provenance
 license_spdx: MIT
 dependencies: none
 showcase:     complete
-tested_on:
+tested_on:    2026-09-25, in game through Pickle in the WSL (RimWorld 1.6.4871): 11 scenarios of 11 played and green, English and French, revisions f72ecd6 (ten in the two full passes) and 8ecaf70 (the save scenario, corrected); see docs/runs/README.md
 workshop:     3806709786
 remaining:
-  - unverified: the full passes were played in English and in French (docs/runs/README.md): ten scenarios of eleven green in each, one red for a fault of the suite, the save scenario asking a full ball for a third colonist; it is corrected and awaits its own run, and `tested` needs that green plus the passes on the final revision
-  - verified: the spots the suite guessed held in both passes, a ball at (146, 156), the build at (146, 157) with its stockpile, and the 900 s allowed for a 9000-unit build (it took about 30 s)
-  - unverified: the two `@review` captures were opened, the inspect pane in each language (name and quality, no raw key) and the ball at night (lit); the pane does not show the description, which sits behind the info card and is not captured
-  - unverified: the private 0.1.0 item was never subscribed to, so its page and showcase have not been seen in place
+  - unverified: the description text on the game's info card: the inspect capture shows the name and the quality, not the description, so how it fits the card is not seen (its text is compared with the resources by the language scenario)
+  - unverified: the 0.1.0 item was never subscribed to, so its page and showcase have not been seen in place
+  - unverified: `tested -> prepublished` not started: the rollback target is not chosen and no `v0.1.0` tag exists (`PUBLISHING.md`, fail fast)
   - defect: the Steam description has no line pointing to ATTRIBUTION.md; SetItemDescription runs at creation only, so it is a by-hand edit on the Steam page (`tested -> prepublished`)
 session:      01a09736-2cfc-72d3-8b3c-4ffe79ef572c
-updated:      2026-09-24
+updated:      2026-09-25
 ---
 
 # Crystal Ball — status
 
-## Audit — 2026-09-24, second pass: done (current decision)
+## Audit — 2026-09-25, third pass: tested (current decision)
+
+Audited revision `8ecaf70` (`Mod/` unchanged since `3d1243e` except the `PublishedFileId.txt` line), read against the
+current `../AUDIT.md`, step `done -> tested`. Offline suites re-run at that revision: `Run-Tests.ps1` 25/25,
+`Run-Functional-Tests.ps1` 11/11.
+
+**Previous stage: done. Retained stage: tested.** The suite was played in the game, headless in the WSL, in English and
+in French, and every scenario has a green report; the history is one line per run in `docs/runs/README.md`.
+
+| Criterion of `done -> tested` | Result | Evidence |
+| --- | --- | --- |
+| Functional scenarios played and green | Validated | Eleven scenarios in four features. Both full passes (`c70b` English, `3f8c` French, revision `f72ecd6`) passed ten of eleven; the eleventh, the save, failed in both for a fault of the suite (it asked a full ball for a third colonist), was corrected, and passed on its own run (`01c7`, `8ecaf70`). The other ten are unchanged in the suite since. |
+| Pickle suites green, `exitReason` read first, played against discovered | Validated | Each summary read `exitReason` before the counts; eleven scenarios played of eleven in four features, `setName` `sans-facultatifs`, scenario names compared with the ones asked for. |
+| `@review` captures opened | Validated, with a gap | Opened: the inspect pane in English ("Crystal ball (normal)", Quality: Normal) and in French ("Boule de cristal (normal)", "Qualité : Normal"), no raw key and no overflow; the ball at night, lit ("Lit (50%)"), the glow visible. The pane shows the name and the quality, not the description: that sits behind the info card and is not captured. The description's text is checked against the French resources by the language scenario; how it fits the card is not seen. |
+| Logs | Validated | Only the fixture's warnings (a save from an older build, hidden ritual precepts) and the companion's known lines ("did not load any content", the same in JoyRescue's log). Nothing from the mod. |
+| Interface in French and English | Validated | The four texts compared with the mod's own resources in each pass, and the step attached the language it found (`English`, `French (Français)`). |
+| Options, MainButtons shortcut | Not applicable | `settings_audit: not_applicable`; the mod has no settings. |
+| New game and existing save | Validated | Every run loads a fixture saved before the mod; the save scenario saves with two colonists gazing and reloads. |
+| No `@wip`, no conditional scenario, no manual test left | Validated | None in the features; nothing is left to a person, the four scenarios not applicable and the one withdrawn are justified in `TESTING.md`. |
+| Corrections followed by regression tests | Validated | The prefix fix of the language step and the save scenario were each replayed green. |
+
+Not verified, and not blocking `tested`: the 0.1.0 item was never subscribed to, so its page and showcase have not been
+seen in place; the description card in the game. `tested -> prepublished` is not started: the rollback target is not
+chosen and no `v0.1.0` tag exists (`PUBLISHING.md`, fail fast).
+## Audit — 2026-09-24, second pass: done (historical, superseded by the one above)
 
 Audited revision `5924c85`, three commits on `5a8fc0b` (`8cc4d2d` the Pickle suite, `ec91a29` the offline
 Core test, `5924c85` the documentation), read against the current `../AUDIT.md`, which had not changed
