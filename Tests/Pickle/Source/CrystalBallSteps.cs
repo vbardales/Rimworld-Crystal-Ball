@@ -534,6 +534,8 @@ namespace CrystalBall.PickleSteps
             string language = folderName.StartsWith("English", StringComparison.OrdinalIgnoreCase) ? "English"
                 : folderName.StartsWith("French", StringComparison.OrdinalIgnoreCase) ? "French"
                 : folderName;
+            // A green would not otherwise say which language it was staged in, since both branches below can pass.
+            ctx.Attach("language", folderName);
             ModContentPack pack = LoadedModManager.RunningModsListForReading.FirstOrDefault(m =>
                 string.Equals(m.PackageIdPlayerFacing, ModPackageId, StringComparison.OrdinalIgnoreCase));
             ctx.Require(pack != null, $"the mod {ModPackageId} is not among the running mods");

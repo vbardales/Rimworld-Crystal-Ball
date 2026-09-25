@@ -19,7 +19,7 @@ showcase:     complete
 tested_on:
 workshop:     3806709786
 remaining:
-  - unverified: two Pickle scenarios have been played, the smoke and the gaze, both green (docs/runs/README.md); the French texts are queued, the other eight scenarios have not run, and `tested` needs both full passes, English and French
+  - unverified: two Pickle scenarios have been played, the smoke and the gaze, both green (docs/runs/README.md); the French texts scenario is green too, on its rerun (the first French run failed on the suite's own step), the other eight scenarios have not run, and `tested` needs both full passes, English and French
   - unverified: the spots the suite guesses, a ball's cell near (146, 156), the build at (146, 157) with its stockpile at (150..152, 160..162), and the 900 s allowed for a 9000-unit build
   - unverified: the two `@review` captures, the ball at night and the inspect pane in each language, are not produced and not opened
   - unverified: the private 0.1.0 item was never subscribed to, so its page and showcase have not been seen in place
