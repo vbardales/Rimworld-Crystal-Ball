@@ -19,9 +19,9 @@ showcase:     complete
 tested_on:
 workshop:     3806709786
 remaining:
-  - unverified: two Pickle scenarios have been played, the smoke and the gaze, both green (docs/runs/README.md); the French texts scenario is green too, on its rerun (the first French run failed on the suite's own step), the other eight scenarios have not run, and `tested` needs both full passes, English and French
-  - unverified: the spots the suite guesses, a ball's cell near (146, 156), the build at (146, 157) with its stockpile at (150..152, 160..162), and the 900 s allowed for a 9000-unit build
-  - unverified: the two `@review` captures, the ball at night and the inspect pane in each language, are not produced and not opened
+  - unverified: the full passes were played in English and in French (docs/runs/README.md): ten scenarios of eleven green in each, one red for a fault of the suite, the save scenario asking a full ball for a third colonist; it is corrected and awaits its own run, and `tested` needs that green plus the passes on the final revision
+  - verified: the spots the suite guessed held in both passes, a ball at (146, 156), the build at (146, 157) with its stockpile, and the 900 s allowed for a 9000-unit build (it took about 30 s)
+  - unverified: the two `@review` captures were opened, the inspect pane in each language (name and quality, no raw key) and the ball at night (lit); the pane does not show the description, which sits behind the info card and is not captured
   - unverified: the private 0.1.0 item was never subscribed to, so its page and showcase have not been seen in place
   - defect: the Steam description has no line pointing to ATTRIBUTION.md; SetItemDescription runs at creation only, so it is a by-hand edit on the Steam page (`tested -> prepublished`)
 session:      01a09736-2cfc-72d3-8b3c-4ffe79ef572c

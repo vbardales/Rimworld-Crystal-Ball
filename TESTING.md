@@ -219,7 +219,7 @@ The mod stores nothing of its own, which is a claim worth testing rather than tr
 1. Save while two colonists are gazing. Reload.
 
 **Pass:** the save loads with no red line, the colonists carry on or pick a new job cleanly, the
-glow is there, and the quality of each ball survived.
+glow is there, and the quality of each ball survived. A pair that was gazing still holds the ball, so a third colonist is offered nothing.
 
 2. Add the mod to a colony that never had it.
 
@@ -259,7 +259,7 @@ game owns and this mod only sets, so it is not measured.
 | 12 | Walking past it | **Not applicable.** `passability` and `pathCost` are declared, and `Pathing` reads the cost. |
 | 13 | A recreation room | **Not applicable.** The ball is named by the giver's `thingDefs`, which `RoomRoleWorker_RecRoom` reads. What the room is called is the game's scoring. |
 | 14 | English and French | `03-language.feature`, played once per language, and a `@review` capture of the inspect pane. |
-| 15 | Saves | `04-save.feature`: a save with two colonists gazing loads clean, the ball keeps its cell and its quality, and the giver still sends a new colonist. Adding the mod to a colony that never had it is what every run does, since the fixture predates the mod. Removing it from a save is a change of modlist between two games and the game's own missing-content warning: not applicable. |
+| 15 | Saves | `04-save.feature`: a save with two colonists gazing loads clean, the ball keeps its cell and its quality, and the two colonists still gaze afterwards, and a third is still offered nothing since the ball is full. Adding the mod to a colony that never had it is what every run does, since the fixture predates the mod. Removing it from a save is a change of modlist between two games and the game's own missing-content warning: not applicable. |
 
 Ten scenarios are written in Gherkin, scenarios 4 and 5 by one of them. One is withdrawn and four are
 not applicable, each for a reason the table gives. Parts of three of the ten are not applicable for
