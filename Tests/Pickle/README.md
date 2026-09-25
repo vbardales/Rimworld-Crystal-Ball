@@ -55,8 +55,8 @@ per request, and the dispatcher wakes the session. Its `WELCOME.md` sets the siz
 - **An initial or a final validation pass**: every scenario, no `-Filter`, one request per language.
 
 A filter is one string whose terms are separated by commas, and `::text` picks the scenarios whose name contains `text`.
-**A scenario name therefore carries no comma**, or the filter would read it as two terms. The first exploration requests,
-before this suite has ever been played:
+**A scenario name therefore carries no comma**, or the filter would read it as two terms. Examples, the first
+exploration requests of this suite:
 
 | What it settles | Filter | Language |
 | --- | --- | --- |
@@ -94,7 +94,11 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File Tests/Pickle/Check-Steps
 
 ## Status
 
-Written on 2026-09-24. **No scenario has been played.** The checker passes, the suite compiles, and each of the
-checker's four checks has been seen to fail on a broken copy. What a run will say about the spot the ball is placed on,
-the time the build takes, or whether the sit-facing driver leaves the colonist where the step expects is not known, and
-the first run is where that gets found.
+Written on 2026-09-24 and played on 2026-09-25: eleven scenarios, English and French, all green (one scenario, the
+save, was corrected after both full passes had asked a full ball for a third colonist, then replayed green). Every run is
+one line of [docs/runs/README.md](../../docs/runs/README.md). The spots the suite guessed held, the ball at (146, 156),
+the build at (146, 157) with its stockpile, and the build takes about 30 s. Not seen: the description on the game's info
+card, which the inspect capture does not show.
+
+Put the revision to test in `-Label` when a request is filed: a request carries no SHA, the mod is staged from the working
+tree when its turn comes, and the tree must not change until the run is done.

@@ -7,7 +7,8 @@ This file serves the repository and the writing of Steam patch notes; RimWorld d
 
 On release: create the `v1.0.0` tag and the matching GitHub release.
 
-First version, for RimWorld 1.6. It is not tested in game yet.
+First version, for RimWorld 1.6. It has been played in a real game through Pickle, in English and in
+French, with every scenario green (`docs/runs/README.md`).
 
 ### Added
 
@@ -38,11 +39,13 @@ Nothing here reaches a player.
   giver through the game's own accessor, and scans every method body in the game to find which
   class reads each setting the mod writes — which is how an inert setting, one nothing on its
   code path ever reads, gets caught.
-- `TESTING.md`, the fourteen scenarios only a running colony can settle, and where each one is settled.
-- A Pickle suite, `Tests/Pickle/`: four features and a step assembly, ten scenarios written for a real
-  game, with a checker that compiles every step pattern with Pickle's own engine. Written and checked
-  without a game; none has been played. The claim that no DLC is required is proved offline instead,
+- `TESTING.md`, the fifteen scenarios only a running colony can settle, and where each one is settled.
+- A Pickle suite, `Tests/Pickle/`: four features and a step assembly, eleven scenarios for a real
+  game, with a checker that compiles every step pattern with Pickle's own engine. Played in English
+  and in French on 2026-09-25, all green. The claim that no DLC is required is proved offline instead,
   by a test of `_tools/Run-Tests.ps1` that fails on any def, template or class only a DLC defines.
+- `docs/runs/README.md`, one line per Pickle run, and `docs/PROTOCOLS-READ.md`, which workflow
+  documents were read and at which revision.
 
 ## [0.1.0] — 2026-09-23
 
