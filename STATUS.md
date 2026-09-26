@@ -18,7 +18,7 @@ dependencies: none
 showcase:     complete
 tested_on:    2026-09-25, in game through Pickle in the WSL (RimWorld 1.6.4871): 11 scenarios of 11 played and green, English and French, revisions f72ecd6 (ten in the two full passes) and 8ecaf70 (the save scenario, corrected); plus the 3 Workshop-picture scenarios of `05-workshop-captures.feature`, a conditional feature (`@requires:nelim.pickletools.screenshotstudio`) played in its own pass `workshop` on PickleTools' zen studio, revision 768ae50, green; see docs/runs/README.md
 workshop:     3806709786
-published_on: 2026-09-26, version 1.0.0 by the publish workflow (run 36232486752, SHA 7d64a56491d7f131ec5770342f65875d993f8279, dry-run 36232421213, description sent), tag v1.0.0 and GitHub release created by the CI. Item still private; gallery (Art/WorkshopScreenshots/) and visibility are Virginie's, by hand.
+published_on: 2026-09-26, version 1.0.0 by the publish workflow (run 36232486752, SHA 7d64a56491d7f131ec5770342f65875d993f8279, dry-run 36232421213, description sent), tag v1.0.0 and GitHub release created by the CI. Made public by Virginie on 2026-09-26; the gallery (Art/WorkshopScreenshots/) and the subscriptions are hers, by hand.
 remaining:
   - unverified: the description text on the game's info card: the inspect capture shows the name and the quality, not the description, so how it fits the card is not seen (its text is compared with the resources by the language scenario)
   - unverified: the 0.1.0 item was never subscribed to, so its page and showcase have not been seen in place

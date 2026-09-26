@@ -15,8 +15,8 @@
                      in it resolve. That is how the cast the whole mod rests on is read off the
                      compiled game rather than asserted.
     reverse lookup   scanning every method of Assembly-CSharp for the field tokens this mod
-                     writes says WHO reads each of its settings. Two to three seconds for
-                     16 000 types.
+                     writes says WHO reads each of its settings. Half a minute for 16 000
+                     types, the instructions of each body decoded one by one.
     construction     the classes without Unity state - JoyGiverDef, JobDef, the giver, the driver
                      - really are instantiated here, through the game's own accessors.
 
@@ -47,8 +47,8 @@
       barDrawData are all read. Both loads are matched now, and a field written as
       <startingHpRange> is the fault that was used to see it.
 
-  Exit code 0 when everything passes, 1 otherwise. Three to twenty seconds depending on the load of
-  the machine, two to six of them the scan.
+  Exit code 0 when everything passes, 1 otherwise. About half a minute, nearly all of it the scan,
+  which decodes every instruction of every method body rather than looking for bytes.
 
   EVERY TEST HERE HAS BEEN SEEN TO FAIL, the same way as next door: one fault at a time in a copy
   of the mod in a scratch directory, never in the real files.
@@ -240,15 +240,34 @@ if ($byName.Count -gt 0) {
 #
 # ldfld (0x7B) and ldflda (0x7C) carry a four-byte token. Inside one module that token IS the
 # field's MetadataToken, so the whole scan is an integer comparison - no ResolveMember per
-# instruction, which is what keeps it to a few seconds rather than an afternoon.
+# instruction, which is what keeps it to half a minute rather than an afternoon.
 #
-# The bytes are scanned, not decoded. A match needs the opcode byte followed by four bytes equal
-# to a hunted token, and field tokens are 0x04xxxxxx, so an accidental hit inside another
-# instruction's operand is not a realistic risk. Decoding would be the answer if it became one.
+# The body is decoded instruction by instruction, with the operand size of each opcode taken from
+# System.Reflection.Emit, so a 0x7B or 0x7C sitting inside another instruction's operand is never
+# taken for an ldfld.
 #
 # The reader is recorded as the OUTERMOST declaring type. A driver's MakeNewToils compiles to a
 # nested <MakeNewToils>d__5 state machine, and a lambda to a <>c: reporting those would name
 # nothing a reader recognises, and there are several classes with a d__5.
+
+# Operand size of every opcode: -1 for a switch (a count and that many targets), -2 for a byte
+# that starts no instruction, which ends the walk of a body rather than guessing.
+$sizeOne = New-Object 'int[]' 256
+$sizeTwo = New-Object 'int[]' 256
+for ($n = 0; $n -lt 256; $n++) { $sizeOne[$n] = -2; $sizeTwo[$n] = -2 }
+foreach ($fi in [System.Reflection.Emit.OpCodes].GetFields('Public,Static')) {
+    $op = $fi.GetValue($null)
+    $size = switch ($op.OperandType.ToString()) {
+        'InlineNone'                                   { 0 }
+        { $_ -in 'ShortInlineBrTarget', 'ShortInlineI', 'ShortInlineVar' } { 1 }
+        'InlineVar'                                    { 2 }
+        { $_ -in 'InlineI8', 'InlineR' }               { 8 }
+        'InlineSwitch'                                 { -1 }
+        default                                        { 4 }
+    }
+    $code = [int]$op.Value -band 0xFFFF
+    if ($op.Size -eq 1) { $sizeOne[$code] = $size } else { $sizeTwo[$code -band 0xFF] = $size }
+}
 
 $hunted = @{}
 foreach ($k in $written.Keys) { $hunted[$k] = $written[$k] }
@@ -265,18 +284,36 @@ if ($hunted.Count -gt 0) {
             if (-not $body) { continue }
             $il = $body.GetILAsByteArray()
             if (-not $il -or $il.Length -lt 5) { continue }
-            for ($i = 0; $i -lt $il.Length - 4; $i++) {
-                # 0x7B is ldfld, 0x7C is ldflda. A struct field - a FloatRange, a Vector2 - is read
-                # by ADDRESS whenever a method is called on it (startingHpRange.RandomInRange), so
-                # matching ldfld alone reports it as read by nothing.
-                if ($il[$i] -ne 0x7B -and $il[$i] -ne 0x7C) { continue }
-                $tok = [BitConverter]::ToInt32($il, $i + 1)
-                if (-not $hunted.ContainsKey($tok)) { continue }
-                $owner = $t
-                while ($owner.DeclaringType) { $owner = $owner.DeclaringType }
-                $key = $hunted[$tok]
-                if (-not $readers.ContainsKey($key)) { $readers[$key] = @{} }
-                $readers[$key][$owner.Name] = $true
+            $i = 0
+            $len = $il.Length
+            while ($i -lt $len) {
+                $b = $il[$i]; $i++
+                if ($b -eq 0xFE) {
+                    if ($i -ge $len) { break }
+                    $size = $sizeTwo[$il[$i]]; $i++
+                }
+                else {
+                    $size = $sizeOne[$b]
+                    # 0x7B is ldfld, 0x7C is ldflda. A struct field - a FloatRange, a Vector2 - is read
+                    # by ADDRESS whenever a method is called on it (startingHpRange.RandomInRange), so
+                    # matching ldfld alone reports it as read by nothing.
+                    if (($b -eq 0x7B -or $b -eq 0x7C) -and $i + 4 -le $len) {
+                        $tok = [BitConverter]::ToInt32($il, $i)
+                        if ($hunted.ContainsKey($tok)) {
+                            $owner = $t
+                            while ($owner.DeclaringType) { $owner = $owner.DeclaringType }
+                            $key = $hunted[$tok]
+                            if (-not $readers.ContainsKey($key)) { $readers[$key] = @{} }
+                            $readers[$key][$owner.Name] = $true
+                        }
+                    }
+                }
+                if ($size -eq -1) {
+                    if ($i + 4 -gt $len) { break }
+                    $size = 4 + 4 * [BitConverter]::ToInt32($il, $i)
+                }
+                elseif ($size -lt 0) { break }
+                $i += $size
             }
         }
     }
@@ -331,7 +368,15 @@ foreach ($dir in (Get-ChildItem $GameData -Directory)) {
             }
             if ($n.LocalName -eq 'ThingDef') {
                 $nm = $n.GetAttribute('Name')
-                if ($nm) { $templates[$nm] = @{ Class = Get-Text $n 'thingClass'; Parent = $n.GetAttribute('ParentName') } }
+                if ($nm) {
+                    $entry = @{ Class = Get-Text $n 'thingClass'; Parent = $n.GetAttribute('ParentName'); Conflict = $false }
+                    # A Name is global in the game. Two definitions that disagree would make the walk
+                    # below depend on the order the folders were read in, so it says so instead.
+                    $seen = $templates[$nm]
+                    if ($seen -and ($seen.Class -ne $entry.Class -or $seen.Parent -ne $entry.Parent)) { $entry.Conflict = $true }
+                    elseif ($seen -and $seen.Conflict) { $entry.Conflict = $true }
+                    $templates[$nm] = $entry
+                }
             }
         }
     }
@@ -403,6 +448,7 @@ It 'the driver really does cast what it sits at to a Building, and this is one' 
     while (-not $className -and $parent -and $hops -lt 12) {
         $tpl = $templates[$parent]
         if (-not $tpl) { break }
+        if ($tpl.Conflict) { "the template $parent is defined twice in the game data with a different thingClass or parent, so what this def loads as is not settled"; return }
         $className = $tpl.Class
         $parent    = $tpl.Parent
         $hops++
