@@ -23,3 +23,13 @@ Feature: the mod's own texts
     And I wait 60 ticks
     And I take a screenshot "crystal-ball-inspect"
     Then no errors were logged
+
+  # The inspect pane above does not show the description; the info card does. STATUS.md, `remaining`, asked for it.
+  @review @timeout:90
+  Scenario: the ball's description on its info card
+    Given Crystal Ball: a crystal ball "Card" stands on open ground with no seat within 6 cells
+    When Crystal Ball: I put the camera on the ball "Card"
+    And Crystal Ball: I open the info card of the ball "Card"
+    And I wait 60 ticks
+    And I take a screenshot "crystal-ball-info-card"
+    Then no errors were logged

@@ -521,6 +521,18 @@ namespace CrystalBall.PickleSteps
             Find.Selector.Select(ball, false, false);
         }
 
+        /// <summary>
+        /// The "i" card of the ball, the window that carries the def's description. The inspect pane shows the name and
+        /// the quality only, so this is the one place the description is seen laid out in the game.
+        /// </summary>
+        [When("Crystal Ball: I open the info card of the ball {string}")]
+        public void OpenInfoCard(PickleContext ctx, string name)
+        {
+            Thing ball = BallNamed(ctx, name);
+            Find.WindowStack.Add(new Dialog_InfoCard(ball, null));
+            ctx.Assert(Find.WindowStack.WindowOfType<Dialog_InfoCard>() != null, "the info card did not open");
+        }
+
         [When("Crystal Ball: I put the camera on the ball {string}")]
         public void CameraOn(PickleContext ctx, string name)
         {
