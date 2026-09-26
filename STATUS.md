@@ -23,8 +23,8 @@ remaining:
   - unverified: the description text on the game's info card: the inspect capture shows the name and the quality, not the description, so how it fits the card is not seen (its text is compared with the resources by the language scenario)
   - unverified: the 0.1.0 item was never subscribed to, so its page and showcase have not been seen in place
   - unverified: `tested -> prepublished` not started: the rollback target is not chosen and no `v0.1.0` tag exists (`PUBLISHING.md`, fail fast)
-  - unverified: the Steam description was sent by the 1.0.0 workflow (update_description, with the ATTRIBUTION.md line); the item is private, so the page has to be read by hand
-  - by hand, Virginie: the three gallery pictures of Art/WorkshopScreenshots/ in order 01, 02, 03; subscribe to the item and test it; then public, subscribe to the comments, Watch all activity
+  - unverified: the description on the public page, read by hand, and the info card capture (ticket 20260926-220942-644-145b, waiting for disk space)
+  - done by Virginie on 2026-09-26: the three gallery pictures uploaded, the item public, watching the item on the Steam Workshop and the repository on GitHub
 session:      01a09736-2cfc-72d3-8b3c-4ffe79ef572c
 updated:      2026-09-26
 ---
