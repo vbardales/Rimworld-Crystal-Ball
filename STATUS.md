@@ -20,10 +20,9 @@ tested_on:    2026-09-25, in game through Pickle in the WSL (RimWorld 1.6.4871):
 workshop:     3806709786
 published_on: 2026-09-26, version 1.0.0 by the publish workflow (run 36232486752, SHA 7d64a56491d7f131ec5770342f65875d993f8279, dry-run 36232421213, description sent), tag v1.0.0 and GitHub release created by the CI. Made public by Virginie on 2026-09-26; the gallery (Art/WorkshopScreenshots/) and the subscriptions are hers, by hand.
 remaining:
-  - unverified: the description text on the game's info card: the inspect capture shows the name and the quality, not the description, so how it fits the card is not seen (its text is compared with the resources by the language scenario)
   - unverified: the 0.1.0 item was never subscribed to, so its page and showcase have not been seen in place
   - unverified: `tested -> prepublished` not started: the rollback target is not chosen and no `v0.1.0` tag exists (`PUBLISHING.md`, fail fast)
-  - unverified: the description on the public page, read by hand, and the info card capture (ticket 20260926-220942-644-145b, waiting for disk space)
+  - unverified: the description on the public Steam page, read by hand (the info card in game is seen: run 145b)
   - done by Virginie on 2026-09-26: the three gallery pictures uploaded, the item public, watching the item on the Steam Workshop and the repository on GitHub
 session:      01a09736-2cfc-72d3-8b3c-4ffe79ef572c
 updated:      2026-09-26
