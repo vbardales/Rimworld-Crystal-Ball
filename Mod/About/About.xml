@@ -9,43 +9,41 @@
   <url>https://github.com/vbardales/Rimworld-Crystal-Ball</url>
   <description>A polished sphere on a clawed stand, glowing faintly violet from within. Colonists sit down in front of it, gaze for a while, and get up in a better mood - a recreation source with a recreation type of its own.
 
-[h2]WHY THE TYPE MATTERS MORE THAN THE FURNITURE[/h2]
+WHY THE TYPE MATTERS MORE THAN THE FURNITURE
 
 The base game has ten recreation types, and only four of them come from a building. Expectations ask for up to six different types, and tolerance is counted per type, not per building: ten chess tables tire a colonist exactly as fast as one. An eleventh type is therefore worth far more than a tenth piece of furniture on a type you already had.
 
 Divination did not have to be invented for the occasion either. A crystal ball carries its own use, which avoids the usual trap of a recreation type bolted on for the count and justified by nothing in play.
 
-[h2]WHAT IT IS[/h2]
+WHAT IT IS
 
-[list]
-[*] Built from jade and a little gold, at neolithic tech. A luxury for an established colony, not a starting bench.
-[*] No chair needed. You crouch in front of a crystal ball; you do not pull up a dining chair.
-[*] Takes a quality, so beauty scales and a masterwork one gets its name.
-[*] Glows faintly and permanently, which makes it a landmark at night without replacing a lamp.
-[*] Minifiable, so it moves house with you.
-[/list]
+- Built from jade and a little gold, at neolithic tech. A luxury for an established colony, not a starting bench.
+- No chair needed. You crouch in front of a crystal ball; you do not pull up a dining chair.
+- Takes a quality, so beauty scales and a masterwork one gets its name.
+- Glows faintly and permanently, which makes it a landmark at night without replacing a lamp.
+- Minifiable, so it moves house with you.
 
 No DLC required. No assembly: the walking, sitting and gazing are the base game's own chess-table logic, which works here because a crystal ball is a building.
 
 No save data of its own.
 
-[h2]IF I GO QUIET[/h2]
+IF I GO QUIET
 
 If I do not answer within a reasonable time after being contacted, anyone may freely update this or any other of my mods, including publishing a continuation of it. All credit must be preserved.
 
-[h2]AI-GENERATED[/h2]
+AI-GENERATED
 
 This mod's defs were written with Claude Code (Anthropic), its in-game texture drawn as vector art with the same tool, and its Workshop preview image generated with DALL-E (OpenAI), under human direction, review and testing. Stated openly: designing with these tools is my job.
 
-[h2]THANKS[/h2]
+THANKS
 
 Ludeon Studios, whose chess table and game of Ur carry every bit of this mod's behaviour: it ships no code of its own.
 
-[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3791648678]Pickle[/url] and [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3733484696]RimLogging[/url] were used for development and testing only; neither is a dependency of the distributed mod.
+Pickle (https://steamcommunity.com/sharedfiles/filedetails/?id=3791648678) and RimLogging (https://steamcommunity.com/sharedfiles/filedetails/?id=3733484696) were used for development and testing only; neither is a dependency of the distributed mod.
 
-Full attribution: [url=https://github.com/vbardales/Rimworld-Crystal-Ball/blob/main/ATTRIBUTION.md]ATTRIBUTION.md[/url]. This mod is MIT licensed: [url=https://github.com/vbardales/Rimworld-Crystal-Ball/blob/main/LICENSE]LICENSE[/url]
+Full attribution: ATTRIBUTION.md (https://github.com/vbardales/Rimworld-Crystal-Ball/blob/main/ATTRIBUTION.md). This mod is MIT licensed: LICENSE (https://github.com/vbardales/Rimworld-Crystal-Ball/blob/main/LICENSE)
 
-[url=https://github.com/vbardales/Rimworld-Crystal-Ball]Source code on GitHub[/url]</description>
+Source code on GitHub (https://github.com/vbardales/Rimworld-Crystal-Ball)</description>
   <loadAfter>
     <li>Ludeon.RimWorld</li>
   </loadAfter>

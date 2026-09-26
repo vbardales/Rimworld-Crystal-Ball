@@ -9,7 +9,7 @@ Virginie alone. The workflow sends `Mod/` and the change note below; it sends th
 
 ## 1. Steam description
 
-Kept in sync with `Mod/About/About.xml`, which holds the same text. The workflow reads the fenced block below and, with
+`Mod/About/About.xml` holds the same words in plain text, since the game shows its description as it is and would print the BBCode tags. The workflow reads the fenced block below and, with
 `update_description` on, replaces the page's description with it; the dry-run prints the converted text and its SHA-256.
 The public Steam API returns nothing for a private item, so the dry-run cannot diff it with the page: the description on
 the page has to be read by hand before the approval.
@@ -62,10 +62,10 @@ Full attribution: [url=https://github.com/vbardales/Rimworld-Crystal-Ball/blob/m
 (`update_preview` stays off). `Mod/About/ModIcon.png` ships inside `Mod/`.
 
 The gallery is manual, on the Steam page, in the order below. The three candidates come from the Pickle feature
-`05-workshop-captures.feature`, played on PickleTools' Nelim zen meadow studio (run `a0c6`, pass `workshop`, revision
-`768ae50`): the ball at (154, 98) in the studio's flower glade, the game's screenshot mode on so that no interface shows,
+`05-workshop-captures.feature`, played on PickleTools' Nelim zen meadow studio (run `124f`, pass `workshop`, revision
+`9abc18e`, Miel in a robe): the ball at (154, 98) in the studio's flower glade, the game's screenshot mode on so that no interface shows,
 the camera on the ball at the game's closest zoom. `Art/Crop-WorkshopScreenshots.ps1` cuts a 720 x 405 picture out of each
-1920 x 1080 capture, centred on the ball. They are not committed yet: Virginie qualifies them first, and the folder
+1920 x 1080 capture, centred on the ball. Virginie qualified them on 2026-09-26 and they are committed; the folder
 `Art/WorkshopScreenshots/` is uploaded as it is (nothing in it but the images, numbered `01-`, `02-`, `03-` in upload
 order). The dry-run lists it as a reminder once it exists.
 
