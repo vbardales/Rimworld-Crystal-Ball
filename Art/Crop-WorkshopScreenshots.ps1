@@ -26,7 +26,10 @@ foreach ($name in $pictures.Keys) {
     if (-not $file) { throw "no capture named like '$($pictures[$name])' in $Source" }
     $image = [System.Drawing.Image]::FromFile($file.FullName)
     try {
-        $x = [int](($image.Width - $Width) / 2)
+        if ($Width -gt $image.Width -or $Height -gt $image.Height) {
+            throw "a $Width x $Height crop does not fit in $($file.Name), which is $($image.Width) x $($image.Height)"
+        }
+        $x =[int](($image.Width - $Width) / 2)
         $y = [int](($image.Height - $Height) / 2)
         $bitmap = New-Object System.Drawing.Bitmap $Width, $Height
         $graphics = [System.Drawing.Graphics]::FromImage($bitmap)
