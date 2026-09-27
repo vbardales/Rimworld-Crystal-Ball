@@ -16,16 +16,15 @@ licence_at:   MIT; original mod according to repository provenance
 license_spdx: MIT
 dependencies: none
 showcase:     complete
-tested_on:    2026-09-25, in game through Pickle in the WSL (RimWorld 1.6.4871): 11 scenarios of 11 played and green, English and French, revisions f72ecd6 (ten in the two full passes) and 8ecaf70 (the save scenario, corrected); plus the 3 Workshop-picture scenarios of `05-workshop-captures.feature`, a conditional feature (`@requires:nelim.pickletools.screenshotstudio`) played in its own pass `workshop` on PickleTools' zen studio, revision 768ae50, green; see docs/runs/README.md
+tested_on:    2026-09-25, in game through Pickle in the WSL (RimWorld 1.6.4871): 11 scenarios of 11 played and green, English and French, revisions f72ecd6 (ten in the two full passes) and 8ecaf70 (the save scenario, corrected); plus the 3 Workshop-picture scenarios of `05-workshop-captures.feature`, a conditional feature (`@requires:nelim.pickletools.screenshotstudio`) played in its own pass `workshop` on PickleTools' zen studio, revision 768ae50, green; the info-card review scenario added and played green 2026-09-26 (run 145b); non-regression of the published 1.0.0 (commit 7d64a56) played 2026-09-26 in all three passes, English and workshop green outright, French green after replaying one flaky scenario (docs/runs/README.md, runs d421, dcd5+519c, 0f99)
 workshop:     3806709786
 published_on: 2026-09-26, version 1.0.0 by the publish workflow (run 36232486752, SHA 7d64a56491d7f131ec5770342f65875d993f8279, dry-run 36232421213, description sent), tag v1.0.0 and GitHub release created by the CI. Made public by Virginie on 2026-09-26; the gallery (Art/WorkshopScreenshots/) and the subscriptions are hers, by hand.
 remaining:
-  - unverified: the 0.1.0 item was never subscribed to, so its page and showcase have not been seen in place
-  - unverified: `tested -> prepublished` not started: the rollback target is not chosen and no `v0.1.0` tag exists (`PUBLISHING.md`, fail fast)
   - unverified: the description on the public Steam page, read by hand (the info card in game is seen: run 145b)
-  - done by Virginie on 2026-09-26: the three gallery pictures uploaded, the item public, watching the item on the Steam Workshop and the repository on GitHub
+  - note: `0.1.0` was never subscribed to and is not a rollback target (PUBLICATION.md, "Rollback"); nothing pending on it
+  - note: no `tested -> prepublished -> published` step was skipped by choice (PUBLISHING.md, fail fast): the rollback target for a future patch is the last good commit at the time, chosen when needed, not upfront; the mod already stands at `published`
 session:      01a09736-2cfc-72d3-8b3c-4ffe79ef572c
-updated:      2026-09-26
+updated:      2026-09-27
 ---
 
 # Crystal Ball — status
