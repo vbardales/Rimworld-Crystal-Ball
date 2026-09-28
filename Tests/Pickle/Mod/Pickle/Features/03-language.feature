@@ -24,7 +24,7 @@ Feature: the mod's own texts
     And I take a screenshot "crystal-ball-inspect"
     Then no errors were logged
 
-  # The inspect pane above does not show the description; the info card does. STATUS.md, `remaining`, asked for it.
+  # The inspect pane above does not show the description; the info card does.
   @review @timeout:90
   Scenario: the ball's description on its info card
     Given Crystal Ball: a crystal ball "Card" stands on open ground with no seat within 6 cells

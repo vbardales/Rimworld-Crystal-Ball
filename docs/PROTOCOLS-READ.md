@@ -34,10 +34,14 @@ others are repositories of their own inside it.
 
 | File | State when read |
 | --- | --- |
-| `STATUS.md` | Mine, `stage: tested` since 2026-09-25 (third audit). |
+| `STATUS.md` | Mine, `stage: published` since 2026-09-26; the audits are in `docs/STATUS-HISTORY.md`. |
 | `README.md`, `CHANGELOG.md`, `Tests/Pickle/README.md` | Read, and three sentences that still said "none has been played" corrected. |
 | `TESTING.md` | Mine; every scenario settled and played, see "What `tested` requires". |
 | `ATTRIBUTION.md`, `LICENSE` | Read; identical (same SHA-256) to the copies in `Mod/`. |
-| `Mod/About/About.xml` | Read; the description lacks the line pointing to `ATTRIBUTION.md` (a defect already in `STATUS.md`). The test companion's `About.xml` read as well. |
-| `docs/runs/` | One line per run, up to the corrective rerun of the save scenario. |
-| `PUBLICATION.md`, `BACKLOG.md`, `NOTES.md`, `BUGS.md` | **Do not exist.** `PUBLICATION.md` is required by `tested -> prepublished`. |
+| `Mod/About/About.xml` | Read; the description now carries the `ATTRIBUTION.md` line, in plain text (the game prints BBCode raw). The Steam page takes its description from `PUBLICATION.md`. |
+| `docs/runs/` | One line per run, up to the French replay of 2026-09-26 (`519c`). |
+| `PUBLICATION.md`, `BACKLOG.md` | Mine, written 2026-09-25 and 2026-09-26. `NOTES.md` and `BUGS.md` do not exist and nothing needs them. |
+
+## Moved since this was written (not reread)
+
+Commits of 2026-09-26 to 2026-09-28 that touched documents listed above. Reread the ones that matter before the next ticket or publication: `Rimworld-Release-Admin/docs/OPERATIONS.md` `3c03f51`, `Rimworld-Ticket-Dispatcher/docs/WELCOME.md` `77ca9d7`, `docs/SUBMIT.md` `d07b2b8`, `PickleTools/Headless/README.md` `ed4e73a`, `PickleTools/docs/steps.md` `da7c3b0`. `scripts/SEARCHING.md` (`90d51374`) was reread on 2026-09-26: its rule that matters here is never to walk a whole tree recursively; search inside the mod folder. `-EvidenceDir` of `Submit-PickleRun.ps1` is relative to the `rimworld` root, so a path for this repository starts with `CrystalBall\`.

@@ -4,8 +4,8 @@ Publication sheet for Workshop item `3806709786`, created by the `0.1.0` prepubl
 creates every item). The `1.0.0` goes out through the manual publish workflow `.github/workflows/publish-tag.yml` of this
 repository, run by GitHub Actions: a dry-run of the exact commit first, then `publish` with its full SHA, approved by
 Virginie alone. The workflow sends `Mod/` and the change note below; it sends the description only when
-`update_description` is on, which it must be for this version, since the page still lacks the `ATTRIBUTION.md` line
-(`STATUS.md`, `remaining`). It never sends the gallery or the visibility. Both stay by hand, and Virginie's.
+`update_description` is on, which it was for `1.0.0`, since the page lacked the `ATTRIBUTION.md` line
+(the public page now carries it). It never sends the gallery or the visibility. Both stay by hand, and Virginie's.
 
 ## 1. Steam description
 
