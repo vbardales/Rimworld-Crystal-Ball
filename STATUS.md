@@ -20,11 +20,11 @@ tested_on:    2026-09-25, in game through Pickle in the WSL (RimWorld 1.6.4871):
 workshop:     3806709786
 published_on: 2026-09-26, version 1.0.0 by the publish workflow (run 36232486752, SHA 7d64a56491d7f131ec5770342f65875d993f8279, dry-run 36232421213, description sent), tag v1.0.0 and GitHub release created by the CI. Made public by Virginie on 2026-09-26; the gallery (Art/WorkshopScreenshots/) and the subscriptions are hers, by hand.
 remaining:
-  - unverified: the description on the public Steam page, read by hand (the info card in game is seen: run 145b)
+  - verified 2026-09-28: the public Steam page (item 3806709786) carries the 1.0.0 description as sent, the ATTRIBUTION.md and LICENSE links included, the Pickle and RimLogging thanks and the source link; nothing pending
   - note: `0.1.0` was never subscribed to and is not a rollback target (PUBLICATION.md, "Rollback"); nothing pending on it
   - note: no `tested -> prepublished -> published` step was skipped by choice (PUBLISHING.md, fail fast): the rollback target for a future patch is the last good commit at the time, chosen when needed, not upfront; the mod already stands at `published`
 session:      01a09736-2cfc-72d3-8b3c-4ffe79ef572c
-updated:      2026-09-27
+updated:      2026-09-28
 ---
 
 # Crystal Ball — status
