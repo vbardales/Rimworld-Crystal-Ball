@@ -69,13 +69,13 @@ Image `0`, new consigne from Virginie on 2026-09-29: the gallery now opens on a 
 finished vitrine (title, summary, version badge), so a browser sees the same picture as the store header before
 scrolling. `Preview.png` itself now carries a corner badge, built once through this recipe and kept until the vitrine
 changes again: `Mod/About/ModIcon.png` cut out from its flat black background (`ffmpeg colorkey=0x000000:0.12:0.08`,
-kept full-resolution as `Art/ModIcon-cutout.png`), scaled to 220 px, rotated and overlaid onto `Art/Preview-source.png`
-(the text-free scene) to produce `Art/Preview.png`, then run through `Art/render-preview.cjs` as usual to bake the
-title back on top. Rotation follows the corner: **+15° in the left corner, -15° in the right corner.** The badge
-bleeds off the frame (overlay offset past the canvas edge on two sides), not fully inside it. This mod's badge sits
-bottom-left at +15°, the only corner free of the title plate (top-left) and the version triangle (top-right).
-`npm install playwright sharp --no-save` in `Art/` first if those packages are not already there; `node_modules/`
-is gitignored, not committed.
+kept full-resolution as `Art/ModIcon-cutout.png`), scaled to 320 px and boosted (`eq=saturation=1.6:contrast=1.15`)
+for punch, rotated and overlaid onto `Art/Preview-source.png` (the text-free scene) to produce `Art/Preview.png`,
+then run through `Art/render-preview.cjs` as usual to bake the title back on top. Rotation follows the corner:
+**+15° in the left corner, -15° in the right corner.** The badge bleeds off the frame (overlay offset past the
+canvas edge on two sides), not fully inside it. This mod's badge sits bottom-left at +15°, the only corner free of
+the title plate (top-left) and the version triangle (top-right). `npm install playwright sharp --no-save` in
+`Art/` first if those packages are not already there; `node_modules/` is gitignored, not committed.
 
 The three close-ups come from the Pickle feature `05-workshop-captures.feature`, played on PickleTools' Nelim zen
 meadow studio (run `124f`, pass `workshop`, revision `9abc18e`, Miel in a robe): the ball at (154, 98) in the studio's
