@@ -34,7 +34,7 @@ others are repositories of their own inside it.
 
 | File | State when read |
 | --- | --- |
-| `STATUS.md` | Mine, `stage: published` since 2026-09-26; the audits are in `docs/STATUS-HISTORY.md`. |
+| `STATUS.md` | Mine, `stage: published` since 2026-09-26; older audits are in git history (commit `1536950`). |
 | `README.md`, `CHANGELOG.md`, `Tests/Pickle/README.md` | Read, and three sentences that still said "none has been played" corrected. |
 | `TESTING.md` | Mine; every scenario settled and played, see "What `tested` requires". |
 | `ATTRIBUTION.md`, `LICENSE` | Read; identical (same SHA-256) to the copies in `Mod/`. |
