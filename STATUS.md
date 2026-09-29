@@ -21,10 +21,9 @@ tested_on:    2026-09-25, in game through Pickle in the WSL (RimWorld 1.6.4871):
 workshop:     3806709786
 published_on: 2026-09-26, version 1.0.0 by the publish workflow (run 36232486752, SHA 7d64a56491d7f131ec5770342f65875d993f8279, dry-run 36232421213, description sent), tag v1.0.0 and GitHub release created by the CI. Made public by Virginie on 2026-09-26; the gallery (Art/WorkshopScreenshots/) and the subscriptions are hers, by hand.
 remaining:
-  - unqualified: 2026-09-29, new gallery consigne from Virginie (image 0 = a copy of the vitrine, ModIcon corner badge
-    on Preview.png). Mod/About/Preview.png regenerated with the badge, Art/WorkshopScreenshots/00-crystal-ball-preview.png
-    added; awaits her qualification like the three close-ups did (PUBLICATION.md, "Images to upload"). This changed
-    Mod/, so a new dry-run of the final SHA is needed before any further publish; nothing sent to Steam yet, 1.0.0 unchanged.
+  - none: the gallery consigne of 2026-09-29 (image 0 = a copy of the vitrine, ModIcon corner badge on Preview.png)
+    is done and qualified by Virginie on 2026-09-29 (commit 8f82612). This changed Mod/, so a new dry-run of the final
+    SHA is needed before any further publish; nothing sent to Steam yet, 1.0.0 unchanged.
 session:      01a09736-2cfc-72d3-8b3c-4ffe79ef572c
 updated:      2026-09-29
 ---

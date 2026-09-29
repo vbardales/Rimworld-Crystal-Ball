@@ -97,7 +97,7 @@ ball. Virginie qualified them on 2026-09-26 and they are committed.
 
 Known limits, said before she looks: the game's closest zoom keeps the ball about 30 pixels wide, so pictures 1-3 are
 of a small object in a meadow and not close-ups; the glow at night is faint; the label in picture 3 overlaps the ball.
-Picture 0 is new and not yet qualified.
+Picture 0 (badge included) is qualified by Virginie on 2026-09-29.
 ## 3. Dependencies to declare on Steam
 
 None. The mod needs no DLC and no other mod, and its `About.xml` declares none. `loadAfter` names `Ludeon.RimWorld` only.
