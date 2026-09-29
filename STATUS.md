@@ -48,7 +48,7 @@ Nothing is pending on `1.0.0`. The next publication is a patch (`1.0.1` or later
 Virginie's approval of `steam-production`; the last good commit is the rollback target, chosen then.
 
 Audits and older records (the three audits `preTest`, `done` and `tested`, the translation audit, the preview overlay, the
-workflow audits) are in `docs/STATUS-HISTORY.md`.
+workflow audits) are in git history (commit `1536950` and earlier).
 
 ## Repository identity
 
