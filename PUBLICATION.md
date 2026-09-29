@@ -61,22 +61,37 @@ Full attribution: [url=https://github.com/vbardales/Rimworld-Crystal-Ball/blob/m
 `Mod/About/Preview.png` is the header image, already on the item from the prepublication; the workflow does not send it
 (`update_preview` stays off). `Mod/About/ModIcon.png` ships inside `Mod/`.
 
-The gallery is manual, on the Steam page, in the order below. The three candidates come from the Pickle feature
-`05-workshop-captures.feature`, played on PickleTools' Nelim zen meadow studio (run `124f`, pass `workshop`, revision
-`9abc18e`, Miel in a robe): the ball at (154, 98) in the studio's flower glade, the game's screenshot mode on so that no interface shows,
-the camera on the ball at the game's closest zoom. `Art/Crop-WorkshopScreenshots.ps1` cuts a 720 x 405 picture out of each
-1920 x 1080 capture, centred on the ball. Virginie qualified them on 2026-09-26 and they are committed; the folder
-`Art/WorkshopScreenshots/` is uploaded as it is (nothing in it but the images, numbered `01-`, `02-`, `03-` in upload
-order). The dry-run lists it as a reminder once it exists.
+The gallery is manual, on the Steam page, in the order below. `Art/WorkshopScreenshots/` is uploaded as it is (nothing
+in it but the images, numbered `00-`, `01-`, `02-`, `03-` in upload order). The dry-run lists it as a reminder once it
+exists.
+
+Image `0`, new consigne from Virginie on 2026-09-29: the gallery now opens on a copy of `Mod/About/Preview.png`, the
+finished vitrine (title, summary, version badge), so a browser sees the same picture as the store header before
+scrolling. `Preview.png` itself now carries a corner badge, built once through this recipe and kept until the vitrine
+changes again: `Mod/About/ModIcon.png` cut out from its flat black background (`ffmpeg colorkey=0x000000:0.12:0.08`,
+kept full-resolution as `Art/ModIcon-cutout.png`), scaled to 220 px, rotated and overlaid onto `Art/Preview-source.png`
+(the text-free scene) to produce `Art/Preview.png`, then run through `Art/render-preview.cjs` as usual to bake the
+title back on top. Rotation follows the corner: **+15° in the left corner, -15° in the right corner.** This mod's
+badge sits bottom-left at +15°, the only corner free of the title plate (top-left) and the version triangle
+(top-right). `npm install playwright sharp --no-save` in `Art/` first if those packages are not already there;
+`node_modules/` is gitignored, not committed.
+
+The three close-ups come from the Pickle feature `05-workshop-captures.feature`, played on PickleTools' Nelim zen
+meadow studio (run `124f`, pass `workshop`, revision `9abc18e`, Miel in a robe): the ball at (154, 98) in the studio's
+flower glade, the game's screenshot mode on so that no interface shows, the camera on the ball at the game's closest
+zoom. `Art/Crop-WorkshopScreenshots.ps1` cuts a 720 x 405 picture out of each 1920 x 1080 capture, centred on the
+ball. Virginie qualified them on 2026-09-26 and they are committed.
 
 | # | File | Shows |
 | --- | --- | --- |
+| 0 | `00-crystal-ball-preview.png` | The finished vitrine: title, one-line summary, version badge, and now the ModIcon corner badge |
 | 1 | `01-the-ball-by-day.png` | The sphere on its stand in daylight, in the meadow: what the mod adds |
 | 2 | `02-the-ball-at-night.png` | The same ball in the dark: the landmark the description promises, though the glow is discreet |
 | 3 | `03-a-colonist-gazing.png` | Miel, the studio's colonist, sitting on the cell beside it with no chair anywhere near; her name label touches the ball |
 
-Known limits, said before she looks: the game's closest zoom keeps the ball about 30 pixels wide, so these are pictures of
-a small object in a meadow and not close-ups; the glow at night is faint; the label in the third picture overlaps the ball.
+Known limits, said before she looks: the game's closest zoom keeps the ball about 30 pixels wide, so pictures 1-3 are
+of a small object in a meadow and not close-ups; the glow at night is faint; the label in picture 3 overlaps the ball.
+Picture 0 is new and not yet qualified.
 ## 3. Dependencies to declare on Steam
 
 None. The mod needs no DLC and no other mod, and its `About.xml` declares none. `loadAfter` names `Ludeon.RimWorld` only.

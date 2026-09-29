@@ -46,8 +46,8 @@
     }
   },
   "contrastMinimumAcrossEntireTextRectangles": {
-    "h1": 14.709268797285626,
-    ".summary": 15.00779806613909,
+    "h1": 14.841334048122196,
+    ".summary": 15.171181634106881,
     "badge": 10.911226432839726
   },
   "tag": "Not applicable: public original mod, no tag",
@@ -55,7 +55,7 @@
     896,
     504
   ],
-  "bytes": 498300,
+  "bytes": 515162,
   "source": "Art/Preview.png",
   "version": "1.6"
 }

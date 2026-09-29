@@ -37,3 +37,6 @@ Tests/Pickle/Mod/Pickle/Assemblies/
 
 # Windows writes these when a folder gets a custom icon (Art/*.ico); machine-local, and one sits inside Mod/.
 desktop.ini
+
+# npm dependencies for Art/render-preview.cjs (playwright, sharp); reinstall with `npm install` in Art/
+node_modules/
