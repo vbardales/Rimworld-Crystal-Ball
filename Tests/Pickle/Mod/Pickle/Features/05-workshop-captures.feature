@@ -1,4 +1,4 @@
-# The pictures of the Workshop page, PUBLICATION.md section 2, in the order to upload them. Staged, not found: the owner's rule of 2026-10-02 makes every gallery picture a posed photograph. The story is "the seer's corner": a fortune teller reads the evening in a small corner of a camp. One set joins the three pictures (a carpet, a campfire and a torch lamp, two flowering plants, a shelf), and Miel is dressed for it in all three: an ochre robe against the violet of the ball, a dark Cleopatra cut so that the face reads, the Oracle tattoo on her face. The set is laid by the scenario and taken down after it. They are not the review captures
+# The pictures of the Workshop page, PUBLICATION.md section 2, in the order to upload them. Staged, not found: the owner's rule of 2026-10-02 makes every gallery picture a posed photograph. The story is "the seer's corner": a fortune teller reads the evening in a small corner of a camp. One set joins the three pictures (a carpet, a campfire and a torch lamp, two flowering plants, a shelf), and Miel is dressed for it in all three: a robe of plain leather, tan against the violet of the ball, a dark Cleopatra cut so that the face reads, the Oracle tattoo on her face. The set is laid by the scenario and taken down after it. They are not the review captures
 # of 01 and 03: those show the test colony's plain ground with its zone tints and the game's interface, and a Workshop page
 # sells nothing with that.
 #
@@ -24,8 +24,7 @@ Feature: the pictures of the Workshop page
     And Nelim's Pickle Tools: "Miel" hairstyle is "Cleopatra"
     And Nelim's Pickle Tools: "Miel" hair colour is rgb (35, 28, 40)
     And Nelim's Pickle Tools: "Miel" face tattoo is "Face_Oracle"
-    And I dress "Miel" in "Apparel_Robe"
-    And Nelim's Pickle Tools: the "Apparel_Robe" worn by "Miel" is dyed rgb (190, 140, 60)
+    And I dress "Miel" in "Apparel_Robe" made of "Leather_Plain"
     And Nelim's Pickle Tools: I lay the floor "Carpet" from (152, 96) to (156, 100)
     And Nelim's Pickle Tools: I place the decor "Campfire" at (157, 97)
     And Nelim's Pickle Tools: I place the decor "TorchLamp" at (157, 100)
