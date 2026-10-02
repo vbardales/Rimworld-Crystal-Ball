@@ -61,26 +61,19 @@ Full attribution: [url=https://github.com/vbardales/Rimworld-Crystal-Ball/blob/m
 `Mod/About/Preview.png` is the header image, already on the item from the prepublication; the workflow does not send it
 (`update_preview` stays off). `Mod/About/ModIcon.png` ships inside `Mod/`.
 
-The gallery is manual, on the Steam page, in the order below. `Art/WorkshopScreenshots/` is uploaded as it is (nothing
-in it but the images, numbered `00-`, `01-`, `02-`, `03-` in upload order). The dry-run lists it as a reminder once it
+The gallery is manual, on the Steam page, in the order below. `Art/Gallery/` is uploaded as it is (nothing
+in it but the images, numbered `0-`, `1-`, `2-`, `3-` in upload order). The dry-run lists it as a reminder once it
 exists.
 
 Image `0`, new consigne from Virginie on 2026-09-29: the gallery now opens on a copy of `Mod/About/Preview.png`, the
 finished vitrine (title, summary, version badge), so a browser sees the same picture as the store header before
-scrolling. `Preview.png` itself now carries a corner badge, built once through this recipe and kept until the vitrine
-changes again. `Art/Preview.png` (the render input) stays a plain copy of `Art/Preview-source.png`, no badge: the
-`.veil` radial gradient that `Art/Preview.html` lays over the whole scene for text contrast would otherwise dim the
-badge along with the background. Order: `Art/render-preview.cjs` runs first to bake title, summary, rule and version
-onto `Mod/About/Preview.png`; the badge is composited **after**, straight onto that output, so it sits above the
-veil at full brightness. Badge source: `Mod/About/ModIcon.png` cut out from its flat black background (`ffmpeg
-colorkey=0x000000:0.12:0.08`), kept full-resolution as `Art/ModIcon-cutout.png`, then for each render scaled to
-200 px, rotated and overlaid onto `Mod/About/Preview.png` with `ffmpeg` (`-i Mod/About/Preview.png -i
-Art/ModIcon-cutout.png`, scale/rotate the icon, `overlay`, write back to `Mod/About/Preview.png`). Rotation follows
-the corner: **+15° in the left corner, -15° in the right corner.** The badge bleeds off the frame (overlay offset
-past the canvas edge on two sides), not fully inside it. This mod's badge sits bottom-left at +15°, the only corner
-free of the title plate (top-left) and the version triangle (top-right), sized and placed clear of the summary
-text. `npm install playwright sharp --no-save` in `Art/` first if those packages are not already there;
-`node_modules/` is gitignored, not committed.
+scrolling. The shared `scripts/Render-Preview.cjs` renderer reads `Art/preview-copy.json` and
+`Art/preview-palette.json`, then writes `Mod/About/Preview.png`. `Art/echo.png` is the final pre-sized transparent
+line-art mask: it is consumed unchanged, tinted with the accent colour, shown above the panel treatment, flipped
+horizontally, and limited to less than half of the text panel. `Art/ModIcon-cutout.png` is the high-resolution
+transparent badge source. It is placed bottom-left at +15 degrees, without outline, over its local radial veil.
+The placement is explicit in the config; it is not chosen from an "emptiest corner" rule. After rendering,
+`Art/Gallery/0-preview.png` is copied byte-for-byte from `Mod/About/Preview.png`.
 
 The three close-ups come from the Pickle feature `05-workshop-captures.feature`, played on PickleTools' Nelim zen
 meadow studio (run `124f`, pass `workshop`, revision `9abc18e`, Miel in a robe): the ball at (154, 98) in the studio's
@@ -90,7 +83,7 @@ ball. Virginie qualified them on 2026-09-26 and they are committed.
 
 | # | File | Shows |
 | --- | --- | --- |
-| 0 | `0-crystal-ball-preview.png` | The finished vitrine: title, one-line summary, version badge, and now the ModIcon corner badge |
+| 0 | `0-preview.png` | The finished vitrine: title, one-line summary, version badge, line-art echo, and ModIcon corner badge |
 | 1 | `1-the-ball-by-day.png` | The sphere on its stand in daylight, in the meadow: what the mod adds |
 | 2 | `2-the-ball-at-night.png` | The same ball in the dark: the landmark the description promises, though the glow is discreet |
 | 3 | `3-a-colonist-gazing.png` | Miel, the studio's colonist, sitting on the cell beside it with no chair anywhere near; her name label touches the ball |

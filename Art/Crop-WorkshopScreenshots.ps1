@@ -3,8 +3,8 @@
   Crops the three Workshop pictures out of the Pickle captures of Tests/Pickle/Mod/Pickle/Features/05-workshop-captures.feature.
 .DESCRIPTION
   The captures are 1920 x 1080 with the game's interface around the edges. At the closest zoom the ball is in the middle of
-  the screen, so a centred crop leaves the interface out. The result goes to Art/WorkshopScreenshots/, named 1-, 2-, 3- in
-  the order they go on the Steam page and holding nothing else: the folder is uploaded as it is (PUBLISHING.md, "Images").
+  the screen, so a centred crop leaves the interface out. The result goes to Art/Gallery/, named 1-, 2-, 3- in
+  the order they go on the Steam page. File 0 is the byte-identical showcase copy (PUBLISHING.md, "Images").
   -Source is the folder of the run's screenshots; -Width and -Height are the size of the crop, centred on the middle of the screen.
 #>
 param(
@@ -13,7 +13,7 @@ param(
     [int]$Height = 540,
     [string]$Destination
 )
-if (-not $Destination) { $Destination = Join-Path (Split-Path -Parent $MyInvocation.MyCommand.Path) 'WorkshopScreenshots' }
+if (-not $Destination) { $Destination = Join-Path (Split-Path -Parent $MyInvocation.MyCommand.Path) 'Gallery' }
 Add-Type -AssemblyName System.Drawing
 $pictures = [ordered]@{
     '1-the-ball-by-day.png'      = 'workshop-1---the-ball-by-day'
