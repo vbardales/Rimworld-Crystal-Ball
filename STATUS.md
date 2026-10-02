@@ -86,7 +86,7 @@ Retained: **`published`** (`workflow_stage: published`, session title `crystalba
   (append-only, not touched).
 - Original mod: `upstream_mod_remotes: N/A`, `licence: original`. No upstream repository, so no pull request is owed.
 - Gallery folder renamed to the current rule (single digit, `0-` = copy of the Preview): `PUBLICATION.md`,
-  `BACKLOG.md` and `Art/Crop-WorkshopScreenshots.ps1` follow. `publish.config.json` points at the folder, not at names.
+  `BACKLOG.md` follow (the crop script, `Art/Crop-WorkshopScreenshots.ps1`, was removed from `Art/` on 2026-10-02 and stays in git history). `publish.config.json` points at the folder, not at names.
 - Evidence (disk only, `Tests/Pickle/Evidence/`, 11.8 MB → 6.7 MB): removed `2026-09-25-validation-french` (revision
   `f72ecd6`, one scenario red there, replaced by the 2026-09-26 runs); `Player.log` of the three kept runs gzipped. Kept: the
   English non-regression (3 reviewed captures), the `workshop` pass, the French replay. Nothing in git or in a doc pointed at a

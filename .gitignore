@@ -40,3 +40,6 @@ desktop.ini
 
 # npm dependencies for Art/render-preview.cjs (playwright, sharp); reinstall with `npm install` in Art/
 node_modules/
+
+# Reproducible Preview diagnostics generated locally by the shared renderer.
+Art/.render/
