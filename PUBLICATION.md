@@ -77,7 +77,7 @@ The placement is explicit in the config; it is not chosen from an "emptiest corn
 The three close-ups come from the Pickle feature `05-workshop-captures.feature`, played on PickleTools' Nelim zen
 meadow studio (run `124f`, pass `workshop`, revision `9abc18e`, Miel in a robe): the ball at (154, 98) in the studio's
 flower glade, the game's screenshot mode on so that no interface shows, the camera on the ball at the game's closest
-zoom. `Art/Crop-WorkshopScreenshots.ps1` cuts a 720 x 405 picture out of each 1920 x 1080 capture, centred on the
+zoom. `Art/Crop-WorkshopScreenshots.ps1` cuts a 960 x 540 picture out of each 1920 x 1080 capture, centred on the
 ball. Virginie qualified them on 2026-09-26 and they are committed.
 
 | # | File | Shows |
