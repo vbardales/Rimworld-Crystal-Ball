@@ -67,10 +67,9 @@ exists.
 
 Image `0`, new consigne from Virginie on 2026-09-29: the gallery now opens on a copy of `Mod/About/Preview.png`, the
 finished vitrine (title, summary, version badge), so a browser sees the same picture as the store header before
-scrolling. The shared `scripts/Render-Preview.cjs` renderer reads `Art/preview-copy.json` and
-`Art/preview-palette.json`, then writes `Mod/About/Preview.png`. `Art/echo.png` is the final pre-sized transparent
+scrolling. The shared `scripts/Render-Preview.cjs` renderer reads `Art/Preview.config.json`, then writes `Mod/About/Preview.png`. `Art/echo.png` is the final pre-sized transparent
 line-art mask: it is consumed unchanged, tinted with the accent colour, shown above the panel treatment, flipped
-horizontally, and limited to less than half of the text panel. `Art/ModIcon-cutout.png` is the high-resolution
+horizontally, and limited to less than half of the text panel. `Art/ModIcon-source.png` is the high-resolution
 transparent badge source. It is placed bottom-left at +15 degrees, without outline, over its local radial veil.
 The placement is explicit in the config; it is not chosen from an "emptiest corner" rule. After rendering,
 `Art/Gallery/0-preview.png` is copied byte-for-byte from `Mod/About/Preview.png`.
