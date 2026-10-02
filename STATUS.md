@@ -21,8 +21,7 @@ showcase:     complete
 tested_on:    2026-09-25, in game through Pickle in the WSL (RimWorld 1.6.4871): 11 scenarios of 11 played and green, English and French, revisions f72ecd6 (ten in the two full passes) and 8ecaf70 (the save scenario, corrected); plus the 3 Workshop-picture scenarios of `05-workshop-captures.feature`, a conditional feature (`@requires:nelim.pickletools.screenshotstudio`) played in its own pass `workshop` on PickleTools' zen studio, revision 768ae50, green; the info-card review scenario added and played green 2026-09-26 (run 145b); non-regression of the published 1.0.0 (commit 7d64a56) played 2026-09-26 in all three passes, English and workshop green outright, French green after replaying one flaky scenario (docs/runs/README.md, runs d421, dcd5+519c, 0f99)
 workshop:     3806709786
 published_on: 2026-09-26, version 1.0.0 by the publish workflow (run 36232486752, SHA 7d64a56491d7f131ec5770342f65875d993f8279, dry-run 36232421213, description sent), tag v1.0.0 and GitHub release created by the CI. Made public by Virginie on 2026-09-26; the gallery (Art/Gallery/) and the subscriptions are hers, by hand.
-remaining:
-  - unverified: a French Pickle pass on the corrected description (revision `fb1adb2` or later); the pending tickets `41eb` and `d5fe` are English only.
+remaining: []
 session:      01a09736-2cfc-72d3-8b3c-4ffe79ef572c
 updated:      2026-10-02
 ---
@@ -111,3 +110,5 @@ Stage stays `published`: `1.0.0` is unchanged on Steam. Commit `5c0b282` replace
 **French corrected, 2026-10-02**, on Virginie's review: the description had two masculine agreements (`d'eux-mêmes`, `on ne s'est assis`), now reworded with none (`de leur propre initiative`, `pour se divertir`, `on s'y assied`). Her proposed text, verbatim. `translation_fr` stays `partial` until she validates the corrected text in `FRENCH_REVIEW.md`; the French file changed, so the tickets `41eb` and `d5fe` (staged before this edit if already played) do not cover it, and a French pass is owed.
 
 **French review line, 2026-10-02** (recorded from Virginie's message in chat; the review line of `FRENCH_REVIEW.md` is hers and stays empty): reviewer Virginie, revision reviewed `fb1adb2`, corrections requested earlier the same day (two masculine agreements, `en loisir`), applied verbatim; verdict: validated, neutral, natural and faithful. `translation_fr` is `complete`.
+
+**French pass, 2026-10-02** (ticket `afe0`, no optional mods, French): `exitReason: passed`, 12 of 15 passed, 0 failed, 3 skipped (the three `workshop` captures, a conditional feature played in the `workshop` pass). The info-card capture was opened: the corrected description reads in French with no masculine agreement. Evidence `Tests/Pickle/Evidence/2026-10-02-texture-french`. The `workshop` pass for the RimWorld-style texture is ticket `1462`; `41eb`, `d5fe` cover the previous texture.
