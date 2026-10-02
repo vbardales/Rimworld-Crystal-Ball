@@ -90,10 +90,10 @@ ball. Virginie qualified them on 2026-09-26 and they are committed.
 
 | # | File | Shows |
 | --- | --- | --- |
-| 0 | `00-crystal-ball-preview.png` | The finished vitrine: title, one-line summary, version badge, and now the ModIcon corner badge |
-| 1 | `01-the-ball-by-day.png` | The sphere on its stand in daylight, in the meadow: what the mod adds |
-| 2 | `02-the-ball-at-night.png` | The same ball in the dark: the landmark the description promises, though the glow is discreet |
-| 3 | `03-a-colonist-gazing.png` | Miel, the studio's colonist, sitting on the cell beside it with no chair anywhere near; her name label touches the ball |
+| 0 | `0-crystal-ball-preview.png` | The finished vitrine: title, one-line summary, version badge, and now the ModIcon corner badge |
+| 1 | `1-the-ball-by-day.png` | The sphere on its stand in daylight, in the meadow: what the mod adds |
+| 2 | `2-the-ball-at-night.png` | The same ball in the dark: the landmark the description promises, though the glow is discreet |
+| 3 | `3-a-colonist-gazing.png` | Miel, the studio's colonist, sitting on the cell beside it with no chair anywhere near; her name label touches the ball |
 
 Known limits, said before she looks: the game's closest zoom keeps the ball about 30 pixels wide, so pictures 1-3 are
 of a small object in a meadow and not close-ups; the glow at night is faint; the label in picture 3 overlaps the ball.

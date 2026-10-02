@@ -11,3 +11,4 @@ and the scenario played is compared with the one asked for.
 | Request | Played | Pass | Asked for | Revision | exitReason | Scenarios | Verdict |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | — | — | — | **Base for this log: `1.0.0` published**, commit `7d64a56491d7f131ec5770342f65875d993f8279`, tag `v1.0.0`. Full non-regression (English, French, `workshop`) was green on this commit on 2026-09-26; that history is in git before this line (commit `65e22bb` and earlier). Runs from here on start a fresh log. | `7d64a56` | — | — | — |
+| — | — | — | Evidence trim 2026-10-02: the 2026-09-25 French pass (revision `f72ecd6`, one scenario red there) removed from disk, superseded by the 2026-09-26 runs; logs of the three kept runs gzipped. No new run. | `7d64a56` | — | — | — |

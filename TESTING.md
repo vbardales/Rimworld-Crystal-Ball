@@ -357,3 +357,5 @@ field first. Before deleting, list what goes and what stays.
 
 Nothing exists to trim yet: no run has been played, so there is no evidence folder on disk and none
 in git.
+
+**Kept on disk, 2026-10-02** (`Tests/Pickle/Evidence/`, published commit `7d64a56`): `2026-09-26-nonreg-english` (counts, `junit.xml`, `summary.md`, the three captures that were opened, `Player.log.gz`), `2026-09-26-nonreg-workshop` and `2026-09-26-replay-build-french` (summary and gzipped log). To keep when a run is replayed: per scenario the latest `summary.md` and `junit.xml`, one opened capture per `@review` scenario, the gzipped `Player.log`; delete the rest once the new run is read.
