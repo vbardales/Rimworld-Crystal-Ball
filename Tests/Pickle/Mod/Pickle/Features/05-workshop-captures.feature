@@ -29,14 +29,18 @@ Feature: the pictures of the Workshop page
     And Nelim's Pickle Tools: I lay the floor "Carpet" from (152, 96) to (156, 100)
     And Nelim's Pickle Tools: I place the decor "Campfire" at (157, 97)
     And Nelim's Pickle Tools: I place the decor "TorchLamp" at (157, 100)
+    And Nelim's Pickle Tools: the decor "Campfire" at (157, 97) is lit
+    And Nelim's Pickle Tools: the decor "TorchLamp" at (157, 100) is lit
     And Nelim's Pickle Tools: I place the decor "Plant_Rose" at (151, 101)
     And Nelim's Pickle Tools: I place the decor "Plant_Daylily" at (156, 102)
     And Nelim's Pickle Tools: I place the decor "Shelf" at (151, 98)
+    And Nelim's Pickle Tools: the other colonists are out of frame
 
   @timeout:180
   Scenario: the ball by day, close up
     Given I set the hour to 12
     And I set the weather to "Clear"
+    And Nelim's Pickle Tools: "Miel" stands at (152, 99) facing East
     And I draft "Miel"
     And Crystal Ball: a crystal ball "Day" stands on open ground near (154, 98)
     When Crystal Ball: I put the camera on the ball "Day"
@@ -50,6 +54,7 @@ Feature: the pictures of the Workshop page
   Scenario: the ball at night, close up
     Given I set the hour to 2
     And I set the weather to "Clear"
+    And Nelim's Pickle Tools: "Miel" stands at (152, 99) facing East
     And I draft "Miel"
     And Crystal Ball: a crystal ball "Night" stands on open ground near (154, 98)
     When Crystal Ball: I put the camera on the ball "Night"
