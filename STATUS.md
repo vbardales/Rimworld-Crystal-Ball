@@ -101,3 +101,7 @@ French lives in `Mod/Languages/French/DefInjected/` only, laid out for review in
 Flagged for Virginie: "Les colons viennent la scruter **d'eux-mêmes**" (agrees in the masculine plural without a switch; a wording
 without agreement, e.g. "de leur propre initiative", would avoid it). Not corrected here: a session does not edit French it audits.
 Review line: none yet.
+
+## Next patch candidate (2026-10-02, not published)
+
+Stage stays `published`: `1.0.0` is unchanged on Steam. Commit `5c0b282` replaces `Mod/Textures/Things/Building/Joy/CrystalBall.png` with Virginie's hand-painted texture (source `Art/CrystalBall-source.png`). Offline suites 25/25 and 11/11 green on it. Pickle requests dropped on `5c0b282`: `20261002-093456-420-41eb` (`workshop` pass, new gallery captures) and `20261002-093457-974-d5fe` (full English pass); results not read yet. Still to do before a `publish`: read both reports, upload the new gallery pictures by hand, `CHANGELOG.md` `[Unreleased]` dated and versioned, dry-run of the exact SHA, rollback target `7d64a56`.

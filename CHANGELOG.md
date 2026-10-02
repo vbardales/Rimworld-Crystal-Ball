@@ -3,6 +3,13 @@
 Format inspired by [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 This file serves the repository and the writing of Steam patch notes; RimWorld does not display it in game.
 
+## [Unreleased]
+
+### Changed
+
+- **New crystal ball texture**: hand-painted, in the style of the game's own building art (violet glass sphere, worn bronze
+  claws and stand, thick dark outline), replacing the first vector drawing. Same 256 x 256 size, same `drawSize`, no def changed.
+
 ## [1.0.0] — 2026-09-25
 
 The publish workflow creates the `v1.0.0` tag and the matching GitHub release after a successful upload.
