@@ -7,8 +7,8 @@ This file serves the repository and the writing of Steam patch notes; RimWorld d
 
 ### Changed
 
-- **New crystal ball texture**, in the style of the game's own buildings: a violet glass sphere in worn bronze claws, flat tones and a thick dark outline, so it reads at the 30 to 60 pixels it is shown at. It replaces the first vector drawing. Same 256 x 256 size, same ``drawSize``, no def changed.
-- **French description** reworded so that it has no masculine-only agreement (`de leur propre initiative`, `pour se divertir`), after the owner''s review.
+- **New crystal ball texture**, in the style of the game's own buildings: a violet glass sphere in worn bronze claws, flat tones and a thick dark outline, so it reads at the 30 to 60 pixels it is shown at. It replaces the first vector drawing. Same 256 x 256 size, same `drawSize`, no def changed.
+- **French description** reworded so that it has no masculine-only agreement (`de leur propre initiative`, `pour se divertir`), after the owner's review.
 
 ## [1.0.0] — 2026-09-25
 
