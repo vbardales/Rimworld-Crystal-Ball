@@ -1,4 +1,4 @@
-# The pictures of the Workshop page, PUBLICATION.md section 2, in the order to upload them. They are not the review captures
+# The pictures of the Workshop page, PUBLICATION.md section 2, in the order to upload them. Staged, not found: the owner's rule of 2026-10-02 makes every gallery picture a posed photograph. The story is "the seer's corner": a fortune teller reads the evening in a small corner of a camp. One set joins the three pictures (a carpet, a campfire and a torch lamp, two flowering plants, a shelf), and Miel is dressed for it in all three: an ochre robe against the violet of the ball, a dark Cleopatra cut so that the face reads, the Oracle tattoo on her face. The set is laid by the scenario and taken down after it. They are not the review captures
 # of 01 and 03: those show the test colony's plain ground with its zone tints and the game's interface, and a Workshop page
 # sells nothing with that.
 #
@@ -14,17 +14,29 @@
 @workshop @review
 Feature: the pictures of the Workshop page
 
-  # 1. What it is: the sphere on its stand, in daylight, where the glow is not what carries the picture.
-  @timeout:120
-  Scenario: the ball by day, close up
+  # 1. What it is: the sphere on its stand, in daylight, in the seer's corner. Miel stands apart, drafted, at the shelf.
+  Background:
     Given the save "nelim-zen-meadow-studio" is loaded
-    And I set the hour to 12
-    And I set the weather to "Clear"
     And Nelim's Pickle Tools: I frame the studio "flowers"
     And game speed is ultrafast
     And I destroy the gear of "Miel"
+    And "Miel" gender is female
+    And Nelim's Pickle Tools: "Miel" hairstyle is "Cleopatra"
+    And Nelim's Pickle Tools: "Miel" hair colour is rgb (35, 28, 40)
+    And Nelim's Pickle Tools: "Miel" face tattoo is "Face_Oracle"
     And I dress "Miel" in "Apparel_Robe"
-    And "Miel" is wearing "Apparel_Robe"
+    And Nelim's Pickle Tools: the "Apparel_Robe" worn by "Miel" is dyed rgb (190, 140, 60)
+    And Nelim's Pickle Tools: I lay the floor "Carpet" from (152, 96) to (156, 100)
+    And Nelim's Pickle Tools: I place the decor "Campfire" at (157, 97)
+    And Nelim's Pickle Tools: I place the decor "TorchLamp" at (157, 100)
+    And Nelim's Pickle Tools: I place the decor "Plant_Rose" at (151, 101)
+    And Nelim's Pickle Tools: I place the decor "Plant_Daylily" at (156, 102)
+    And Nelim's Pickle Tools: I place the decor "Shelf" at (151, 98)
+
+  @timeout:180
+  Scenario: the ball by day, close up
+    Given I set the hour to 12
+    And I set the weather to "Clear"
     And I draft "Miel"
     And Crystal Ball: a crystal ball "Day" stands on open ground near (154, 98)
     When Crystal Ball: I put the camera on the ball "Day"
@@ -33,17 +45,11 @@ Feature: the pictures of the Workshop page
     And I wait 60 ticks
     Then I take a screenshot "workshop 1 - the ball by day"
 
-  # 2. The landmark the description promises: the same ball in the dark.
-  @timeout:120
+  # 2. The landmark the description promises: the same corner at night, the ball's violet against the fire's warmth.
+  @timeout:180
   Scenario: the ball at night, close up
-    Given the save "nelim-zen-meadow-studio" is loaded
-    And I set the hour to 2
+    Given I set the hour to 2
     And I set the weather to "Clear"
-    And Nelim's Pickle Tools: I frame the studio "flowers"
-    And game speed is ultrafast
-    And I destroy the gear of "Miel"
-    And I dress "Miel" in "Apparel_Robe"
-    And "Miel" is wearing "Apparel_Robe"
     And I draft "Miel"
     And Crystal Ball: a crystal ball "Night" stands on open ground near (154, 98)
     When Crystal Ball: I put the camera on the ball "Night"
@@ -52,19 +58,11 @@ Feature: the pictures of the Workshop page
     And I wait 60 ticks
     Then I take a screenshot "workshop 2 - the ball at night"
 
-  # 3. What it does: a colonist sitting on the cell beside it, with no chair anywhere near. Miel is the studio's own colonist
-  # of the flower glade. In all three pictures she is dressed in a robe first, the studio's colonists standing there without
-  # clothes to be seen, and drafted in the first two so that she stays where she stands.
-  @timeout:240
+  # 3. What it does: the seer sits beside it, no chair anywhere near, in the evening light.
+  @timeout:300
   Scenario: a colonist gazing into the ball, close up
-    Given the save "nelim-zen-meadow-studio" is loaded
-    And I set the hour to 20
+    Given I set the hour to 20
     And I set the weather to "Clear"
-    And Nelim's Pickle Tools: I frame the studio "flowers"
-    And game speed is ultrafast
-    And I destroy the gear of "Miel"
-    And I dress "Miel" in "Apparel_Robe"
-    And "Miel" is wearing "Apparel_Robe"
     And "Miel" needs "Joy" is set to 10 percent
     And Crystal Ball: a crystal ball "Gazed" stands on open ground near (154, 98)
     When Crystal Ball: the joy giver sends "Miel" to the ball "Gazed"

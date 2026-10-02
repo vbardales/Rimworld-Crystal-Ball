@@ -1,2 +1,5 @@
-# Workshop captures: PickleTools' disposable screenshot studio, and nothing else. The mod names no dependency and no optional mod.
+# Workshop captures: PickleTools' disposable screenshot studio, plus the two PickleTools that stage the posed photographs (the pawn's
+# hairstyle, hair colour, tattoo and dye; the carpet, fire, lamp, plants and shelf). The mod names no dependency and no optional mod.
 nelim.pickletools.screenshotstudio path:PickleTools/ScreenshotStudio/Mod
+nelim.pickletools.colonistrace   path:PickleTools/ColonistRace/Mod
+nelim.pickletools.stagedecor   path:PickleTools/StageDecor/Mod
