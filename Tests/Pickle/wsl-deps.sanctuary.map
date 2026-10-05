@@ -1,0 +1,8 @@
+# Gallery captures: Nelim's Sanctuary (a fixed 250 x 250 map, PickleTools' ScreenshotStudio) and the PickleTools that stage the posed
+# photographs: the camera, the decor, the colonist's hairstyle, tattoo and clothes, the clear screen. The mod names no dependency and no optional mod.
+nelim.pickletools.screenshotstudio path:PickleTools/ScreenshotStudio/Mod
+nelim.pickletools.camerazoom path:PickleTools/CameraZoom/Mod
+nelim.pickletools.stagedecor path:PickleTools/StageDecor/Mod
+nelim.pickletools.colonistrace path:PickleTools/ColonistRace/Mod
+nelim.pickletools.clearscreen path:PickleTools/ClearScreen/Mod
+nelim.pickletools   path:PickleTools/Tests/Pickle/StandaloneBase/Mod

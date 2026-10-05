@@ -303,8 +303,8 @@ is not a language:
    where a capture is clean.
 2. **Same set, French.** `03-language.feature` says something only in the language it runs in, and
    this is where the interface is read in French.
-3. **`workshop`, English** (`-DepMap wsl-deps.workshop.map`). The same set plus PickleTools' screenshot
-   studio (the Nelim zen meadow), `colonistrace` and `stagedecor`, which stage the posed photographs (rule of 2026-10-02). It plays `05-workshop-captures.feature` alone, three close-up pictures
+3. **`sanctuary`, English** (`-DepMap wsl-deps.sanctuary.map`, renamed from `workshop` on 2026-10-05). The same set plus PickleTools' screenshot
+   studio loading Nelim's Sanctuary (the fixed map, place `podium`), `camerazoom`, `stagedecor`, `colonistrace` and `clearscreen`, which stage the posed photographs (rule of 2026-10-02). It plays `05-workshop-captures.feature` alone, three close-up pictures
    for the Workshop gallery, a `@requires:nelim.pickletools.screenshotstudio` feature that the two
    other passes skip. A skipped scenario is not a passed one, so this pass is what settles them.
 
