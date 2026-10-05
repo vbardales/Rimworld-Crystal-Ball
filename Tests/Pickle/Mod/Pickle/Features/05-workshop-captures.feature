@@ -16,14 +16,13 @@ Feature: the pictures of the Workshop page
 
   # 1. What it is: the sphere on its stand, in daylight, in the seer's corner. Miel stands apart, drafted, beside the shelf.
   # The Sanctuary has one colonist, Nelim, in her house; Miel is made here and removed with the scene. The podium is the square
-  # (191-204, 146-159) of bare earth, with the vanometric power cell on its east edge: the set is laid inside it.
+  # (191-204, 146-159) of bare earth, with the vanometric power cell on its east edge: the set is laid inside it. Nelim stays in her house,\n  # 35 cells away and out of a frame 39 cells wide; the step that sends other colonists to the map corner finds no standable cell in the bamboo.
   Background:
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: I am at the sanctuary "podium"
     And Nelim's Pickle Tools: the animals are removed from the sanctuary "podium"
     And a colonist "Miel" exists
-    And Nelim's Pickle Tools: the other colonists are out of frame
     And I destroy the gear of "Miel"
     And "Miel" gender is female
     And Nelim's Pickle Tools: "Miel" hairstyle is "Cleopatra"
