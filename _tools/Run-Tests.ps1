@@ -545,12 +545,14 @@ It 'Preview.png is 896 x 504 and stays under 900 KB' {
     if ($s.KB -gt 900) { "it weighs $($s.KB) KB" }
 }
 
-It 'ModIcon.png is 128 x 128 and stays under 30 KB' {
+It 'ModIcon.png is 128 x 128 and stays under 32 KB' {
+    # The shared guide asks for 20-30 KB. Virginie accepted 31.9 KB for this icon on 2026-10-05 (the winking ball is more detailed than the
+    # first one): the ceiling here is 32 KB, her override, and not a loosening for the next icon.
     $p = Join-Path $modDir 'About\ModIcon.png'
     if (-not (Test-Path $p)) { 'ModIcon.png is missing'; return }
     $s = Get-PngSize $p
     if ($s.W -ne 128 -or $s.H -ne 128) { "it is $($s.W) x $($s.H)" }
-    if ($s.KB -gt 30) { "it weighs $($s.KB) KB" }
+    if ($s.KB -gt 32) { "it weighs $($s.KB) KB" }
 }
 
 It 'the texture the def names is there, spelt the way the file is, square, and a power of two' {
