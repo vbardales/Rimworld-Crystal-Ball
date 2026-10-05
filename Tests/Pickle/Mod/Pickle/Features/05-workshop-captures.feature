@@ -1,4 +1,4 @@
-# The pictures of the Workshop page, PUBLICATION.md section 2, in the order to upload them. Staged, not found: the owner's rule of 2026-10-02 makes every gallery picture a posed photograph. The story is "the seer's corner": a fortune teller reads the evening in a small corner of a camp. One set joins the three pictures (a carpet, a campfire and a torch lamp, two flowering plants, a shelf), and Miel is dressed for it in all three: a robe of plain leather, tan against the violet of the ball, a dark Cleopatra cut so that the face reads, the Oracle tattoo on her face. The set is laid by the scenario and taken down after it. They are not the review captures
+# The pictures of the Workshop page, PUBLICATION.md section 2, in the order to upload them. Staged, not found: the owner's rule of 2026-10-02 makes every gallery picture a posed photograph. The story is "the seer's corner": a fortune teller reads the evening in a small corner of a camp. One set joins the three pictures (a plank floor, a campfire and a torch lamp, two flowering plants, a shelf), and Miel is dressed for it in all three: a robe of plain leather, tan against the violet of the ball, a dark Cleopatra cut so that the face reads, the Oracle tattoo on her face. The set is laid by the scenario and taken down after it. They are not the review captures
 # of 01 and 03: those show the test colony's plain ground with its zone tints and the game's interface, and a Workshop page
 # sells nothing with that.
 #
@@ -16,7 +16,7 @@ Feature: the pictures of the Workshop page
 
   # 1. What it is: the sphere on its stand, in daylight, in the seer's corner. Miel stands apart, drafted, beside the shelf.
   # The Sanctuary has one colonist, Nelim, in her house; Miel is made here and removed with the scene. The podium is the square
-  # (191-204, 146-159) of bare earth, with the vanometric power cell on its east edge: the set is laid inside it. Nelim stays in her house,\n  # 35 cells away and out of a frame 39 cells wide; the step that sends other colonists to the map corner finds no standable cell in the bamboo.
+  # (191-204, 146-159) of bare earth, with the vanometric power cell on its east edge: the set is laid inside it. The floor is WoodPlankFloor: "Carpet" is a TerrainTemplateDef, which has no TerrainDef of that name (run 855b). Nelim stays in her house,\n  # 35 cells away and out of a frame 39 cells wide; the step that sends other colonists to the map corner finds no standable cell in the bamboo.
   Background:
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
@@ -29,7 +29,7 @@ Feature: the pictures of the Workshop page
     And Nelim's Pickle Tools: "Miel" hair colour is rgb (35, 28, 40)
     And Nelim's Pickle Tools: "Miel" face tattoo is "Face_Oracle"
     And I dress "Miel" in "Apparel_Robe" made of "Leather_Plain"
-    And Nelim's Pickle Tools: I lay the floor "Carpet" from (194, 149) to (200, 155)
+    And Nelim's Pickle Tools: I lay the floor "WoodPlankFloor" from (194, 149) to (200, 155)
     And Nelim's Pickle Tools: I place the decor "Campfire" at (202, 150)
     And Nelim's Pickle Tools: I place the decor "TorchLamp" at (202, 155)
     And Nelim's Pickle Tools: the decor "Campfire" at (202, 150) is lit
