@@ -22,7 +22,7 @@ Feature: the pictures of the Workshop page
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the eclipse of the map is ended
-    And Nelim's Pickle Tools: I am at the sanctuary "hut"
+    And Nelim's Pickle Tools: I frame the sanctuary "hut"
     And Nelim's Pickle Tools: the animals are removed from the sanctuary "hut"
     And Nelim's Pickle Tools: the sanctuary "hut" is emptied
     And a colonist "Miel" exists
