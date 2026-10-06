@@ -14,12 +14,13 @@
 @workshop @review
 Feature: the pictures of the Workshop page
 
-  # 1. What it is: the sphere on its stand, in daylight, in the seer's corner. Miel stands apart, drafted, beside the shelf.
+  # 1. What it is: the sphere on its stand, in daylight, in the seer's corner. The corner is empty: the game's name label of a colonist cannot be hidden, so Miel is taken off the map for the two pictures without her.
   # The Sanctuary has one colonist, Nelim, in her house; Miel is made here and removed with the scene. The podium is the square
   # (191-204, 146-159) of bare earth, with the vanometric power cell on its east edge: the set is laid inside it. The floor is WoodPlankFloor: "Carpet" is a TerrainTemplateDef, which has no TerrainDef of that name (run 855b). Nelim stays in her house,\n  # 35 cells away and out of a frame 39 cells wide; the step that sends other colonists to the map corner finds no standable cell in the bamboo.
   Background:
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
+    And Nelim's Pickle Tools: the eclipse of the map is ended
     And Nelim's Pickle Tools: I am at the sanctuary "podium"
     And Nelim's Pickle Tools: the animals are removed from the sanctuary "podium"
     And a colonist "Miel" exists
@@ -43,8 +44,7 @@ Feature: the pictures of the Workshop page
     Given I set the hour to 12
     And I set the weather to "Clear"
     And game speed is ultrafast
-    And Nelim's Pickle Tools: "Miel" stands at (193, 153) facing East
-    And I draft "Miel"
+    And Nelim's Pickle Tools: the colonist "Miel" is removed from the map
     And Crystal Ball: a crystal ball "Day" stands on open ground near (197, 152)
     When Crystal Ball: I put the camera on the ball "Day"
     And I zoom all the way in
@@ -58,8 +58,7 @@ Feature: the pictures of the Workshop page
     Given I set the hour to 2
     And I set the weather to "Clear"
     And game speed is ultrafast
-    And Nelim's Pickle Tools: "Miel" stands at (193, 153) facing East
-    And I draft "Miel"
+    And Nelim's Pickle Tools: the colonist "Miel" is removed from the map
     And Crystal Ball: a crystal ball "Night" stands on open ground near (197, 152)
     When Crystal Ball: I put the camera on the ball "Night"
     And I zoom all the way in
