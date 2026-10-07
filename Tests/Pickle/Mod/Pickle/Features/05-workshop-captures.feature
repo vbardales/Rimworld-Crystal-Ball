@@ -1,27 +1,38 @@
-# The pictures of the Workshop page, PUBLICATION.md section 2, in the order to upload them. Staged, not found: the owner's rule of 2026-10-02 makes every gallery picture a posed photograph. The story is "the seer's corner": a fortune teller reads the evening in a small corner of a camp. One set joins the three pictures (torch lamps all around, two flowering plants, a shelf), and Nelim, the one colonist of the map (Virginie herself), is the seer: dressed in a robe of plain leather, tan against the violet of the ball. Her own hair and face are left as they are. The set is laid by the scenario and taken down after it. They are not the review captures
-# of 01 and 03: those show the test colony's plain ground with its zone tints and the game's interface, and a Workshop page
-# sells nothing with that.
+# The pictures of the Workshop page, PUBLICATION.md section 2, in the order to upload them. They are not the review captures of 01 and 03.
+# Staged, not found (PUBLISHING.md, "Images": the owner's rules of 2026-10-02 and 2026-10-06): every picture is a posed photograph.
 #
-# Each scenario loads Nelim's Sanctuary (PickleTools' fixed 250 x 250 map, the save "Nelims-tribe"), goes to its named place "hut" (the tea room: a covered wooden cabin at the water's edge, 60 cells from the house), empties it, and frames the
-# flowers, puts the ball there, moves the camera onto it at the game's closest zoom and takes the picture with the studio's
-# presentation mode on (the game's own screenshot mode, Pickle's panel taken out of it), which leaves the interface and the
-# colonists' labels out. Nothing asserts about the image: a person opens each one, and a passing scenario says only that
-# the route ran.
+# THE STORY: the seer's hut. At the end of an afternoon, in the hut at the water's edge of Nelim's Sanctuary, a seer lights the torches one after the
+# other and sits down to look into her crystal ball. The ball is the one thing she brought. One place, one corner, the light going down.
+# The seer is Nelim, the one colonist of the map (Virginie herself), moved to the hut for the pictures: dressed in a robe of plain leather, tan against
+# the violet of the ball; her hair and face are left as they are. The hut (`hut`, the tea room) is covered, so its light is the torches': the roof stays
+# (PickleTools docs/GALERIE.md). The room is emptied, the set laid inside it, and taken down with the scenario. The save on disk is never touched.
 #
-# `@requires:nelim.pickletools.screenshotstudio`: only the pass of `-DepMap wsl-deps.sanctuary.map` stages the Sanctuary and plays
-# this feature; every other pass skips it. Aim at it with `-Filter '05-workshop-captures'`.
+# THE SHOOTING PLAN (one line per picture: place, time, subject, composition, the living thing, what it says).
+#   1. hut, 17:00 (set hour 17, then only the set-up time). The ball in the middle of the room on the bare plank floor, the shelf on the west wall, the
+#      two plants in the north and south corners. Wide enough to see the whole room (camera root size 7). Nelim stands beside the shelf, off centre, looking
+#      at the ball. It says: here is what the mod adds, a ball to look into, in a room with nothing else in it.
+#   2. hut, 17:30 (+30 minutes of game time, 1250 ticks). Same corner, the four torches lit and the daylight gone from the doorway. Nelim has moved to the
+#      east side, by the second door. It says: the glow is a landmark when the light goes down, and the violet of the ball answers the warm torches.
+#   3. hut, 18:00 (+60 minutes, 2500 ticks). Same corner, in the dusk. Nelim sits on the cell beside the ball, no chair anywhere near (the room was emptied).
+#      It says: they gaze into it on their own, as recreation, without a seat.
+#   The pictures are cropped from 1920 x 1080 and compressed to under 2 MB each, under 8 MB in all; each is opened and read against this plan.
+#
+# Time passes in the series (2500 ticks per game hour): the hour is set once, to 17, in each scenario (each one reloads the save), then the scenario
+# waits the cumulative time of its picture before it places what lives in the scene. Nothing asserts about a picture: a person opens each one, and a passing
+# scenario says only that the route ran. The interior is x 135-145, z 69-77, doors at (140, 68) and (146, 73) (read on the photograph of the empty
+# hut, run dd90).
+#
+# `@requires:nelim.pickletools.screenshotstudio`: only a pass of `-DepMap wsl-deps.sanctuary.map` stages the Sanctuary and plays this feature; every other
+# pass skips it. Aim at it with `-Filter '05-workshop-captures'`.
 @requires:nelim.pickletools.screenshotstudio
 @workshop @review
 Feature: the pictures of the Workshop page
 
-  # 1. What it is: the sphere on its stand, in daylight, in the seer's hut. The hut is covered, so the light inside is the torches': the
-  # roof stays (docs/GALERIE.md, "Éclairer un lieu sombre"). The room is emptied and the set laid inside it (x 135-145, z 69-77 inside the
-  # walls). Nelim, the one colonist of the map, is moved from her house, 60 cells away, to the hut for the pictures; the name label of a colonist is hidden\n  # by the presentation mode. The save on disk is never touched.
   Background:
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the eclipse of the map is ended
-    And Nelim's Pickle Tools: I frame the sanctuary "hut"
+    And Nelim's Pickle Tools: I am at the sanctuary "hut"
     And Nelim's Pickle Tools: the animals are removed from the sanctuary "hut"
     And Nelim's Pickle Tools: the sanctuary "hut" is emptied
     And I destroy the gear of "Nelim"
@@ -38,46 +49,50 @@ Feature: the pictures of the Workshop page
     And Nelim's Pickle Tools: I place the decor "Plant_Daylily" at (144, 77)
     And Nelim's Pickle Tools: I place the decor "Shelf" at (136, 73)
 
-  @timeout:180
+  # 1. What it is, at 17:00.
+  @timeout:240
   Scenario: the ball by day, close up
-    Given I set the hour to 12
+    Given I set the hour to 17
     And I set the weather to "Clear"
     And game speed is ultrafast
-    And Nelim's Pickle Tools: "Nelim" stands at (139, 73) facing East
+    And Crystal Ball: a crystal ball "First" stands on open ground near (141, 73)
+    And I wait 60 ticks
+    And Nelim's Pickle Tools: "Nelim" stands at (138, 75) facing East
     And I draft "Nelim"
-    And Crystal Ball: a crystal ball "Day" stands on open ground near (141, 73)
-    When Crystal Ball: I put the camera on the ball "Day"
+    When Crystal Ball: I put the camera on the ball "First"
     And Nelim's Pickle Tools: the camera root size is set to 7
     And Nelim's Pickle Tools: studio presentation mode is enabled
-    And I wait 60 ticks
+    And I wait 30 ticks
     Then I take a screenshot "workshop 1 - the ball by day"
 
-  # 2. The landmark the description promises: the same hut at night, the ball's violet against the warm torchlight.
-  @timeout:180
+  # 2. The landmark the description promises, at 17:30: the torches against the going light.
+  @timeout:300
   Scenario: the ball at night, close up
-    Given I set the hour to 2
+    Given I set the hour to 17
     And I set the weather to "Clear"
     And game speed is ultrafast
-    And Nelim's Pickle Tools: "Nelim" stands at (139, 73) facing East
+    And Crystal Ball: a crystal ball "Second" stands on open ground near (141, 73)
+    And I wait 1250 ticks
+    And Nelim's Pickle Tools: "Nelim" stands at (144, 72) facing West
     And I draft "Nelim"
-    And Crystal Ball: a crystal ball "Night" stands on open ground near (141, 73)
-    When Crystal Ball: I put the camera on the ball "Night"
+    When Crystal Ball: I put the camera on the ball "Second"
     And Nelim's Pickle Tools: the camera root size is set to 7
     And Nelim's Pickle Tools: studio presentation mode is enabled
-    And I wait 60 ticks
+    And I wait 30 ticks
     Then I take a screenshot "workshop 2 - the ball at night"
 
-  # 3. What it does: the seer sits beside it, no chair anywhere near (the room was emptied), in the evening.
-  @timeout:300
+  # 3. What it does, at 18:00: the seer sits beside it, no chair anywhere near.
+  @timeout:360
   Scenario: a colonist gazing into the ball, close up
-    Given I set the hour to 20
+    Given I set the hour to 17
     And I set the weather to "Clear"
     And game speed is ultrafast
+    And Crystal Ball: a crystal ball "Third" stands on open ground near (141, 73)
+    And I wait 2500 ticks
     And "Nelim" needs "Joy" is set to 10 percent
-    And Crystal Ball: a crystal ball "Gazed" stands on open ground near (141, 73)
-    When Crystal Ball: the joy giver sends "Nelim" to the ball "Gazed"
-    Then Crystal Ball: "Nelim" sits beside the ball "Gazed"
-    When Crystal Ball: I put the camera on the ball "Gazed"
+    When Crystal Ball: the joy giver sends "Nelim" to the ball "Third"
+    Then Crystal Ball: "Nelim" sits beside the ball "Third"
+    When Crystal Ball: I put the camera on the ball "Third"
     And Nelim's Pickle Tools: the camera root size is set to 7
     And Nelim's Pickle Tools: studio presentation mode is enabled
     And I wait 30 ticks
