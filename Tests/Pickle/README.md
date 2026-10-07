@@ -5,7 +5,7 @@ companion mod, **Crystal Ball - Pickle tests**, never published: it lives beside
 folder Steam receives. TESTING.md carries the table that says, scenario by scenario, where each one is settled and why
 four of them are not applicable.
 
-**Read `_tools/Run-Functional-Tests.ps1` and `_tools/Run-Tests.ps1` first.** Thirty-six checks against the installed
+**Read `scripts/Run-Functional-Tests.ps1` and `scripts/Run-Tests.ps1` first.** Thirty-six checks against the installed
 game's own assembly and def files, in a few seconds, needing no RimWorld: the defs, the fields, who reads each setting,
 the numbers against vanilla, that nothing the mod points at needs a DLC. A Pickle run takes the machine for tens of
 minutes. Nothing here restates any of it.

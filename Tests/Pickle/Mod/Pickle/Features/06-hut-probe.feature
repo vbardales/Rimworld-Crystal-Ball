@@ -13,9 +13,9 @@ Feature: the hut of the Sanctuary, empty
     And Nelim's Pickle Tools: the eclipse of the map is ended
     And I set the hour to 17
     And I set the weather to "Clear"
-    And Nelim's Pickle Tools: I am at the sanctuary "hut"
-    And Nelim's Pickle Tools: the animals are removed from the sanctuary "hut"
-    And Nelim's Pickle Tools: the sanctuary "hut" is emptied
+    And Nelim's Sanctuary: I am at the sanctuary "hut"
+    And Nelim's Sanctuary: the animals are removed from the sanctuary "hut"
+    And Nelim's Sanctuary: the sanctuary "hut" is emptied
     When Nelim's Pickle Tools: studio presentation mode is enabled
     And I wait 30 ticks
     Then I take a screenshot "hut probe - the empty hut"

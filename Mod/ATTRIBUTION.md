@@ -9,7 +9,7 @@ The repository documents the following contributions, made under human direction
 and review:
 
 - The mod's XML definitions were written with Claude Code (Anthropic).
-- The in-game crystal ball texture was generated with an AI image model, then cut out, given a dark outline and resized to 256 x 256 under human direction. The generated image is kept in the repository at `Art/CrystalBall-original.png` and the cut-out at `Art/RWBall-cutout.png`. The first version, drawn as vector art with Claude Code, is superseded; its source stays at `_tools/svg/CrystalBall.svg` for history only.
+- The in-game crystal ball texture was generated with an AI image model, then cut out, given a dark outline and resized to 256 x 256 under human direction. The generated image is kept in the repository at `Art/CrystalBall-original.png` and the cut-out at `Art/RWBall-cutout.png`. The first version, drawn as vector art with Claude Code, is superseded; its source stays at `scripts/svg/CrystalBall.svg` for history only.
 - The Workshop preview illustration was generated with DALL-E (OpenAI).
   Illustration sources and the text-overlay composition are kept under `Art/`.
 

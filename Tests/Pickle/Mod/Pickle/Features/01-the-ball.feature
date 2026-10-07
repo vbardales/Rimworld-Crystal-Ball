@@ -5,7 +5,7 @@
 #
 #   1  loads          - the defs as the game's OWN loader built them, and the config errors only it can raise ("is not
 #                       minifiable yet has thing categories"). The XML and the fields are proved offline
-#                       (_tools/Run-Tests.ps1); this is the same defs after the game read them.
+#                       (scripts/Run-Tests.ps1); this is the same defs after the game read them.
 #   1  built          - the real build designator, a colonist with the skill, jade and gold in a stockpile, no research.
 #                       It does NOT show that the Architect menu lists the ball: the designator is used by defName, and
 #                       the tab is the game's, driven by a designationCategory the offline suite resolves.

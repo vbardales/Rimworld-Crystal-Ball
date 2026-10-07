@@ -99,11 +99,11 @@
   segment and compares each name case-sensitively.
 
 .EXAMPLE
-  powershell -NoProfile -File _tools/Run-Tests.ps1
+  powershell -NoProfile -File scripts/Run-Tests.ps1
 
 .EXAMPLE
   # From Git Bash, where the machine's execution policy refuses a script file:
-  powershell -NoProfile -ExecutionPolicy Bypass -File _tools/Run-Tests.ps1
+  powershell -NoProfile -ExecutionPolicy Bypass -File scripts/Run-Tests.ps1
 #>
 
 param(

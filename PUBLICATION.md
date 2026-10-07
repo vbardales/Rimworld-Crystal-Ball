@@ -78,12 +78,14 @@ The placement is explicit in the config; it is not chosen from an "emptiest corn
 `Art/Gallery/0-preview.png` is copied byte-for-byte from `Mod/About/Preview.png`.
 
 The three pictures come from the Pickle feature `05-workshop-captures.feature`, played on Nelim's Sanctuary (`-DepMap wsl-deps.sanctuary.map`,
-PickleTools `docs/GALERIE.md`). They are staged photographs, not catalogue plates (`PUBLISHING.md`, "Images"): the story is **the seer's corner**, in the
+the Sanctuary now has its own repository, SanctuaryBacklot (`docs/GALERIE.md`, `SANCTUAIRE-LIEUX.md`, `SANCTUAIRE-CASES.md`, generated `docs/steps.md`)). They are staged photographs, not catalogue plates (`PUBLISHING.md`, "Images"): the story is **the seer's corner**, in the
 hut (`hut`, the tea room, emptied and lit by torches, roof kept), with Nelim, the map's one colonist, as the seer. A probe (`06-hut-probe.feature`)
 lists and photographs the empty hut first, so that the set is laid on known cells. **The feature has not been played on the hut yet, so none of the three
 pictures below is final.** The earlier pictures (meadow studio with Miel, then the podium) are discarded: the podium showed a bright green marking square.
 A crop (the script that did it was removed from `Art/` on 2026-10-02; `git show 800b8aa:Art/Crop-WorkshopScreenshots.ps1`) and a re-compression keep each image
 under 2 MB and the folder under 8 MB. Each image is opened and read against the shooting plan in the feature's header before it goes to `Art/Gallery/`.
+
+Steps of the feature, by owner. **SanctuaryBacklot (SB), prefix `Nelim's Sanctuary:`**: `I am at the sanctuary`, `the animals are removed from the sanctuary`, `the animals are kept out of the sanctuary`, `the sanctuary "hut" is emptied`. **Nelim's Pickle Tools (NPT), prefix `Nelim's Pickle Tools:`**: `the eclipse of the map is ended`, `I place the decor` / `the decor ... is lit` (StageDecor), `I frame the cell ... at zoom` (CameraZoom), `studio presentation mode is enabled` (ScreenshotStudio), `"Nelim" stands at ... facing` (ColonistRace). The fixture `Nelims-tribe` lives in SanctuaryBacklot and is not copied or staged here. Nelim has brown eyes, given by EyeGenes (in the map).
 
 | # | File | Shows |
 | --- | --- | --- |

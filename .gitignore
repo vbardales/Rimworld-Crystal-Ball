@@ -33,7 +33,7 @@ Tests/Pickle/Mod/Pickle/Assemblies/
 
 # Build intermediates. Tests/Pickle/Source/Directory.Build.props sends them here, outside the
 # companion mod folder, so that nothing of a build ever ends up in a folder the game stages.
-.build/
+Tests/Pickle/.build/
 
 # Windows writes these when a folder gets a custom icon (Art/*.ico); machine-local, and one sits inside Mod/.
 desktop.ini

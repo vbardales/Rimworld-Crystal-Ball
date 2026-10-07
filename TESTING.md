@@ -303,7 +303,7 @@ is not a language:
    where a capture is clean.
 2. **Same set, French.** `03-language.feature` says something only in the language it runs in, and
    this is where the interface is read in French.
-3. **`sanctuary`, English** (`-DepMap wsl-deps.sanctuary.map`, renamed from `workshop` on 2026-10-05). The same set plus PickleTools' screenshot
+3. **`sanctuary`, English** (`-DepMap wsl-deps.sanctuary.map`, renamed from `workshop` on 2026-10-05). The same set plus (steps of two owners: the place steps, prefix `Nelim's Sanctuary:`, come from SanctuaryBacklot, which also holds the fixture and the map's mod list; the rest, prefix `Nelim's Pickle Tools:`, from PickleTools) PickleTools' screenshot
    studio loading Nelim's Sanctuary (the fixed map, place `podium`), `camerazoom`, `stagedecor`, `colonistrace` and `clearscreen`, which stage the posed photographs (rule of 2026-10-02). It plays `05-workshop-captures.feature` alone, three close-up pictures
    for the Workshop gallery, a `@requires:nelim.pickletools.screenshotstudio` feature that the two
    other passes skip. A skipped scenario is not a passed one, so this pass is what settles them.
@@ -317,7 +317,7 @@ exploration requests.
 **No pass without a DLC.** An earlier version of this file declared one, to play the claim that no
 DLC is required. It is not the mod's guard or fallback that would be played: the mod has none, it
 simply never names anything a DLC defines. That is a static fact, so it is proved as one, by
-`_tools/Run-Tests.ps1`: every def a field points at, every template the def inherits and every C#
+`scripts/Run-Tests.ps1`: every def a field points at, every template the def inherits and every C#
 class it names must be one Core defines or names, and the test fails on a def, a template and a
 class that only a DLC has. A run without the DLCs would also have to load Pickle's `test-colony`
 fixture, which was saved with Royalty content.

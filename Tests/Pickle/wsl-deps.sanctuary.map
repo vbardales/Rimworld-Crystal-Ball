@@ -1,8 +1,29 @@
-# Gallery captures: Nelim's Sanctuary (a fixed 250 x 250 map, PickleTools' ScreenshotStudio) and the PickleTools that stage the posed
-# photographs: the camera, the decor, the colonist's hairstyle, tattoo and clothes, the clear screen. The mod names no dependency and no optional mod.
+# Gallery captures: Nelim's Sanctuary (fixture in SanctuaryBacklot, not staged here) and the minimum mod list of its map (SanctuaryBacklot/Tests/Pickle/wsl-deps.sanctuary.map, 2026-10-08).
+# Differences from the Backlot map: ColonistRace is added (hair, dress, stand-at steps); coat steps and Venus Touch Waistlines are left out (not used by this mod's pictures).
+# AB's Visible Pants needs its seed: config/sanctuary/ (copied from the Backlot).
+# The passes of the Sanctuaire de Nelim: the studio fixtures (including Nelims-tribe), the camera steps, the stage decor, the animal steps (coat steps) and the clear screen.
+#
+#   Submit-PickleRun.ps1 -Mod SanctuaryBacklot -DepMap wsl-deps.sanctuary.map -Filter "::infirmary-views"   (the Backlot's own suite; its scenarios stage Nelim's Pickle Tools by the path: lines below)
 nelim.pickletools.screenshotstudio path:PickleTools/ScreenshotStudio/Mod
 nelim.pickletools.camerazoom path:PickleTools/CameraZoom/Mod
 nelim.pickletools.stagedecor path:PickleTools/StageDecor/Mod
 nelim.pickletools.colonistrace path:PickleTools/ColonistRace/Mod
 nelim.pickletools.clearscreen path:PickleTools/ClearScreen/Mod
+# The bundle is committed under PickleTools/Mod: this shell replaces it, so the tools above are the only copy of their steps (see StandaloneBase).
 nelim.pickletools   path:PickleTools/Tests/Pickle/StandaloneBase/Mod
+# Minimum list, 2026-10-07/08 (owner). The staging activates in file order, then sorts by loadAfter/dependencies.
+# Female Body Variants and Female Apparel Variants load BEFORE WDI (else their Naked_*_Female textures shadow WDI's); AB's Visible Pants is indispensable (without it Venus does nothing).
+# Seeds: Tests/Pickle/config/sanctuary/ (AB's settings; Venus's, whose name must be Mod_local-<packageId>_<Class>.xml because it is staged by path:).
+# Not staged: TailorMade (not needed), Paper Adapter / APP / THIGAPPE (redo the same fitting, not tested together; for a separate comparison pass), Kas.GeneralCollection (optional, Workshop id not found), Reel's textures (second pass).
+tiagocc0.FemaleBodyVariants 3798082132
+tiagocc0.FemaleApparelVariants 3799726535
+wdi.realistic.bodies 3527486510
+ab.vplrf 2986402536
+# Facial animation: base, experimentals, Vanilla Textures Expanded, Akeron Extras (needs VTE), EyeGenes3, the performance patch, then VFAE (hard-requires the first four of this block, adopts the VTE and Reel placement adjustments, includes blinking).
+Nals.FacialAnimation 1635901197
+nals.facialanimationexperimentals 2581693737
+VanillaExpanded.VTEXE.FacialAnims 2816938779
+Newton.AKNExtras.FacialAnimations 2889716301
+lucius.eyegenes3 3745223213
+astryl.FacialAnimationPerformancePatch 3790129900
+sd.fa.movingvanillaeyes 3753978140

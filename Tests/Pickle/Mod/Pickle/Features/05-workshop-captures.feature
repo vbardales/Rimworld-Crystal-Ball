@@ -32,10 +32,10 @@ Feature: the pictures of the Workshop page
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the eclipse of the map is ended
-    And Nelim's Pickle Tools: I am at the sanctuary "hut"
-    And Nelim's Pickle Tools: the animals are removed from the sanctuary "hut"
-    And Nelim's Pickle Tools: the animals are kept out of the sanctuary "hut"
-    And Nelim's Pickle Tools: the sanctuary "hut" is emptied
+    And Nelim's Sanctuary: I am at the sanctuary "hut"
+    And Nelim's Sanctuary: the animals are removed from the sanctuary "hut"
+    And Nelim's Sanctuary: the animals are kept out of the sanctuary "hut"
+    And Nelim's Sanctuary: the sanctuary "hut" is emptied
     And I destroy the gear of "Nelim"
     And I dress "Nelim" in "Apparel_Robe" made of "Leather_Plain"
     And Nelim's Pickle Tools: I place the decor "TorchLamp" at (137, 71)
@@ -86,6 +86,7 @@ Feature: the pictures of the Workshop page
     And game speed is ultrafast
     And Crystal Ball: a crystal ball "Third" stands at (141, 77)
     And I wait 2500 ticks
+    And Nelim's Pickle Tools: "Nelim" stands at (144, 72) facing West
     And "Nelim" needs "Joy" is set to 10 percent
     When Crystal Ball: the joy giver sends "Nelim" to the ball "Third"
     Then Crystal Ball: "Nelim" sits beside the ball "Third"

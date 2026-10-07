@@ -38,10 +38,10 @@ French, with every scenario green (`docs/runs/README.md`).
 
 Nothing here reaches a player.
 
-- A test suite, `_tools/Run-Tests.ps1`: twenty-five tests, no RimWorld launched. It reads the
+- A test suite, `scripts/Run-Tests.ps1`: twenty-five tests, no RimWorld launched. It reads the
   game's own classes and data to check what the mod assumes rather than what its prose claims, and
   every test in it has been seen to fail against a deliberately broken copy.
-- A second suite, `_tools/Run-Functional-Tests.ps1`: eleven tests on what the game does with
+- A second suite, `scripts/Run-Functional-Tests.ps1`: eleven tests on what the game does with
   these defs rather than on their shape. It reads the IL of the vanilla driver, builds the joy
   giver through the game's own accessor, and scans every method body in the game to find which
   class reads each setting the mod writes — which is how an inert setting, one nothing on its
@@ -50,7 +50,7 @@ Nothing here reaches a player.
 - A Pickle suite, `Tests/Pickle/`: five features and a step assembly, fourteen scenarios for a real
   game, with a checker that compiles every step pattern with Pickle's own engine. Played in English
   and in French on 2026-09-25, all green, and its Workshop pictures in a third pass. The claim that no DLC is required is proved offline instead,
-  by a test of `_tools/Run-Tests.ps1` that fails on any def, template or class only a DLC defines.
+  by a test of `scripts/Run-Tests.ps1` that fails on any def, template or class only a DLC defines.
 - `docs/runs/README.md`, one line per Pickle run, and `docs/PROTOCOLS-READ.md`, which workflow
   documents were read and at which revision.
 
