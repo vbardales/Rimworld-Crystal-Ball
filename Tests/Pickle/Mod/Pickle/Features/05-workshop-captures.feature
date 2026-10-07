@@ -13,7 +13,7 @@
 #      at the ball. It says: here is what the mod adds, a ball to look into, in a room with nothing else in it.
 #   2. hut, 17:30 (+30 minutes of game time, 1250 ticks). Closer (camera root size 5), the ball and the torchlight on it. Same corner, the three torches lit and the daylight gone from the doorway. Nelim has moved to the
 #      east side, by the second door. It says: the glow is a landmark when the light goes down, and the violet of the ball answers the warm torches.
-#   3. hut, 18:00 (+60 minutes, 2500 ticks). Closer (camera root size 5). Same corner, in the dusk. Nelim sits on the cell beside the ball, no chair anywhere near (the room was emptied).
+#   3. hut, 18:00 (+60 minutes, 2500 ticks). Closer (camera root size 5). Same corner, in the dusk. Two flower pots north and south of the ball leave only its west and east\n#      sides free, so that the seer sits beside it and not behind it (run e7f3: she sat on the north cell and hid it). Nelim sits on the cell beside the ball, no chair anywhere near (the room was emptied).
 #      It says: they gaze into it on their own, as recreation, without a seat.
 #   The pictures are cropped from 1920 x 1080 and compressed to under 2 MB each, under 8 MB in all; each is opened and read against this plan.
 #
@@ -87,6 +87,8 @@ Feature: the pictures of the Workshop page
     And I set the weather to "Clear"
     And game speed is ultrafast
     And Crystal Ball: a crystal ball "Third" stands at (141, 73)
+    And Nelim's Pickle Tools: I place the decor "PlantPot" at (141, 74)
+    And Nelim's Pickle Tools: I place the decor "PlantPot" at (141, 72)
     And I wait 2500 ticks
     And "Nelim" needs "Joy" is set to 10 percent
     When Crystal Ball: the joy giver sends "Nelim" to the ball "Third"
