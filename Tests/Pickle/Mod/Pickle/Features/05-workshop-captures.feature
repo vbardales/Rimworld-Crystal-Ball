@@ -54,12 +54,11 @@ Feature: the pictures of the Workshop page
     Given I set the hour to 17
     And I set the weather to "Clear"
     And game speed is ultrafast
-    And Crystal Ball: a crystal ball "First" stands at (141, 73)
+    And Crystal Ball: a crystal ball "First" stands at (141, 77)
     And I wait 60 ticks
     And Nelim's Pickle Tools: "Nelim" stands at (138, 75) facing East
     And I draft "Nelim"
-    When Crystal Ball: I put the camera on the ball "First"
-    And Nelim's Pickle Tools: the camera root size is set to 7
+    When Nelim's Pickle Tools: I frame the cell (141, 74) at zoom 7
     And Nelim's Pickle Tools: studio presentation mode is enabled
     And I wait 30 ticks
     Then I take a screenshot "workshop 1 - the ball by day"
@@ -70,12 +69,11 @@ Feature: the pictures of the Workshop page
     Given I set the hour to 17
     And I set the weather to "Clear"
     And game speed is ultrafast
-    And Crystal Ball: a crystal ball "Second" stands at (141, 73)
+    And Crystal Ball: a crystal ball "Second" stands at (141, 77)
     And I wait 1250 ticks
     And Nelim's Pickle Tools: "Nelim" stands at (144, 72) facing West
     And I draft "Nelim"
-    When Crystal Ball: I put the camera on the ball "Second"
-    And Nelim's Pickle Tools: the camera root size is set to 5
+    When Nelim's Pickle Tools: I frame the cell (141, 75) at zoom 5
     And Nelim's Pickle Tools: studio presentation mode is enabled
     And I wait 30 ticks
     Then I take a screenshot "workshop 2 - the ball at night"
@@ -86,15 +84,12 @@ Feature: the pictures of the Workshop page
     Given I set the hour to 17
     And I set the weather to "Clear"
     And game speed is ultrafast
-    And Crystal Ball: a crystal ball "Third" stands at (141, 73)
-    And Nelim's Pickle Tools: I place the decor "PlantPot" at (141, 74)
-    And Nelim's Pickle Tools: I place the decor "PlantPot" at (141, 72)
+    And Crystal Ball: a crystal ball "Third" stands at (141, 77)
     And I wait 2500 ticks
     And "Nelim" needs "Joy" is set to 10 percent
     When Crystal Ball: the joy giver sends "Nelim" to the ball "Third"
     Then Crystal Ball: "Nelim" sits beside the ball "Third"
-    When Crystal Ball: I put the camera on the ball "Third"
-    And Nelim's Pickle Tools: the camera root size is set to 5
+    When Nelim's Pickle Tools: I frame the cell (141, 75) at zoom 5
     And Nelim's Pickle Tools: studio presentation mode is enabled
     And I wait 30 ticks
     Then I take a screenshot "workshop 3 - a colonist gazing"
