@@ -20,7 +20,7 @@
 # Time passes in the series (2500 ticks per game hour): the hour is set once, to 17, in each scenario (each one reloads the save), then the scenario
 # waits the cumulative time of its picture before it places what lives in the scene. Nothing asserts about a picture: a person opens each one, and a passing
 # scenario says only that the route ran. The interior is x 135-145, z 69-77, doors at (140, 68) and (146, 73) (read on the photograph of the empty
-# hut, run dd90).
+# hut, run dd90). The ball is placed on its exact cell with Crystal Ball: a crystal ball ... stands at (x, z): the older step that searches for open ground refuses a roofed cell and put the ball outside the wall (run c4db). The animals are removed again after the waiting, since they walk back in.
 #
 # `@requires:nelim.pickletools.screenshotstudio`: only a pass of `-DepMap wsl-deps.sanctuary.map` stages the Sanctuary and plays this feature; every other
 # pass skips it. Aim at it with `-Filter '05-workshop-captures'`.
@@ -55,8 +55,9 @@ Feature: the pictures of the Workshop page
     Given I set the hour to 17
     And I set the weather to "Clear"
     And game speed is ultrafast
-    And Crystal Ball: a crystal ball "First" stands on open ground near (141, 73)
+    And Crystal Ball: a crystal ball "First" stands at (141, 73)
     And I wait 60 ticks
+    And Nelim's Pickle Tools: the animals are removed from the sanctuary "hut"
     And Nelim's Pickle Tools: "Nelim" stands at (138, 75) facing East
     And I draft "Nelim"
     When Crystal Ball: I put the camera on the ball "First"
@@ -71,8 +72,9 @@ Feature: the pictures of the Workshop page
     Given I set the hour to 17
     And I set the weather to "Clear"
     And game speed is ultrafast
-    And Crystal Ball: a crystal ball "Second" stands on open ground near (141, 73)
+    And Crystal Ball: a crystal ball "Second" stands at (141, 73)
     And I wait 1250 ticks
+    And Nelim's Pickle Tools: the animals are removed from the sanctuary "hut"
     And Nelim's Pickle Tools: "Nelim" stands at (144, 72) facing West
     And I draft "Nelim"
     When Crystal Ball: I put the camera on the ball "Second"
@@ -87,8 +89,9 @@ Feature: the pictures of the Workshop page
     Given I set the hour to 17
     And I set the weather to "Clear"
     And game speed is ultrafast
-    And Crystal Ball: a crystal ball "Third" stands on open ground near (141, 73)
+    And Crystal Ball: a crystal ball "Third" stands at (141, 73)
     And I wait 2500 ticks
+    And Nelim's Pickle Tools: the animals are removed from the sanctuary "hut"
     And "Nelim" needs "Joy" is set to 10 percent
     When Crystal Ball: the joy giver sends "Nelim" to the ball "Third"
     Then Crystal Ball: "Nelim" sits beside the ball "Third"

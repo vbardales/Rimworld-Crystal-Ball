@@ -268,6 +268,35 @@ namespace CrystalBall.PickleSteps
             Place(ctx, name, QualityCategory.Normal, 0, new IntVec3(x, 0, z));
         }
 
+        /// <summary>
+        /// For a presentation picture indoors: the ball goes on the very cell asked for, under a roof or not. The searching steps
+        /// above refuse a roofed cell, so a picture in a hut put the ball outside its wall (run c4db). Fails when the cell is
+        /// not standable or already holds something that blocks it, instead of moving the ball to another cell.
+        /// </summary>
+        [Given("Crystal Ball: a crystal ball {string} stands at \\({int}, {int}\\)")]
+        public void PlaceBallAt(PickleContext ctx, string name, int x, int z)
+        {
+            Map map = CurrentMap(ctx);
+            Ledger ledger = LedgerOf(ctx);
+            ctx.Assert(!ledger.Balls.ContainsKey(name), $"a ball named \"{name}\" was already placed");
+
+            ThingDef def = DefDatabase<ThingDef>.GetNamed(BallDefName);
+            IntVec3 cell = new IntVec3(x, 0, z);
+            ctx.Assert(cell.InBounds(map), $"({x}, {z}) is outside the map");
+            ctx.Assert(cell.Standable(map) && cell.GetEdifice(map) == null,
+                $"({x}, {z}) is not a free standable cell: {string.Join(", ", cell.GetThingList(map).Select(t => t.def.defName))}");
+
+            Thing ball = ThingMaker.MakeThing(def);
+            ball.SetFaction(Faction.OfPlayer);
+            CompQuality comp = ball.TryGetComp<CompQuality>();
+            ctx.Assert(comp != null, "the crystal ball carries no CompQuality");
+            comp.SetQuality(QualityCategory.Normal, ArtGenerationContext.Outsider);
+            GenSpawn.Spawn(ball, cell, map, Rot4.North);
+
+            ledger.Balls[name] = new Placed { Cell = cell, Quality = QualityCategory.Normal };
+            ctx.Attach("ball " + name, $"({cell.x}, {cell.z}), {QualityCategory.Normal}, placed at the cell asked for");
+        }
+
         [Given("Crystal Ball: a {word} crystal ball {string} stands on open ground with no seat within {int} cells")]
         public void PlaceBallOfQuality(PickleContext ctx, string quality, string name, int seatFreeRadius)
         {
