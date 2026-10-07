@@ -4,8 +4,10 @@ Publication sheet for Workshop item `3806709786`, created by the `0.1.0` prepubl
 creates every item). The `1.0.0` goes out through the manual publish workflow `.github/workflows/publish-tag.yml` of this
 repository, run by GitHub Actions: a dry-run of the exact commit first, then `publish` with its full SHA, approved by
 Virginie alone. The workflow sends `Mod/` and the change note below; it sends the description only when
-`update_description` is on, which it was for `1.0.0`, since the page lacked the `ATTRIBUTION.md` line
-(the public page now carries it). It never sends the gallery or the visibility. Both stay by hand, and Virginie's.
+`update_description` is on and the header image only when `update_preview` is on. **Both are on for the `1.0.1`** (Virginie, 2026-10-07):
+the description carries the corrected texture provenance, and `Mod/About/Preview.png` carries the new ModIcon badge. They are set at the
+dry-run and again at the `publish`. For `1.0.0` only `update_description` was on. The item is public since 2026-09-26. The workflow never
+sends the gallery or the visibility: both stay by hand, and Virginie's.
 
 ## 1. Steam description
 
@@ -58,8 +60,9 @@ Full attribution: [url=https://github.com/vbardales/Rimworld-Crystal-Ball/blob/m
 
 ## 2. Images to upload
 
-`Mod/About/Preview.png` is the header image, already on the item from the prepublication; the workflow does not send it
-(`update_preview` stays off). `Mod/About/ModIcon.png` ships inside `Mod/`.
+`Mod/About/Preview.png` is the header image. The workflow sends it only with `update_preview`, which is **on for the `1.0.1`**
+(the Preview was regenerated with a new ModIcon badge); for `1.0.0` it was off, the image coming from the prepublication.
+`Mod/About/ModIcon.png` ships inside `Mod/`.
 
 The gallery is manual, on the Steam page, in the order below. `Art/Gallery/` is uploaded as it is (nothing
 in it but the images, numbered `0-`, `1-`, `2-`, `3-` in upload order). The dry-run lists it as a reminder once it
@@ -74,22 +77,24 @@ transparent badge source. It is placed bottom-left at +15 degrees, without outli
 The placement is explicit in the config; it is not chosen from an "emptiest corner" rule. After rendering,
 `Art/Gallery/0-preview.png` is copied byte-for-byte from `Mod/About/Preview.png`.
 
-The three close-ups come from the Pickle feature `05-workshop-captures.feature`, played on PickleTools' Nelim zen
-meadow studio (run `124f`, pass `workshop`, revision `9abc18e`, Miel in a robe): the ball at (154, 98) in the studio's
-flower glade, the game's screenshot mode on so that no interface shows, the camera on the ball at the game's closest
-zoom. A centred 960 x 540 crop (the script that did it was removed from `Art/` on 2026-10-02; `git show 800b8aa:Art/Crop-WorkshopScreenshots.ps1`) cuts a picture out of each 1920 x 1080 capture, centred on the
-ball. Virginie qualified them on 2026-09-26 and they are committed.
+The three pictures come from the Pickle feature `05-workshop-captures.feature`, played on Nelim's Sanctuary (`-DepMap wsl-deps.sanctuary.map`,
+PickleTools `docs/GALERIE.md`). They are staged photographs, not catalogue plates (`PUBLISHING.md`, "Images"): the story is **the seer's corner**, in the
+hut (`hut`, the tea room, emptied and lit by torches, roof kept), with Nelim, the map's one colonist, as the seer. A probe (`06-hut-probe.feature`)
+lists and photographs the empty hut first, so that the set is laid on known cells. **The feature has not been played on the hut yet, so none of the three
+pictures below is final.** The earlier pictures (meadow studio with Miel, then the podium) are discarded: the podium showed a bright green marking square.
+A crop (the script that did it was removed from `Art/` on 2026-10-02; `git show 800b8aa:Art/Crop-WorkshopScreenshots.ps1`) and a re-compression keep each image
+under 2 MB and the folder under 8 MB. Each image is opened and read against the shooting plan in the feature's header before it goes to `Art/Gallery/`.
 
 | # | File | Shows |
 | --- | --- | --- |
 | 0 | `0-preview.png` | The finished vitrine: title, one-line summary, version badge, line-art echo, and ModIcon corner badge |
-| 1 | `1-the-ball-by-day.png` | The sphere on its stand in daylight, in the meadow: what the mod adds |
-| 2 | `2-the-ball-at-night.png` | The same ball in the dark: the landmark the description promises, though the glow is discreet |
-| 3 | `3-a-colonist-gazing.png` | Miel, the studio's colonist, sitting on the cell beside it with no chair anywhere near; her name label touches the ball |
+| 1 | `1-the-ball-by-day.png` | The sphere on its stand in the seer's hut, by day: what the mod adds (to retake) |
+| 2 | `2-the-ball-at-night.png` | The same hut by torchlight, the ball's violet against warm light: the landmark the description promises (to retake) |
+| 3 | `3-a-colonist-gazing.png` | Nelim, the seer, sitting on the cell beside it with no chair anywhere near, the room having been emptied (to retake) |
 
-Known limits, said before she looks: the game's closest zoom keeps the ball about 30 pixels wide, so pictures 1-3 are
-of a small object in a meadow and not close-ups; the glow at night is faint; the label in picture 3 overlaps the ball.
-Picture 0 (badge included) is qualified by Virginie on 2026-09-29.
+Known limits, to say before she looks: the pictures of this version do not exist yet; the glow at night may stay discreet; the colonist's name label is hidden
+by the presentation mode only if Harmony is loaded (to read in the game log). Picture 0 (badge included) was qualified by Virginie on 2026-09-29; the Preview has
+been regenerated since from the new ModIcon source (2026-10-05), and `0-preview.png` is byte-identical to it.
 ## 3. Dependencies to declare on Steam
 
 None. The mod needs no DLC and no other mod, and its `About.xml` declares none. `loadAfter` names `Ludeon.RimWorld` only.
@@ -107,18 +112,18 @@ RimLogging, whose pages already hold a posted thank-you in the global register (
   texture and the preview were opened and looked at.
 - Tags: none by hand; the game and the workflow send `Mod` and `1.6`.
 - Incompatible item: none.
-- Visibility: private since creation. Virginie switches it to public herself, after subscribing to the item and testing it,
-  and does the two things that follow, by hand (`PUBLISHING.md`, "Mise en production d'une 1.0.0"): subscribe to the
-  comments, and "Watch all activity" on the mod; it has no parent mod to watch.
+- Visibility: public since 2026-09-26, switched by Virginie after her test of the subscribed item. The two things that follow are hers, by hand
+  (`PUBLISHING.md`, "Mise en production d'une 1.0.0"): subscribe to the comments, and "Watch all activity" on the mod; it has no parent mod to watch.
+  A new version does not change the visibility.
 
 ## 6. Rollback
 
-Decided by Virginie on 2026-09-25: the `1.0.0` goes out **privately**. The item stays private after the upload and only she
-makes it public, after subscribing to it and testing it, so no player is exposed to a red regression run after the
-publication, and there is no target to pick beforehand. If the non-regression comes back red before the switch, it is a
-defect of the published version and the answer is a new publication, `ref` the full SHA of the last good commit and the next
-patch number (`1.0.1`), never a lower one. The content of `0.1.0`, the prepublication, is commit `3d1243e`; it was never
-tested and carries no tag, so it is not a rollback target.
+Fail-fast policy (`PUBLISHING.md`, "À chaque mise à jour"; `AUDIT.md`, `prepublished → published`): the `1.0.1` goes out once no red is open, and the
+rest of the non-regression runs just after. **Rollback target, chosen before publishing: commit `7d64a56491d7f131ec5770342f65875d993f8279`, the published
+`1.0.0` (tag `v1.0.0`).** If the non-regression comes back red, the answer is a new publication, never a lower number: `ref` = that full SHA, the next patch
+number (`1.0.2`) and a note "Reverts to 1.0.0, because ...", then, apart, a fix. The item is public, so a red version reaches players until the rollback is
+published. As always: dry-run of the exact SHA first, `publish` with its 40 characters, `steam-production` approved by Virginie alone. The content of `0.1.0`, the
+prepublication, is commit `3d1243e`; it was never tested and is not a rollback target.
 
 ## 7. Update notes
 
