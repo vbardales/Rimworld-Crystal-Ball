@@ -88,11 +88,11 @@ under 2 MB and the folder under 8 MB. Each image is opened and read against the 
 | # | File | Shows |
 | --- | --- | --- |
 | 0 | `0-preview.png` | The finished vitrine: title, one-line summary, version badge, line-art echo, and ModIcon corner badge |
-| 1 | `1-the-ball-by-day.png` | The sphere on its stand in the seer's hut, by day: what the mod adds (to retake) |
-| 2 | `2-the-ball-at-night.png` | The same hut by torchlight, the ball's violet against warm light: the landmark the description promises (to retake) |
-| 3 | `3-a-colonist-gazing.png` | Nelim, the seer, sitting on the cell beside it with no chair anywhere near, the room having been emptied (to retake) |
+| 1 | `1-the-ball-by-day.png` | The sphere on its stand in the seer's hut, by day: what the mod adds |
+| 2 | `2-the-ball-at-night.png` | The same hut by torchlight, the ball's violet against warm light: the landmark the description promises |
+| 3 | `3-a-colonist-gazing.png` | Nelim, the seer, sitting on the cell beside it with no chair anywhere near, the room having been emptied |
 
-Known limits, to say before she looks: the pictures of this version do not exist yet; the glow at night may stay discreet; the colonist's name label is hidden
+Known limits, to say before she looks: the glow at night may stay discreet; the colonist's name label is hidden
 by the presentation mode only if Harmony is loaded (to read in the game log). Picture 0 (badge included) was qualified by Virginie on 2026-09-29; the Preview has
 been regenerated since from the new ModIcon source (2026-10-05), and `0-preview.png` is byte-identical to it.
 ## 3. Dependencies to declare on Steam
