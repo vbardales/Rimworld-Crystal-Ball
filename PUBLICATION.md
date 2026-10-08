@@ -87,12 +87,14 @@ under 2 MB and the folder under 8 MB. Each image is opened and read against the 
 
 Steps of the feature, by owner. **SanctuaryBacklot (SB), prefix `Nelim's Sanctuary:`**: `I am at the sanctuary`, `the animals are removed from the sanctuary`, `the animals are kept out of the sanctuary`, `the sanctuary "hut" is emptied`. **Nelim's Pickle Tools (NPT), prefix `Nelim's Pickle Tools:`**: `the eclipse of the map is ended`, `I place the decor` / `the decor ... is lit` (StageDecor), `I frame the cell ... at zoom` (CameraZoom), `studio presentation mode is enabled` (ScreenshotStudio), `"Nelim" stands at ... facing` (ColonistRace). The fixture `Nelims-tribe` lives in SanctuaryBacklot and is not copied or staged here. Nelim has brown eyes, given by EyeGenes (in the map).
 
+Candidate pictures carry `candidate` in their name (`<index>-candidate-<name>.png`); accepted ones lose the word, refused ones are deleted (Virginie, 2026-10-08). Each stays under 2 MB, 8 MB in all.
+
 | # | File | Shows |
 | --- | --- | --- |
 | 0 | `0-preview.png` | The finished vitrine: title, one-line summary, version badge, line-art echo, and ModIcon corner badge |
-| 1 | `1-the-ball-by-day.png` | The sphere on its stand in the seer's hut, by day: what the mod adds |
-| 2 | `2-the-ball-at-night.png` | The same hut by torchlight, the ball's violet against warm light: the landmark the description promises |
-| 3 | `3-a-colonist-gazing.png` | Nelim, the seer, sitting on the cell beside it with no chair anywhere near, the room having been emptied |
+| 1 | `1-candidate-the-ball-by-day.png` | The sphere on its stand in the seer's hut, by day: what the mod adds |
+| 2 | `2-candidate-the-ball-at-night.png` | The same hut by torchlight, the ball's violet against warm light: the landmark the description promises |
+| 3 | `3-candidate-a-colonist-gazing.png` | Nelim, the seer, sitting on the cell beside it with no chair anywhere near, the room having been emptied |
 
 Known limits, to say before she looks: the glow at night may stay discreet; the colonist's name label is hidden
 by the presentation mode only if Harmony is loaded (to read in the game log). Picture 0 (badge included) was qualified by Virginie on 2026-09-29; the Preview has
