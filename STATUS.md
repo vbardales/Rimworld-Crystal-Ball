@@ -153,3 +153,6 @@ Stage stays `published`: `1.0.0` is unchanged on Steam. Commit `5c0b282` replace
 
 **English wording, 2026-10-08** (review of the published texts): three sentences reworded in `PUBLICATION.md` and `Mod/About/About.xml` (`a colonist tires of ten chess tables exactly as quickly as of one`; `colonists sit down in front of the crystal ball instead of pulling up a dining chair`; `it takes a quality, so its beauty scales and a masterwork crystal ball receives a name`), the same chair line in `README.md`, and the opening of `PUBLICATION.md` in the past tense for 1.0.0. The French needs no change. The `About.xml` edit lands while the full passes `68c7` and `8acb` wait in the queue: text only, no def or asset touched.
 
+
+**Gallery uploaded, 2026-10-08.** Virginie updated the Steam gallery by hand with `Art/Gallery/0-preview.png` to `3-the-ball-glowing-in-the-dark.png`.
+
