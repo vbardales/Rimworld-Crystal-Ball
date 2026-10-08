@@ -144,3 +144,6 @@ Stage stays `published`: `1.0.0` is unchanged on Steam. Commit `5c0b282` replace
 
 **Gallery picture 4, 2026-10-08.** Run `bd93` (`Tests/Pickle/Evidence/2026-10-08-hut-glow-2`, feature `07-workshop-glow.feature`) was opened: the hut at 23:00 without torch, the ball's halo visible, Nelim as a mage (violet cape and hood, sleepy lids) seated east of the ball in profile. A psyfocus staff given by the carry step was dropped by the sitting job (run `b029`): dropped. Saved as `Art/Gallery/4-candidate-the-ball-glowing-in-the-dark.png` (1.46 MB; the gallery weighs 7.88 MB in all); Virginie qualifies it.
 
+
+**Gallery qualified, 2026-10-08.** Virginie validated pictures 1, 3 and 4 (the ball by day, the colonist gazing, the ball glowing in the dark) and refused 2 (the same view as 1, closer). The gallery is now `0-preview`, `1-the-ball-by-day`, `2-a-colonist-gazing`, `3-the-ball-glowing-in-the-dark` (5.9 MB); she uploads it by hand. Scenario 2 of `05-workshop-captures.feature` stays as a photograph nobody uses.
+

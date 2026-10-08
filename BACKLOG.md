@@ -5,7 +5,7 @@ Ideas for a later version, none started. Each one changes `Mod/` unless said oth
 
 ## Stronger night glow
 
-- **Why:** the Workshop pictures of `1.0.0` (`Art/Gallery/2-candidate-the-ball-at-night.png`) show a faint glow at
+- **Why:** the Workshop pictures of `1.0.0` (`Art/Gallery/2-the-ball-at-night.png` of 1.0.0, removed from the gallery on 2026-10-08) show a faint glow at
   night, while the description promises a landmark. Also, at the game's closest zoom the ball is only about 30 pixels wide.
 - **Idea:** raise the glow's radius or intensity a little, without turning the ball into a lamp (the description says it
   does not replace one).

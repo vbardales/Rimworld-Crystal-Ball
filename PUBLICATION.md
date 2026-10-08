@@ -77,7 +77,7 @@ transparent badge source. It is placed bottom-left at +15 degrees, without outli
 The placement is explicit in the config; it is not chosen from an "emptiest corner" rule. After rendering,
 `Art/Gallery/0-preview.png` is copied byte-for-byte from `Mod/About/Preview.png`.
 
-The four pictures come from the Pickle features `05-workshop-captures.feature` (1 to 3) and `07-workshop-glow.feature` (4), played on Nelim's Sanctuary (`-DepMap wsl-deps.sanctuary.map`,
+The three pictures come from the Pickle features `05-workshop-captures.feature` (1 and 2) and `07-workshop-glow.feature` (3), played on Nelim's Sanctuary (`-DepMap wsl-deps.sanctuary.map`,
 the Sanctuary now has its own repository, SanctuaryBacklot (`docs/GALERIE.md`, `SANCTUAIRE-LIEUX.md`, `SANCTUAIRE-CASES.md`, generated `docs/steps.md`)). They are staged photographs, not catalogue plates (`PUBLISHING.md`, "Images"): the story is **the seer's corner**, in the
 hut (`hut`, the tea room, emptied and lit by torches, roof kept), with Nelim, the map's one colonist, as the seer. A probe (`06-hut-probe.feature`)
 lists and photographs the empty hut first, so that the set is laid on known cells. **The feature has not been played on the hut yet, so none of the three
@@ -92,10 +92,9 @@ Candidate pictures carry `candidate` in their name (`<index>-candidate-<name>.pn
 | # | File | Shows |
 | --- | --- | --- |
 | 0 | `0-preview.png` | The finished vitrine: title, one-line summary, version badge, line-art echo, and ModIcon corner badge |
-| 1 | `1-candidate-the-ball-by-day.png` | The sphere on its stand in the seer's hut, by day: what the mod adds |
-| 2 | `2-candidate-the-ball-at-night.png` | The same hut by torchlight, the ball's violet against warm light: the landmark the description promises |
-| 3 | `3-candidate-a-colonist-gazing.png` | Nelim, the seer, sitting on the cell beside it with no chair anywhere near, the room having been emptied |
-| 4 | `4-candidate-the-ball-glowing-in-the-dark.png` | The hut at 23:00 with no torch: the ball's own violet halo, Nelim as a mage (violet cape and hood) seated beside it (feature `07-workshop-glow.feature`) |
+| 1 | `1-the-ball-by-day.png` | The sphere on its stand in the seer's hut, by day: what the mod adds |
+| 2 | `2-a-colonist-gazing.png` | Nelim, the seer, sitting on the cell beside it with no chair anywhere near, the room having been emptied |
+| 3 | `3-the-ball-glowing-in-the-dark.png` | The hut at 23:00 with no torch: the ball's own violet halo, Nelim as a mage (violet cape and hood) seated beside it (feature `07-workshop-glow.feature`) |
 
 Known limits, to say before she looks: the glow at night may stay discreet; the colonist's name label is hidden
 by the presentation mode only if Harmony is loaded (to read in the game log). Picture 0 (badge included) was qualified by Virginie on 2026-09-29; the Preview has
