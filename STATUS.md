@@ -10,7 +10,7 @@ local_path:   C:\Users\nelim\Documents\rimworld\CrystalBall
 visibility:   public
 detached:     yes
 stage:        done
-workflow_stage: published
+workflow_stage: done
 settings_audit: not_applicable
 licence:      original
 licence_at:   MIT; original mod according to repository provenance
