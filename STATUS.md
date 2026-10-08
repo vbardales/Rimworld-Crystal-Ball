@@ -141,3 +141,6 @@ Stage stays `published`: `1.0.0` is unchanged on Steam. Commit `5c0b282` replace
 
 **Gallery candidates replaced, 2026-10-08.** Run `8d29` (`Tests/Pickle/Evidence/2026-10-08-hut-gallery-venus-4`, map held at 20 degrees, expression `normal` before the shot, bookcase and two small sculptures added, one blocking the cell south of the ball) was opened: face less flushed, Nelim in profile beside the ball in picture 3. The candidates in `Art/Gallery/` are these; Virginie still qualifies.
 
+
+**Gallery picture 4, 2026-10-08.** Run `bd93` (`Tests/Pickle/Evidence/2026-10-08-hut-glow-2`, feature `07-workshop-glow.feature`) was opened: the hut at 23:00 without torch, the ball's halo visible, Nelim as a mage (violet cape and hood, sleepy lids) seated east of the ball in profile. A psyfocus staff given by the carry step was dropped by the sitting job (run `b029`): dropped. Saved as `Art/Gallery/4-candidate-the-ball-glowing-in-the-dark.png` (1.46 MB; the gallery weighs 7.88 MB in all); Virginie qualifies it.
+
