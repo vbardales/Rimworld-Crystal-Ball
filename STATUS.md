@@ -150,3 +150,6 @@ Stage stays `published`: `1.0.0` is unchanged on Steam. Commit `5c0b282` replace
 
 **Evidence trimmed, 2026-10-08.** Kept in `Tests/Pickle/Evidence/`: `2026-10-08-hut-gallery-venus-4` (run `8d29`, pictures 1 and 2 of the gallery) and `2026-10-08-hut-glow-2` (run `bd93`, picture 3), plus the three 2026-10-02 folders. The folders cited above for runs `7e76` and `bd3e` and every other hut, probe and sanctuary run of 2026-10-05 to 2026-10-08 were deleted once newer runs replaced them (about 550 MB); their points are repointed to `8d29` and `bd93`.
 
+
+**English wording, 2026-10-08** (review of the published texts): three sentences reworded in `PUBLICATION.md` and `Mod/About/About.xml` (`a colonist tires of ten chess tables exactly as quickly as of one`; `colonists sit down in front of the crystal ball instead of pulling up a dining chair`; `it takes a quality, so its beauty scales and a masterwork crystal ball receives a name`), the same chair line in `README.md`, and the opening of `PUBLICATION.md` in the past tense for 1.0.0. The French needs no change. The `About.xml` edit lands while the full passes `68c7` and `8acb` wait in the queue: text only, no def or asset touched.
+

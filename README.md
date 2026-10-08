@@ -30,7 +30,7 @@ nothing in play.
 | **Cost** | 40 jade, 5 gold — a luxury for an established colony, not a starting bench |
 | **Tech level** | Neolithic, no research |
 | **Recreation type** | `CB_Divination`, its own |
-| **Chair** | Not needed. You crouch in front of a crystal ball |
+| **Chair** | Not needed: colonists sit down in front of the crystal ball |
 | **Quality** | Yes, so beauty scales and a masterwork one earns its name |
 | **Glow** | Faint, violet, permanent, radius 3 — a landmark at night, not a lamp |
 | **Minifiable** | Yes |

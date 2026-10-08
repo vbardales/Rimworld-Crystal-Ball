@@ -1,7 +1,7 @@
 # Publishing Crystal Ball
 
 Publication sheet for Workshop item `3806709786`, created by the `0.1.0` prepublication on 2026-09-23 (private, as Steam
-creates every item). The `1.0.0` goes out through the manual publish workflow `.github/workflows/publish-tag.yml` of this
+creates every item). Version `1.0.0` went out through the manual publish workflow `.github/workflows/publish-tag.yml` of this
 repository, run by GitHub Actions: a dry-run of the exact commit first, then `publish` with its full SHA, approved by
 Virginie alone. The workflow sends `Mod/` and the change note below; it sends the description only when
 `update_description` is on and the header image only when `update_preview` is on. **Both are on for the `1.0.1`** (Virginie, 2026-10-07):
@@ -21,7 +21,7 @@ A polished sphere on a clawed stand, glowing faintly violet from within. Colonis
 
 [h2]WHY THE TYPE MATTERS MORE THAN THE FURNITURE[/h2]
 
-The base game has ten recreation types, and only four of them come from a building. Expectations ask for up to six different types, and tolerance is counted per type, not per building: ten chess tables tire a colonist exactly as fast as one. An eleventh type is therefore worth far more than a tenth piece of furniture on a type you already had.
+The base game has ten recreation types, and only four of them come from a building. Expectations ask for up to six different types, and tolerance is counted per type, not per building: a colonist tires of ten chess tables exactly as quickly as of one. An eleventh type is therefore worth far more than a tenth piece of furniture on a type you already had.
 
 Divination did not have to be invented for the occasion either. A crystal ball carries its own use, which avoids the usual trap of a recreation type bolted on for the count and justified by nothing in play.
 
@@ -29,8 +29,8 @@ Divination did not have to be invented for the occasion either. A crystal ball c
 
 [list]
 [*] Built from jade and a little gold, at neolithic tech. A luxury for an established colony, not a starting bench.
-[*] No chair needed. You crouch in front of a crystal ball; you do not pull up a dining chair.
-[*] Takes a quality, so beauty scales and a masterwork one gets its name.
+[*] No chair needed: colonists sit down in front of the crystal ball instead of pulling up a dining chair.
+[*] It takes a quality, so its beauty scales and a masterwork crystal ball receives a name.
 [*] Glows faintly and permanently, which makes it a landmark at night without replacing a lamp.
 [*] Minifiable, so it moves house with you.
 [/list]
