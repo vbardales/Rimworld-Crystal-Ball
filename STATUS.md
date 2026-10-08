@@ -129,3 +129,6 @@ Stage stays `published`: `1.0.0` is unchanged on Steam. Commit `5c0b282` replace
 
 **Last code-review SHA:** `28a9acb536f5f84963ddbc6555069adaf66f95ab` (2026-10-05, from `0.1.0`); later commits are not reviewed yet. French description tweak (Virginie's reviewer, 2026-10-08): `on s’assied devant elle` replaces `on s’y assied`; ModIcon-source unchanged since the last render (outputs byte-identical after a re-render, only the .ico files differ). Gallery pictures renamed `<n>-candidate-<name>.png` until she qualifies them.
 
+
+**French validated, 2026-10-08.** Virginie validated the translation with the `devant elle` wording (`CB_CrystalBall.description`, commit `17678e8`). `translation_fr` stays `complete`. A French in-game pass on this text is still to replay before the publish.
+
