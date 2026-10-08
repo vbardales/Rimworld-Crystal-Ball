@@ -1,6 +1,5 @@
-# Gallery captures: Nelim's Sanctuary (fixture in SanctuaryBacklot, not staged here) and the minimum mod list of its map (SanctuaryBacklot/Tests/Pickle/wsl-deps.sanctuary.map, 2026-10-08).
-# Differences from the Backlot map: ColonistRace is added (hair, dress, stand-at steps); coat steps and Venus Touch Waistlines are left out (not used by this mod's pictures).
-# AB's Visible Pants needs its seed: config/sanctuary/ (copied from the Backlot).
+# Gallery captures of Crystal Ball: the Backlot's minimum mod list as it is (SanctuaryBacklot/Tests/Pickle/wsl-deps.sanctuary.map, 2026-10-08), Venus Touch Waistlines included, without the coat steps. The Sanctuary fixture itself lives in SanctuaryBacklot and is not staged here.
+# Seeds: config/sanctuary/ (AB's Visible Pants and Venus Touch Waistlines), copied from the Backlot.
 # The passes of the Sanctuaire de Nelim: the studio fixtures (including Nelims-tribe), the camera steps, the stage decor, the animal steps (coat steps) and the clear screen.
 #
 #   Submit-PickleRun.ps1 -Mod SanctuaryBacklot -DepMap wsl-deps.sanctuary.map -Filter "::infirmary-views"   (the Backlot's own suite; its scenarios stage Nelim's Pickle Tools by the path: lines below)
@@ -9,16 +8,19 @@ nelim.pickletools.camerazoom path:PickleTools/CameraZoom/Mod
 nelim.pickletools.stagedecor path:PickleTools/StageDecor/Mod
 nelim.pickletools.colonistrace path:PickleTools/ColonistRace/Mod
 nelim.pickletools.clearscreen path:PickleTools/ClearScreen/Mod
+nelim.pickletools.clickdiagnostics path:PickleTools/ClickDiagnostics/Mod
 # The bundle is committed under PickleTools/Mod: this shell replaces it, so the tools above are the only copy of their steps (see StandaloneBase).
 nelim.pickletools   path:PickleTools/Tests/Pickle/StandaloneBase/Mod
 # Minimum list, 2026-10-07/08 (owner). The staging activates in file order, then sorts by loadAfter/dependencies.
+# Bodies and trousers, as proven by Venus Touch Waistlines' gallery pass WITHOUT TailorMade (VenusTouchWaistlines/docs/runs/2026-10-08_gallery-no-tailormade-1):
 # Female Body Variants and Female Apparel Variants load BEFORE WDI (else their Naked_*_Female textures shadow WDI's); AB's Visible Pants is indispensable (without it Venus does nothing).
 # Seeds: Tests/Pickle/config/sanctuary/ (AB's settings; Venus's, whose name must be Mod_local-<packageId>_<Class>.xml because it is staged by path:).
-# Not staged: TailorMade (not needed), Paper Adapter / APP / THIGAPPE (redo the same fitting, not tested together; for a separate comparison pass), Kas.GeneralCollection (optional, Workshop id not found), Reel's textures (second pass).
+# Not staged: TailorMade (not needed), Apparel Paper Pattern (not required: AB lists it in loadAfter only), THIGAPPE (does the same fitting as Venus, dropped), Reel's textures (owner: not added), Kas.GeneralCollection (optional, Workshop id 3789119336).
 tiagocc0.FemaleBodyVariants 3798082132
 tiagocc0.FemaleApparelVariants 3799726535
 wdi.realistic.bodies 3527486510
 ab.vplrf 2986402536
+nelim.venustouch.waistlines path:VenusTouchWaistlines/Mod
 # Facial animation: base, experimentals, Vanilla Textures Expanded, Akeron Extras (needs VTE), EyeGenes3, the performance patch, then VFAE (hard-requires the first four of this block, adopts the VTE and Reel placement adjustments, includes blinking).
 Nals.FacialAnimation 1635901197
 nals.facialanimationexperimentals 2581693737
@@ -27,3 +29,5 @@ Newton.AKNExtras.FacialAnimations 2889716301
 lucius.eyegenes3 3745223213
 astryl.FacialAnimationPerformancePatch 3790129900
 sd.fa.movingvanillaeyes 3753978140
+# Show Hair Under Stuff (Raccoon Cuddler): hair stays visible under hats and helmets; only hard dependency is Harmony (owner, 2026-10-08).
+RaccoonCuddler.ShowHair 3255379190

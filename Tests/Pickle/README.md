@@ -19,7 +19,7 @@ minutes. Nothing here restates any of it.
 | `Mod/Pickle/Features/03-language.feature` | the four owned texts in the language of the pass, and a capture of the inspect pane |
 | `Mod/Pickle/Features/04-save.feature` | a save taken with two colonists gazing, reloaded |
 | `Mod/Pickle/Features/05-workshop-captures.feature` | three close-up pictures for the Workshop gallery, on PickleTools' zen meadow studio; only the `workshop` pass plays it |
-| `wsl-deps.workshop.map` | the pass map of that pass: the screenshot studio and nothing else |
+| `wsl-deps.sanctuary.map` | the pass map of that pass: the SanctuaryBacklot minimum mod list (fixture, bodies, face mods) and the PickleTools of the studio |
 | `Source/` | the step assembly, `CrystalBall.PickleSteps.dll` |
 | `Check-Steps.ps1` | compiles every step pattern with Pickle's own engine and checks each feature line resolves to exactly one |
 
@@ -46,7 +46,7 @@ powershell.exe -ExecutionPolicy Bypass -File Rimworld-Ticket-Dispatcher/scripts/
 ```
 
 The two language passes need no `wsl-deps` map: nothing has to be staged beside the mod. The Workshop pictures are taken
-in a third pass, `-DepMap wsl-deps.workshop.map -Filter '05-workshop-captures'`, which stages PickleTools' screenshot studio;
+in a third pass, `-DepMap wsl-deps.sanctuary.map -Filter '05-workshop-captures'`, which stages PickleTools' screenshot studio;
 the other two passes skip that feature. There is no pass without the DLCs; the claim that none is required is proved
 offline, and `TESTING.md` says why.
 
@@ -89,7 +89,7 @@ dotnet build Tests/Pickle/Source/CrystalBall.PickleSteps.csproj -c Release
 ```
 
 The DLL is a build artefact: it lands in `Mod/Pickle/Assemblies/` and stays out of git, and the intermediates go to
-`.build/`. Pickle loads step DLLs when the game starts, so a report produced without a restart after a rebuild does not
+`Tests/Pickle/.build/`. Pickle loads step DLLs when the game starts, so a report produced without a restart after a rebuild does not
 test what was just changed. Then:
 
 ```powershell

@@ -135,3 +135,6 @@ Stage stays `published`: `1.0.0` is unchanged on Steam. Commit `5c0b282` replace
 
 **Code review, 2026-10-08** (`/code-review` at low effort, from `28a9acb` to `f0bdfbb2bf1e0ad8e13211b121f056945cfcc57a`): three findings, not fixed yet: (1) `Tests/Pickle/README.md` still names the deleted `wsl-deps.workshop.map` and `.build/`; (2) the header of `Tests/Pickle/wsl-deps.sanctuary.map` says Venus is left out; (3) scenario 3 stands Nelim on the Daylily cell. **Last code-review SHA: `f0bdfbb2bf1e0ad8e13211b121f056945cfcc57a`.** State: stage `published`, version `1.0.1` in preparation (CHANGELOG section dated 2026-10-08, French validated, gallery candidates and the French in-game pass pending, run `bd3e` in queue).
 
+
+**Gallery candidates, 2026-10-08.** Run `bd3e` (`Tests/Pickle/Evidence/2026-10-08-hut-gallery-venus-2`, Backlot map with Venus, EyeGenes and face kit; 3 of 3) was opened: Nelim sits east of the ball in picture 3, profile visible; the three pictures are in `Art/Gallery/` as `<n>-candidate-<name>.png` (1.9 to 2.0 MB each, 6.4 MB in all) and wait for Virginie's qualification. Review findings: README and map header fixed; the Daylily cell is kept (scenario 3 stood there and passed), `no_change_needed`.
+
