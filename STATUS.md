@@ -9,8 +9,8 @@ remote:       https://github.com/vbardales/Rimworld-Crystal-Ball.git
 local_path:   C:\Users\nelim\Documents\rimworld\CrystalBall
 visibility:   public
 detached:     yes
-stage:        done
-workflow_stage: done
+stage:        published
+workflow_stage: published
 settings_audit: not_applicable
 licence:      original
 licence_at:   MIT; original mod according to repository provenance
@@ -21,7 +21,9 @@ showcase:     complete
 tested_on:    2026-09-25, in game through Pickle in the WSL (RimWorld 1.6.4871): 11 scenarios of 11 played and green, English and French, revisions f72ecd6 (ten in the two full passes) and 8ecaf70 (the save scenario, corrected); plus the 3 Workshop-picture scenarios of `05-workshop-captures.feature`, a conditional feature (`@requires:nelim.pickletools.screenshotstudio`) played in its own pass `workshop` on PickleTools' zen studio, revision 768ae50, green; the info-card review scenario added and played green 2026-09-26 (run 145b); non-regression of the published 1.0.0 (commit 7d64a56) played 2026-09-26 in all three passes, English and workshop green outright, French green after replaying one flaky scenario (docs/runs/README.md, runs d421, dcd5+519c, 0f99)
 workshop:     3806709786
 published_on: 2026-09-26, version 1.0.0 by the publish workflow (run 36232486752, SHA 7d64a56491d7f131ec5770342f65875d993f8279, dry-run 36232421213, description sent), tag v1.0.0 and GitHub release created by the CI. Made public by Virginie on 2026-09-26; the gallery (Art/Gallery/) and the subscriptions are hers, by hand.
-remaining: []
+remaining:
+  - full English and French passes of 1.0.1 (tickets 8acb, 68c7, fail fast: they run after the publish); a red is a defect of the published 1.0.1, answered by a rollback to 7d64a56 (new publication 1.0.2)
+  - code-review findings of 2026-10-08 (second), test-side
 session:      01a09736-2cfc-72d3-8b3c-4ffe79ef572c
 updated:      2026-10-02
 ---
@@ -167,4 +169,7 @@ Stage stays `published`: `1.0.0` is unchanged on Steam. Commit `5c0b282` replace
 
 
 **PUBLICATION.md gallery section corrected, 2026-10-08:** it no longer says the hut feature was not played nor that no picture is final; it states that the pictures were qualified by Virginie and uploaded.
+
+
+**Published 1.0.1, 2026-10-08:** publish workflow run `37839600085` (dry-run `37839358655`), SHA `c090e2fa7a1cb64e7a19416e43e2e5443c0a333d`, `update_preview` and `update_description` on, approved by Virginie; jobs `publish` and `tag-and-release` green; tag `v1.0.1` and GitHub release created by the CI (https://github.com/vbardales/Rimworld-Crystal-Ball/releases/tag/v1.0.1). Public page https://steamcommunity.com/sharedfiles/filedetails/?id=3806709786 read after the publish: it carries the reworded sentences (tires of ten chess tables, sit down in front, receives a name) and the texture provenance. Gallery uploaded by Virginie earlier the same day. Stage back to `published` (version 1.0.1); the full passes of fail fast are pending. Rollback target `7d64a56491d7f131ec5770342f65875d993f8279`.
 
