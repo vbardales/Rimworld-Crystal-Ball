@@ -159,3 +159,6 @@ Stage stays `published`: `1.0.0` is unchanged on Steam. Commit `5c0b282` replace
 
 **Dry-run 1.0.1, 2026-10-08:** run `37839358655` (https://github.com/vbardales/Rimworld-Crystal-Ball/actions/runs/37839358655), SHA `c090e2fa7a1cb64e7a19416e43e2e5443c0a333d`, version `1.0.1`, `update_preview` and `update_description` on: green. Log read: change note of section 1.0.1, preview 568,210 bytes (sha256 `56f01ec6…`, differs from the page), description 2,810 characters (the provenance sentence of the texture differs from the page), `DRY RUN: nothing was sent to Steam`. Fail fast chosen by Virginie: the full English and French passes (`8acb`, `68c7`) run after the publish. Rollback target `7d64a56491d7f131ec5770342f65875d993f8279` (v1.0.0).
 
+
+**Publish 1.0.1 launched, 2026-10-08:** run `37839600085` (https://github.com/vbardales/Rimworld-Crystal-Ball/actions/runs/37839600085), SHA `c090e2fa7a1cb64e7a19416e43e2e5443c0a333d`, `--preview --description`, waiting for Virginie's approval of `steam-production`. Launched with `dispatch-publish.sh` run through `tr -d '\r'` (the script of Rimworld-Release-Admin has CRLF line endings on this checkout and fails under bash otherwise; the file was not modified).
+
