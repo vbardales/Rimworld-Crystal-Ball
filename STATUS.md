@@ -162,3 +162,6 @@ Stage stays `published`: `1.0.0` is unchanged on Steam. Commit `5c0b282` replace
 
 **Publish 1.0.1 launched, 2026-10-08:** run `37839600085` (https://github.com/vbardales/Rimworld-Crystal-Ball/actions/runs/37839600085), SHA `c090e2fa7a1cb64e7a19416e43e2e5443c0a333d`, `--preview --description`, waiting for Virginie's approval of `steam-production`. Launched with `dispatch-publish.sh` run through `tr -d '\r'` (the script of Rimworld-Release-Admin has CRLF line endings on this checkout and fails under bash otherwise; the file was not modified).
 
+
+**Code review, 2026-10-08 (second)** (`/code-review` at low effort, from `f0bdfbb` to `302e6d8593e3ae17bc191c3823819bbd5a033cfc`): four findings, all on test-side files, none on the shipped `Mod/`: stale pasted lines in `Tests/Pickle/wsl-deps.sanctuary.map`; scenario 2 of `05` plays a refused picture; `07` header says picture 4 (now 3); the seat side of the gazing pictures is not deterministic. Not fixed yet (the publish is waiting for approval; a test-side fix does not change `Mod/`). **Last code-review SHA: `302e6d8593e3ae17bc191c3823819bbd5a033cfc`.**
+
