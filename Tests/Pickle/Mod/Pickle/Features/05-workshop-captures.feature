@@ -11,9 +11,8 @@
 #   1. hut, 17:00 (set hour 17, then only the set-up time). The ball in the middle of the room on the bare plank floor, the shelf on the west wall, the
 #      two plants in the north and south corners. Wide enough to see the whole room (camera root size 7). Nelim stands beside the shelf, off centre, looking
 #      at the ball. It says: here is what the mod adds, a ball to look into, in a room with nothing else in it.
-#   2. hut, 17:30 (+30 minutes of game time, 1250 ticks). Closer (camera root size 5), the ball and the torchlight on it. Same corner, the three torches lit and the daylight gone from the doorway. Nelim has moved to the
-#      east side, by the second door. It says: the glow is a landmark when the light goes down, and the violet of the ball answers the warm torches.
-#   3. hut, 18:00 (+60 minutes, 2500 ticks). Closer (camera root size 5). Same corner, in the dusk. Two flower pots north and south of the ball leave only its west and east\n#      sides free, so that the seer sits beside it and not behind it (run e7f3: she sat on the north cell and hid it). Nelim sits on the cell beside the ball, no chair anywhere near (the room was emptied).
+#   (Picture 2 of the first shooting, the ball at 17:30 closer, was refused by Virginie on 2026-10-08: it said nothing more than picture 1. Its scenario was removed.)
+#   2. hut, 18:00 (+60 minutes, 2500 ticks). Closer (camera root size 5). Same corner, in the dusk. Two flower pots north and south of the ball leave only its west and east\n#      sides free, so that the seer sits beside it and not behind it (run e7f3: she sat on the north cell and hid it). Nelim sits on the cell beside the ball, no chair anywhere near (the room was emptied).
 #      It says: they gaze into it on their own, as recreation, without a seat.
 #   The pictures are cropped from 1920 x 1080 and compressed to under 2 MB each, under 8 MB in all; each is opened and read against this plan.
 #
@@ -71,23 +70,7 @@ Feature: the pictures of the Workshop page
     And I wait 30 ticks
     Then I take a screenshot "workshop 1 - the ball by day"
 
-  # 2. The landmark the description promises, at 17:30: the torches against the going light.
-  @timeout:300
-  Scenario: the ball at night, close up
-    Given I set the hour to 17
-    And I set the weather to "Clear"
-    And game speed is ultrafast
-    And Crystal Ball: a crystal ball "Second" stands at (141, 77)
-    And I wait 1250 ticks
-    And Nelim's Pickle Tools: "Nelim" stands at (144, 72) facing West
-    And I draft "Nelim"
-    When Nelim's Pickle Tools: "Nelim" facial expression is "normal"
-    And Nelim's Pickle Tools: I frame the cell (141, 75) at zoom 5
-    And Nelim's Pickle Tools: studio presentation mode is enabled
-    And I wait 30 ticks
-    Then I take a screenshot "workshop 2 - the ball at night"
-
-  # 3. What it does, at 18:00: the seer sits beside it, no chair anywhere near.
+  # 2. What it does, at 18:00: the seer sits beside it, no chair anywhere near.
   @timeout:360
   Scenario: a colonist gazing into the ball, close up
     Given I set the hour to 17
@@ -103,4 +86,4 @@ Feature: the pictures of the Workshop page
     And Nelim's Pickle Tools: I frame the cell (141, 75) at zoom 5
     And Nelim's Pickle Tools: studio presentation mode is enabled
     And I wait 30 ticks
-    Then I take a screenshot "workshop 3 - a colonist gazing"
+    Then I take a screenshot "workshop 2 - a colonist gazing"

@@ -1,8 +1,6 @@
 # Gallery captures of Crystal Ball: the Backlot's minimum mod list as it is (SanctuaryBacklot/Tests/Pickle/wsl-deps.sanctuary.map, 2026-10-08), Venus Touch Waistlines included, without the coat steps. The Sanctuary fixture itself lives in SanctuaryBacklot and is not staged here.
 # Seeds: config/sanctuary/ (AB's Visible Pants and Venus Touch Waistlines), copied from the Backlot.
-# The passes of the Sanctuaire de Nelim: the studio fixtures (including Nelims-tribe), the camera steps, the stage decor, the animal steps (coat steps) and the clear screen.
 #
-#   Submit-PickleRun.ps1 -Mod SanctuaryBacklot -DepMap wsl-deps.sanctuary.map -Filter "::infirmary-views"   (the Backlot's own suite; its scenarios stage Nelim's Pickle Tools by the path: lines below)
 nelim.pickletools.screenshotstudio path:PickleTools/ScreenshotStudio/Mod
 nelim.pickletools.camerazoom path:PickleTools/CameraZoom/Mod
 nelim.pickletools.stagedecor path:PickleTools/StageDecor/Mod
