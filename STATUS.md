@@ -9,7 +9,7 @@ remote:       https://github.com/vbardales/Rimworld-Crystal-Ball.git
 local_path:   C:\Users\nelim\Documents\rimworld\CrystalBall
 visibility:   public
 detached:     yes
-stage:        published
+stage:        done
 workflow_stage: published
 settings_audit: not_applicable
 licence:      original
@@ -29,7 +29,7 @@ updated:      2026-10-02
 
 # Crystal Ball — status (2026-09-28)
 
-**Stage `published`.** Version `1.0.0` was sent to Steam by the publish workflow on 2026-09-26 (run 36232486752, commit
+**Stage `done` for `1.0.1` (2026-10-08); `1.0.0` is `published`.** The repository carries changes not yet played in game on their final build (texture, French text, images), so the audit falls back to `done` until the in-game suites and captures of `1.0.1` are green and read (`tested`). Version `1.0.0` was sent to Steam by the publish workflow on 2026-09-26 (run 36232486752, commit
 `7d64a56491d7f131ec5770342f65875d993f8279`, dry-run 36232421213), which created the tag `v1.0.0` and the GitHub release. The item
 is public and its gallery is uploaded. The public page carries the description as sent.
 
