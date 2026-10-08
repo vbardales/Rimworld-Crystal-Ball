@@ -147,3 +147,6 @@ Stage stays `published`: `1.0.0` is unchanged on Steam. Commit `5c0b282` replace
 
 **Gallery qualified, 2026-10-08.** Virginie validated pictures 1, 3 and 4 (the ball by day, the colonist gazing, the ball glowing in the dark) and refused 2 (the same view as 1, closer). The gallery is now `0-preview`, `1-the-ball-by-day`, `2-a-colonist-gazing`, `3-the-ball-glowing-in-the-dark` (5.9 MB); she uploads it by hand. Scenario 2 of `05-workshop-captures.feature` stays as a photograph nobody uses.
 
+
+**Evidence trimmed, 2026-10-08.** Kept in `Tests/Pickle/Evidence/`: `2026-10-08-hut-gallery-venus-4` (run `8d29`, pictures 1 and 2 of the gallery) and `2026-10-08-hut-glow-2` (run `bd93`, picture 3), plus the three 2026-10-02 folders. The folders cited above for runs `7e76` and `bd3e` and every other hut, probe and sanctuary run of 2026-10-05 to 2026-10-08 were deleted once newer runs replaced them (about 550 MB); their points are repointed to `8d29` and `bd93`.
+
