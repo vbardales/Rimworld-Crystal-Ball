@@ -165,3 +165,6 @@ Stage stays `published`: `1.0.0` is unchanged on Steam. Commit `5c0b282` replace
 
 **Code review, 2026-10-08 (second)** (`/code-review` at low effort, from `f0bdfbb` to `302e6d8593e3ae17bc191c3823819bbd5a033cfc`): four findings, all on test-side files, none on the shipped `Mod/`: stale pasted lines in `Tests/Pickle/wsl-deps.sanctuary.map`; scenario 2 of `05` plays a refused picture; `07` header says picture 4 (now 3); the seat side of the gazing pictures is not deterministic. Not fixed yet (the publish is waiting for approval; a test-side fix does not change `Mod/`). **Last code-review SHA: `302e6d8593e3ae17bc191c3823819bbd5a033cfc`.**
 
+
+**PUBLICATION.md gallery section corrected, 2026-10-08:** it no longer says the hut feature was not played nor that no picture is final; it states that the pictures were qualified by Virginie and uploaded.
+
