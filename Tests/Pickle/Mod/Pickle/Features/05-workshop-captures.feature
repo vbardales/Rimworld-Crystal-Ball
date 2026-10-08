@@ -31,6 +31,7 @@ Feature: the pictures of the Workshop page
   Background:
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
+    And Nelim's Pickle Tools: the temperature of the map is 20 degrees
     And Nelim's Pickle Tools: the eclipse of the map is ended
     And Nelim's Sanctuary: I am at the sanctuary "hut"
     And Nelim's Sanctuary: the animals are removed from the sanctuary "hut"
@@ -50,6 +51,9 @@ Feature: the pictures of the Workshop page
     And Nelim's Pickle Tools: I place the decor "Plant_Rose" at (136, 77)
     And Nelim's Pickle Tools: I place the decor "Plant_Daylily" at (144, 77)
     And Nelim's Pickle Tools: I place the decor "Shelf" at (136, 73)
+    And Nelim's Pickle Tools: I place the decor "Bookcase" at (138, 77)
+    And Nelim's Pickle Tools: I place the decor "SculptureSmall" at (136, 70)
+    And Nelim's Pickle Tools: I place the decor "SculptureSmall" at (141, 76)
 
   # 1. What it is, at 17:00.
   @timeout:240
@@ -61,7 +65,8 @@ Feature: the pictures of the Workshop page
     And I wait 60 ticks
     And Nelim's Pickle Tools: "Nelim" stands at (138, 75) facing East
     And I draft "Nelim"
-    When Nelim's Pickle Tools: I frame the cell (141, 74) at zoom 7
+    When Nelim's Pickle Tools: "Nelim" facial expression is "normal"
+    And Nelim's Pickle Tools: I frame the cell (141, 74) at zoom 7
     And Nelim's Pickle Tools: studio presentation mode is enabled
     And I wait 30 ticks
     Then I take a screenshot "workshop 1 - the ball by day"
@@ -76,7 +81,8 @@ Feature: the pictures of the Workshop page
     And I wait 1250 ticks
     And Nelim's Pickle Tools: "Nelim" stands at (144, 72) facing West
     And I draft "Nelim"
-    When Nelim's Pickle Tools: I frame the cell (141, 75) at zoom 5
+    When Nelim's Pickle Tools: "Nelim" facial expression is "normal"
+    And Nelim's Pickle Tools: I frame the cell (141, 75) at zoom 5
     And Nelim's Pickle Tools: studio presentation mode is enabled
     And I wait 30 ticks
     Then I take a screenshot "workshop 2 - the ball at night"
@@ -93,7 +99,8 @@ Feature: the pictures of the Workshop page
     And "Nelim" needs "Joy" is set to 10 percent
     When Crystal Ball: the joy giver sends "Nelim" to the ball "Third"
     Then Crystal Ball: "Nelim" sits beside the ball "Third"
-    When Nelim's Pickle Tools: I frame the cell (141, 75) at zoom 5
+    When Nelim's Pickle Tools: "Nelim" facial expression is "normal"
+    And Nelim's Pickle Tools: I frame the cell (141, 75) at zoom 5
     And Nelim's Pickle Tools: studio presentation mode is enabled
     And I wait 30 ticks
     Then I take a screenshot "workshop 3 - a colonist gazing"

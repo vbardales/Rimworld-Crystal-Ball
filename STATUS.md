@@ -138,3 +138,6 @@ Stage stays `published`: `1.0.0` is unchanged on Steam. Commit `5c0b282` replace
 
 **Gallery candidates, 2026-10-08.** Run `bd3e` (`Tests/Pickle/Evidence/2026-10-08-hut-gallery-venus-2`, Backlot map with Venus, EyeGenes and face kit; 3 of 3) was opened: Nelim sits east of the ball in picture 3, profile visible; the three pictures are in `Art/Gallery/` as `<n>-candidate-<name>.png` (1.9 to 2.0 MB each, 6.4 MB in all) and wait for Virginie's qualification. Review findings: README and map header fixed; the Daylily cell is kept (scenario 3 stood there and passed), `no_change_needed`.
 
+
+**Gallery candidates replaced, 2026-10-08.** Run `8d29` (`Tests/Pickle/Evidence/2026-10-08-hut-gallery-venus-4`, map held at 20 degrees, expression `normal` before the shot, bookcase and two small sculptures added, one blocking the cell south of the ball) was opened: face less flushed, Nelim in profile beside the ball in picture 3. The candidates in `Art/Gallery/` are these; Virginie still qualifies.
+
