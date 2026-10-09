@@ -9,8 +9,8 @@ remote:       https://github.com/vbardales/Rimworld-Crystal-Ball.git
 local_path:   C:\Users\nelim\Documents\rimworld\CrystalBall
 visibility:   public
 detached:     yes
-stage:        published
-workflow_stage: published
+stage:        tested
+workflow_stage: tested
 settings_audit: not_applicable
 licence:      original
 licence_at:   MIT; original mod according to repository provenance
@@ -18,11 +18,10 @@ license_spdx: MIT
 upstream_mod_remotes: N/A
 dependencies: none
 showcase:     complete
-tested_on:    2026-09-25, in game through Pickle in the WSL (RimWorld 1.6.4871): 11 scenarios of 11 played and green, English and French, revisions f72ecd6 (ten in the two full passes) and 8ecaf70 (the save scenario, corrected); plus the 3 Workshop-picture scenarios of `05-workshop-captures.feature`, a conditional feature (`@requires:nelim.pickletools.screenshotstudio`) played in its own pass `workshop` on PickleTools' zen studio, revision 768ae50, green; the info-card review scenario added and played green 2026-09-26 (run 145b); non-regression of the published 1.0.0 (commit 7d64a56) played 2026-09-26 in all three passes, English and workshop green outright, French green after replaying one flaky scenario (docs/runs/README.md, runs d421, dcd5+519c, 0f99)
+tested_on:    1.0.1 (published 2026-10-08) played 2026-10-08 and 2026-10-09 in game through Pickle: French `68c7` and English `8acb` green (12 of 12 played, 4 `workshop` captures skipped there); `sanctuary` `c525` 15 of 16, the four captures green, the save scenario red outside the scope of that pass (accepted by Virginie 2026-10-09, played green in the two minimal passes). Before that: 2026-09-25, in game through Pickle in the WSL (RimWorld 1.6.4871): 11 scenarios of 11 played and green, English and French, revisions f72ecd6 (ten in the two full passes) and 8ecaf70 (the save scenario, corrected); plus the 3 Workshop-picture scenarios of `05-workshop-captures.feature`, a conditional feature (`@requires:nelim.pickletools.screenshotstudio`) played in its own pass `workshop` on PickleTools' zen studio, revision 768ae50, green; the info-card review scenario added and played green 2026-09-26 (run 145b); non-regression of the published 1.0.0 (commit 7d64a56) played 2026-09-26 in all three passes, English and workshop green outright, French green after replaying one flaky scenario (docs/runs/README.md, runs d421, dcd5+519c, 0f99)
 workshop:     3806709786
 published_on: 2026-09-26, version 1.0.0 by the publish workflow (run 36232486752, SHA 7d64a56491d7f131ec5770342f65875d993f8279, dry-run 36232421213, description sent), tag v1.0.0 and GitHub release created by the CI. Made public by Virginie on 2026-09-26; the gallery (Art/Gallery/) and the subscriptions are hers, by hand.
-remaining:
-  - `sanctuary` pass `c525` (2026-10-09): the four captures green, one red outside its scope (the save scenario, `joy giver offered Save-1 nothing`, minimal-pass scenario played here because I forgot the filter; green in English and French minimal passes); decide: accept as out of scope or investigate on the Sanctuary map; English `8acb` and French `68c7` green
+remaining: []
 session:      01a09736-2cfc-72d3-8b3c-4ffe79ef572c
 code_review_sha: 302e6d8593e3ae17bc191c3823819bbd5a033cfc
 publication_changelog_review: reviewed by Virginie (confirmed 2026-10-09) on 44ddfe6bcd26df3e08d3fddbeca0e236831e280e, PUBLICATION.md and CHANGELOG.md
