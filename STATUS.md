@@ -25,6 +25,7 @@ remaining:
   - `sanctuary` pass `c525` (2026-10-09): the four captures green, one red outside its scope (the save scenario, `joy giver offered Save-1 nothing`, minimal-pass scenario played here because I forgot the filter; green in English and French minimal passes); decide: accept as out of scope or investigate on the Sanctuary map; English `8acb` and French `68c7` green
 session:      01a09736-2cfc-72d3-8b3c-4ffe79ef572c
 code_review_sha: 44ddfe6bcd26df3e08d3fddbeca0e236831e280e
+publication_review: reviewed by Virginie (confirmed 2026-10-09) on 44ddfe6bcd26df3e08d3fddbeca0e236831e280e, PUBLICATION.md and CHANGELOG.md
 updated:      2026-10-02
 ---
 
