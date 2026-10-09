@@ -4,7 +4,7 @@ Publication sheet for Workshop item `3806709786`, created by the `0.1.0` prepubl
 creates every item). Version `1.0.0` went out through the manual publish workflow `.github/workflows/publish-tag.yml` of this
 repository, run by GitHub Actions: a dry-run of the exact commit first, then `publish` with its full SHA, approved by
 Virginie alone. The workflow sends `Mod/` and the change note below; it sends the description only when
-`update_description` is on and the header image only when `update_preview` is on. **Both are on for the `1.0.1`** (Virginie, 2026-10-07):
+`update_description` is on and the header image only when `update_preview` is on. **Both were enabled for `1.0.1`** (Virginie, 2026-10-07):
 the description carries the corrected texture provenance, and `Mod/About/Preview.png` carries the new ModIcon badge. They are set at the
 dry-run and again at the `publish`. For `1.0.0` only `update_description` was on. The item is public since 2026-09-26. The workflow never
 sends the gallery or the visibility: both stay by hand, and Virginie's.
@@ -121,7 +121,7 @@ RimLogging, whose pages already hold a posted thank-you in the global register (
 
 ## 6. Rollback
 
-Fail-fast policy (`PUBLISHING.md`, "À chaque mise à jour"; `AUDIT.md`, `prepublished → published`): the `1.0.1` goes out once no red is open, and the
+Fail-fast policy (`PUBLISHING.md`, "À chaque mise à jour"; `AUDIT.md`, `prepublished → published`): `1.0.1` went out once no red is open, and the
 rest of the non-regression runs just after. **Rollback target, chosen before publishing: commit `7d64a56491d7f131ec5770342f65875d993f8279`, the published
 `1.0.0` (tag `v1.0.0`).** If the non-regression comes back red, the answer is a new publication, never a lower number: `ref` = that full SHA, the next patch
 number (`1.0.2`) and a note "Reverts to 1.0.0, because ...", then, apart, a fix. The item is public, so a red version reaches players until the rollback is
