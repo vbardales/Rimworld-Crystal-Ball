@@ -22,8 +22,7 @@ tested_on:    2026-09-25, in game through Pickle in the WSL (RimWorld 1.6.4871):
 workshop:     3806709786
 published_on: 2026-09-26, version 1.0.0 by the publish workflow (run 36232486752, SHA 7d64a56491d7f131ec5770342f65875d993f8279, dry-run 36232421213, description sent), tag v1.0.0 and GitHub release created by the CI. Made public by Virginie on 2026-09-26; the gallery (Art/Gallery/) and the subscriptions are hers, by hand.
 remaining:
-  - full English and French passes of 1.0.1 (tickets 8acb, 68c7, fail fast: they run after the publish); a red is a defect of the published 1.0.1, answered by a rollback to 7d64a56 (new publication 1.0.2)
-  - code-review findings of 2026-10-08 (second), test-side
+  - full English pass of 1.0.1 (ticket 8acb, fail fast, former owner session gone, now mine); French pass 68c7 green 2026-10-09 (12 of 12 played); a red is a defect of the published 1.0.1, answered by a rollback to 7d64a56 (new publication 1.0.2)
 session:      01a09736-2cfc-72d3-8b3c-4ffe79ef572c
 updated:      2026-10-02
 ---
