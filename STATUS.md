@@ -22,8 +22,9 @@ tested_on:    2026-09-25, in game through Pickle in the WSL (RimWorld 1.6.4871):
 workshop:     3806709786
 published_on: 2026-09-26, version 1.0.0 by the publish workflow (run 36232486752, SHA 7d64a56491d7f131ec5770342f65875d993f8279, dry-run 36232421213, description sent), tag v1.0.0 and GitHub release created by the CI. Made public by Virginie on 2026-09-26; the gallery (Art/Gallery/) and the subscriptions are hers, by hand.
 remaining:
-  - `sanctuary` pass of 1.0.1 (ticket c525, in queue); English `8acb` and French `68c7` green (12 of 12 played each); a red is a defect of the published 1.0.1, answered by a rollback to 7d64a56 (new publication 1.0.2)
+  - `sanctuary` pass `c525` (2026-10-09): the four captures green, one red outside its scope (the save scenario, `joy giver offered Save-1 nothing`, minimal-pass scenario played here because I forgot the filter; green in English and French minimal passes); decide: accept as out of scope or investigate on the Sanctuary map; English `8acb` and French `68c7` green
 session:      01a09736-2cfc-72d3-8b3c-4ffe79ef572c
+code_review_sha: 44ddfe6bcd26df3e08d3fddbeca0e236831e280e
 updated:      2026-10-02
 ---
 
