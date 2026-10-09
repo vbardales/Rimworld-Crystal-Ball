@@ -65,8 +65,7 @@ Full attribution: [url=https://github.com/vbardales/Rimworld-Crystal-Ball/blob/m
 `Mod/About/ModIcon.png` ships inside `Mod/`.
 
 The gallery is manual, on the Steam page, in the order below. `Art/Gallery/` is uploaded as it is (nothing
-in it but the images, numbered `0-`, `1-`, `2-`, `3-` in upload order). The dry-run lists it as a reminder once it
-exists.
+in it but the images, numbered `0-`, `1-`, `2-`, `3-` in upload order). The dry-run lists it as a reminder.
 
 Image `0`, new consigne from Virginie on 2026-09-29: the gallery now opens on a copy of `Mod/About/Preview.png`, the
 finished vitrine (title, summary, version badge), so a browser sees the same picture as the store header before
@@ -86,7 +85,6 @@ under 2 MB and the folder under 8 MB. Each image is opened and read against the 
 
 Steps of the feature, by owner. **SanctuaryBacklot (SB), prefix `Nelim's Sanctuary:`**: `I am at the sanctuary`, `the animals are removed from the sanctuary`, `the animals are kept out of the sanctuary`, `the sanctuary "hut" is emptied`. **Nelim's Pickle Tools (NPT), prefix `Nelim's Pickle Tools:`**: `the eclipse of the map is ended`, `I place the decor` / `the decor ... is lit` (StageDecor), `I frame the cell ... at zoom` (CameraZoom), `studio presentation mode is enabled` (ScreenshotStudio), `"Nelim" stands at ... facing` (ColonistRace). The fixture `Nelims-tribe` lives in SanctuaryBacklot and is not copied or staged here. Nelim has brown eyes, given by EyeGenes (in the map).
 
-Candidate pictures carry `candidate` in their name (`<index>-candidate-<name>.png`); accepted ones lose the word, refused ones are deleted (Virginie, 2026-10-08). Each stays under 2 MB, 8 MB in all.
 
 | # | File | Shows |
 | --- | --- | --- |
