@@ -188,3 +188,6 @@ Stage stays `published`: `1.0.0` is unchanged on Steam. Commit `5c0b282` replace
 
 
 **Back to published[1.0.1], 2026-10-09.** No 1.0.2 material: `git diff v1.0.1..HEAD -- Mod` is empty (only test-side files, docs and STATUS changed since the tag), `CHANGELOG.md` `[Unreleased]` is empty, and the only idea in `BACKLOG.md` (a stronger night glow) is not started. New rule (Virginie, 2026-10-09): after `published`, the field carries the published version, `published[1.0.1]`.
+
+
+**Closing pass, 2026-10-09.** `Art/`: nothing to delete (minimal set, `Gallery/`, `.render/` ignored, and the two texture sources `Art/CrystalBall-original.png`, `Art/RWBall-cutout.png` that `ATTRIBUTION.md` names). Mod root: no `.XXX` or `_XXX` entry beyond `.git`, `.gitignore`, `.gitattributes`, `.github`. ModIcon source unchanged. Evidence trimmed to the three final runs (`TESTING.md`). `pickle-reports-archive/` holds no run of this mod. Gallery refresh: not needed, pictures qualified and uploaded for 1.0.1. French and docs reviewed (`FRENCH_REVIEW.md` at `17678e8`, `publication_changelog_review`).
