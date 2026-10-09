@@ -2,7 +2,7 @@
 #
 # SHOOTING PLAN. 3. hut, 23:00. No torch: the only light of the room is the ball's own faint violet glow (radius 3, permanent), so that
 # the picture says what the description promises, "glows faintly and permanently, a landmark at night". The same hut, set and seat as
-# pictures 1 and 2 (bookcase, shelf, plants, small sculptures; the sculpture south of the ball keeps the seer from sitting in front of it; the sitting job still picks the west or the east cell at random, so a replay is read again, as for picture 2).
+# pictures 1 and 2 (bookcase, shelf, plants, small sculptures; the sculpture south of the ball keeps the seer from sitting in front of it; the seat side is fixed by the step `sends ... to sit on its east side`: east here, west in picture 2, as in the qualified pictures).
 # Nelim sits beside the ball, dressed as in the other pictures but as a mage: the leather robe under a violet cape and a violet hood (a veil over the head; no staff: the carry step put it in her hands and the sitting job dropped it on the floor, run b029), her face turned dreamy: the calm kit with sleepy lids (a mystic look, owner's
 # suggestion 2026-10-08), the expression set to normal just before the shot. Closer (camera root size 5), as for picture 2.
 # The hour is set to 23 once. The room is roofed, so the daylight is out of it and the glow is the one thing that reads.
@@ -46,7 +46,7 @@ Feature: the glow of the crystal ball, in the dark
     And I wait 60 ticks
     And Nelim's Pickle Tools: "Nelim" stands at (144, 77) facing West
     And "Nelim" needs "Joy" is set to 10 percent
-    When Crystal Ball: the joy giver sends "Nelim" to the ball "Fourth"
+    When Crystal Ball: the joy giver sends "Nelim" to the ball "Fourth" to sit on its east side
     Then Crystal Ball: "Nelim" sits beside the ball "Fourth"
     When Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: I frame the cell (141, 75) at zoom 5

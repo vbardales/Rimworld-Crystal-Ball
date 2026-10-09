@@ -348,6 +348,51 @@ namespace CrystalBall.PickleSteps
             pawn.jobs.StartJob(job, JobCondition.InterruptForced);
         }
 
+        /// <summary>
+        /// The giver picks the cell beside the ball at random among the free ones, so two replays of a picture can seat the
+        /// colonist on different sides. For a staged photograph the side is part of the shot: this step takes the job the giver
+        /// built and aims its sitting cell (targetB, which the vanilla sit-adjacent giver fills with the cell) at the side asked
+        /// for, west, east, north or south of the ball. It fails, naming why, when that cell is not free or when the job does not
+        /// carry a cell in targetB, instead of seating the colonist somewhere else.
+        /// </summary>
+        [When("Crystal Ball: the joy giver sends {string} to the ball {string} to sit on its {word} side")]
+        public void SendToSide(PickleContext ctx, string nickname, string ballName, string side)
+        {
+            Pawn pawn = Colonist(ctx, nickname);
+            Thing ball = BallNamed(ctx, ballName);
+            IntVec3 offset;
+            switch (side.ToLowerInvariant())
+            {
+                case "west": offset = new IntVec3(-1, 0, 0); break;
+                case "east": offset = new IntVec3(1, 0, 0); break;
+                case "north": offset = new IntVec3(0, 0, 1); break;
+                case "south": offset = new IntVec3(0, 0, -1); break;
+                default:
+                    ctx.Require(false, $"\"{side}\" is not a side: it is west, east, north or south");
+                    return;
+            }
+
+            string why;
+            Job job = Offer(pawn, out why);
+            ctx.Assert(job != null, $"the joy giver offered {nickname} nothing: {why}");
+            ctx.Assert(job.def.defName == JobDefName, $"the giver gave a {job.def.defName} job, not {JobDefName}");
+            ctx.Assert(job.targetA.Thing == ball,
+                $"the giver sent {nickname} to {job.targetA.Thing?.def.defName} at {job.targetA.Cell}, " +
+                $"not to the ball \"{ballName}\" at {ball.Position}");
+            ctx.Assert(!job.targetB.HasThing && job.targetB.Cell.IsValid && Chebyshev(job.targetB.Cell, ball.Position) == 1,
+                $"the job carries no sitting cell in targetB beside the ball (targetB is {job.targetB}); the side cannot be chosen");
+
+            Map map = ball.Map;
+            IntVec3 cell = ball.Position + offset;
+            ctx.Assert(cell.InBounds(map) && cell.Standable(map) && cell.GetEdifice(map) == null,
+                $"the {side} cell {cell} of the ball is not free: " + string.Join(", ", cell.GetThingList(map).Select(x => x.def.defName)));
+
+            job.targetB = new LocalTargetInfo(cell);
+            LedgerOf(ctx).JoyAtOffer[nickname] = pawn.needs.joy.CurLevel;
+            pawn.jobs.StartJob(job, JobCondition.InterruptForced);
+            ctx.Attach("seat " + nickname, $"{side} of the ball, cell ({cell.x}, {cell.z})");
+        }
+
         [Then("Crystal Ball: the joy giver offers {string} nothing")]
         public void OffersNothing(PickleContext ctx, string nickname)
         {

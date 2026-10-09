@@ -12,7 +12,7 @@
 #      two plants in the north and south corners. Wide enough to see the whole room (camera root size 7). Nelim stands beside the shelf, off centre, looking
 #      at the ball. It says: here is what the mod adds, a ball to look into, in a room with nothing else in it.
 #   (Picture 2 of the first shooting, the ball at 17:30 closer, was refused by Virginie on 2026-10-08: it said nothing more than picture 1. Its scenario was removed.)
-#   2. hut, 18:00 (+60 minutes, 2500 ticks). Closer (camera root size 5). Same corner, in the dusk. Two flower pots north and south of the ball leave only its west and east\n#      sides free, so that the seer sits beside it and not behind it (run e7f3: she sat on the north cell and hid it). Nelim sits on the cell beside the ball, no chair anywhere near (the room was emptied).
+#   2. hut, 18:00 (the hour is set to 18: the 2500 ticks of waiting it replaced exposed the run to a vanilla NullReference on a far chicken, run 3b46). Closer (camera root size 5). Same corner, in the dusk. Two flower pots north and south of the ball leave only its west and east\n#      sides free, so that the seer sits beside it and not behind it (run e7f3: she sat on the north cell and hid it). Nelim sits on the cell beside the ball, no chair anywhere near (the room was emptied).
 #      It says: they gaze into it on their own, as recreation, without a seat.
 #   The pictures are cropped from 1920 x 1080 and compressed to under 2 MB each, under 8 MB in all; each is opened and read against this plan.
 #
@@ -73,14 +73,14 @@ Feature: the pictures of the Workshop page
   # 2. What it does, at 18:00: the seer sits beside it, no chair anywhere near.
   @timeout:360
   Scenario: a colonist gazing into the ball, close up
-    Given I set the hour to 17
+    Given I set the hour to 18
     And I set the weather to "Clear"
     And game speed is ultrafast
     And Crystal Ball: a crystal ball "Third" stands at (141, 77)
-    And I wait 2500 ticks
+    And I wait 60 ticks
     And Nelim's Pickle Tools: "Nelim" stands at (144, 77) facing West
     And "Nelim" needs "Joy" is set to 10 percent
-    When Crystal Ball: the joy giver sends "Nelim" to the ball "Third"
+    When Crystal Ball: the joy giver sends "Nelim" to the ball "Third" to sit on its west side
     Then Crystal Ball: "Nelim" sits beside the ball "Third"
     When Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: I frame the cell (141, 75) at zoom 5
