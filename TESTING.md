@@ -1,4 +1,4 @@
-# Crystal Ball — in-game test scenarios
+# Crystal Ball: in-game test scenarios
 
 Two test suites run beside this file and neither of them starts the game. They check that the defs
 are well formed, that the game still has every field and class they name, and that the classes this
@@ -37,7 +37,7 @@ tooltip carries the description, and the build icon is the ball itself rather th
 **Fail:** absent from the tab, or present with a missing-texture icon.
 
 Check the log for any red line naming `CB_`, any `Could not resolve cross-reference`, and in
-particular `is not minifiable yet has thing categories` — that one is a config error this def is
+particular `is not minifiable yet has thing categories`, that one is a config error this def is
 shaped to avoid, and it would take the whole def down.
 
 Try it on a **neolithic** start too: the def says neolithic tech level and no research, so a tribe
@@ -57,7 +57,7 @@ warm yellow of a lamp.
 lit only by it stays dim, and the game's lit/unlit indicator (Architect → Recreation → hover, or the
 light overlay) shows a small bright patch.
 
-The glow is deliberate and permanent — an unlit crystal ball is a paperweight. What must **not**
+The glow is deliberate and permanent, an unlit crystal ball is a paperweight. What must **not**
 happen is the glow appearing only while a colonist uses it.
 
 ## 3. Quality, beauty, and the name
@@ -65,7 +65,7 @@ happen is the glow appearing only while a colonist uses it.
 1. Build several, or Debug actions → Spawn thing with quality set.
 2. Read the inspect pane and the beauty figure at different qualities.
 
-**Pass:** each ball carries a quality. Beauty rises with it — the def's base beauty is 10 and the
+**Pass:** each ball carries a quality. Beauty rises with it, the def's base beauty is 10 and the
 vanilla quality StatPart scales it. A **masterwork** or **legendary** one gets its own name, the way
 any quality furniture does.
 
@@ -83,7 +83,7 @@ stay about an hour and a half.
 
 **Fail, and the one to watch for:** they walk over and stand there, or they never come at all while
 other recreation is available. Also watch for an `InvalidCastException` in the log the moment they
-sit — that is the cast the driver makes, and it would mean the def stopped being a building.
+sit, that is the cast the driver makes, and it would mean the def stopped being a building.
 
 ## 5. No chair, anywhere
 
@@ -98,7 +98,7 @@ front of a crystal ball, you do not pull a dining chair up to it.
 **Fail:** they ignore it, or they walk off to find a chair. That is what the def's `requireChair`
 guards against, and a fortune teller's caravan full of balls and no seating would stand idle.
 
-## 6. The game must not ask for chairs — not applicable
+## 6. The game must not ask for chairs: not applicable
 
 Withdrawn on 2026-09-24. It watched for RimWorld's alert about recreation buildings left without a
 chair, and asked that it never name the crystal ball. That alert cannot reach the ball, so there is
@@ -120,7 +120,7 @@ The job allows two participants: you read someone's future, or you read your own
 
 1. Send two colonists to gaze at the same ball. Then a third.
 
-**Pass:** two sit at it, on different cells. The third does something else — another ball, another
+**Pass:** two sit at it, on different cells. The third does something else, another ball, another
 kind of recreation, or nothing. Nobody stacks on an occupied cell.
 
 ## 8. Divination is a type of its own
@@ -135,7 +135,7 @@ vanilla ones. Its tolerance rises as they use the ball and falls while they do n
 
 2. Build three more balls and let a colonist use them all.
 
-**Pass:** tolerance still rises just as fast. Four balls tire a colonist exactly as fast as one —
+**Pass:** tolerance still rises just as fast. Four balls tire a colonist exactly as fast as one -
 that is the rule the mod is built around, and seeing it is the point.
 
 3. Check the colony's recreation variety, in the Needs tab tooltip that lists what is available on
@@ -185,7 +185,7 @@ The def is pass-through with a high path cost: colonists may cross its cell but 
 
 1. Put the ball in the middle of a corridor and watch the traffic.
 
-**Pass:** the corridor still works — nobody is trapped, no red pathing error — but colonists step
+**Pass:** the corridor still works, nobody is trapped, no red pathing error, but colonists step
 around the ball when there is room. It does not act as a wall.
 
 ## 13. It is furniture in a recreation room

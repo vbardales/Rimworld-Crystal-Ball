@@ -24,12 +24,13 @@ remaining: []
 session:      01a09736-2cfc-72d3-8b3c-4ffe79ef572c
 code_review_sha: 302e6d8593e3ae17bc191c3823819bbd5a033cfc
 publication_changelog_review_sha: 6625b154c312ed5a8356cf6d6388b1496d41923a
+echo_review_sha: eb8d334d0f576f0df136992df3baf9dc286a2dde
 updated:      2026-10-10
 protocols_read_sha: 06263cb0d19e6e3cf21e0145cad5ce348d9a4a69
 ---
 
 
-# Crystal Ball — status (2026-10-10)
+# Crystal Ball: status (2026-10-10)
 
 **`workflow_stage: dormant`.** Version `1.0.1` is public on Steam (item 3806709786) and its post-publication
 non-regression is green. The dated sections that used to live here are one line each in `docs/runs/status-journal.md`
@@ -76,3 +77,14 @@ wording, 2026-10-08).
 3798082132, 3799726535) are each named by the `wsl-deps*.map` of other mods (A Certain Series, A Perfect Mind, Adaptive
 Storage, Ancient Buildings, Fieldwork Companions, Megabees and others), so all stay. None of them is in `~/workshop-cache`
 for this mod alone; the machine lock was not needed (read-only check; the lock was held by a Work Studio run).
+
+## Audit 2026-10-11 (revision `eb8d334` plus the working tree of this commit)
+
+Retained: **`dormant`** (`followUp[1.0.1]` closed 2026-10-10, nothing reopened). No step went back.
+
+- Offline suites replayed today: `scripts/Run-Tests.ps1` 25 of 25, `scripts/Run-Functional-Tests.ps1` 11 of 11. Step project builds with 0 errors (`dotnet build Tests/Pickle/Source/CrystalBall.PickleSteps.csproj -c Release`). `Tests/Pickle/Check-Steps.ps1` cannot run on this machine: it looks for `CucumberExpressions.dll` in the Windows Steam Workshop folder of Pickle (not installed there); environment, not a defect. No game launched.
+- Shipped content: `Mod/` has defs, French DefInjected, one texture, no assembly; `git diff v1.0.1..HEAD -- Mod` empty; `Mod/About/Preview.png` byte-identical to `Art/Gallery/0-preview.png` (sha256 `56f01ec6...`); `LICENSE` and `ATTRIBUTION.md` identical in root and `Mod/`; `About.xml` description ends with the `Source code on GitHub` line; GitHub `og:image` points to a custom repository image; `Mod/desktop.ini` is ignored, no `.ico` or `.dds` tracked.
+- Protocols reread after they moved (06263cb0 to HEAD): new rules applied here: no em dash in repository text (fixed in `README.md`, `TESTING.md`, `STATUS.md`, `docs/runs/README.md`; left alone: `CHANGELOG.md` append-only, and `ATTRIBUTION.md` with its `Mod/` copy, shipped, so a change would touch `Mod/`); intermediates folder `build/` instead of `.build/` (`Tests/Pickle/build/`, `Directory.Build.props`, `.gitignore`, `Tests/Pickle/README.md`); `echo_review_sha` replaces `echo_review`.
+- Echo review (AUDIT.md 10.a): `Art/echo.png` (line art of the claw-footed sphere) shows the ball the gallery shows; keep. Validated at `eb8d334`, gallery and echo unchanged since.
+- Not applicable, unchanged: `settings_audit` (no option, no page, no shortcut), dependencies (none, `loadAfter` names the game only), DLC (proved offline), adoption clause present (public mod).
+- Open, not a defect: none. Next patch reopens the chain at `code[1.0.2]`.

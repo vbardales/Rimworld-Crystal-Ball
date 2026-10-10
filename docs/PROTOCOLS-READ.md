@@ -13,3 +13,4 @@ them useful again. Which protocols were read, and at which commit, is `protocols
 | `PickleTools/README.md`, `PickleTools/docs/steps.md` | The suite uses its own `Crystal Ball:` steps; only `Nelim's Sanctuary:` and decor steps come from PickleTools | a step is added or replaced |
 | `ANIMALS.md` | The mod adds no animal | never |
 | `PUBLISHING-CI.md`, `Rimworld-Release-Admin/docs/OPERATIONS.md` | No publish this session | before a publish, a tag or a workflow change |
+| `USE_THIS_INSTEAD.md` | Replacement register for Renew mods; this mod is original | the mod becomes a Renew or a replacement |

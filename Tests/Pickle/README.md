@@ -89,7 +89,7 @@ dotnet build Tests/Pickle/Source/CrystalBall.PickleSteps.csproj -c Release
 ```
 
 The DLL is a build artefact: it lands in `Mod/Pickle/Assemblies/` and stays out of git, and the intermediates go to
-`Tests/Pickle/.build/`. Pickle loads step DLLs when the game starts, so a report produced without a restart after a rebuild does not
+`Tests/Pickle/build/`. Pickle loads step DLLs when the game starts, so a report produced without a restart after a rebuild does not
 test what was just changed. Then:
 
 ```powershell

@@ -1,14 +1,14 @@
 # Crystal Ball
 
-A RimWorld 1.6 mod that adds a violet-glowing crystal ball colonists gaze into as recreation — and,
+A RimWorld 1.6 mod that adds a violet-glowing crystal ball colonists gaze into as recreation, and,
 with it, a recreation type the base game does not have.
 
 No DLC required. No assembly: the mod is defs, one texture, and nothing else.
 
 ## Why the type matters more than the furniture
 
-The base game has ten recreation types — Meditative, Social, Gaming_Dexterity, Gaming_Cerebral,
-Television, Telescope, HighCulture, Chemical, Gluttonous, Reading — and only four of them come
+The base game has ten recreation types, Meditative, Social, Gaming_Dexterity, Gaming_Cerebral,
+Television, Telescope, HighCulture, Chemical, Gluttonous, Reading, and only four of them come
 from a building.
 
 Two rules make that scarcity bite:
@@ -27,12 +27,12 @@ nothing in play.
 
 | | |
 |---|---|
-| **Cost** | 40 jade, 5 gold — a luxury for an established colony, not a starting bench |
+| **Cost** | 40 jade, 5 gold, a luxury for an established colony, not a starting bench |
 | **Tech level** | Neolithic, no research |
 | **Recreation type** | `CB_Divination`, its own |
 | **Chair** | Not needed: colonists sit down in front of the crystal ball |
 | **Quality** | Yes, so beauty scales and a masterwork one earns its name |
-| **Glow** | Faint, violet, permanent, radius 3 — a landmark at night, not a lamp |
+| **Glow** | Faint, violet, permanent, radius 3, a landmark at night, not a lamp |
 | **Minifiable** | Yes |
 | **Save data** | None of its own |
 
@@ -54,7 +54,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts/Run-Functional-Tests
 ```
 
 Thirty-six tests in two suites, no RimWorld launched, half a minute for both. They read the
-installed game — its `Data` folder and `Assembly-CSharp` — so they check what this mod assumes
+installed game, its `Data` folder and `Assembly-CSharp`, so they check what this mod assumes
 rather than what this page claims. Every test in both has been seen to fail against a
 deliberately broken copy.
 
@@ -71,8 +71,8 @@ asks whether those classes still do what it hands it to them for. It reads the I
 giver through the game's own `Worker` accessor, and scans every method body in the game to find
 out who reads each setting these defs write. That last one catches a fault nothing else does: a
 setting the mod writes that no code on its path ever reads. Point the def at another joy giver and
-`requireChair` goes inert — no error, no log line, colonists refusing to use the building for want
-of a chair that is not there — and only that scan notices.
+`requireChair` goes inert, no error, no log line, colonists refusing to use the building for want
+of a chair that is not there, and only that scan notices.
 
 What neither suite does is play. [Tests/Pickle](Tests/Pickle/README.md) holds the five features
 Pickle plays in a real game (the fifth takes the Workshop pictures): a colonist building the ball, sitting beside it with no chair anywhere
@@ -90,7 +90,7 @@ English and French.
 See [ATTRIBUTION.md](ATTRIBUTION.md) for provenance, vanilla references and licence scope.
 
 Written with Claude Code (Anthropic); the in-game texture generated with an AI image model, then cut out, outlined and resized under human direction,
-the Workshop preview image generated with DALL-E (OpenAI) — under human direction, review and
+the Workshop preview image generated with DALL-E (OpenAI), under human direction, review and
 testing.
 
 Thanks to Ludeon Studios, whose chess table and game of Ur carry every bit of this mod's
