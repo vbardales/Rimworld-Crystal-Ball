@@ -70,7 +70,8 @@ wording, 2026-10-08).
 
 ## Clean-up record (2026-10-10)
 
-`STATUS.md` folded (this commit). Branches: only `main` (14.d done). Still open before `dormant` (14.c): `TESTING.md`
-(23 KB, old-revision sections to fold into `docs/runs/`, vocabulary "What `tested` requires" to update), and the WSL
-clean-up: `Tests/Pickle/wsl-deps.sanctuary.map` stages optional Workshop items (facial animation set, body variants, eye
-genes), to remove under the machine lock once no ticket of this mod is left and no other mod's map names them.
+`STATUS.md` and `TESTING.md` folded (14.c): `TESTING.md` now carries the current revision only (stale `tested` section renamed
+`playTests`, 2026-10-05 evidence note replaced by the 2026-10-09 one). Branches: only `main` (14.d done). Still open before
+`dormant`: the WSL clean-up (14.c): `Tests/Pickle/wsl-deps.sanctuary.map` stages optional Workshop items (facial animation set,
+body variants, eye genes), to remove under the machine lock once no ticket of this mod is left and no other mod's map names
+them. Waiting for Virginie's go.

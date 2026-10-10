@@ -11,8 +11,8 @@ It is not shipped: it lives beside `Mod/`, never inside it, so Steam never recei
 
 ## Before starting
 
-- RimWorld 1.6. **No DLC required** — and the first pass is worth doing with every DLC disabled,
-  since the mod claims to need none. Development mode on, so that silent failures become red text.
+- RimWorld 1.6. **No DLC required**, proved offline by `scripts/Run-Tests.ps1` (see "No pass without a DLC"
+  below), not by a run. Development mode on, so that silent failures become red text.
 - The log to read afterwards, and to attach to any report:
   `C:\Users\nelim\AppData\LocalLow\Ludeon Studios\RimWorld by Ludeon Studios\Player.log`
 - Materials: 40 jade and 5 gold per ball, and jade is not something a colony has lying about.
@@ -263,17 +263,18 @@ game owns and this mod only sets, so it is not measured.
 
 Ten scenarios are written in Gherkin, scenarios 4 and 5 by one of them. One is withdrawn and four are
 not applicable, each for a reason the table gives. Parts of three of the ten are not applicable for
-the same reason: the Architect tab, four balls, and removal. Nothing is left for a person: the `@review`\ncaptures were opened on 2026-09-25 (the inspect pane in each language, the ball at night).
+the same reason: the Architect tab, four balls, and removal. Nothing is left for a person: the `@review`
+captures were opened (the inspect pane in each language, the ball at night; the info card again on `1.0.1`).
 
 The suite is built and checked without a game: `dotnet build Tests/Pickle/Source/CrystalBall.PickleSteps.csproj -c Release`,
 then `Tests/Pickle/Check-Steps.ps1`, which compiles every step pattern with Pickle's own expression
-engine and checks that each step line of the features resolves to exactly one expression. The suite was played on
-2026-09-25, English and French, and every scenario has a green report (`docs/runs/README.md`).
+engine and checks that each step line of the features resolves to exactly one expression. On the published `1.0.1`
+the suite was played in English, French and `sanctuary` (2026-10-08 and 2026-10-09, `docs/runs/README.md`).
 
-## What `tested` requires
+## What `playTests` requires
 
 The scenarios above are what has to be watched. This section is what has to be true before
-`STATUS.md` may say `tested`. It restates the step `done -> tested` of `../AUDIT.md` for this mod,
+`STATUS.md` may leave `playTests`. It restates step 8 of `../AUDIT.md` for this mod,
 with what each rule comes to here.
 
 - **No scenario left in `@wip`.** A scenario set aside is either repaired and replayed, or deleted
@@ -355,9 +356,4 @@ optimized PNG, or JPEG for a full-screen shot; compress the log. Drop `messages.
 mod's own scenarios. Never delete a report that a `STATUS.md` field still points to, repoint that
 field first. Before deleting, list what goes and what stays.
 
-Nothing exists to trim yet: no run has been played, so there is no evidence folder on disk and none
-in git.
-
-**Kept on disk, 2026-10-05** (Tests/Pickle/Evidence/, 0.1 MB, down from 171 MB): 2026-10-02-rwball-workshop (ticket 1462, the 12 non-staged scenarios green on the RimWorld-style texture; its three capture scenarios red, replaced by ticket 9fea), 2026-10-02-texture-english (d5fe, English, minimal set) and 2026-10-02-texture-french (fe0, French, corrected description). Each holds summary.md, summary.json, junit.xml, vidence-complete.txt and the gzipped Player.log; eport.html, messages.ndjson and captures were dropped once read. The French info-card capture was opened and described in STATUS.md, then lost in the trim (a failed re-encode); the fe0 counts stand. The runs of 2026-09-26 on the published commit and 41eb (previous texture) are gone: superseded. To keep when a run is replayed: per scenario the latest summary.md and junit.xml, one opened capture per @review scenario, the gzipped Player.log; delete the rest once the new run is read.
-
-**Kept on disk, 2026-10-09** (Tests/Pickle/Evidence/, 14 MB, down from about 170 MB): `2026-10-08-final-english` (`8acb`), `2026-10-08-final-french` (`68c7`) and `2026-10-09-final-sanctuary` (`c525`), the latest run of each pass on the published `1.0.1`. Each holds `summary.md`, `summary.json`, `junit.xml`, `evidence-complete.txt` and the gzipped `Player.log`; `report.html` and `messages.ndjson` were dropped. Captures kept: the info card in English and French; the four `workshop` pictures in the `sanctuary` pass. The `2026-10-02` runs (previous texture) and the gallery development runs of 2026-10-08 and 2026-10-09 were deleted: superseded by these three.
+**Kept on disk** (`Tests/Pickle/Evidence/`, 14 MB, trimmed 2026-10-09): `2026-10-08-final-english` (`8acb`), `2026-10-08-final-french` (`68c7`) and `2026-10-09-final-sanctuary` (`c525`), the latest run of each pass on the published `1.0.1`. Each holds `summary.md`, `summary.json`, `junit.xml`, `evidence-complete.txt` and the gzipped `Player.log`; `report.html` and `messages.ndjson` were dropped. Captures kept: the info card in English and French; the four `workshop` pictures in the `sanctuary` pass. Earlier runs are one line each in `docs/runs/README.md`.
