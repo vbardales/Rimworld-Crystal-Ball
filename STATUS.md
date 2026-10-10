@@ -26,7 +26,7 @@ code_review_sha: 302e6d8593e3ae17bc191c3823819bbd5a033cfc
 publication_changelog_review_sha: 6625b154c312ed5a8356cf6d6388b1496d41923a
 echo_review_sha: eb8d334d0f576f0df136992df3baf9dc286a2dde
 updated:      2026-10-10
-protocols_read_sha: 06263cb0d19e6e3cf21e0145cad5ce348d9a4a69
+protocols_read_sha: 62af5f82742c841b95ec95288e9ac77833517ac0
 ---
 
 
