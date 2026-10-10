@@ -9,7 +9,7 @@ remote:       https://github.com/vbardales/Rimworld-Crystal-Ball.git
 local_path:   C:\Users\nelim\Documents\rimworld\CrystalBall
 visibility:   public
 detached:     yes
-workflow_stage: followUp[1.0.1]
+workflow_stage: dormant
 settings_audit: not_applicable
 licence:      original
 licence_at:   MIT; original mod according to repository provenance
@@ -31,7 +31,7 @@ protocols_read_sha: 06263cb0d19e6e3cf21e0145cad5ce348d9a4a69
 
 # Crystal Ball — status (2026-10-10)
 
-**`workflow_stage: followUp[1.0.1]`.** Version `1.0.1` is public on Steam (item 3806709786) and its post-publication
+**`workflow_stage: dormant`.** Version `1.0.1` is public on Steam (item 3806709786) and its post-publication
 non-regression is green. The dated sections that used to live here are one line each in `docs/runs/status-journal.md`
 (AUDIT.md 14.c); the full text is in git.
 
@@ -70,8 +70,9 @@ wording, 2026-10-08).
 
 ## Clean-up record (2026-10-10)
 
-`STATUS.md` and `TESTING.md` folded (14.c): `TESTING.md` now carries the current revision only (stale `tested` section renamed
-`playTests`, 2026-10-05 evidence note replaced by the 2026-10-09 one). Branches: only `main` (14.d done). Still open before
-`dormant`: the WSL clean-up (14.c): `Tests/Pickle/wsl-deps.sanctuary.map` stages optional Workshop items (facial animation set,
-body variants, eye genes), to remove under the machine lock once no ticket of this mod is left and no other mod's map names
-them. Waiting for Virginie's go.
+`STATUS.md` and `TESTING.md` folded (14.c): `TESTING.md` now carries the current revision only. Branches: only `main` (14.d done).
+**WSL clean-up (14.c), 2026-10-10: nothing removed.** The 12 Workshop items of `Tests/Pickle/wsl-deps.sanctuary.map`
+(1635901197, 2581693737, 2816938779, 2889716301, 2986402536, 3255379190, 3527486510, 3745223213, 3753978140, 3790129900,
+3798082132, 3799726535) are each named by the `wsl-deps*.map` of other mods (A Certain Series, A Perfect Mind, Adaptive
+Storage, Ancient Buildings, Fieldwork Companions, Megabees and others), so all stay. None of them is in `~/workshop-cache`
+for this mod alone; the machine lock was not needed (read-only check; the lock was held by a Work Studio run).
