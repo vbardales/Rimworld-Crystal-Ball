@@ -8,7 +8,7 @@
 # The hour is set to 23 once. The room is roofed, so the daylight is out of it and the glow is the one thing that reads.
 #
 # Same rules as 05: only a pass of `-DepMap wsl-deps.sanctuary.map` plays it; a person opens the picture, a passing scenario says only that the route ran.
-@requires:nelim.pickletools.screenshotstudio
+@requires:nelim.pickletools.screenshotstudio @requires:nelim.pickletools.camerazoom @requires:nelim.pickletools.stagedecor @requires:nelim.pickletools.colonistrace
 @workshop @review
 Feature: the glow of the crystal ball, in the dark
 

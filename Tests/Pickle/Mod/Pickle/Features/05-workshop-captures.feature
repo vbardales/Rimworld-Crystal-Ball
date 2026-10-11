@@ -23,7 +23,7 @@
 #
 # `@requires:nelim.pickletools.screenshotstudio`: only a pass of `-DepMap wsl-deps.sanctuary.map` stages the Sanctuary and plays this feature; every other
 # pass skips it. Aim at it with `-Filter '05-workshop-captures'`.
-@requires:nelim.pickletools.screenshotstudio
+@requires:nelim.pickletools.screenshotstudio @requires:nelim.pickletools.camerazoom @requires:nelim.pickletools.stagedecor @requires:nelim.pickletools.colonistrace
 @workshop @review
 Feature: the pictures of the Workshop page
 

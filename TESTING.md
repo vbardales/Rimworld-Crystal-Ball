@@ -267,7 +267,7 @@ the same reason: the Architect tab, four balls, and removal. Nothing is left for
 captures were opened (the inspect pane in each language, the ball at night; the info card again on `1.0.1`).
 
 The suite is built and checked without a game: `dotnet build Tests/Pickle/Source/CrystalBall.PickleSteps.csproj -c Release`,
-then `Tests/Pickle/Check-Steps.ps1`, which compiles every step pattern with Pickle's own expression
+then the shared `../scripts/Check-Steps.ps1 -ModRoot .` (the local copy was deleted 2026-10-11), which compiles every step pattern with Pickle's own expression
 engine and checks that each step line of the features resolves to exactly one expression. On the published `1.0.1`
 the suite was played in English, French and `sanctuary` (2026-10-08 and 2026-10-09, `docs/runs/README.md`).
 

@@ -118,26 +118,9 @@ $ErrorActionPreference = 'Stop'
 # Harness
 # ---------------------------------------------------------------------------------------------
 
-$script:ran = 0
-$script:failed = 0
-
-# A test body writes its problems to the pipeline and stays silent when it has none. No
-# assertion vocabulary: one test that lists every offending element beats ten that stop at the
-# first.
-function It([string]$name, [scriptblock]$body) {
-    $script:ran++
-    $problems = @()
-    try   { $problems = @(& $body | Where-Object { $_ }) }
-    catch { $problems = @("threw: $($_.Exception.Message)") }
-
-    if ($problems.Count -eq 0) {
-        Write-Output "  ok    $name"
-    } else {
-        $script:failed++
-        Write-Output "  FAIL  $name"
-        foreach ($p in $problems) { Write-Output "          $p" }
-    }
-}
+# Shared harness (protocols checkout, two levels above the mod): the test runner and the game-reflection library.
+. "$PSScriptRoot\..\..\scripts\lib\TestRunner.ps1"
+. "$PSScriptRoot\..\..\scripts\lib\GameReflection.ps1"
 
 function Section([string]$name) { Write-Output ''; Write-Output $name }
 
@@ -205,65 +188,17 @@ $kindNode  = $(if ($kindNodes.Count -gt 0) { $kindNodes[0] })
 # Check-XmlFields.ps1: an unresolvable name asked twice recurses to a stack overflow instead of
 # erroring.
 
-$script:probed = @{}
-$script:asmResolver = [System.ResolveEventHandler]{
-    param($sender, $e)
-    if ($null -eq $script:probed) { return $null }
-    $short = $e.Name.Split(',')[0]
-    if ($script:probed.ContainsKey($short)) { return $null }
-    $script:probed[$short] = $true
-    $p = Join-Path $Managed "$short.dll"
-    if (Test-Path $p) { return [System.Reflection.Assembly]::LoadFrom($p) }
-    return $null
-}
-[System.AppDomain]::CurrentDomain.add_AssemblyResolve($script:asmResolver)
-
-function Get-AssemblyTypes([string]$path) {
-    $a = [System.Reflection.Assembly]::LoadFrom($path)
-    try     { return $a.GetTypes() }
-    catch [System.Reflection.ReflectionTypeLoadException] { return $_.Exception.Types | Where-Object { $_ } }
-    catch   { return $_.Exception.InnerException.Types | Where-Object { $_ } }
-}
+Initialize-GameReflection -Managed $Managed
 
 $byName  = @{}
 $asmPath = Join-Path $Managed 'Assembly-CSharp.dll'
-if (Test-Path $asmPath) {
-    foreach ($t in @(Get-AssemblyTypes $asmPath)) {
-        if (-not $byName.ContainsKey($t.Name)) { $byName[$t.Name] = $t }
-        if ($t.FullName -and -not $byName.ContainsKey($t.FullName)) { $byName[$t.FullName] = $t }
-    }
-}
+if (Test-Path $asmPath) { $byName = New-TypeIndex @(Get-AssemblyTypes $asmPath) }
 $defType = $byName['Verse.Def']
 
 $BF = [System.Reflection.BindingFlags]::Public    -bor `
       [System.Reflection.BindingFlags]::NonPublic -bor `
       [System.Reflection.BindingFlags]::Instance  -bor `
       [System.Reflection.BindingFlags]::DeclaredOnly
-
-# GetFields on a derived type does not return private fields of its base types, and RimWorld has
-# plenty. Walk the chain by hand, and index a renamed field under its [LoadAlias] too: the loader
-# looks the aliases up, so such an element is honoured, not dropped.
-$fieldCache = @{}
-function Get-FieldsRecursive([Type]$t) {
-    if ($fieldCache.ContainsKey($t)) { return $fieldCache[$t] }
-    $d = @{}
-    $cur = $t
-    while ($cur -and $cur.FullName -ne 'System.Object') {
-        foreach ($f in $cur.GetFields($BF)) {
-            if (-not $d.ContainsKey($f.Name)) { $d[$f.Name] = $f }
-            foreach ($a in $f.CustomAttributes) {
-                if ($a.AttributeType.Name -ne 'LoadAliasAttribute') { continue }
-                foreach ($arg in $a.ConstructorArguments) {
-                    $alias = [string]$arg.Value
-                    if ($alias -and -not $d.ContainsKey($alias)) { $d[$alias] = $f }
-                }
-            }
-        }
-        $cur = $cur.BaseType
-    }
-    $fieldCache[$t] = $d
-    return $d
-}
 
 # A type that implements LoadDataFromXmlCustom is invisible to field reflection: RimWorld hands
 # it the raw node and it reads whatever it likes. StatModifier and ThingDefCountClass, the two
@@ -615,27 +550,11 @@ It 'the cost the showcase text claims is the cost the def charges' {
 Section 'The defs'
 # =============================================================================================
 
-It 'every def file parses' {
-    foreach ($f in $defFiles) { if ($null -eq $docs[$f.FullName]) { "malformed: $($f.Name)" } }
-}
-
 It 'every def has a defName, and every defName carries the CB_ prefix' {
     foreach ($n in $defNodes) {
         $dn = [string]$n.defName
         if ([string]::IsNullOrWhiteSpace($dn)) { "a $($n.LocalName) has no defName"; continue }
         if (-not $dn.StartsWith('CB_')) { "$dn does not start with CB_" }
-    }
-}
-
-It 'no defName is used twice for the same kind of def' {
-    # Twice across kinds is deliberate here - the job and the giver are both
-    # CB_GazeIntoCrystalBall, as vanilla's chess pair is - but twice within one kind is the
-    # collision where the second def silently replaces the first.
-    $seen = @{}
-    foreach ($n in $defNodes) {
-        $k = "$($n.LocalName)/$($n.defName)"
-        if ($seen.ContainsKey($k)) { "$k is declared twice" }
-        $seen[$k] = $true
     }
 }
 
@@ -847,101 +766,31 @@ It 'the glow keeps the zero alpha every vanilla glower writes' {
 }
 
 # =============================================================================================
-Section 'Translations'
+Section 'Shared checks (protocols scripts)'
 # =============================================================================================
 
-$frRoot = Join-Path $modDir 'Languages\French\DefInjected'
-$frKeys = @{}
-if (Test-Path $frRoot) {
-    foreach ($f in Get-ChildItem $frRoot -Recurse -Filter *.xml) {
-        $folder = Split-Path (Split-Path $f.FullName -Parent) -Leaf
-        $x = New-Object System.Xml.XmlDocument
-        try { $x.Load($f.FullName) } catch { continue }
-        if ($null -eq $x.DocumentElement) { continue }
-        foreach ($k in $x.DocumentElement.ChildNodes) {
-            if ($k.NodeType -eq 'Element') { $frKeys["$folder/$($k.LocalName)"] = $k.InnerText }
-        }
-    }
+# What every mod needs checked is checked by one shared script each (owner rule of 2026-10-11, AGENTS.md "Local scripts"):
+# XML well formed, defNames unique per kind, About.xml and notices and images (Check-ModBasics); every DefInjected key
+# resolves (Check-DefInjected); every shipped text has its French, nothing stale, tokens identical (Check-Translations).
+$sharedDir = Join-Path $PSScriptRoot '..\..\scripts'
+function Invoke-Shared([string]$script, [string[]]$argv) {
+    $out = & powershell.exe -NoProfile -ExecutionPolicy Bypass -File (Join-Path $sharedDir $script) @argv 2>&1
+    if ($LASTEXITCODE -ne 0) { $out | Where-Object { $_ } | Select-Object -Last 8 | ForEach-Object { [string]$_ } }
 }
 
-It 'every string the game marks [MustTranslate] has a French key' {
-    # Which strings those are is read off the 1.6 classes, not listed here: a field the game
-    # starts translating one day is picked up without this suite being touched.
-    if ($byName.Count -eq 0) { 'Assembly-CSharp is not loaded'; return }
-    foreach ($n in $defNodes) {
-        $t = $byName[$n.LocalName]
-        if (-not $t) { continue }
-        $fields = Get-FieldsRecursive $t
-        foreach ($child in $n.ChildNodes) {
-            if ($child.NodeType -ne 'Element') { continue }
-            $f = $fields[$child.LocalName]
-            if (-not $f -or $f.FieldType -ne [string]) { continue }
-            $must = $false
-            foreach ($a in $f.CustomAttributes) { if ($a.AttributeType.Name -eq 'MustTranslateAttribute') { $must = $true } }
-            if (-not $must) { continue }
-            $key = "$($n.LocalName)/$($n.defName).$($f.Name)"
-            if (-not $frKeys.ContainsKey($key)) { "French has no $key" }
-        }
-    }
+It 'the XML, the defNames, About.xml, the notices and the images pass Check-ModBasics' {
+    Invoke-Shared 'Check-ModBasics.ps1' @('-ModRoot', $ModRoot)
 }
 
-It 'every French key names a def of this mod and a field that def has' {
-    if ($byName.Count -eq 0) { 'Assembly-CSharp is not loaded'; return }
-    if ($frKeys.Count -eq 0) { 'not one French key was read'; return }
-    foreach ($k in $frKeys.Keys) {
-        $folder = $k.Split('/', 2)[0]
-        $rest   = $k.Split('/', 2)[1]
-        # A handle is <defName>.<path>. A defName carries no dot, so the FIRST dot ends it, and the
-        # path after it may be nested: stages.0.label, comps.1.label. Splitting at the last dot
-        # would read the def of CB_X.comps.0.label as "CB_X.comps.0" and fail a correct key. Only
-        # the first segment of the path is checked here; the monorepo's Check-DefInjected.ps1
-        # walks the whole of it.
-        $dot = $rest.IndexOf('.')
-        if ($dot -lt 1) { "$k is not a defName.field handle"; continue }
-        $defName = $rest.Substring(0, $dot)
-        $field   = $rest.Substring($dot + 1).Split('.')[0]
-        if (-not (Get-ModDef $folder $defName)) { "$k names no $folder called $defName in this mod"; continue }
-        $t = $byName[$folder]
-        if (-not $t) { "$k sits in a folder named after no class"; continue }
-        if (-not (Get-FieldsRecursive $t).ContainsKey($field)) { "$k names no field '$field' on $folder" }
-    }
+It 'every DefInjected key resolves to a field the game can inject into (Check-DefInjected)' {
+    Invoke-Shared 'Check-DefInjected.ps1' @('-TransMod', $modDir, '-Managed', $Managed, '-GameData', $GameData)
 }
 
-It 'each DefInjected folder is spelled the way its class is' {
-    # A miscased folder is found on Windows and missed on Linux, where the file goes unread and
-    # the language falls back to English without a word in the log.
-    if ($byName.Count -eq 0) { 'Assembly-CSharp is not loaded'; return }
-    if (-not (Test-Path $frRoot)) { 'there is no French DefInjected directory'; return }
-    foreach ($d in Get-ChildItem $frRoot -Directory) {
-        $t = $byName[$d.Name]
-        if (-not $t) { "$($d.Name) is no class of the game"; continue }
-        if ($t.Name -cne $d.Name) { "$($d.Name) should be spelled $($t.Name)" }
-    }
-}
-
-It 'no French value is empty, and the description keeps its paragraph breaks' {
-    foreach ($k in ($frKeys.Keys | Sort-Object)) {
-        if ([string]::IsNullOrWhiteSpace($frKeys[$k])) { "$k is empty" }
-    }
-    $fr = $frKeys['ThingDef/CB_CrystalBall.description']
-    if ($ballNode -and $fr) {
-        $en = $ballNode.SelectSingleNode('description')
-        if ($en) {
-            $enBreaks = ([regex]::Matches($en.InnerText, '\\n')).Count
-            $frBreaks = ([regex]::Matches($fr, '\\n')).Count
-            if ($enBreaks -ne $frBreaks) { "the English description has $enBreaks line breaks, the French one $frBreaks" }
-        }
-    }
+It 'every shipped text has its French, nothing stale is left, the tokens match (Check-Translations)' {
+    Invoke-Shared 'Check-Translations.ps1' @('-ModRoot', $ModRoot)
 }
 
 # =============================================================================================
 
-Write-Output ''
-if ($script:failed -eq 0) {
-    Write-Output "$($script:ran) tests, all passing."
-} else {
-    Write-Output "$($script:ran) tests, $($script:failed) failing."
-}
-
-[System.AppDomain]::CurrentDomain.remove_AssemblyResolve($script:asmResolver)
-exit ([int]($script:failed -gt 0))
+Remove-GameReflection
+Complete-Tests

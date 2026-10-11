@@ -97,21 +97,9 @@ param(
 
 $ErrorActionPreference = 'Stop'
 
-$script:ran = 0
-$script:failed = 0
-
-function It([string]$name, [scriptblock]$body) {
-    $script:ran++
-    $problems = @()
-    try   { $problems = @(& $body | Where-Object { $_ }) }
-    catch { $problems = @("threw: $($_.Exception.GetBaseException().Message)") }
-    if ($problems.Count -eq 0) { Write-Output "  ok    $name" }
-    else {
-        $script:failed++
-        Write-Output "  FAIL  $name"
-        foreach ($p in $problems) { Write-Output "          $p" }
-    }
-}
+# Shared harness (protocols checkout, two levels above the mod): the test runner and the game-reflection library.
+. "$PSScriptRoot\..\..\scripts\lib\TestRunner.ps1"
+. "$PSScriptRoot\..\..\scripts\lib\GameReflection.ps1"
 
 function Section([string]$name) { Write-Output ''; Write-Output $name }
 
@@ -119,46 +107,17 @@ function Section([string]$name) { Write-Output ''; Write-Output $name }
 # The game, loaded
 # ---------------------------------------------------------------------------------------------
 
-$script:probed = @{}
-$script:asmResolver = [System.ResolveEventHandler]{
-    param($sender, $e)
-    if ($null -eq $script:probed) { return $null }
-    $short = $e.Name.Split(',')[0]
-    if ($script:probed.ContainsKey($short)) { return $null }
-    $script:probed[$short] = $true
-    $p = Join-Path $Managed "$short.dll"
-    if (Test-Path $p) { return [System.Reflection.Assembly]::LoadFrom($p) }
-    return $null
-}
-[System.AppDomain]::CurrentDomain.add_AssemblyResolve($script:asmResolver)
-
-function Get-AssemblyTypes([string]$path) {
-    $a = [System.Reflection.Assembly]::LoadFrom($path)
-    try     { return $a.GetTypes() }
-    catch [System.Reflection.ReflectionTypeLoadException] { return $_.Exception.Types | Where-Object { $_ } }
-    catch   { return $_.Exception.InnerException.Types | Where-Object { $_ } }
-}
+Initialize-GameReflection -Managed $Managed
 
 $allTypes = @()
 $byName   = @{}
 $asmPath  = Join-Path $Managed 'Assembly-CSharp.dll'
 if (Test-Path $asmPath) {
     $allTypes = @(Get-AssemblyTypes $asmPath)
-    foreach ($t in $allTypes) { if (-not $byName.ContainsKey($t.Name)) { $byName[$t.Name] = $t } }
+    $byName   = New-TypeIndex $allTypes
 }
 
-$BFd = [System.Reflection.BindingFlags]'Public,NonPublic,Instance,DeclaredOnly'
 $BFm = [System.Reflection.BindingFlags]'Public,NonPublic,Instance,Static,DeclaredOnly'
-
-function Get-FieldsRecursive([Type]$t) {
-    $d = @{}
-    $cur = $t
-    while ($cur -and $cur.FullName -ne 'System.Object') {
-        foreach ($f in $cur.GetFields($BFd)) { if (-not $d.ContainsKey($f.Name)) { $d[$f.Name] = $f } }
-        $cur = $cur.BaseType
-    }
-    return $d
-}
 
 function Get-Ancestry([Type]$t) {
     $names = @{}
@@ -599,9 +558,5 @@ It 'the ball is picked about as often as the things vanilla''s joy givers name' 
 
 # =============================================================================================
 
-Write-Output ''
-if ($script:failed -eq 0) { Write-Output "$($script:ran) tests, all passing." }
-else                      { Write-Output "$($script:ran) tests, $($script:failed) failing." }
-
-[System.AppDomain]::CurrentDomain.remove_AssemblyResolve($script:asmResolver)
-exit ([int]($script:failed -gt 0))
+Remove-GameReflection
+Complete-Tests

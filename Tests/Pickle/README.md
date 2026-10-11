@@ -21,7 +21,6 @@ minutes. Nothing here restates any of it.
 | `Mod/Pickle/Features/05-workshop-captures.feature` | three close-up pictures for the Workshop gallery, on PickleTools' zen meadow studio; only the `workshop` pass plays it |
 | `wsl-deps.sanctuary.map` | the pass map of that pass: the SanctuaryBacklot minimum mod list (fixture, bodies, face mods) and the PickleTools of the studio |
 | `Source/` | the step assembly, `CrystalBall.PickleSteps.dll` |
-| `Check-Steps.ps1` | compiles every step pattern with Pickle's own engine and checks each feature line resolves to exactly one |
 
 The mod ships no assembly, so the steps reference none of the mod's own: a crystal ball is a plain `Building` that the
 game's chess-table joy giver and sit-facing driver put to use, and every step reaches it through those types and the
@@ -29,7 +28,7 @@ mod's defNames. Everything a Pickle step already does (loading the save, making 
 the screenshots, the log assertions, saving and reloading) is left to Pickle.
 
 **Every step text starts with `Crystal Ball:`.** Pickle loads the steps of every active suite into one namespace, and two
-suites declaring the same text produce "Ambiguous step" on scenarios that are perfectly healthy. `Check-Steps.ps1`
+suites declaring the same text produce "Ambiguous step" on scenarios that are perfectly healthy. The shared `scripts/Check-Steps.ps1` of the protocols repository
 compares this suite's lines with Pickle's vocabulary and, when the collection is around, with every other suite's.
 
 ## Three passes: two languages, and the pictures
@@ -93,7 +92,7 @@ The DLL is a build artefact: it lands in `Mod/Pickle/Assemblies/` and stays out 
 test what was just changed. Then:
 
 ```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File Tests/Pickle/Check-Steps.ps1
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File ..scriptsCheck-Steps.ps1 -ModRoot .
 ```
 
 ## Status
