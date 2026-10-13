@@ -1,0 +1,5 @@
+# RimWorld 1.7 diagnostic pass (AUDIT.md "Passe 1.7"): the mod's own steps as a net10.0 build, English, no PickleTools (the @requires features skip).
+# Provisional local path: path: is relative to REPO=/mnt/c/Users/nelim/Documents/rimworld, six levels up reach /. Run with -Game /home/nelim/rimworld17 -PickleSrc /home/nelim/Rimworld-Pickle.
+# No No Version Warning mod is staged (the staging script has no support for it): the undeclared 1.7 gives a yellow warning only; the proof is the log and the report.
+# The 1.7 build of the mod's own steps (net10.0, Audit 2026-10-13, scripts/build-pickle-steps-net10.sh): overlays the committed Tests/Pickle/Mod (same packageId); About.xml of the overlay declares 1.6 and 1.7.
+nelim.crystalball.pickletests path:../../../../../../home/nelim/pt17/mods/CrystalBallSteps
