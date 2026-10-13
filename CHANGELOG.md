@@ -3,6 +3,8 @@
 Format inspired by [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 This file serves the repository and the writing of Steam patch notes; RimWorld does not display it in game.
 
+## [Unreleased]
+
 ## [1.0.1] — 2026-10-08
 
 The publish workflow creates the `v1.0.1` tag and the matching GitHub release after a successful upload. No gameplay change.
