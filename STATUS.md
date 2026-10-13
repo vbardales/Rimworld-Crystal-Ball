@@ -25,8 +25,8 @@ session:      01a09736-2cfc-72d3-8b3c-4ffe79ef572c
 code_review_sha: 302e6d8593e3ae17bc191c3823819bbd5a033cfc
 publication_changelog_review_sha: 6625b154c312ed5a8356cf6d6388b1496d41923a
 echo_review_sha: eb8d334d0f576f0df136992df3baf9dc286a2dde
-updated:      2026-10-10
-protocols_read_sha: c4aea5fbde7151683d9e3ece368142ed2d63f050
+updated:      2026-10-13
+protocols_read_sha: 65e09838c8023b798d4ba0ff04df04284a96f11e
 ---
 
 
