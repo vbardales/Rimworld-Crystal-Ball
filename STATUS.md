@@ -24,7 +24,7 @@ remaining: []
 session:      01a09736-2cfc-72d3-8b3c-4ffe79ef572c
 code_review_sha: 302e6d8593e3ae17bc191c3823819bbd5a033cfc
 publication_changelog_review_sha: 6625b154c312ed5a8356cf6d6388b1496d41923a
-echo_review_sha: eb8d334d0f576f0df136992df3baf9dc286a2dde
+echo_review_sha: bac147eac58e4e46d69cc428796f2c508282265f
 updated:      2026-10-13
 protocols_read_sha: 65e09838c8023b798d4ba0ff04df04284a96f11e
 ---
@@ -88,3 +88,7 @@ Retained: **`dormant`** (`followUp[1.0.1]` closed 2026-10-10, nothing reopened).
 - Echo review (AUDIT.md 10.a): `Art/echo.png` (line art of the claw-footed sphere) shows the ball the gallery shows; keep. Validated at `eb8d334`, gallery and echo unchanged since.
 - Not applicable, unchanged: `settings_audit` (no option, no page, no shortcut), dependencies (none, `loadAfter` names the game only), DLC (proved offline), adoption clause present (public mod).
 - Open, not a defect: none. Empty `## [Unreleased]` heading removed from `CHANGELOG.md` (Check-Status: none may stay on top from `publish` on); the next patch adds it back at `code[1.0.2]`.
+
+## Echo review (2026-10-15)
+
+Virginie redrew `Art/echo-source.png` by hand (2026-10-14): faceted violet sphere, claws and crystal point, as the gallery shows it (the old one carried cracks the gallery does not show). Kept and validated by Virginie at `bac147e`; Preview, `0-preview.png` and `Preview.ico` regenerated in that commit (the echo shows smaller than before, accepted). `echo_review_sha` set to it.
