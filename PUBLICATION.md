@@ -96,6 +96,17 @@ Steps of the feature, by owner. **SanctuaryBacklot (SB), prefix `Nelim's Sanctua
 Known limits: the glow in picture 3 is discreet by nature (the ball's own light, radius 3); the colonist's name label is hidden
 by the presentation mode, which needs Harmony (loaded in the Sanctuary map). Pictures 1 to 3 were qualified by Virginie on 2026-10-08 and uploaded by her on the Steam page. Picture 0 (badge included) was qualified by Virginie on 2026-09-29; the Preview has
 been regenerated since from the new ModIcon source (2026-10-05), and `0-preview.png` is byte-identical to it.
+
+### Gallery subtitles
+
+Every scene without an interface window carries one line of English at the bottom of the image, like a film subtitle (`GALLERY.md`, "Sous-titres"; rule of 2026-10-15). Pictures 1 to 3 are scenes of the seer's hut, with no window: all three get a line. `0-preview.png` is exempt (byte copy of the Preview). The lines are drafted here; the clean originals go to `Art/Gallery-clean/` and the subtitled images to `Art/Gallery/` only when the series is next shot (`scripts/Add-Subtitle.ps1`), so nothing is burned into the published pictures yet.
+
+| Index | File | Line |
+| --- | --- | --- |
+| 1 | `1-the-ball-by-day.png` | The seer brought only one thing to the hut: her crystal ball. |
+| 2 | `2-a-colonist-gazing.png` | Dusk falls, and she sits beside it, no chair needed. |
+| 3 | `3-the-ball-glowing-in-the-dark.png` | By night, the ball's own glow is the only light left. |
+
 ## 3. Dependencies to declare on Steam
 
 None. The mod needs no DLC and no other mod, and its `About.xml` declares none. `loadAfter` names `Ludeon.RimWorld` only.
