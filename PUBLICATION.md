@@ -77,7 +77,7 @@ The placement is explicit in the config; it is not chosen from an "emptiest corn
 `Art/Gallery/0-preview.png` is copied byte-for-byte from `Mod/About/Preview.png`.
 
 The three pictures come from the Pickle features `05-workshop-captures.feature` (1 and 2) and `07-workshop-glow.feature` (3), played on Nelim's Sanctuary (`-DepMap wsl-deps.sanctuary.map`,
-the Sanctuary now has its own repository, SanctuaryBacklot (`docs/GALERIE.md`, `SANCTUAIRE-LIEUX.md`, `SANCTUAIRE-CASES.md`, generated `docs/steps.md`)). They are staged photographs, not catalogue plates (`PUBLISHING.md`, "Images"): the story is **the seer's corner**, in the
+the Sanctuary now has its own repository, SanctuaryBacklot (`docs/GALERIE.md`, `SANCTUAIRE-LIEUX.md`, `SANCTUAIRE-CASES.md`, generated `docs/steps.md`)). They are staged photographs, not catalogue plates (`PUBLISHING.md`, "Images"): the story is **the seer's evening**, in the
 hut (`hut`, the tea room, emptied, roof kept: lit by torches in pictures 1 and 2, by the ball alone in picture 3), with Nelim, the map's one colonist, as the seer. A probe (`06-hut-probe.feature`)
 lists and photographs the empty hut first, so that the set is laid on known cells. The features were played in the hut and the three pictures below were qualified by Virginie on 2026-10-08 (runs `8d29` and `bd93`; the evidence folders are in `STATUS.md`). The earlier pictures (meadow studio with Miel, then the podium) are discarded: the podium showed a bright green marking square.
 A crop (the script that did it was removed from `Art/` on 2026-10-02; `git show 800b8aa:Art/Crop-WorkshopScreenshots.ps1`) and a re-compression keep each image
@@ -89,9 +89,9 @@ Steps of the feature, by owner. **SanctuaryBacklot (SB), prefix `Nelim's Sanctua
 | # | File | Shows |
 | --- | --- | --- |
 | 0 | `0-preview.png` | The finished vitrine: title, one-line summary, version badge, line-art echo, and ModIcon corner badge |
-| 1 | `1-the-ball-by-day.png` | The sphere on its stand in the seer's hut, by day: what the mod adds |
-| 2 | `2-a-colonist-gazing.png` | Nelim, the seer, sitting on the cell beside it with no chair anywhere near, the room having been emptied |
-| 3 | `3-the-ball-glowing-in-the-dark.png` | The hut at 23:00 with no torch: the ball's own violet halo, Nelim as a mage (violet cape and hood) seated beside it (feature `07-workshop-glow.feature`) |
+| 1 | `1-the-ball-by-day.png` | 17:00, the seer arrives: the ball in the middle of the room, one torch lit, Nelim (flowing hair, her own smirk) beside the shelf, wide shot: what the mod adds |
+| 2 | `2-a-colonist-gazing.png` | 18:00, the three torches lit: Nelim sitting on the cell beside the ball, gaze relaxed, no chair anywhere near, the room having been emptied |
+| 3 | `3-the-ball-glowing-in-the-dark.png` | The hut at 23:00 with no torch: the ball's own violet halo, Nelim as a mage (violet cape, hair uncovered) seated beside it, sleepy lids (feature `07-workshop-glow.feature`) |
 
 Known limits: the glow in picture 3 is discreet by nature (the ball's own light, radius 3); the colonist's name label is hidden
 by the presentation mode, which needs Harmony (loaded in the Sanctuary map). Pictures 1 to 3 were qualified by Virginie on 2026-10-08 and uploaded by her on the Steam page. Picture 0 (badge included) was qualified by Virginie on 2026-09-29; the Preview has
@@ -103,7 +103,7 @@ Every scene without an interface window carries one line of English at the botto
 
 | Index | File | Line |
 | --- | --- | --- |
-| 1 | `1-the-ball-by-day.png` | The seer brought only one thing to the hut: her crystal ball. |
+| 1 | `1-the-ball-by-day.png` | The seer arrives with her crystal ball and lights the first torch. |
 | 2 | `2-a-colonist-gazing.png` | Dusk falls, and she sits beside it, no chair needed. |
 | 3 | `3-the-ball-glowing-in-the-dark.png` | By night, the ball's own glow is the only light left. |
 
