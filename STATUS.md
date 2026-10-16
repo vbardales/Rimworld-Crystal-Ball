@@ -92,3 +92,7 @@ Retained: **`dormant`** (`followUp[1.0.1]` closed 2026-10-10, nothing reopened).
 ## Echo review (2026-10-15)
 
 Virginie redrew `Art/echo-source.png` by hand (2026-10-14): faceted violet sphere, claws and crystal point, as the gallery shows it (the old one carried cracks the gallery does not show). Kept and validated by Virginie at `bac147e`; Preview, `0-preview.png` and `Preview.ico` regenerated in that commit (the echo shows smaller than before, accepted). `echo_review_sha` set to it.
+
+## RimWorld 1.7 diagnostic (2026-10-16)
+
+`tested_1_7` not recorded. First 1.7 run `2e1e` (English, `Tests/Pickle/Evidence/p17-cb-english-1016-0426`): 7 of 16 passed, 5 failed, 4 skipped (`docs/runs/README.md`). The failures are pawns that do not arrive within 90 s (the same scenarios last about 10 s on 1.6) and the save scenario already red at `c525`; no mod exception in the log, cause not established. Ticket `20261016-215033-787-7a63` (the 5 red scenarios, `p17-cb-red5-1016`, steps rebuilt as net10.0 and features recopied into `~/pt17/mods/CrystalBallSteps`) is in the queue: keep `Mod/` and `Tests/` on `af4a085` until `RUN_DONE`. Preconditions (Pickle#63, NPT, SB on 1.7) not checked here.
