@@ -26,7 +26,7 @@ code_review_sha: 302e6d8593e3ae17bc191c3823819bbd5a033cfc
 publication_changelog_review_sha: 6625b154c312ed5a8356cf6d6388b1496d41923a
 echo_review_sha: bac147eac58e4e46d69cc428796f2c508282265f
 updated:      2026-10-13
-protocols_read_sha: 1ae53af82d9576a606e77280542ea4d52032c320
+protocols_read_sha: 005d9b2720a85d62a3a31b02c265f3133621ee72
 ---
 
 
@@ -47,7 +47,7 @@ non-regression is green. The dated sections that used to live here are one line 
 | Reviews | `code_review_sha` `302e6d8`, all findings fixed or closed; `publication_changelog_review_sha` `6625b15` | front matter |
 | Ideas not started | A stronger night glow, for a later patch | `BACKLOG.md` |
 
-`git diff v1.0.1..HEAD -- Mod` is empty: no `1.0.2` material. A next patch reopens the chain at `code[1.0.2]`.
+`git diff v1.0.1..HEAD -- Mod` shows only `Mod/About/Preview.png` (echo redrawn, `bac147e`): no def, text or code change. `CHANGELOG.md` carries it under `## [Unreleased]` for `1.1.0`.
 
 ## Repository identity
 

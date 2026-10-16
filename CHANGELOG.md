@@ -5,6 +5,12 @@ This file serves the repository and the writing of Steam patch notes; RimWorld d
 
 ## [Unreleased]
 
+Next version `1.1.0`: minor bump for the RimWorld 1.7 line. No `1.7` in `supportedVersions` before a green 1.7 run.
+
+### Changed
+
+- **Preview image**: the claw-footed ball line art in the corner was redrawn by hand (faceted sphere, claws, crystal point), matching the gallery. No def, text or texture changed.
+
 ## [1.0.1] — 2026-10-08
 
 The publish workflow creates the `v1.0.1` tag and the matching GitHub release after a successful upload. No gameplay change.
