@@ -1,15 +1,15 @@
 # Backlog
 
-Ideas for a later version, none started. Each one changes `Mod/` unless said otherwise, so it goes out as a new patch
-(`1.0.1` or later) with its own non-regression, never as an edit of the published `1.0.0` (commit `7d64a56`).
+Ideas for later version, none started. Each change `Mod/` unless said otherwise, so ship as new patch
+(`1.0.1` or later) with own non-regression, never edit published `1.0.0` (commit `7d64a56`).
 
 ## Stronger night glow
 
-- **Why:** the Workshop pictures of `1.0.0` (`Art/Gallery/2-the-ball-at-night.png` of 1.0.0, removed from the gallery on 2026-10-08) show a faint glow at
-  night, while the description promises a landmark. Also, at the game's closest zoom the ball is only about 30 pixels wide.
-- **Idea:** raise the glow's radius or intensity a little, without turning the ball into a lamp (the description says it
+- **Why:** Workshop pictures of `1.0.0` (`Art/Gallery/2-the-ball-at-night.png` of 1.0.0, removed from gallery on 2026-10-08) show faint glow at
+  night, while description promises landmark. Also, at game's closest zoom ball only about 30 pixels wide.
+- **Idea:** raise glow radius or intensity a little, without turning ball into lamp (description says it
   does not replace one).
-- **To check first:** how the glow value is read by the game and by the colony's light-dependent mechanics, so a stronger
-  glow does not change what the colonists do, and whether a stronger one still fits "faint" in the text.
-- **Then:** replay the three passes and retake `Art/Gallery/2-` (`05-workshop-captures.feature`).
+- **To check first:** how game and colony's light-dependent mechanics read glow value, so stronger
+  glow does not change what colonists do, and whether stronger one still fits "faint" in text.
+- **Then:** replay three passes and retake `Art/Gallery/2-` (`05-workshop-captures.feature`).
 - **Origin:** Virginie's request, 2026-09-26.
