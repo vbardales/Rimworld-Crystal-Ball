@@ -20,7 +20,7 @@ showcase:     complete
 tested_on:    1.0.1 (published 2026-10-08), played in game through Pickle 2026-10-08 and 2026-10-09: French `68c7` and English `8acb` green (12 of 12 played, the 4 `workshop` captures skipped there); `sanctuary` `c525` 15 of 16, the four captures green, the save scenario red outside the scope of that pass (accepted by Virginie 2026-10-09, played green in the two minimal passes). Older runs: `docs/runs/README.md`.
 workshop:     3806709786
 published_on: 2026-10-08, version 1.0.1 by the publish workflow (run 37839600085, SHA c090e2fa7a1cb64e7a19416e43e2e5443c0a333d, dry-run 37839358655), tag v1.0.1 and GitHub release by the CI. First publication 2026-09-26 (1.0.0, SHA 7d64a56491d7f131ec5770342f65875d993f8279), made public by Virginie the same day; gallery and subscriptions are hers, by hand.
-remaining: []
+remaining: ["1.7 diagnostic ticket bf2b (PathProbe) pending, decides whether the 0 of 5 of 7a63 is the mod or Pickle#63; then replay the 5 red scenarios alone"]
 session:      01a09736-2cfc-72d3-8b3c-4ffe79ef572c
 code_review_sha: 302e6d8593e3ae17bc191c3823819bbd5a033cfc
 publication_changelog_review_sha: 6625b154c312ed5a8356cf6d6388b1496d41923a
