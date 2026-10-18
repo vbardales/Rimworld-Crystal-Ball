@@ -9,7 +9,7 @@ remote:       https://github.com/vbardales/Rimworld-Crystal-Ball.git
 local_path:   C:\Users\nelim\Documents\rimworld\CrystalBall
 visibility:   public
 detached:     yes
-workflow_stage: code[1.1.0]
+workflow_stage: settings[1.1.0]
 settings_audit: not_applicable
 licence:      original
 licence_at:   MIT; original mod according to repository provenance
@@ -25,12 +25,12 @@ session:      01a09736-2cfc-72d3-8b3c-4ffe79ef572c
 code_review_sha: 302e6d8593e3ae17bc191c3823819bbd5a033cfc
 publication_changelog_review_sha: 6625b154c312ed5a8356cf6d6388b1496d41923a
 echo_review_sha: bac147eac58e4e46d69cc428796f2c508282265f
-updated:      2026-10-13
+updated:      2026-10-18
 protocols_read_sha: b7ed0bd92ef9c1a1a5c74fa52332110b024377dd
 ---
 # Crystal Ball: status (2026-10-10)
 
-**`workflow_stage: code[1.1.0]`** (minor bump for RimWorld 1.7 line; no `1.7` in `supportedVersions` before green 1.7 run; `tested_1_7` not recorded yet). Version `1.0.1` public on Steam (item 3806709786), post-publication
+**`workflow_stage: declareDependencies[1.1.0]`** (stage walked one by one from `code`, 2026-10-18, owner request: nothing coded for 1.1.0, `Mod/` unchanged since `v1.0.1` but the Preview; 3.a to 3.c checked: no feature open, no assembly, `[Unreleased]` present) (minor bump for RimWorld 1.7 line; no `1.7` in `supportedVersions` before green 1.7 run; `tested_1_7` not recorded yet). Version `1.0.1` public on Steam (item 3806709786), post-publication
 non-regression green. Dated sections that used to live here now one line each in `docs/runs/status-journal.md`
 (AUDIT.md 14.c); full text in git.
 
@@ -96,3 +96,8 @@ Virginie redrew `Art/echo-source.png` by hand (2026-10-14): faceted violet spher
 `tested_1_7` not recorded. First 1.7 run `2e1e` (English, `Tests/Pickle/Evidence/p17-cb-english-1016-0426`): 7 of 16 passed, 5 failed, 4 skipped (`docs/runs/README.md`). Failures: pawns not arriving within 90 s (same scenarios take about 10 s on 1.6) and save scenario already red at `c525`; no mod exception in log, cause not established. Ticket `7a63` (`RUN_DONE` exit 1, `p17-cb-red5-1016`): 0 of 5 passed, same 5 red. Build: blueprint still waiting for material after 283 s. Gaze scenarios: job `CB_GazeIntoCrystalBall` runs, pawn still moving toward ball after 90 s. Save: `TryGiveJob returned no job`, as at `c525`. No mod exception; cause not established, pawns slow on 1.7 (Pickle#63, game speed or pathing: not checked here). `Mod/` and `Tests/` free to change again. Checked 2026-10-16: scenarios load Pickle's shared fixture `test-colony.rws` (gameVersion 1.6.4633; log `Loaded file (Map) is from version 1.6.4633`), not a mod file. Audit knows no green walking or hauling scenario on 1.7: the green p17- tickets are load, defs, language and restart checks; DrumBathHygiene `9910` is green but its scenarios teleport the pawn onto the drum. So the cause may be Pickle#63 or 1.7 pathing, not this mod; not proven. Blocked: no walking scenario of this mod can be judged on 1.7 until a pawn walk is shown green elsewhere or the fixture is re-saved on 1.7 (Pickle side). `tested_1_7` stays unrecorded; no `1.7` in `supportedVersions`.
 
 Open 2026-10-18: 1.7 diagnostic ticket `20261017-180855-702-bf2b` (PathProbe, filed by the `1.7` session, evidence `Tests/Pickle/Evidence/p17-pathprobe-1017b`, first try `16aa` stalled at startup): `Jet` ordered 16 cells east on `test-colony`, wait 900 ticks, assert a Human on the cell. Green: the 0 of 5 of `7a63` comes from the mod's joy path, not 1.7 pathing. Red: Pickle#63 or 1.7 pathing defect, `1.7` session gives the proof. Nothing is filed by CB until `RUN_DONE`.
+
+## Stage walk 2026-10-18 (owner request, one stage at a time, nothing skipped)
+
+- `code` to `declareDependencies`: 3.a no `feature` open; 3.b no assembly (`Mod/` has defs, French DefInjected, one texture); 3.c `[Unreleased]` says what 1.1.0 changes (Preview echo, 1.7 line). Done.
+- `declareDependencies` to `settings` (revision `44658b4`): 4.a read `Mod/Defs/CrystalBall.xml` and `About.xml`: vanilla things only (`Jade`, `Gold`, `BuildingsJoy`, `JobDriver_SitFacingBuilding`, `JoyGiver_InteractBuildingSitAdjacent`), no mod reference, no `MayRequire`. 4.b `modDependencies` none, `loadAfter` names the game only, no `incompatibleWith`. 4.c no DLC reference in defs, no `LoadFolders.xml`, `supportedVersions` is `1.6` only. 4.d no cycle possible (no dependency). 4.e no patch. 4.f not an animal mod. Nothing changed since the 2026-10-11 audit. Done.
