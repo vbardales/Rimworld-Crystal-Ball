@@ -9,7 +9,7 @@ remote:       https://github.com/vbardales/Rimworld-Crystal-Ball.git
 local_path:   C:\Users\nelim\Documents\rimworld\CrystalBall
 visibility:   public
 detached:     yes
-workflow_stage: settings[1.1.0]
+workflow_stage: localize[1.1.0]
 settings_audit: not_applicable
 licence:      original
 licence_at:   MIT; original mod according to repository provenance
@@ -26,7 +26,7 @@ code_review_sha: 302e6d8593e3ae17bc191c3823819bbd5a033cfc
 publication_changelog_review_sha: 6625b154c312ed5a8356cf6d6388b1496d41923a
 echo_review_sha: bac147eac58e4e46d69cc428796f2c508282265f
 updated:      2026-10-18
-protocols_read_sha: b7ed0bd92ef9c1a1a5c74fa52332110b024377dd
+protocols_read_sha: bde324699b1b844b8b097ba0703df79f6d2dc746
 ---
 # Crystal Ball: status (2026-10-10)
 
@@ -101,3 +101,4 @@ Open 2026-10-18: 1.7 diagnostic ticket `20261017-180855-702-bf2b` (PathProbe, fi
 
 - `code` to `declareDependencies`: 3.a no `feature` open; 3.b no assembly (`Mod/` has defs, French DefInjected, one texture); 3.c `[Unreleased]` says what 1.1.0 changes (Preview echo, 1.7 line). Done.
 - `declareDependencies` to `settings` (revision `44658b4`): 4.a read `Mod/Defs/CrystalBall.xml` and `About.xml`: vanilla things only (`Jade`, `Gold`, `BuildingsJoy`, `JobDriver_SitFacingBuilding`, `JoyGiver_InteractBuildingSitAdjacent`), no mod reference, no `MayRequire`. 4.b `modDependencies` none, `loadAfter` names the game only, no `incompatibleWith`. 4.c no DLC reference in defs, no `LoadFolders.xml`, `supportedVersions` is `1.6` only. 4.d no cycle possible (no dependency). 4.e no patch. 4.f not an animal mod. Nothing changed since the 2026-10-11 audit. Done.
+- `settings` to `localize` (revision `28bf1a5`): 5.a/5.b inventory: no option, no `ModSettings`, no assembly, no page, no MainButtons def in `Mod/`; nothing configurable that a player needs (one def set, vanilla joy logic). 5.c to 5.e not applicable. 5.f `scripts/Run-Tests.ps1` 22 of 22 and `scripts/Run-Functional-Tests.ps1` 11 of 11 replayed today. 5.g `settings_audit: not_applicable` stands, no empty page, no shortcut. Done.
