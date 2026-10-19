@@ -14,7 +14,7 @@ Feature: a save with the ball in use
   Background:
     Given the save "test-colony" is loaded
 
-  @timeout:300
+  @timeout:900
   Scenario: a save taken with two colonists gazing loads clean and the ball is still a masterwork
     Given a colonist "Save-1" exists
     And a colonist "Save-2" exists

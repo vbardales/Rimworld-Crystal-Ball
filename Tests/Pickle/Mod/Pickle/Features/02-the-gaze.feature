@@ -21,7 +21,7 @@ Feature: a colonist gazes into the ball
   Background:
     Given the save "test-colony" is loaded
 
-  @timeout:180
+  @timeout:900
   Scenario: a colonist with low joy is sent to the ball and sits beside it with no seat anywhere near
     Given a colonist "Gazer" exists
     And "Gazer" needs "Joy" is set to 10 percent
@@ -34,7 +34,7 @@ Feature: a colonist gazes into the ball
     And "Gazer" has job "CB_GazeIntoCrystalBall"
     And no errors were logged
 
-  @timeout:240
+  @timeout:900
   Scenario: two colonists may share the ball and a third is offered nothing
     Given a colonist "Share-1" exists
     And a colonist "Share-2" exists
@@ -50,7 +50,7 @@ Feature: a colonist gazes into the ball
     And Crystal Ball: "Share-2" sits beside the ball "Pair"
     And Crystal Ball: the joy giver offers "Share-3" nothing
 
-  @timeout:300
+  @timeout:900
   Scenario: a sitting builds tolerance for divination and the recreation on the map lists it
     Given a colonist "Tired" exists
     And "Tired" needs "Joy" is set to 10 percent
@@ -64,7 +64,7 @@ Feature: a colonist gazes into the ball
     When I wait 1500 ticks
     Then Crystal Ball: "Tired" has built up tolerance for divination
 
-  @timeout:240
+  @timeout:900
   Scenario: a colonist who cannot see is offered nothing and one who cannot hear is sent and sits
     Given a colonist "Blind" exists
     And a colonist "Deaf" exists

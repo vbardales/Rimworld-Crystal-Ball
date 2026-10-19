@@ -136,17 +136,21 @@ namespace CrystalBall.PickleSteps
         /// Waits for a condition and, when it never comes true, fails with what the world looks like NOW.
         /// <c>PickleContext.WaitUntil</c> throws <see cref="TimeoutException"/> when it times out, so an Assert written
         /// after a bare await would be reached only when the wait already succeeded: a stuck colonist would read as
-        /// "Step ... timed out" and nothing else.
+        /// "Step ... timed out" and nothing else. The budget is counted in game ticks, not in real seconds: on RimWorld
+        /// 1.7 under WSL the game runs at about 2 to 5 ticks per second (one tick up to 507 ms), so a real-time wait
+        /// that is ample at 1.6 ends long before a colonist has walked a few cells.
         /// </summary>
-        internal static async Task WaitOrExplain(PickleContext ctx, Func<bool> condition, float seconds, Func<string> explain)
+        internal static async Task WaitOrExplain(PickleContext ctx, Func<bool> condition, int maxTicks, Func<string> explain)
         {
-            try
+            int start = Find.TickManager.TicksGame;
+            while (!condition())
             {
-                await ctx.WaitUntil(condition, seconds);
-            }
-            catch (TimeoutException)
-            {
-                ctx.Assert(false, $"after {seconds:0} s: {explain()}");
+                if (Find.TickManager.TicksGame - start >= maxTicks)
+                {
+                    ctx.Assert(false, $"after {maxTicks} ticks: {explain()}");
+                    return;
+                }
+                await ctx.WaitTicks(5);
             }
         }
 
@@ -416,7 +420,7 @@ namespace CrystalBall.PickleSteps
 
         // ------------------------------------------------------------------ what the colonist does
 
-        [Then("Crystal Ball: {string} sits beside the ball {string}", TimeoutSeconds = 100f)]
+        [Then("Crystal Ball: {string} sits beside the ball {string}", TimeoutSeconds = 900f)]
         public async Task SitsBeside(PickleContext ctx, string nickname, string ballName)
         {
             Pawn pawn = Colonist(ctx, nickname);
@@ -424,7 +428,7 @@ namespace CrystalBall.PickleSteps
 
             await WaitOrExplain(ctx,
                 () => Uses(pawn, ball) && Chebyshev(pawn.Position, ball.Position) == 1 && !pawn.pather.Moving,
-                90f,
+                1500,
                 () => $"{nickname} is at {pawn.Position}, the ball at {ball.Position}; job " +
                       (pawn.CurJob == null ? "none" : pawn.CurJob.def.defName) + ", moving " + pawn.pather.Moving);
 
