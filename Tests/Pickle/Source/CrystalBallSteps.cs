@@ -262,17 +262,6 @@ namespace CrystalBall.PickleSteps
         }
 
         /// <summary>
-        /// For a presentation picture on another fixture than the test colony: the same kind of spot, found from a cell
-        /// the scenario names instead of from the test colony's own. It asks for no seat-free radius, since a picture
-        /// is not a claim about chairs.
-        /// </summary>
-        [Given("Crystal Ball: a crystal ball {string} stands on open ground near \\({int}, {int}\\)")]
-        public void PlaceBallNear(PickleContext ctx, string name, int x, int z)
-        {
-            Place(ctx, name, QualityCategory.Normal, 0, new IntVec3(x, 0, z));
-        }
-
-        /// <summary>
         /// For a presentation picture indoors: the ball goes on the very cell asked for, under a roof or not. The searching steps
         /// above refuse a roofed cell, so a picture in a hut put the ball outside its wall (run c4db). Fails when the cell is
         /// not standable or already holds something that blocks it, instead of moving the ball to another cell.
