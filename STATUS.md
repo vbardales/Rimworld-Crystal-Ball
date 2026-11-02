@@ -9,7 +9,7 @@ remote:       https://github.com/vbardales/Rimworld-Crystal-Ball.git
 local_path:   C:\Users\nelim\Documents\rimworld\CrystalBall
 visibility:   public
 detached:     yes
-workflow_stage: playTests[1.1.0]
+workflow_stage: writeTests[1.1.0]
 settings_audit: not_applicable
 licence:      original
 licence_at:   MIT; original mod according to repository provenance
@@ -20,13 +20,13 @@ showcase:     complete
 tested_on:    1.0.1 (published 2026-10-08), played in game through Pickle 2026-10-08 and 2026-10-09: French `68c7` and English `8acb` green (12 of 12 played, the 4 `workshop` captures skipped there); `sanctuary` `c525` 15 of 16, the four captures green, the save scenario red outside the scope of that pass (accepted by Virginie 2026-10-09, played green in the two minimal passes). Older runs: `docs/runs/README.md`.
 workshop:     3806709786
 published_on: 2026-10-08, version 1.0.1 by the publish workflow (run 37839600085, SHA c090e2fa7a1cb64e7a19416e43e2e5443c0a333d, dry-run 37839358655), tag v1.0.1 and GitHub release by the CI. First publication 2026-09-26 (1.0.0, SHA 7d64a56491d7f131ec5770342f65875d993f8279), made public by Virginie the same day; gallery and subscriptions are hers, by hand.
-remaining: ["1.7 pathing OK: probe 75fc passed 2 of 2 on 1.7.4976 (4 cells in 292 ticks, 16 cells in 872 ticks; evidence Tests/Pickle/Evidence/p17-pathprobe-1018). The 0 of 5 of 7a63 came from real-time waits at low tick rate (about 2 to 5 ticks/s, max tick 507 ms), not pathing. Walks rewritten to wait in ticks (1500-tick budget, timeouts 900 s and 1800 s, commit 7e38390); 1.7 replay ticket 20261019-225931-524-1747 of the 5 red scenarios filed 2026-10-19, evidence Tests/Pickle/Inbox/p17-red5-ticks. Known risk: the save scenario also fails on 1.6 (TryGiveJob returned no job, c525), not a wait problem. RIMMSQOL (Workshop 1084452457) is tagged 1.7: scenarios that depend on it are replayed with RIMMSQOL staged, and scenarios SKIPPED for it are replayed before tested_1_7 can be yes (AUDIT.md 'Passe 1.7'). Evidence triaged 2026-10-21 (3 minified greens with RELEASE.md in Tests/Pickle/Evidence, Inbox empty); Preview config reduced to mod-specific keys (8ee6cf0, new renderer defaults). 1747 died at launch 2026-10-21 (Docker mount: no About/ in pt17/mods/CrystalBallSteps, no report), refiled 2026-10-25 as ticket 20261025-141732-296-fd99 (5 red plus the fourth gaze scenario, p17-red5-retry). Next: on RUN_DONE of fd99 read summary.json, minify the proof, set tested_1_7"]
+remaining: ["7.b, 7.c: no automated test left. scripts/Run-Tests.ps1 and scripts/Run-Functional-Tests.ps1 were deleted in fb8dfcc (2026-10-20) and Run-UnitTests.ps1 is n/a (no Tests/*.Tests.csproj), yet TESTING.md, README.md and the table below still cite them (22 of 22, 11 of 11): rewrite the tests under Tests/ (CB_ prefix, Building, one recreation type, glow alpha, cost, image sizes, no DLC), declare them to Audit (LOCAL_SCRIPTS), replay, fix the stale text. 8.m: code_review_sha 302e6d8 trails HEAD by Mod/About/Preview.png only (image exception: record the diff review at playTests). 1.7 replay fd99 failed (WSL down, exit 11): refile after 7.b is green. 1.7 pathing OK: probe 75fc passed 2 of 2 on 1.7.4976 (4 cells in 292 ticks, 16 cells in 872 ticks; evidence Tests/Pickle/Evidence/p17-pathprobe-1018). The 0 of 5 of 7a63 came from real-time waits at low tick rate (about 2 to 5 ticks/s, max tick 507 ms), not pathing. Walks rewritten to wait in ticks (1500-tick budget, timeouts 900 s and 1800 s, commit 7e38390); 1.7 replay ticket 20261019-225931-524-1747 of the 5 red scenarios filed 2026-10-19, evidence Tests/Pickle/Inbox/p17-red5-ticks. Known risk: the save scenario also fails on 1.6 (TryGiveJob returned no job, c525), not a wait problem. RIMMSQOL (Workshop 1084452457) is tagged 1.7: scenarios that depend on it are replayed with RIMMSQOL staged, and scenarios SKIPPED for it are replayed before tested_1_7 can be yes (AUDIT.md 'Passe 1.7'). Evidence triaged 2026-10-21 (3 minified greens with RELEASE.md in Tests/Pickle/Evidence, Inbox empty); Preview config reduced to mod-specific keys (8ee6cf0, new renderer defaults). 1747 died at launch 2026-10-21 (Docker mount: no About/ in pt17/mods/CrystalBallSteps, no report), refiled 2026-10-25 as ticket 20261025-141732-296-fd99 (5 red plus the fourth gaze scenario, p17-red5-retry). Next: on RUN_DONE of fd99 read summary.json, minify the proof, set tested_1_7"]
 session:      01a09736-2cfc-72d3-8b3c-4ffe79ef572c
 code_review_sha: 302e6d8593e3ae17bc191c3823819bbd5a033cfc
 publication_changelog_review_sha: 6625b154c312ed5a8356cf6d6388b1496d41923a
 echo_review_sha: bac147eac58e4e46d69cc428796f2c508282265f
-updated:      2026-10-18
-protocols_read_sha: afc89088870a2290bb6e6934fc5287333ad60d81
+updated:      2026-11-02
+protocols_read_sha: 2b1987d3d0411383caafe4dd66921969957f7cca
 ---
 # Crystal Ball: status (2026-10-10)
 
