@@ -49,11 +49,11 @@ up this way. Being a building is what lets this mod ship no code at all.
 ## Tests
 
 ```
-powershell -NoProfile -ExecutionPolicy Bypass -File scripts/Run-Tests.ps1
-powershell -NoProfile -ExecutionPolicy Bypass -File scripts/Run-Functional-Tests.ps1
+powershell -NoProfile -ExecutionPolicy Bypass -File Tests/Run-Tests.ps1
+powershell -NoProfile -ExecutionPolicy Bypass -File Tests/Run-Functional-Tests.ps1
 ```
 
-Thirty-six tests in two suites, no RimWorld launched, half a minute for both. They read the
+Twenty-three tests in two suites, no RimWorld launched, half a minute for both. They read the
 installed game, its `Data` folder and `Assembly-CSharp`, so they check what this mod assumes
 rather than what this page claims. Every test in both has been seen to fail against a
 deliberately broken copy.

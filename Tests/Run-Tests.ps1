@@ -1,109 +1,39 @@
 <#
 .SYNOPSIS
-  The mod's own test suite. Runs without RimWorld, in under twenty seconds.
+  The mod's own tests: values and behaviours no shared check holds. Runs without RimWorld, in a few seconds.
 
 .DESCRIPTION
-  This repository holds one mod and no longer sits inside the monorepo, so the five checkers
-  that live under its scripts/ are not next to it any more. They are still the deeper
-  instruments, and the field walk below is a compact version of Check-XmlFields.ps1 brought in
-  here rather than depended on: a detached repository has to be able to test itself.
-
-  This mod ships no assembly, so there is no mod C# to instantiate. What takes its place is the
+  The mod ships no assembly, so there is no mod C# to instantiate. What takes its place is the
   vanilla side: the suite loads Assembly-CSharp by reflection and asks the game's own classes
   what this mod is allowed to assume.
 
-  Four groups, twenty-five tests:
+  What the shared checks already do is not repeated here: XML parse, defName uniqueness, images,
+  About.xml shape (Check-ModBasics), reference and class resolution (Check-DefRefs, Check-TypeRefs),
+  field names (Check-XmlFields), French coverage and keys (Check-Translations, Check-DefInjected).
 
-    About and images   the identity that must never change, the two pictures, the texture, and
-                       the cost the showcase text claims against the cost the def charges
-    The defs           parses, prefixes, every element a real 1.6 field, every class and every
-                       def reference resolving, and all of it defined in Core
+  Three groups:
+
+    Identity and cost  the identity that must never change, and the cost the showcase text claims
+                       against the cost the def charges
+    The defs           the CB_ prefix, and everything the mod points at defined in Core
     The rules          the things this mod rests on, each tested against the game rather than
                        against its own prose
-    Translations       every [MustTranslate] string covered, every French key pointing at
-                       something real, in a folder spelled the way the class is
 
-  The third group is the point of having a suite at all. Each of those tests encodes a sentence
-  the README states as fact, and computes it from the game instead of trusting it:
+  The third group encodes sentences the README states as fact, and computes them from the game:
 
     - "it works because a crystal ball is a Building" is checked by resolving the def's
       thingClass through the vanilla parent chain and comparing it with the return type of
-      JobDriver_SitFacingBuilding.Building - the driver's own accessor, which is what would
-      raise the InvalidCastException on anything else.
-    - "an eleventh recreation type" is checked by counting the vanilla JoyKindDefs, so the day
-      a RimWorld release adds one, this says eleventh is taken.
+      JobDriver_SitFacingBuilding.Building.
+    - "an eleventh recreation type" is checked by counting the vanilla JoyKindDefs.
     - "only four of the ten come from a building" is computed from Core's JoyGiverDefs that
-      name a building. Not from the <building><joyKind> blocks, which give five: the musical
-      instrument base sits in Core while the JoyGiverDef that makes anyone play it ships with
-      Royalty. Items are filtered out the same way - chocolate is a thingDef on a JoyGiverDef
-      too, and it is not furniture.
+      name a building.
     - "no chair needed" is checked as the field the vanilla giver actually reads.
     - the glow's zero alpha is checked against every CompProperties_Glower in the game data.
 
-  The suite writes with Write-Output and never Write-Host: the output has to survive being piped
-  into a file or a variable, which Write-Host does not.
-
-  Exit code 0 when everything passes, 1 otherwise.
-
-  EVERY TEST HERE HAS BEEN SEEN TO FAIL. A suite that goes green on its first run has proved
-  nothing, so faults were introduced one at a time into a copy of the mod in a
-  scratch directory - never into the real files - and each had to be named by the right test:
-
-    packageId changed                             -> the identity test, alone
-    Preview.png swapped for the source art        -> the 896 x 504 test, size and weight
-    ModIcon.png swapped for Preview.png           -> the 128 x 128 test
-    CrystalBall miscased Crystalball in texPath   -> the texture test, naming the file it found
-    "40 jade" turned into "30 jade" in the README -> the cost-drift test, naming README.md
-    the def file made malformed                   -> the parse test, and twelve others saying
-                                                     which def they no longer find
-    the JoyKindDef's defName stripped of its CB_  -> prefix, references, eleventh type,
-                                                     needsThing and both translation tests: six
-    the JoyGiverDef declared twice                -> the collision test
-    socialPropernessMatters misspelt              -> the field walk, naming element and class
-    CompProperties_Glower misspelt                -> the class test, the field walk under it,
-                                                     and the alpha test
-    jobDef pointed at a job that does not exist   -> the reference test and the agreement test
-    the JobDef deleted, its giver kept, the two   -> the reference test, naming "no JobDef named
-    sharing one defName                              CB_GazeIntoCrystalBall". It stayed green
-                                                     while the reference check compared names
-                                                     only, and the mutation above hid that by
-                                                     choosing a name nothing carried.
-    ParentName changed to a template nobody has   -> the parent test and the Building test
-    requireChair removed                          -> the chair test
-    the JoyKindDef renamed Meditative             -> the eleventh-type test, naming the
-                                                     collision, and five more
-    needsThing set to false                       -> the building-borne test
-    minifiedDef removed                           -> the categories test
-    glowColor given a 255 alpha                   -> the alpha test
-    the French label deleted                      -> the MustTranslate test
-    a French key pointed at a field that is gone  -> the handle test and the MustTranslate one
-    a nested French key, CB_CrystalBall.comps.0   -> nothing, it is a correct handle. Splitting at
-    .label, added beside the four                    the LAST dot read its def as "CB_CrystalBall
-                                                     .comps.0" and failed it.
-    the same key with comps misspelt compz        -> the handle test, naming the field 'compz'
-    a cost paid in Bioferrite, Anomaly's only     -> the Core test, naming Anomaly
-    compClass set to CompAbilityEffect_Stun, a    -> the Core test, naming the class, and the
-    class only a Royalty def names                   class test
-    ParentName set to AncientTurretBase, Odyssey's -> the Core test, naming Odyssey
-    the unchanged copy                            -> nothing: the Core test stays green
-    DefInjected/ThingDef renamed thingdef         -> the folder-spelling test
-    a French paragraph break dropped              -> the last test
-
-  The two tests that read nothing but the game's data cannot be reached that way, so they were
-  run against a doctored copy of Data in the scratch directory - eleven JoyKindDefs, five of them
-  served by a building - and reported both, by number and by name.
-
-  The first of those runs rewrote a test rather than confirming it. The texture check was a
-  Test-Path, and Test-Path finds Crystalball.png when the def asks for CrystalBall: the fault it
-  was written for is invisible on Windows and fatal on Linux. It now walks the path segment by
-  segment and compares each name case-sensitively.
+  Exit code 0 when everything passes, 1 otherwise. Output uses Write-Output, never Write-Host.
 
 .EXAMPLE
-  powershell -NoProfile -File scripts/Run-Tests.ps1
-
-.EXAMPLE
-  # From Git Bash, where the machine's execution policy refuses a script file:
-  powershell -NoProfile -ExecutionPolicy Bypass -File scripts/Run-Tests.ps1
+  powershell -NoProfile -ExecutionPolicy Bypass -File Tests/Run-Tests.ps1
 #>
 
 param(
@@ -114,8 +44,6 @@ param(
 
 $ErrorActionPreference = 'Stop'
 
-# ---------------------------------------------------------------------------------------------
-# Harness
 # ---------------------------------------------------------------------------------------------
 
 # Shared harness (protocols checkout, two levels above the mod): the test runner and the game-reflection library.
@@ -195,123 +123,6 @@ $asmPath = Join-Path $Managed 'Assembly-CSharp.dll'
 if (Test-Path $asmPath) { $byName = New-TypeIndex @(Get-AssemblyTypes $asmPath) }
 $defType = $byName['Verse.Def']
 
-$BF = [System.Reflection.BindingFlags]::Public    -bor `
-      [System.Reflection.BindingFlags]::NonPublic -bor `
-      [System.Reflection.BindingFlags]::Instance  -bor `
-      [System.Reflection.BindingFlags]::DeclaredOnly
-
-# A type that implements LoadDataFromXmlCustom is invisible to field reflection: RimWorld hands
-# it the raw node and it reads whatever it likes. StatModifier and ThingDefCountClass, the two
-# this mod writes, are among them. What can still be asserted under one is that every child is a
-# leaf: an <li> carrying element children is the dictionary form, which no RimWorld version
-# accepts and which aborts the WHOLE def rather than the one field.
-$customLoaderCache = @{}
-function Test-CustomLoader([Type]$t) {
-    if (-not $t) { return $false }
-    if ($customLoaderCache.ContainsKey($t)) { return $customLoaderCache[$t] }
-    $r = $null -ne $t.GetMethod('LoadDataFromXmlCustom', $BF -bxor [System.Reflection.BindingFlags]::DeclaredOnly)
-    $customLoaderCache[$t] = $r
-    return $r
-}
-
-# Two wrappers stand between a field and the type whose children the XML writes, and the loader
-# steps through both: Nullable<T>, and SlateRef<T> unless the text is a $variable.
-function Resolve-Wrapper([Type]$t) {
-    while ($t -and $t.IsGenericType) {
-        $g = $t.GetGenericTypeDefinition()
-        if ($g -eq [System.Nullable`1] -or $g.Name -eq 'SlateRef`1') { $t = $t.GetGenericArguments()[0] }
-        else { break }
-    }
-    return $t
-}
-
-$script:fieldProblems = New-Object System.Collections.ArrayList
-$script:defRefs       = New-Object System.Collections.ArrayList
-
-function Add-DefRef([Type]$t, [string]$name, [string]$where) {
-    if ([string]::IsNullOrWhiteSpace($name)) { return }
-    [void]$script:defRefs.Add(@{ Type = $t.Name; Name = $name.Trim(); Where = $where })
-}
-
-function Test-LoaderShape($container, [string]$path, [Type]$elem) {
-    foreach ($child in $container.ChildNodes) {
-        if ($child.NodeType -ne 'Element' -or $child.LocalName -ne 'li') { continue }
-        foreach ($grand in $child.ChildNodes) {
-            if ($grand.NodeType -ne 'Element') { continue }
-            [void]$script:fieldProblems.Add("$path/li/$($grand.LocalName)  -- $($elem.Name) is loaded by LoadDataFromXmlCustom; an <li> with children is the dictionary form, which RimWorld throws on")
-            break
-        }
-    }
-}
-
-# The two custom-loader blocks this mod writes key their children by defName rather than by
-# field, so the field walk cannot follow them - but the names are still references worth
-# resolving: statBases names StatDefs and costList names ThingDefs.
-$keyedByDefName = @{ 'StatModifier' = 'StatDef'; 'ThingDefCountClass' = 'ThingDef' }
-
-function Walk($node, [Type]$t, [string]$path) {
-    if (-not $t) { return }
-    $fields = Get-FieldsRecursive $t
-    foreach ($child in $node.ChildNodes) {
-        if ($child.NodeType -ne 'Element') { continue }
-        $n = $child.LocalName
-        if ($n -eq 'li') { continue }
-
-        $f = $null
-        if ($fields.ContainsKey($n)) { $f = $fields[$n] }
-        else { foreach ($k in $fields.Keys) { if ($k -ieq $n) { $f = $fields[$k]; break } } }
-        if (-not $f) { [void]$script:fieldProblems.Add("$path/$n  -- no field '$n' on $($t.Name)"); continue }
-
-        $ft = Resolve-Wrapper $f.FieldType
-        if ($defType -and $defType.IsAssignableFrom($ft)) { Add-DefRef $ft $child.InnerText "$path/$n"; continue }
-        if ($ft.IsPrimitive -or $ft -eq [string] -or $ft.IsEnum) { continue }
-
-        if ($ft.IsGenericType -and $ft.GetGenericTypeDefinition() -eq [System.Collections.Generic.List`1]) {
-            $elem = Resolve-Wrapper $ft.GetGenericArguments()[0]
-            if ($defType -and $defType.IsAssignableFrom($elem)) {
-                foreach ($li in $child.ChildNodes) {
-                    if ($li.NodeType -eq 'Element') { Add-DefRef $elem $li.InnerText "$path/$n/li" }
-                }
-                continue
-            }
-            if ($elem.IsPrimitive -or $elem -eq [string] -or $elem.IsEnum) { continue }
-            if (Test-CustomLoader $elem) {
-                Test-LoaderShape $child "$path/$n" $elem
-                if ($keyedByDefName.ContainsKey($elem.Name)) {
-                    $kt = $byName[$keyedByDefName[$elem.Name]]
-                    foreach ($k in $child.ChildNodes) {
-                        if ($k.NodeType -eq 'Element' -and $k.LocalName -ne 'li') { Add-DefRef $kt $k.LocalName "$path/$n" }
-                    }
-                }
-                continue
-            }
-            foreach ($li in $child.ChildNodes) {
-                if ($li.NodeType -ne 'Element') { continue }
-                $lt = $elem
-                $cls = $li.GetAttribute('Class')
-                if ($cls) { $short = $cls.Split('.')[-1]; if ($byName.ContainsKey($short)) { $lt = $byName[$short] } }
-                Walk $li $lt "$path/$n/li"
-            }
-            continue
-        }
-
-        if (Test-CustomLoader $ft) { Test-LoaderShape $child "$path/$n" $ft; continue }
-
-        $sub = $ft
-        $cls = $child.GetAttribute('Class')
-        if ($cls) { $short = $cls.Split('.')[-1]; if ($byName.ContainsKey($short)) { $sub = $byName[$short] } }
-        Walk $child $sub "$path/$n"
-    }
-}
-
-if ($byName.Count -gt 0) {
-    foreach ($n in $defNodes) {
-        $dt = $byName[$n.LocalName]
-        if (-not $dt) { [void]$script:fieldProblems.Add("unknown def type <$($n.LocalName)>"); continue }
-        Walk $n $dt "$($n.LocalName)/$($n.defName)"
-    }
-}
-
 # ---------------------------------------------------------------------------------------------
 # The game's data, indexed in one pass
 # ---------------------------------------------------------------------------------------------
@@ -342,7 +153,6 @@ function Get-NamedClasses($node) {
     if ($own) { $names[$own.Trim()] = $true }
     return @($names.Keys)
 }
-
 foreach ($dir in (Get-ChildItem $GameData -Directory)) {
     $defsRoot = Join-Path $dir.FullName 'Defs'
     if (-not (Test-Path $defsRoot)) { continue }
@@ -411,25 +221,6 @@ function Resolve-ThingClass($info) {
     return $null
 }
 
-function Test-VanillaDef([string]$type, [string]$name) {
-    return ($vanilla.ContainsKey($type) -and $vanilla[$type].ContainsKey($name))
-}
-
-# A def of THIS mod that answers to a reference, by name AND by type. The name alone is not enough
-# here: the job and the giver deliberately share CB_GazeIntoCrystalBall, so with the JobDef deleted
-# the giver's jobDef reference would still find "a def of that name" - the giver itself. A
-# reference typed as a base class is satisfied by any def of a subclass, as the loader would.
-function Test-ModDef([string]$refType, [string]$name) {
-    if (-not $modDefs.ContainsKey($name)) { return $false }
-    $want = $byName[$refType]
-    foreach ($kind in $modDefs[$name]) {
-        if ($kind -eq $refType) { return $true }
-        $have = $byName[$kind]
-        if ($want -and $have -and $want.IsAssignableFrom($have)) { return $true }
-    }
-    return $false
-}
-
 # ---------------------------------------------------------------------------------------------
 
 Write-Output 'Crystal Ball - test suite'
@@ -437,12 +228,11 @@ Write-Output "  mod        $ModRoot"
 Write-Output "  game data  $GameData"
 Write-Output ("  indexed    {0} def types and {1} building templates from the game, {2} game classes" -f `
               $vanilla.Count, $templates.Count, $byName.Count)
-Write-Output ("  defs       {0} file(s), {1} def(s), {2} def reference(s) collected" -f `
-              $defFiles.Count, $defNodes.Count, $script:defRefs.Count)
+Write-Output ("  defs       {0} file(s), {1} def(s)" -f $defFiles.Count, $defNodes.Count)
 if ($byName.Count -eq 0) { Write-Output '  NOTE       Assembly-CSharp could not be loaded; the reflection tests will fail' }
 
 # =============================================================================================
-Section 'About and images'
+Section 'Identity and cost'
 # =============================================================================================
 
 $aboutPath = Join-Path $modDir 'About\About.xml'
@@ -460,60 +250,6 @@ It 'About.xml parses, and keeps the identity that must never change' {
     if ($vs -notcontains '1.6') { "supportedVersions is '$($vs -join ', ')'" }
     $url = [string]$about.ModMetaData.url
     if ($url -ne 'https://github.com/vbardales/Rimworld-Crystal-Ball') { "url is '$url'" }
-}
-
-# PNG carries its size in the IHDR chunk, bytes 16..23, big-endian. Reading it by hand keeps the
-# suite free of an image library for two numbers.
-function Get-PngSize([string]$path) {
-    $b = [System.IO.File]::ReadAllBytes($path)
-    if ($b.Length -lt 24) { return $null }
-    $w = [int]$b[16] * 16777216 + [int]$b[17] * 65536 + [int]$b[18] * 256 + [int]$b[19]
-    $h = [int]$b[20] * 16777216 + [int]$b[21] * 65536 + [int]$b[22] * 256 + [int]$b[23]
-    return @{ W = $w; H = $h; KB = [math]::Round($b.Length / 1KB) }
-}
-
-It 'Preview.png is 896 x 504 and stays under 900 KB' {
-    $p = Join-Path $modDir 'About\Preview.png'
-    if (-not (Test-Path $p)) { 'Preview.png is missing'; return }
-    $s = Get-PngSize $p
-    if ($s.W -ne 896 -or $s.H -ne 504) { "it is $($s.W) x $($s.H)" }
-    if ($s.KB -gt 900) { "it weighs $($s.KB) KB" }
-}
-
-It 'ModIcon.png is 128 x 128 and stays under 32 KB' {
-    # The shared guide asks for 20-30 KB. Virginie accepted 31.9 KB for this icon on 2026-10-05 (the winking ball is more detailed than the
-    # first one): the ceiling here is 32 KB, her override, and not a loosening for the next icon.
-    $p = Join-Path $modDir 'About\ModIcon.png'
-    if (-not (Test-Path $p)) { 'ModIcon.png is missing'; return }
-    $s = Get-PngSize $p
-    if ($s.W -ne 128 -or $s.H -ne 128) { "it is $($s.W) x $($s.H)" }
-    if ($s.KB -gt 32) { "it weighs $($s.KB) KB" }
-}
-
-It 'the texture the def names is there, spelt the way the file is, square, and a power of two' {
-    # Spelt the way the file is, segment by segment, because Test-Path alone would never catch
-    # the fault this guards against: Windows finds Crystalball.png when the def asks for
-    # CrystalBall, and Linux does not, so the mod ships with an invisible building for half its
-    # players and nothing in the log.
-    if (-not $ballNode) { 'the crystal ball def is missing'; return }
-    $tex = $ballNode.SelectSingleNode('graphicData/texPath')
-    if (-not $tex) { 'the def declares no texPath'; return }
-    $segments = @($tex.InnerText.Split('/'))
-    $segments[-1] = $segments[-1] + '.png'
-    $here = Join-Path $modDir 'Textures'
-    foreach ($seg in $segments) {
-        $match = @(Get-ChildItem $here -Force | Where-Object { $_.Name -ceq $seg })
-        if ($match.Count -eq 0) {
-            $near = @(Get-ChildItem $here -Force | Where-Object { $_.Name -ieq $seg })
-            if ($near.Count -gt 0) { "the def asks for '$seg' where the file is '$($near[0].Name)'" }
-            else { "no '$seg' under $here" }
-            return
-        }
-        $here = $match[0].FullName
-    }
-    $s = Get-PngSize $here
-    if ($s.W -ne $s.H) { "it is $($s.W) x $($s.H), not square" }
-    if (($s.W -band ($s.W - 1)) -ne 0) { "its side is $($s.W), not a power of two" }
 }
 
 It 'the cost the showcase text claims is the cost the def charges' {
@@ -558,73 +294,36 @@ It 'every def has a defName, and every defName carries the CB_ prefix' {
     }
 }
 
-It 'every element maps to a field the 1.6 classes still have' {
-    # RimWorld does not stop on an element that matches no field: it logs one line and carries on
-    # with the field unset, so the def loads, works, and is quietly wrong.
-    if ($byName.Count -eq 0) { 'Assembly-CSharp is not loaded'; return }
-    foreach ($p in ($script:fieldProblems | Sort-Object -Unique)) { $p }
-}
-
-It 'every C# class the defs name resolves, and to the right kind of class' {
-    if ($byName.Count -eq 0) { 'Assembly-CSharp is not loaded'; return }
-    $expected = @{
-        'graphicClass' = 'Graphic'
-        'compClass'    = 'ThingComp'
-        'driverClass'  = 'JobDriver'
-        'giverClass'   = 'JoyGiver'
-    }
-    foreach ($n in $defNodes) {
-        foreach ($e in $n.SelectNodes('.//*')) {
-            $named  = $null
-            $wanted = $null
-            if ($expected.ContainsKey($e.LocalName)) {
-                $named  = $e.InnerText
-                $wanted = $expected[$e.LocalName]
-            } else {
-                $named = $e.GetAttribute('Class')
-                if ($named -and $e.ParentNode.LocalName -eq 'comps') { $wanted = 'CompProperties' }
-            }
-            if ([string]::IsNullOrWhiteSpace($named)) { continue }
-            $t = $byName[$named]
-            if (-not $t) { $t = $byName[$named.Split('.')[-1]] }
-            if (-not $t) { "$($n.defName): no class named $named"; continue }
-            if ($wanted) {
-                $base = $byName[$wanted]
-                if ($base -and -not $base.IsAssignableFrom($t)) { "$($n.defName): $named is not a $wanted" }
-            }
-        }
-    }
-}
-
-It 'every def the mod points at exists, here or in the game' {
-    if ($byName.Count -eq 0) { 'Assembly-CSharp is not loaded'; return }
-    if ($script:defRefs.Count -eq 0) { 'not one def reference was collected, which cannot be right'; return }
-    foreach ($r in $script:defRefs) {
-        if (Test-ModDef $r.Type $r.Name) { continue }
-        if (Test-VanillaDef $r.Type $r.Name) { continue }
-        "$($r.Where): no $($r.Type) named $($r.Name)"
-    }
-}
+# =============================================================================================
 
 It 'everything the mod points at is defined in Core, so no DLC is required' {
-    # "No DLC required" is a claim the description and the README make, and the reference test above cannot
-    # check it: it looks a def up in every data folder, so a def that only Odyssey defines resolves as well as
-    # one from Core. This asks the narrower question. Every def a field points at, every template the def
-    # inherits, and every C# class it names must be one Core itself defines or uses. A class is judged by
-    # whether a Core def names it, which is conservative: a DLC-only class fails, a Core class no Core def
-    # happens to name would too, and that is the fault to look at rather than to wave through.
-    if ($byName.Count -eq 0) { 'Assembly-CSharp is not loaded'; return }
+    # "No DLC required" is a claim the description and the README make. A reference is any element text, or the element name inside costList or statBases,
+    # that is the defName of a game def (those two blocks key their entries by defName). Each must be defined in Core, every template the def inherits must be a Core one, and
+
+    # every C# class it names must be one a Core def names: a DLC-only class fails, and so would a Core class no
+    # Core def happens to name, which is the fault to look at rather than to wave through.
     if ($vanillaHome.Count -eq 0) { 'the game data holds no def at all'; return }
     if ($coreClasses.Count -eq 0) { 'Core names no C# class at all, which cannot be right'; return }
-    foreach ($r in $script:defRefs) {
-        if (Test-ModDef $r.Type $r.Name) { continue }
-        $folders = $vanillaHome["$($r.Type)/$($r.Name)"]
-        if (-not $folders) { continue }                    # the reference test names what does not exist
-        if (-not $folders.ContainsKey('Core')) {
-            "$($r.Where): $($r.Type) $($r.Name) is defined only in $((@($folders.Keys) | Sort-Object) -join ', ')"
-        }
+    $homeByName = @{}
+    foreach ($k in $vanillaHome.Keys) {
+        $nm = $k.Substring($k.IndexOf('/') + 1)
+        if (-not $homeByName.ContainsKey($nm)) { $homeByName[$nm] = @{} }
+        foreach ($d in $vanillaHome[$k].Keys) { $homeByName[$nm][$d] = $true }
     }
     foreach ($n in $defNodes) {
+        $seen = @{}
+        foreach ($e in $n.SelectNodes('.//*')) {
+            $leaf = -not ($e.ChildNodes | Where-Object { $_.NodeType -eq 'Element' })
+            $keyed = $e.ParentNode.LocalName -in @('costList', 'statBases')
+            foreach ($cand in @($(if ($keyed) { $e.LocalName }), $(if ($leaf) { $e.InnerText.Trim() }))) {
+                if (-not $cand -or $seen.ContainsKey($cand) -or $modDefs.ContainsKey($cand)) { continue }
+                $seen[$cand] = $true
+                $folders = $homeByName[$cand]
+                if ($folders -and -not $folders.ContainsKey('Core')) {
+                    "$($n.defName): $cand is defined only in $((@($folders.Keys) | Sort-Object) -join ', ')"
+                }
+            }
+        }
         $p = $n.GetAttribute('ParentName')
         if ($p -and $templateHome.ContainsKey($p) -and -not $templateHome[$p].ContainsKey('Core')) {
             "$($n.defName): the template $p is defined only in $((@($templateHome[$p].Keys) | Sort-Object) -join ', ')"
@@ -635,14 +334,6 @@ It 'everything the mod points at is defined in Core, so no DLC is required' {
     }
 }
 
-It 'the template the ThingDef inherits from is one the game defines' {
-    if (-not $ballNode) { 'the crystal ball def is missing'; return }
-    $p = $ballNode.GetAttribute('ParentName')
-    if (-not $p) { 'the def inherits from nothing, so it would carry no thingClass at all'; return }
-    if (-not $templates.ContainsKey($p)) { "no vanilla ThingDef is named $p" }
-}
-
-# =============================================================================================
 Section 'The rules this mod rests on'
 # =============================================================================================
 
@@ -765,32 +456,6 @@ It 'the glow keeps the zero alpha every vanilla glower writes' {
     if ($mine[3].Trim() -ne $only) { "glowColor's alpha is $($mine[3].Trim()) where every vanilla glower writes $only" }
 }
 
-# =============================================================================================
-Section 'Shared checks (protocols scripts)'
-# =============================================================================================
-
-# What every mod needs checked is checked by one shared script each (owner rule of 2026-10-11, AGENTS.md "Local scripts"):
-# XML well formed, defNames unique per kind, About.xml and notices and images (Check-ModBasics); every DefInjected key
-# resolves (Check-DefInjected); every shipped text has its French, nothing stale, tokens identical (Check-Translations).
-$sharedDir = Join-Path $PSScriptRoot '..\..\scripts'
-function Invoke-Shared([string]$script, [string[]]$argv) {
-    $out = & powershell.exe -NoProfile -ExecutionPolicy Bypass -File (Join-Path $sharedDir $script) @argv 2>&1
-    if ($LASTEXITCODE -ne 0) { $out | Where-Object { $_ } | Select-Object -Last 8 | ForEach-Object { [string]$_ } }
-}
-
-It 'the XML, the defNames, About.xml, the notices and the images pass Check-ModBasics' {
-    Invoke-Shared 'Check-ModBasics.ps1' @('-ModRoot', $ModRoot)
-}
-
-It 'every DefInjected key resolves to a field the game can inject into (Check-DefInjected)' {
-    Invoke-Shared 'Check-DefInjected.ps1' @('-TransMod', $modDir, '-Managed', $Managed, '-GameData', $GameData)
-}
-
-It 'every shipped text has its French, nothing stale is left, the tokens match (Check-Translations)' {
-    Invoke-Shared 'Check-Translations.ps1' @('-ModRoot', $ModRoot)
-}
-
-# =============================================================================================
 
 Remove-GameReflection
 Complete-Tests
