@@ -8,7 +8,7 @@ Not shipped: lives beside `Mod/`, never inside, so Steam never receives it.
 
 ## Before starting
 
-- RimWorld 1.6. **No DLC required**, proved offline by `Tests/Run-Tests.ps1` (see "No pass without a DLC"
+- RimWorld 1.6. **No DLC required**, proved offline by `Tests/Rule-OwnValues.ps1` (see "No pass without a DLC"
   below), not by a run. Development mode on, so silent failures become red text.
 - Log to read afterwards, attach to any report:
   `C:\Users\nelim\AppData\LocalLow\Ludeon Studios\RimWorld by Ludeon Studios\Player.log`
@@ -279,7 +279,7 @@ exploration requests.
 **No pass without a DLC.** Earlier version of this file declared one, to play claim that no
 DLC required. Not mod's guard or fallback that would be played: mod has none, it
 simply never names anything DLC defines. Static fact, so proved as one, by
-`Tests/Run-Tests.ps1`: every def a field points at, every template def inherits and every C#
+`Tests/Rule-OwnValues.ps1`: every def a field points at, every template def inherits and every C#
 class it names must be one Core defines or names, test fails on def, template and class that only DLC has. Run without DLCs would also have to load Pickle's `test-colony`
 fixture, saved with Royalty content.
 
@@ -292,12 +292,11 @@ From the mod folder, no RimWorld launched, two scripts of this mod (declared in 
 `scripts/LOCAL_SCRIPTS.md`):
 
 ```
-powershell -NoProfile -ExecutionPolicy Bypass -File Tests/Run-Tests.ps1
-powershell -NoProfile -ExecutionPolicy Bypass -File Tests/Run-Functional-Tests.ps1
+powershell -NoProfile -ExecutionPolicy Bypass -File Tests/Test-Mod.ps1
 ```
 
-`Run-Tests.ps1`: 12 tests, this mod's identity, the cost the texts claim, the `CB_` prefix, Core-only
-references, and the eight rules it rests on. `Run-Functional-Tests.ps1`: 11 tests that read the compiled
+`Tests/Rule-OwnValues.ps1`: 12 tests, this mod's identity, the cost the texts claim, the `CB_` prefix, Core-only
+references, and the eight rules it rests on. `Tests/Rule-GameReflection.ps1`: 11 tests that read the compiled
 game by IL. Everything generic (XML, images, references, classes, field names, French) is the shared
 `Check-ModBasics`, `Check-DefRefs`, `Check-TypeRefs`, `Check-XmlFields`, `Check-Translations` and
 `Check-DefInjected` of the protocols' `scripts/`; `Check-HarmonyContract` does not apply (no DLL).

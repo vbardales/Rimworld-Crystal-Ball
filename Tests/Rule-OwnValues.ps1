@@ -33,22 +33,20 @@
   Exit code 0 when everything passes, 1 otherwise. Output uses Write-Output, never Write-Host.
 
 .EXAMPLE
-  powershell -NoProfile -ExecutionPolicy Bypass -File Tests/Run-Tests.ps1
+  powershell -NoProfile -ExecutionPolicy Bypass -File Tests/Rule-OwnValues.ps1
 #>
 
-param(
-    [string]$ModRoot  = (Split-Path -Parent $PSScriptRoot),
-    [string]$GameData = 'C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Data',
-    [string]$Managed  = 'C:\Program Files (x86)\Steam\steamapps\common\RimWorld\RimWorldWin64_Data\Managed'
-)
+param([Parameter(Mandatory)][string]$ModRoot, [string]$SharedDir)
 
+$GameData = 'C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Data'
+$Managed  = 'C:\Program Files (x86)\Steam\steamapps\common\RimWorld\RimWorldWin64_Data\Managed'
 $ErrorActionPreference = 'Stop'
+# Needs the installed game: absent (the GitHub runner), say so loudly and do not pass silently.
+if (-not (Test-Path -LiteralPath (Join-Path $Managed 'Assembly-CSharp.dll'))) { Write-Output 'SKIPPED: RimWorld is not installed here, the game-dependent rules did NOT run'; exit 0 }
+if (-not $SharedDir) { $SharedDir = Join-Path $ModRoot '..\scripts' }
 
-# ---------------------------------------------------------------------------------------------
-
-# Shared harness (protocols checkout, two levels above the mod): the test runner and the game-reflection library.
-. "$PSScriptRoot\..\..\scripts\lib\TestRunner.ps1"
-. "$PSScriptRoot\..\..\scripts\lib\GameReflection.ps1"
+. (Join-Path $SharedDir 'lib/TestRunner.ps1')
+. (Join-Path $SharedDir 'lib/GameReflection.ps1')
 
 function Section([string]$name) { Write-Output ''; Write-Output $name }
 

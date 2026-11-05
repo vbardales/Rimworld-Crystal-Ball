@@ -86,20 +86,19 @@
   requireChair goes quiet, and only this test says so.
 
 .EXAMPLE
-  powershell -NoProfile -ExecutionPolicy Bypass -File scripts/Run-Functional-Tests.ps1
+  powershell -NoProfile -ExecutionPolicy Bypass -File Tests/Rule-GameReflection.ps1
 #>
+param([Parameter(Mandatory)][string]$ModRoot, [string]$SharedDir)
 
-param(
-    [string]$ModRoot  = (Split-Path -Parent $PSScriptRoot),
-    [string]$GameData = 'C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Data',
-    [string]$Managed  = 'C:\Program Files (x86)\Steam\steamapps\common\RimWorld\RimWorldWin64_Data\Managed'
-)
-
+$GameData = 'C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Data'
+$Managed  = 'C:\Program Files (x86)\Steam\steamapps\common\RimWorld\RimWorldWin64_Data\Managed'
 $ErrorActionPreference = 'Stop'
+# Needs the installed game: absent (the GitHub runner), say so loudly and do not pass silently.
+if (-not (Test-Path -LiteralPath (Join-Path $Managed 'Assembly-CSharp.dll'))) { Write-Output 'SKIPPED: RimWorld is not installed here, the game-dependent rules did NOT run'; exit 0 }
+if (-not $SharedDir) { $SharedDir = Join-Path $ModRoot '..\scripts' }
 
-# Shared harness (protocols checkout, two levels above the mod): the test runner and the game-reflection library.
-. "$PSScriptRoot\..\..\scripts\lib\TestRunner.ps1"
-. "$PSScriptRoot\..\..\scripts\lib\GameReflection.ps1"
+. (Join-Path $SharedDir 'lib/TestRunner.ps1')
+. (Join-Path $SharedDir 'lib/GameReflection.ps1')
 
 function Section([string]$name) { Write-Output ''; Write-Output $name }
 
@@ -150,38 +149,16 @@ function Get-Text($node, [string]$xpath) {
 $giverClassName  = Get-Text $giverNode 'giverClass'
 $driverClassName = Get-Text $jobNode   'driverClass'
 
-# Every field the defs set, resolved to the FieldInfo the loader would fill. The walk stops where
-# Run-Tests.ps1's does, and for the same reasons: a list of defs is a list of names, and a type
-# with a custom loader reads the XML itself.
-$written = @{}     # metadata token -> "Type.field"
-function Collect-Written($node, [Type]$t) {
-    if (-not $t) { return }
-    $fields = Get-FieldsRecursive $t
-    foreach ($c in $node.ChildNodes) {
-        if ($c.NodeType -ne 'Element' -or $c.LocalName -eq 'li') { continue }
-        $f = $fields[$c.LocalName]
-        if (-not $f) { continue }
-        # Keyed by the type that DECLARES the field, not the one the XML node sits on. defName
-        # written under a JoyGiverDef is Def.defName, read by half the game and a setting of
-        # nobody's: the distinction is what lets the tests below single out the real settings.
-        $written[$f.MetadataToken] = "$($f.DeclaringType.Name).$($f.Name)"
-        $ft = $f.FieldType
-        if ($ft.IsPrimitive -or $ft -eq [string] -or $ft.IsEnum -or $ft.IsGenericType) { continue }
-        if ($byName['Def'].IsAssignableFrom($ft)) { continue }
-        $sub = $ft
-        $cls = $c.GetAttribute('Class')
-        if ($cls -and $byName.ContainsKey($cls)) { $sub = $byName[$cls] }
-        Collect-Written $c $sub
-    }
-}
+# Every field the defs set, resolved by the shared library to the FieldInfo the loader would fill.
+$written = @{}
 if ($byName.Count -gt 0) {
     foreach ($n in $defDoc.DocumentElement.ChildNodes) {
-        if ($n.NodeType -eq 'Element') { Collect-Written $n $byName[$n.LocalName] }
+        if ($n.NodeType -eq 'Element') { Get-WrittenFields -Node $n -Type $byName[$n.LocalName] -ByName $byName -Written $written | Out-Null }
     }
     foreach ($li in $defDoc.DocumentElement.SelectNodes('.//comps/li')) {
         $cls = $li.GetAttribute('Class')
         $t = $(if ($cls -and $byName.ContainsKey($cls)) { $byName[$cls] } else { $byName['CompProperties'] })
-        Collect-Written $li $t
+        Get-WrittenFields -Node $li -Type $t -ByName $byName -Written $written | Out-Null
     }
 }
 
@@ -192,105 +169,15 @@ if ($byName.Count -gt 0) {
     $f = $byName['JoyKindDef'].GetField('needsThing', [System.Reflection.BindingFlags]'Public,NonPublic,Instance')
     if ($f) { $extra[$f.MetadataToken] = 'JoyKindDef.needsThing' }
 }
-
-# ---------------------------------------------------------------------------------------------
-# Who reads what: one pass over every method body in the game
-# ---------------------------------------------------------------------------------------------
-#
-# ldfld (0x7B) and ldflda (0x7C) carry a four-byte token. Inside one module that token IS the
-# field's MetadataToken, so the whole scan is an integer comparison - no ResolveMember per
-# instruction, which is what keeps it to half a minute rather than an afternoon.
-#
-# The body is decoded instruction by instruction, with the operand size of each opcode taken from
-# System.Reflection.Emit, so a 0x7B or 0x7C sitting inside another instruction's operand is never
-# taken for an ldfld.
-#
-# The reader is recorded as the OUTERMOST declaring type. A driver's MakeNewToils compiles to a
-# nested <MakeNewToils>d__5 state machine, and a lambda to a <>c: reporting those would name
-# nothing a reader recognises, and there are several classes with a d__5.
-
-# Operand size of every opcode: -1 for a switch (a count and that many targets), -2 for a byte
-# that starts no instruction, which ends the walk of a body rather than guessing.
-$sizeOne = New-Object 'int[]' 256
-$sizeTwo = New-Object 'int[]' 256
-for ($n = 0; $n -lt 256; $n++) { $sizeOne[$n] = -2; $sizeTwo[$n] = -2 }
-foreach ($fi in [System.Reflection.Emit.OpCodes].GetFields('Public,Static')) {
-    $op = $fi.GetValue($null)
-    $size = switch ($op.OperandType.ToString()) {
-        'InlineNone'                                   { 0 }
-        { $_ -in 'ShortInlineBrTarget', 'ShortInlineI', 'ShortInlineVar' } { 1 }
-        'InlineVar'                                    { 2 }
-        { $_ -in 'InlineI8', 'InlineR' }               { 8 }
-        'InlineSwitch'                                 { -1 }
-        default                                        { 4 }
-    }
-    $code = [int]$op.Value -band 0xFFFF
-    if ($op.Size -eq 1) { $sizeOne[$code] = $size } else { $sizeTwo[$code -band 0xFF] = $size }
-}
-
 $hunted = @{}
 foreach ($k in $written.Keys) { $hunted[$k] = $written[$k] }
 foreach ($k in $extra.Keys)   { $hunted[$k] = $extra[$k] }
 
-$readers = @{}     # "Type.field" -> set of reader type names
-$scanSeconds = 0
-if ($hunted.Count -gt 0) {
-    $sw = [System.Diagnostics.Stopwatch]::StartNew()
-    foreach ($t in $allTypes) {
-        foreach ($m in (@($t.GetMethods($BFm)) + @($t.GetConstructors($BFm)))) {
-            $body = $null
-            try { $body = $m.GetMethodBody() } catch { }
-            if (-not $body) { continue }
-            $il = $body.GetILAsByteArray()
-            if (-not $il -or $il.Length -lt 5) { continue }
-            $i = 0
-            $len = $il.Length
-            while ($i -lt $len) {
-                $b = $il[$i]; $i++
-                if ($b -eq 0xFE) {
-                    if ($i -ge $len) { break }
-                    $size = $sizeTwo[$il[$i]]; $i++
-                }
-                else {
-                    $size = $sizeOne[$b]
-                    # 0x7B is ldfld, 0x7C is ldflda. A struct field - a FloatRange, a Vector2 - is read
-                    # by ADDRESS whenever a method is called on it (startingHpRange.RandomInRange), so
-                    # matching ldfld alone reports it as read by nothing.
-                    if (($b -eq 0x7B -or $b -eq 0x7C) -and $i + 4 -le $len) {
-                        $tok = [BitConverter]::ToInt32($il, $i)
-                        if ($hunted.ContainsKey($tok)) {
-                            $owner = $t
-                            while ($owner.DeclaringType) { $owner = $owner.DeclaringType }
-                            $key = $hunted[$tok]
-                            if (-not $readers.ContainsKey($key)) { $readers[$key] = @{} }
-                            $readers[$key][$owner.Name] = $true
-                        }
-                    }
-                }
-                if ($size -eq -1) {
-                    if ($i + 4 -gt $len) { break }
-                    $size = 4 + 4 * [BitConverter]::ToInt32($il, $i)
-                }
-                elseif ($size -lt 0) { break }
-                $i += $size
-            }
-        }
-    }
-    $sw.Stop()
-    $scanSeconds = $sw.Elapsed.TotalSeconds
-}
+# Who reads what: one pass over every method body in the game (shared library).
+$sw = [System.Diagnostics.Stopwatch]::StartNew()
+$readers = Find-FieldReaders -Types $allTypes -Hunted $hunted
+$scanSeconds = $sw.Elapsed.TotalSeconds
 
-function Get-Readers([string]$field) {
-    if ($readers.ContainsKey($field)) { return @($readers[$field].Keys | Sort-Object) }
-    return @()
-}
-
-# Some of these fields are read in two hundred places. A failure has to stay readable.
-function Show-Readers($names) {
-    $a = @($names)
-    if ($a.Count -le 6) { return ($a -join ', ') }
-    return (($a[0..5] -join ', ') + " and $($a.Count - 6) more")
-}
 
 # ---------------------------------------------------------------------------------------------
 # The game's own defs, indexed in one pass over every Defs folder
@@ -431,7 +318,7 @@ It 'no setting in these defs is one the game stopped reading' {
     # reflection would be a false positive here; this mod writes none.
     if ($written.Count -eq 0) { 'no field was resolved at all, which cannot be right'; return }
     foreach ($k in ($written.Values | Sort-Object -Unique)) {
-        if ((Get-Readers $k).Count -eq 0) { "$k : nothing in the game reads it" }
+        if ((Get-Readers $readers $k).Count -eq 0) { "$k : nothing in the game reads it" }
     }
 }
 
@@ -448,7 +335,7 @@ It 'every setting on the joy giver is read by the giver class this def names' {
     $checked = 0
     foreach ($k in ($written.Values | Sort-Object -Unique)) {
         if ($k -notlike 'JoyGiverDef.*') { continue }          # fields inherited from Def are
-        $rs = Get-Readers $k                                   # identity, not settings
+        $rs = Get-Readers $readers $k                                   # identity, not settings
         if ($rs.Count -eq 0) { continue }                      # the test above owns that case
         $checked++
         $inFamily = @($rs | Where-Object { $family.ContainsKey($_) })
@@ -468,7 +355,7 @@ It 'the length of the gaze and the number who may share it are read by the drive
     foreach ($field in 'JobDef.joyDuration', 'JobDef.joyMaxParticipants') {
         $short = $field.Split('.')[1]
         if (-not (Get-Text $jobNode $short)) { "the job declares no $short"; continue }
-        $rs = Get-Readers $field
+        $rs = Get-Readers $readers $field
         $inFamily = @($rs | Where-Object { $family.ContainsKey($_) })
         if ($inFamily.Count -eq 0) { "$field is not read by $driverClassName or anything above it" }
     }
@@ -482,7 +369,7 @@ It 'the joy a pawn gains is credited under the job''s own joyKind' {
     # JoyUtility.JoyTickCheckEnd is the method that pays out. It reads the joyKind from the job,
     # so the type this mod adds is credited only because its JobDef names it.
     if (-not (Get-Text $jobNode 'joyKind')) { 'the job declares no joyKind'; return }
-    $rs = Get-Readers 'JobDef.joyKind'
+    $rs = Get-Readers $readers 'JobDef.joyKind'
     if ($rs -notcontains 'JoyUtility') { "JobDef.joyKind is read by $($rs -join ', '), no JoyUtility among them" }
 }
 
@@ -493,7 +380,7 @@ It 'the tally of recreation available on the map reads the building''s joyKind a
     # write it.
     if (-not (Get-Text $ballNode 'building/joyKind')) { 'the building declares no joyKind'; return }
     foreach ($pair in @(@('BuildingProperties.joyKind', 'JoyUtility'), @('JoyKindDef.needsThing', 'JoyUtility'))) {
-        $rs = Get-Readers $pair[0]
+        $rs = Get-Readers $readers $pair[0]
         if ($rs -notcontains $pair[1]) { "$($pair[0]) is read by $($rs -join ', '), no $($pair[1]) among them" }
     }
 }

@@ -49,8 +49,7 @@ up this way. Being a building is what lets this mod ship no code at all.
 ## Tests
 
 ```
-powershell -NoProfile -ExecutionPolicy Bypass -File Tests/Run-Tests.ps1
-powershell -NoProfile -ExecutionPolicy Bypass -File Tests/Run-Functional-Tests.ps1
+powershell -NoProfile -ExecutionPolicy Bypass -File Tests/Test-Mod.ps1
 ```
 
 Twenty-three tests in two suites, no RimWorld launched, half a minute for both. They read the
