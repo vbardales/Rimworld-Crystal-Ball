@@ -3,7 +3,7 @@
   What the game actually does with this mod's defs, checked outside the game.
 
 .DESCRIPTION
-  Run-Tests.ps1 next door checks that the defs are well formed and that what the README says about
+  Rule-OwnValues.ps1 next door checks that the defs are well formed and that what the README says about
   RimWorld is still true. This one asks a different question: the mod ships no code, so it hands
   its whole behaviour to vanilla classes - do those classes still do what it hands it to them for?
 
