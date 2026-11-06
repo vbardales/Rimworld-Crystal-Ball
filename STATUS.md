@@ -24,8 +24,8 @@ remaining: ["Preview regenerated 2026-11-03 (7b: echo.width/height dropped, rend
 session:      01a09736-2cfc-72d3-8b3c-4ffe79ef572c
 code_review_sha: fe64cae76bbbb981fe6b6abf6ea15eeb4c06ab55
 publication_changelog_review_sha: 6625b154c312ed5a8356cf6d6388b1496d41923a
-echo_review_sha: bac147eac58e4e46d69cc428796f2c508282265f
-updated:      2026-11-03
+echo_review_sha: 78b73b79bb007ef9a3b8efe097bb8cf09defbd6c
+updated:      2026-11-06
 protocols_read_sha: 4e6d7b694f3ae899b26ec15b743228a30a7dd519
 ---
 # Crystal Ball: status (2026-10-10)
