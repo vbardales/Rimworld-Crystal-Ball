@@ -26,7 +26,7 @@ code_review_sha: 73f8336e855377fee6a3332788e113cbba151ce5
 publication_changelog_review_sha: 6625b154c312ed5a8356cf6d6388b1496d41923a
 echo_review_sha: 78b73b79bb007ef9a3b8efe097bb8cf09defbd6c
 updated:      2026-11-06
-protocols_read_sha: 4e6d7b694f3ae899b26ec15b743228a30a7dd519
+protocols_read_sha: 21e22cbde6212aacdb1eed5aae2acb8450480451
 ---
 # Crystal Ball: status (2026-10-10)
 
