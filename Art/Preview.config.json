@@ -1,21 +1,14 @@
 {
   "panel": {
     "title": "Crystal Ball",
-    "titleSize": 54,
     "titleParts": [
-      { "text": "Crystal Ball", "scale": 1 }
+      { "text": "Crystal Ball" }
     ],
-    "copyLines": [
-      "A violet sphere to gaze into, with a recreation type of its own."
-    ]
+    "description": "A violet sphere to gaze into, with a recreation type of its own."
   },
-  "backgroundFile": "Preview-source.png",
-  "echo": {
-    "file": "echo-source.png"
-  },
-  "icon": {
-    "file": "ModIcon-source.png"
-  },
+  "background": { "file": "Preview-source.png" },
+  "echo": { "file": "echo-source.png" },
+  "icon": { "file": "ModIcon-source.png" },
   "palette": {
     "veil": "#1D1F36",
     "inkPrimary": "#F2ECE1",
