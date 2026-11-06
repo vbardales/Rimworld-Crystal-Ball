@@ -8,7 +8,7 @@
   },
   "background": { "file": "Preview-source.png" },
   "echo": { "file": "echo-source.png" },
-  "icon": { "file": "ModIcon-source.png" },
+  "icon": { "file": "ModIcon-source.png", "corner": "bottom-left" },
   "palette": {
     "veil": "#1D1F36",
     "inkPrimary": "#F2ECE1",
