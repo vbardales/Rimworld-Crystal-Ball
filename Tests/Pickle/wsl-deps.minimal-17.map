@@ -1,5 +1,5 @@
 # RimWorld 1.7 diagnostic pass (AUDIT.md "Passe 1.7"): the mod's own steps as a net10.0 build, English, no PickleTools (the @requires features skip).
 # The steps folder lives in the repo (Tests/Pickle/Mod17: About.xml declaring 1.6 and 1.7, Pickle/Assemblies = net10 build of Tests/Pickle/Source by scripts/build-pickle-steps-net10.sh) so a server lane reads it from the pushed repo. path: is relative to the repo root.
 # No No Version Warning mod is staged (the staging script has no support for it): the undeclared 1.7 gives a yellow warning only; the proof is the log and the report.
-# Rebuild and recommit Mod17 whenever Tests/Pickle/Source changes.
+# Rebuild and recommit Mod17 whenever Tests/Pickle/Source changes. Mod17 replaces the whole committed suite (same packageId): copy Tests/Pickle/Mod/Pickle/Features into Tests/Pickle/Mod17/Pickle/Features whenever a feature changes, else the filter matches no scenario.
 nelim.crystalball.pickletests path:CrystalBall/Tests/Pickle/Mod17
