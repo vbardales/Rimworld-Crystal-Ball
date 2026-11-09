@@ -3,3 +3,5 @@
 # No No Version Warning mod is staged (the staging script has no support for it): the undeclared 1.7 gives a yellow warning only; the proof is the log and the report.
 # Rebuild and recommit Mod17 whenever Tests/Pickle/Source changes. Mod17 replaces the whole committed suite (same packageId): copy Tests/Pickle/Mod/Pickle/Features into Tests/Pickle/Mod17/Pickle/Features whenever a feature changes, else the filter matches no scenario.
 nelim.crystalball.pickletests path:CrystalBall/Tests/Pickle/Mod17
+# 2026-11-09: NPT ColonistRace carries the main-thread step `Nelim's Pickle Tools: a colonist {string} exists` (the built-in step reads map pawns off the main thread on 1.7). Mod17 features use it.
+nelim.pickletools.colonistrace path:PickleTools/ColonistRace/Mod

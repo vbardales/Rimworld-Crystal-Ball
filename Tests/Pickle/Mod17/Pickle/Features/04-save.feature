@@ -16,8 +16,8 @@ Feature: a save with the ball in use
 
   @timeout:900
   Scenario: a save taken with two colonists gazing loads clean and the ball is still a masterwork
-    Given a colonist "Save-1" exists
-    And a colonist "Save-2" exists
+    Given Nelim's Pickle Tools: a colonist "Save-1" exists
+    And Nelim's Pickle Tools: a colonist "Save-2" exists
     And "Save-1" needs "Joy" is set to 10 percent
     And "Save-2" needs "Joy" is set to 10 percent
     And Crystal Ball: a masterwork crystal ball "Kept" stands on open ground with no seat within 6 cells
@@ -31,6 +31,6 @@ Feature: a save with the ball in use
     And Crystal Ball: the ball "Kept" stands where it was, with the quality it had
     And Crystal Ball: "Save-1" sits beside the ball "Kept"
     And Crystal Ball: "Save-2" sits beside the ball "Kept"
-    Given a colonist "Save-3" exists
+    Given Nelim's Pickle Tools: a colonist "Save-3" exists
     And "Save-3" needs "Joy" is set to 10 percent
     Then Crystal Ball: the joy giver offers "Save-3" nothing

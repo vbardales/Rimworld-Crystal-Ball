@@ -23,7 +23,7 @@ Feature: a colonist gazes into the ball
 
   @timeout:900
   Scenario: a colonist with low joy is sent to the ball and sits beside it with no seat anywhere near
-    Given a colonist "Gazer" exists
+    Given Nelim's Pickle Tools: a colonist "Gazer" exists
     And "Gazer" needs "Joy" is set to 10 percent
     And Crystal Ball: a crystal ball "Bare" stands on open ground with no seat within 6 cells
     And game speed is ultrafast
@@ -36,9 +36,9 @@ Feature: a colonist gazes into the ball
 
   @timeout:900
   Scenario: two colonists may share the ball and a third is offered nothing
-    Given a colonist "Share-1" exists
-    And a colonist "Share-2" exists
-    And a colonist "Share-3" exists
+    Given Nelim's Pickle Tools: a colonist "Share-1" exists
+    And Nelim's Pickle Tools: a colonist "Share-2" exists
+    And Nelim's Pickle Tools: a colonist "Share-3" exists
     And "Share-1" needs "Joy" is set to 10 percent
     And "Share-2" needs "Joy" is set to 10 percent
     And "Share-3" needs "Joy" is set to 10 percent
@@ -52,7 +52,7 @@ Feature: a colonist gazes into the ball
 
   @timeout:900
   Scenario: a sitting builds tolerance for divination and the recreation on the map lists it
-    Given a colonist "Tired" exists
+    Given Nelim's Pickle Tools: a colonist "Tired" exists
     And "Tired" needs "Joy" is set to 10 percent
     Then Crystal Ball: "Tired" has no tolerance for divination
     And Crystal Ball: the recreation on the map does not list divination
@@ -66,8 +66,8 @@ Feature: a colonist gazes into the ball
 
   @timeout:900
   Scenario: a colonist who cannot see is offered nothing and one who cannot hear is sent and sits
-    Given a colonist "Blind" exists
-    And a colonist "Deaf" exists
+    Given Nelim's Pickle Tools: a colonist "Blind" exists
+    And Nelim's Pickle Tools: a colonist "Deaf" exists
     And Crystal Ball: "Blind" is made blind
     And Crystal Ball: "Deaf" is made deaf
     And "Blind" needs "Joy" is set to 10 percent

@@ -32,7 +32,7 @@ Feature: the crystal ball as an object
   # ultrafast speed still takes thousands of ticks, hence the long timeout.
   @slow @timeout:1800
   Scenario: a colonist builds the ball from jade and gold with no research
-    Given a colonist "Builder" exists
+    Given Nelim's Pickle Tools: a colonist "Builder" exists
     And "Builder" has childhood "ShopKid36"
     And "Builder" has backstory "Blacksmith7"
     Then "Builder" can do "Construction"
