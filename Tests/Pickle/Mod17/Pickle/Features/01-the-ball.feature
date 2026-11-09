@@ -44,7 +44,7 @@ Feature: the crystal ball as an object
     And I use the build designator for "CB_CrystalBall" at (146, 157)
     Then a blueprint for "CB_CrystalBall" is at (146, 157)
     Given game speed is ultrafast
-    When I wait for the "CB_CrystalBall" at (146, 157) to be built
+    When Crystal Ball: I wait for the ball at (146, 157) to be built within 12000 ticks
     Then a "CB_CrystalBall" is at (146, 157)
     And no errors were logged
 

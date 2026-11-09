@@ -132,6 +132,62 @@ namespace CrystalBall.PickleSteps
             return Math.Max(Math.Abs(a.x - b.x), Math.Abs(a.z - b.z));
         }
 
+        private static string Who(Pawn p)
+        {
+            return $"{p.LabelShort} at {p.Position}, job {(p.CurJob == null ? "none" : p.CurJob.def.defName)}" +
+                   (p.pather.Moving ? $", moving to {p.pather.Destination}" : ", standing");
+        }
+
+        private static string Crowd(Map map)
+        {
+            return string.Join("; ", map.mapPawns.FreeColonistsSpawned.Select(Who));
+        }
+
+        /// <summary>What a stalled construction looks like: the frame, the stacks, and each colonist's reach and priorities.</summary>
+        private static string BuildReport(Map map, IntVec3 cell)
+        {
+            var parts = new List<string>();
+            Frame frame = cell.GetThingList(map).OfType<Frame>().FirstOrDefault();
+            if (frame == null)
+            {
+                parts.Add("no frame at " + cell + ", the cell holds: " + string.Join(", ", cell.GetThingList(map).Select(t => t.def.defName)));
+            }
+            else
+            {
+                parts.Add($"frame work {frame.workDone:0}/{frame.WorkToBuild:0}, delivered " +
+                          (frame.resourceContainer.Count == 0 ? "nothing" : string.Join(", ", frame.resourceContainer.Select(t => t.stackCount + " " + t.def.defName))));
+            }
+            foreach (string defName in new[] { "Jade", "Gold" })
+            {
+                ThingDef def = DefDatabase<ThingDef>.GetNamed(defName);
+                parts.Add(defName + " stacks: " + string.Join(" ", map.listerThings.ThingsOfDef(def).Select(t =>
+                    $"{t.stackCount}@{t.Position}{(t.IsForbidden(Faction.OfPlayer) ? " forbidden" : "")}")));
+            }
+            foreach (Pawn p in map.mapPawns.FreeColonistsSpawned)
+            {
+                string reach = frame == null ? "" :
+                    $", reaches frame {p.CanReach(frame, PathEndMode.Touch, Danger.Deadly)}, frame forbidden {frame.IsForbidden(p)}";
+                parts.Add($"{Who(p)}, Construction {p.workSettings.GetPriority(WorkTypeDefOf.Construction)}, " +
+                          $"Hauling {p.workSettings.GetPriority(WorkTypeDefOf.Hauling)}{reach}");
+            }
+            return string.Join(" | ", parts);
+        }
+
+        /// <summary>
+        /// The tick-counted twin of Pickle's wait for a built thing: same condition, but the budget is in game ticks and a
+        /// miss says what the frame, the stacks and each colonist are doing, so a build that never starts names its cause.
+        /// </summary>
+        [When("Crystal Ball: I wait for the ball at \\({int}, {int}\\) to be built within {int} ticks", TimeoutSeconds = 1800f)]
+        public async Task WaitBuilt(PickleContext ctx, int x, int z, int maxTicks)
+        {
+            Map map = CurrentMap(ctx);
+            var cell = new IntVec3(x, 0, z);
+            await WaitOrExplain(ctx,
+                () => cell.GetThingList(map).Any(t => t.def.defName == BallDefName),
+                maxTicks,
+                () => BuildReport(map, cell));
+        }
+
         /// <summary>
         /// Waits for a condition and, when it never comes true, fails with what the world looks like NOW.
         /// <c>PickleContext.WaitUntil</c> throws <see cref="TimeoutException"/> when it times out, so an Assert written
@@ -419,7 +475,9 @@ namespace CrystalBall.PickleSteps
                 () => Uses(pawn, ball) && Chebyshev(pawn.Position, ball.Position) == 1 && !pawn.pather.Moving,
                 1500,
                 () => $"{nickname} is at {pawn.Position}, the ball at {ball.Position}; job " +
-                      (pawn.CurJob == null ? "none" : pawn.CurJob.def.defName) + ", moving " + pawn.pather.Moving);
+                      (pawn.CurJob == null ? "none" : pawn.CurJob.def.defName) + ", moving " + pawn.pather.Moving +
+                      (pawn.CurJob == null ? "" : $"; sitting cell {pawn.CurJob.targetB}, destination {pawn.pather.Destination}") +
+                      "; colonists: " + Crowd(pawn.Map));
 
             // The driver the game runs for its own chess table is what sits the colonist down, which is the claim
             // the mod rests on: it must be that one, on the cell beside the ball and not on the ball itself.
