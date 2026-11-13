@@ -177,7 +177,7 @@ namespace CrystalBall.PickleSteps
         /// The tick-counted twin of Pickle's wait for a built thing: same condition, but the budget is in game ticks and a
         /// miss says what the frame, the stacks and each colonist are doing, so a build that never starts names its cause.
         /// </summary>
-        [When("Crystal Ball: I wait for the ball at \\({int}, {int}\\) to be built within {int} ticks", TimeoutSeconds = 1800f)]
+        [When("Crystal Ball: I wait for the ball at \\({int}, {int}\\) to be built within {int} ticks", TimeoutSeconds = 300f)]
         public async Task WaitBuilt(PickleContext ctx, int x, int z, int maxTicks)
         {
             Map map = CurrentMap(ctx);
@@ -199,15 +199,27 @@ namespace CrystalBall.PickleSteps
         internal static async Task WaitOrExplain(PickleContext ctx, Func<bool> condition, int maxTicks, Func<string> explain)
         {
             int start = Find.TickManager.TicksGame;
+            int nextLog = 0;
+            Log.Message($"[CB wait] start at tick {start}, budget {maxTicks} ticks");
             while (!condition())
             {
-                if (Find.TickManager.TicksGame - start >= maxTicks)
+                int elapsed = Find.TickManager.TicksGame - start;
+                if (elapsed >= nextLog)
+                {
+                    // One line every 100 ticks: a wait that is killed by the run watchdog still shows where it stopped.
+                    Log.Message($"[CB wait] {elapsed}/{maxTicks} ticks, done: false");
+                    nextLog = elapsed + 100;
+                }
+
+                if (elapsed >= maxTicks)
                 {
                     ctx.Assert(false, $"after {maxTicks} ticks: {explain()}");
                     return;
                 }
                 await ctx.WaitTicks(5);
             }
+
+            Log.Message($"[CB wait] done after {Find.TickManager.TicksGame - start} ticks");
         }
 
         // ------------------------------------------------------------------ placing a ball
@@ -465,7 +477,7 @@ namespace CrystalBall.PickleSteps
 
         // ------------------------------------------------------------------ what the colonist does
 
-        [Then("Crystal Ball: {string} sits beside the ball {string}", TimeoutSeconds = 900f)]
+        [Then("Crystal Ball: {string} sits beside the ball {string}", TimeoutSeconds = 300f)]
         public async Task SitsBeside(PickleContext ctx, string nickname, string ballName)
         {
             Pawn pawn = Colonist(ctx, nickname);
