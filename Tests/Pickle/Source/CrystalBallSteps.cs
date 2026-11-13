@@ -201,6 +201,22 @@ namespace CrystalBall.PickleSteps
             int start = Find.TickManager.TicksGame;
             int nextLog = 0;
             Log.Message($"[CB wait] start at tick {start}, budget {maxTicks} ticks");
+
+            // 4286 stopped logging at tick 120 and the step then hit its 300 s timeout: ticks stopped advancing. A real-time
+            // probe (thread pool, not the tick loop, which is what stalls) says whether the game is paused, at what speed,
+            // and which windows are open, every 20 s of wall time.
+            using var probe = new System.Threading.Timer(_ =>
+            {
+                try
+                {
+                    string windows = string.Join(",", Find.WindowStack.Windows.Select(w => w.GetType().Name));
+                    Log.Message($"[CB probe] tick {Find.TickManager.TicksGame}, paused {Find.TickManager.Paused}, speed {Find.TickManager.CurTimeSpeed}, windows [{windows}]");
+                }
+                catch (Exception e)
+                {
+                    Log.Message("[CB probe] failed: " + e.GetType().Name + " " + e.Message);
+                }
+            }, null, 20000, 20000);
             while (!condition())
             {
                 int elapsed = Find.TickManager.TicksGame - start;
