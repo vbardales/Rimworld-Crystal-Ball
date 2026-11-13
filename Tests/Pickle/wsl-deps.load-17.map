@@ -1,0 +1,2 @@
+# 1.7 freeze bisect: the mod's own steps only, no PickleTools. Scenario 01-the-ball::the mod loads (no colonist step).
+nelim.crystalball.pickletests path:CrystalBall/Tests/Pickle/Mod17
