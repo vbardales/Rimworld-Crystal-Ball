@@ -1,0 +1,4 @@
+# 1.7 construction control (08-floor-control): minimal-17 plus NPT StageDecor (net10 build) for the floor step.
+nelim.crystalball.pickletests path:CrystalBall/Tests/Pickle/Mod17
+nelim.pickletools.colonistrace path:PickleTools/Build17/ColonistRace
+nelim.pickletools.stagedecor path:PickleTools/Build17/StageDecor
