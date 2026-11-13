@@ -64,10 +64,10 @@ Full attribution: [url=https://github.com/vbardales/Rimworld-Crystal-Ball/blob/m
 (the Preview was regenerated with a new ModIcon badge); for `1.0.0` it was off, the image coming from the prepublication.
 `Mod/About/ModIcon.png` ships inside `Mod/`.
 
-The gallery is manual, on the Steam page, in the order below. `Art/Gallery/` is uploaded as it is (nothing
+The gallery is managed manually on the Steam page, in the order below. `Art/Gallery/` is uploaded as it is (nothing
 in it but the images, numbered `0-`, `1-`, `2-`, `3-` in upload order). The dry-run lists it as a reminder.
 
-Image `0`, new consigne from Virginie on 2026-09-29: the gallery now opens on a copy of `Mod/About/Preview.png`, the
+Image `0`, new instruction from Virginie on 2026-09-29: the gallery now opens on a copy of `Mod/About/Preview.png`, the
 finished vitrine (title, summary, version badge), so a browser sees the same picture as the store header before
 scrolling. The shared `scripts/Render-Preview.cjs` renderer reads `Art/Preview.config.json`, then writes `Mod/About/Preview.png`. `Art/echo.png` is the final pre-sized transparent
 line-art mask: it is consumed unchanged, tinted with the accent colour, shown above the panel treatment, flipped
