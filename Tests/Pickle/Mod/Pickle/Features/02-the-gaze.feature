@@ -29,7 +29,7 @@ Feature: a colonist gazes into the ball
     And game speed is ultrafast
     When Crystal Ball: the joy giver sends "Gazer" to the ball "Bare"
     Then Crystal Ball: "Gazer" sits beside the ball "Bare"
-    When I wait 600 ticks
+    When Nelim's Pickle Tools: the game is advanced by 600 ticks
     Then Crystal Ball: "Gazer"'s joy has risen since the giver sent them
     And "Gazer" has job "CB_GazeIntoCrystalBall"
     And no errors were logged
@@ -61,7 +61,7 @@ Feature: a colonist gazes into the ball
     Then Crystal Ball: the recreation on the map lists divination
     When Crystal Ball: the joy giver sends "Tired" to the ball "Kind"
     Then Crystal Ball: "Tired" sits beside the ball "Kind"
-    When I wait 1500 ticks
+    When Nelim's Pickle Tools: the game is advanced by 1500 ticks
     Then Crystal Ball: "Tired" has built up tolerance for divination
 
   @timeout:900

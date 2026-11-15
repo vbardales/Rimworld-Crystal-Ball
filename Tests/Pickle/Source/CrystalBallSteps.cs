@@ -232,7 +232,12 @@ namespace CrystalBall.PickleSteps
                     ctx.Assert(false, $"after {maxTicks} ticks: {explain()}");
                     return;
                 }
-                await ctx.WaitTicks(5);
+                // Fast-forward like NPT's `the game is advanced by {int} ticks`: on 1.7 the harness draws a frame in about 1.3 s
+                // and the game ticks once per frame, so waiting for game time never reaches the budget (0b20, d7a9: 226 ticks in
+                // 306 s). Run the game's own ticks for about 40 ms, then let one frame draw.
+                var slice = System.Diagnostics.Stopwatch.StartNew();
+                while (slice.ElapsedMilliseconds < 40 && Find.TickManager.TicksGame - start < maxTicks && !condition()) Find.TickManager.DoSingleTick();
+                await ctx.WaitFrames(1);
             }
 
             Log.Message($"[CB wait] done after {Find.TickManager.TicksGame - start} ticks");
