@@ -5,7 +5,11 @@ This file serves the repository and the writing of Steam patch notes; RimWorld d
 
 ## [Unreleased]
 
-Next version `1.1.0`: minor bump for the RimWorld 1.7 line. No `1.7` in `supportedVersions` before a green 1.7 run.
+Next version `1.1.0`: minor bump for the RimWorld 1.7 line. `1.7` is declared in `supportedVersions` after the green 1.7 diagnostic of 2026-11-15.
+
+### Added
+
+- **RimWorld 1.7 support**: `1.7` joins `1.6` in `supportedVersions`. The mod is unchanged: it is defs and one texture, no assembly, and the 1.7 diagnostic (build, gaze, save) is green. The Preview badge now reads 1.7.
 
 ### Changed
 
