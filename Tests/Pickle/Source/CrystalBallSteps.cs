@@ -503,11 +503,14 @@ namespace CrystalBall.PickleSteps
         {
             Pawn pawn = Colonist(ctx, nickname);
             Thing ball = BallNamed(ctx, ballName);
+            IntVec3 from = pawn.Position;
 
+            // 1500 ticks was too tight on 1.7 (1690: Deaf walked from a far spawn and stopped 3 cells short, job and path fine);
+            // the walk is fast-forwarded now, so a large budget costs seconds.
             await WaitOrExplain(ctx,
                 () => Uses(pawn, ball) && Chebyshev(pawn.Position, ball.Position) == 1 && !pawn.pather.Moving,
-                1500,
-                () => $"{nickname} is at {pawn.Position}, the ball at {ball.Position}; job " +
+                4000,
+                () => $"{nickname} started at {from}, is at {pawn.Position}, the ball at {ball.Position}; job " +
                       (pawn.CurJob == null ? "none" : pawn.CurJob.def.defName) + ", moving " + pawn.pather.Moving +
                       (pawn.CurJob == null ? "" : $"; sitting cell {pawn.CurJob.targetB}, destination {pawn.pather.Destination}") +
                       "; colonists: " + Crowd(pawn.Map));
