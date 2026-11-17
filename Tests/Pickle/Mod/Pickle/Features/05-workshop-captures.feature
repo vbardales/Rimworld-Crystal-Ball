@@ -11,12 +11,12 @@
 # the tea room) is roofed, so its light is the torches' and the ball's. The room is emptied, the set laid inside it, and taken down with the scenario.
 #
 # THE SHOOTING PLAN (one line per picture: place, time, subject, composition, the living thing, the instant, what it says).
-#   1. `1-the-seer-arrives`: hut, 17:00, Clear. Wide (zoom 3, 6 cells tall, the ball about 25 px at 268 px) on (142, 72): the east wall and its door in frame (the door stays shut: no open-door step), the ball in the middle of
+#   1. `1-the-seer-arrives`: hut, 17:00, Clear. Wide (zoom 2.8, 6.4 cells tall, the ball about 21 px at 268 px) on (143, 73) (take 3 framed higher and cut the rose): the east wall and its door in frame (the door stays shut: no open-door step), the ball in the middle of
 #      the room at (140, 74) on the bare plank floor, a rose and a daylily in pots north and south of it, shelf and bookcase on the west wall, two small sculptures.
 #      Only the torch by the east door (144, 70) is lit, the other two are put out (placed torches burn by default, first take showed three lit): she lit it as she came in. THE INSTANT: Nelim has just come through the east door (146, 73) and is walking
-#      to the ball, caught mid-stride (the joy giver job is given at the door, 8 ticks pass, then 30 of presentation: about 38 ticks, about four cells of the seven to her seat; first take at 70 ticks showed her already seated; no
+#      to the ball, caught mid-stride (the joy giver job is given at the door, 4 ticks pass, then 10 of presentation: about 14 ticks; takes at 70 and 38 ticks both showed her already seated; no
 #      draft, no posed stance). It says: a seer walks in at dusk toward a violet ball in a half-lit room.
-#   2. `2-a-colonist-gazing`: hut, 18:00, Clear. Medium (zoom 3, the ball about 25 px at 268 px) on (139, 73): Nelim on the left, in profile facing east, the ball a third from the right, the torch
+#   2. `2-a-colonist-gazing`: hut, 18:00, Clear. Medium (zoom 2.6, the ball about 20 px at 268 px) on (139, 74): shelf, bookcase, sculpture and two torches in frame (take 3 had bare planks): Nelim on the left, in profile facing east, the ball a third from the right, the torch
 #      (137, 71) behind her and the other two lit at the edge of the frame. The pots north and south leave only the west and east cells free: she takes the west one,
 #      no chair anywhere (the room was emptied). THE INSTANT: the last torch has just caught, she has turned to the ball and gazes (the game's own sit-facing driver
 #      draws her standing on the cell, gaze on the ball), calm kit and expression `SocialRelax` set after she arrives. It says: they gaze into it on their own, as recreation.
@@ -72,10 +72,10 @@ Feature: the pictures of the Workshop page
     And "Nelim" needs "Joy" is set to 10 percent
     When Nelim's Sanctuary: Nelim has her own face
     And Crystal Ball: the joy giver sends "Nelim" to the ball "First" to sit on its west side
-    And Nelim's Pickle Tools: the game is advanced by 8 ticks
-    And Nelim's Pickle Tools: I frame the cell (142, 72) at zoom 3
+    And Nelim's Pickle Tools: the game is advanced by 4 ticks
+    And Nelim's Pickle Tools: I frame the cell (143, 73) at zoom 2.8
     And Nelim's Pickle Tools: studio presentation mode is enabled
-    And I wait 30 ticks
+    And I wait 10 ticks
     Then I take a screenshot "workshop 1 - the seer arrives"
 
   # 2. What it does, at 18:00: all torches lit, she gazes into the ball, no chair anywhere near (medium).
@@ -95,7 +95,7 @@ Feature: the pictures of the Workshop page
     Then Crystal Ball: "Nelim" sits beside the ball "Third"
     When Nelim's Pickle Tools: "Nelim" face kit is "calm"
     And Nelim's Pickle Tools: "Nelim" facial expression is "SocialRelax"
-    And Nelim's Pickle Tools: I frame the cell (139, 73) at zoom 3
+    And Nelim's Pickle Tools: I frame the cell (139, 74) at zoom 2.6
     And Nelim's Pickle Tools: studio presentation mode is enabled
     And I wait 30 ticks
     Then I take a screenshot "workshop 2 - a colonist gazing"
