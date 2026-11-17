@@ -11,10 +11,10 @@
 # the tea room) is roofed, so its light is the torches' and the ball's. The room is emptied, the set laid inside it, and taken down with the scenario.
 #
 # THE SHOOTING PLAN (one line per picture: place, time, subject, composition, the living thing, the instant, what it says).
-#   1. `1-the-seer-arrives`: hut, 17:00, Clear. Wide (zoom 6) on (142, 73): the open east door and a strip of evening outside in frame, the ball in the middle of
+#   1. `1-the-seer-arrives`: hut, 17:00, Clear. Wide (zoom 6) on (142, 73): the east wall and its door in frame (the door stays shut: no open-door step), the ball in the middle of
 #      the room at (140, 74) on the bare plank floor, a rose and a daylily in pots north and south of it, shelf and bookcase on the west wall, two small sculptures.
-#      Only the torch by the east door (144, 70) is lit: she lit it as she came in. THE INSTANT: Nelim has just come through the east door (146, 73) and is walking
-#      to the ball, caught mid-stride (the joy giver job is given at the door, 40 ticks pass, then 30 of presentation: about 70 ticks, to be read on the picture; no
+#      Only the torch by the east door (144, 70) is lit, the other two are put out (placed torches burn by default, first take showed three lit): she lit it as she came in. THE INSTANT: Nelim has just come through the east door (146, 73) and is walking
+#      to the ball, caught mid-stride (the joy giver job is given at the door, 20 ticks pass, then 30 of presentation: about 50 ticks, about four cells of the seven to her seat; first take at 70 ticks showed her already seated; no
 #      draft, no posed stance). It says: a seer walks in at dusk toward a violet ball in a half-lit room.
 #   2. `2-a-colonist-gazing`: hut, 18:00, Clear. Medium (zoom 5.5) on (139, 74): Nelim on the left, in profile facing east, the ball a third from the right, the torch
 #      (137, 71) behind her and the other two lit at the edge of the frame. The pots north and south leave only the west and east cells free: she takes the west one,
@@ -63,6 +63,8 @@ Feature: the pictures of the Workshop page
     Given I set the hour to 17
     And I set the weather to "Clear"
     And Nelim's Pickle Tools: the decor "TorchLamp" at (144, 70) is lit
+    And Nelim's Pickle Tools: the building "TorchLamp" at (137, 71) is put out
+    And Nelim's Pickle Tools: the building "TorchLamp" at (143, 76) is put out
     And game speed is ultrafast
     And Crystal Ball: a crystal ball "First" stands at (140, 74)
     And I wait 60 ticks
@@ -70,7 +72,7 @@ Feature: the pictures of the Workshop page
     And "Nelim" needs "Joy" is set to 10 percent
     When Nelim's Sanctuary: Nelim has her own face
     And Crystal Ball: the joy giver sends "Nelim" to the ball "First" to sit on its west side
-    And Nelim's Pickle Tools: the game is advanced by 40 ticks
+    And Nelim's Pickle Tools: the game is advanced by 20 ticks
     And Nelim's Pickle Tools: I frame the cell (142, 73) at zoom 6
     And Nelim's Pickle Tools: studio presentation mode is enabled
     And I wait 30 ticks
