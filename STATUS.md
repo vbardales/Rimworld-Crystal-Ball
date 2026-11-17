@@ -117,3 +117,36 @@ Open 2026-10-18: 1.7 diagnostic ticket `20261017-180855-702-bf2b` (PathProbe, fi
 - `settings` to `localize` (revision `28bf1a5`): 5.a/5.b inventory: no option, no `ModSettings`, no assembly, no page, no MainButtons def in `Mod/`; nothing configurable that a player needs (one def set, vanilla joy logic). 5.c to 5.e not applicable. 5.f `scripts/Run-Tests.ps1` 22 of 22 and `scripts/Run-Functional-Tests.ps1` 11 of 11 replayed today. 5.g `settings_audit: not_applicable` stands, no empty page, no shortcut. Done.
 - `localize` to `writeTests` (revision `b08ee51`): 6.a texts = 2 ThingDef fields, 1 JobDef `reportString`, 1 JoyKindDef label, no Keyed, no code string. 6.b English is Def source text. 6.c `Check-Translations` pass, `Check-DefInjected` 4 keys 0 errors, today. 6.d no pawn token needed, no `tu`/`vous`/`nous` addressed to player (`on s’assied`, `scrute`). 6.f `FRENCH_REVIEW.md` regenerated (revision line only). 6.g French unchanged since Virginie's review at `17678e8` (2026-10-08): `Mod/Languages` and `Mod/Defs` untouched since. Fields `localization`, `translation_en`, `translation_fr` stay `complete`. Done.
 - `writeTests` to `playTests` (revision `90b24fc`): 7.a scenarios in `TESTING.md`, one per promised behaviour. 7.b `Run-Tests.ps1` 22 of 22 replayed today. 7.c `Check-ModBasics` pass, `Run-Functional-Tests.ps1` 11 of 11. 7.d 7 Pickle features written (`Tests/Pickle/Mod/Pickle/Features/`), `Check-Steps.ps1 -ModRoot .` exits clean (one unused step, known); local steps and scripts catalogued (`Inventory-LocalScripts.ps1 -Check` OK). 7.f results are for `Mod/` unchanged since `v1.0.1`. 7.g translations complete, French reviewed. This `playTests[1.1.0]` is the 1.7 diagnostic: ticket `75fc` pending, verdict from the `1.7` session at `RUN_DONE`. Done.
+
+## NSB (sync 2026-11-17, writeShotlist[1.1.0])
+
+Places read: 2026-11-17 (hut only). Tribe read: 2026-11-17 (Nelim only). Steps read: 2026-11-17 (NPT steps and catalogues since 2026-10-15).
+Since the last gallery run (2026-10-15) nothing in NSB or NPT breaks the plan: `Docs/steps.md` of NSB unchanged but a folder rename; NPT adds `the game is advanced by N ticks`, `the decor ... burns`, `the joy giver {string} job is forced on {string}`. Rules of the owner (2026-11-05) said back: everything in NSB is free; outside NSB needs express validation; a colonist's properties change only with her express validation; every outfit is free; every animal the mod adds must show (this mod adds none).
+
+| Place | Shots | Changes for the gallery | Last read |
+| --- | --- | --- | --- |
+| `hut` (alias `tea-room`, centre (140, 73), roofed, dark) | 1, 2, 3 | room emptied, set of decor laid and taken down per scenario (3 TorchLamp, Plant_Rose, Plant_Daylily, Shelf, Bookcase, 2 SculptureSmall); load `Nelims-tribe`, not the decorated fixture | 2026-11-17 |
+
+| Colonist | Shots | Outfit per shot | Last read | Exceptions |
+| --- | --- | --- | --- | --- |
+| Nelim (NSB) | 1, 2, 3 | 1 and 2: `Apparel_Robe` of `Leather_Plain` (tan against the violet ball); 3: same robe plus `Apparel_Cape` dyed rgb (98, 52, 150) (a mage at night, owner suggestion 2026-10-08) | 2026-11-17 | PENDING: hairstyle `Flowy` and eyes rgb (92, 58, 36) are not canon (`NELIM-PROFIL.md`: `Roo_HD_Hair_Highpony`, `Eyes_DarkBrown`); `VALIDE.md` says hair is a canonical property: no quoted validation yet, so no new scenario is played with them |
+
+| Animal | Shots | Outfit | Last read | Exceptions |
+| --- | --- | --- | --- | --- |
+| none (hut emptied of animals on purpose) | | | | none |
+
+| Animal the mod includes | Shot |
+| --- | --- |
+| none: the mod adds no animal | n/a |
+
+## Shotlist (draft 2026-11-17, not yet scored)
+
+Story: the seer's evening. Nelim, the protagonist, reaches the hut at the water's edge at 17:00 with her crystal ball, lights the torches, sits and gazes at 18:00, and at 23:00 the torches are out and only the ball's violet glow is left. One place, one room, the light going down; 2,500 ticks per game hour, the hour is set in each scenario. Pictures 1 to 3 already exist (qualified by Virginie 2026-10-08, uploaded); 1.1.0 keeps them and adds the subtitle pipeline; every scene still has to reach 5 on `score-gallery` before any new ticket.
+
+| # | Place, hour, weather | Subject and what it says | Composition | Living things | Decor | Steps and mods | Subtitle |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 `1-the-ball-by-day` | hut, 17:00, Clear, 60 ticks set-up | ball in the middle of the room, first torch just lit: the seer arrives | wide, root 7, ball off the room centre line, Shelf and Bookcase west | Nelim off centre by the shelf facing East, own face, robe | TorchLamp (137,71) lit, Rose and Daylily pots N and S, 2 SculptureSmall | Sanctuary map as base, studio pack, ColonistRace | The seer arrives with her crystal ball and lights the first torch. |
+| 2 `2-a-colonist-gazing` | hut, 18:00, Clear | seer sits beside the ball, no chair: it is recreation | close, root 5, cell (140,74) | Nelim seated west, SocialRelax, calm kit | three TorchLamp lit, pots, shelf, bookcase | `the joy giver ... sends ... to sit on its west side` | Dusk falls, and she sits beside it, no chair needed. |
+| 3 `3-the-ball-glowing-in-the-dark` | hut, 23:00, Clear, no torch | the ball's own glow is the only light | close, root 5, cell (140,74) | Nelim seated east, calm kit, LidSleepy, expression normal, cape | same set, torches out | same | By night, the ball's own glow is the only light left. |
+
+Open before any ticket: (1) Virginie's validation of `Flowy` and the eye colour; (2) `score-gallery` loop to 5 on each scene; (3) Opus director pass; (4) scenarios kept or rewritten from the shotlist, `Check-ShotlistVsScenario.ps1`; (5) subtitles (`Art/Gallery-clean/` does not exist yet). Risks read in NSB: `LidSleepy` may not resolve without VEFA (check `wsl-deps.sanctuary.map`), a drafted pawn plays `Wait_Combat` with angled brows (picture 1 drafts Nelim before `has her own face`), mouth offset in profile (Beauty2 patch unplayed), steps `I dress ... made of` and `I destroy the gear of` are in no catalogue read (Pickle core?), do not use `the light of the map is lifted` on picture 3.
