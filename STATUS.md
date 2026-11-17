@@ -9,7 +9,7 @@ remote:       https://github.com/vbardales/Rimworld-Crystal-Ball.git
 local_path:   C:\Users\nelim\Documents\rimworld\CrystalBall
 visibility:   public
 detached:     yes
-workflow_stage: writeShotlist[1.1.0]
+workflow_stage: shootGallery[1.1.0]
 settings_audit: not_applicable
 licence:      original
 licence_at:   MIT; original mod according to repository provenance
@@ -21,17 +21,17 @@ tested_on:    1.0.1 (published 2026-10-08), played in game through Pickle 2026-1
 tested_1_7:   yes
 workshop:     3806709786
 published_on: 2026-10-08, version 1.0.1 by the publish workflow (run 37839600085, SHA c090e2fa7a1cb64e7a19416e43e2e5443c0a333d, dry-run 37839358655), tag v1.0.1 and GitHub release by the CI. First publication 2026-09-26 (1.0.0, SHA 7d64a56491d7f131ec5770342f65875d993f8279), made public by Virginie the same day; gallery and subscriptions are hers, by hand.
-remaining: ["9.0 open: no shotlist for 1.1.0 (write-shotlist not run); the 1.0.1 gallery (4 images) is unchanged, so ask Virginie whether 1.1.0 owes a shotlist or keeps the gallery as is", "9.0 bis, 9.e bis, 9.f open behind 9.0; 9.c and 9.d unproven in this replay (order and image reading only in the STATUS table)", "Cleanup later: old evidence p17-bisect-load-f, p17-pathprobe-1018 and one Parked run in Tests/Pickle (TEST-EVIDENCE rule)", "Replay 2026-11-17 (whole chain 1 to 6, stopped at 6.g): back from playTests[1.1.0] to localize[1.1.0]; 1.7 declared 2026-11-15, tested_1_7 yes, 8.m code_review_sha e48e3be and the 1.7 runs are kept (history in Docs/runs/status-journal.md)", "Check-ModBasics WARN, pre-existing: About description should end with the Source code on GitHub url form, left for Virginie or Audit"]
+remaining: ["9.a open: three captures (1-the-seer-arrives, 2-a-colonist-gazing, 3-the-ball-glowing-in-the-dark) to shoot by Pickle ticket on the sanctuary pass (wsl-deps.sanctuary.map), then subtitles (Art/Gallery-clean, Add-Subtitle), 9.e bis, one review by Virginie at the end, 9.f", "Cleanup later: old evidence p17-bisect-load-f, p17-pathprobe-1018 and one Parked run in Tests/Pickle (TEST-EVIDENCE rule)", "Replay 2026-11-17 (whole chain 1 to 6, stopped at 6.g): back from playTests[1.1.0] to localize[1.1.0]; 1.7 declared 2026-11-15, tested_1_7 yes, 8.m code_review_sha e48e3be and the 1.7 runs are kept (history in Docs/runs/status-journal.md)", "Check-ModBasics WARN, pre-existing: About description should end with the Source code on GitHub url form, left for Virginie or Audit"]
 session:      01a09736-2cfc-72d3-8b3c-4ffe79ef572c
 code_review_sha: 6a2012f9ad0e2e66a9e8a29ac42b80f1628a2d3a
 publication_changelog_review_sha: 6625b154c312ed5a8356cf6d6388b1496d41923a
 echo_review_sha: 78b73b79bb007ef9a3b8efe097bb8cf09defbd6c
 updated:      2026-11-17
-protocols_read_sha: 0ad1fa4951e82b767730db06896e2c1f876b4c3a
+protocols_read_sha: 9ebf2b1b4d24bcaff85d6df40ffc4df751b24a48
 ---
 # Crystal Ball: status (2026-10-10)
 
-**`workflow_stage: writeShotlist[1.1.0]`** (6.g validated by Virginie 2026-11-17, left localize) (replay 2026-11-17 moved it back from `playTests[1.1.0]`: 6.g, French changed 2026-11-13 after Virginie's review; earlier note: stage walked one by one from `code`, 2026-10-18, owner request: nothing coded for 1.1.0, `Mod/` unchanged since `v1.0.1` but the Preview; 3.a to 3.c checked: no feature open, no assembly, `[Unreleased]` present) (minor bump for RimWorld 1.7 line; `1.7` declared 2026-11-15 after the green 1.7 diagnostic, `tested_1_7: yes`). Version `1.0.1` public on Steam (item 3806709786), post-publication
+**`workflow_stage: shootGallery[1.1.0]`** (6.g validated by Virginie 2026-11-17, left localize) (replay 2026-11-17 moved it back from `playTests[1.1.0]`: 6.g, French changed 2026-11-13 after Virginie's review; earlier note: stage walked one by one from `code`, 2026-10-18, owner request: nothing coded for 1.1.0, `Mod/` unchanged since `v1.0.1` but the Preview; 3.a to 3.c checked: no feature open, no assembly, `[Unreleased]` present) (minor bump for RimWorld 1.7 line; `1.7` declared 2026-11-15 after the green 1.7 diagnostic, `tested_1_7: yes`). Version `1.0.1` public on Steam (item 3806709786), post-publication
 non-regression green. Dated sections that used to live here now one line each in `docs/runs/status-journal.md`
 (AUDIT.md 14.c); full text in git.
 
