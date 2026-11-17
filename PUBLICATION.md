@@ -103,9 +103,9 @@ Every scene without an interface window carries one line of English at the botto
 
 | Index | File | Line |
 | --- | --- | --- |
-| 1 | `1-the-ball-by-day.png` | The seer arrives with her crystal ball and lights the first torch. |
-| 2 | `2-a-colonist-gazing.png` | Dusk falls, and she sits beside it, no chair needed. |
-| 3 | `3-the-ball-glowing-in-the-dark.png` | By night, the ball's own glow is the only light left. |
+| 1 | `1-the-seer-arrives.png` | The seer walks in at dusk; the first torch is already burning. |
+| 2 | `2-a-colonist-gazing.png` | Dusk falls, and she gazes into it on her own, no chair needed. |
+| 3 | `3-the-ball-glowing-in-the-dark.png` | By night the torches have died, and the ball's own glow is the only light left. |
 
 ## 3. Dependencies to declare on Steam
 

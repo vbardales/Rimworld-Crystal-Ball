@@ -1,14 +1,13 @@
 # Picture 3 of the Workshop page (PUBLICATION.md, section 2): the glow itself, in the dark. Staged, not found (PUBLISHING.md, "Images").
 #
-# SHOOTING PLAN. 3. hut, 23:00. No torch: the only light of the room is the ball's own faint violet glow (radius 3, permanent), so that
-# the picture says what the description promises, "glows faintly and permanently, a landmark at night". The same hut, set and seat as
-# pictures 1 and 2 (feature 05: the ball in the middle of the room at (140, 74), pots north and south of it, bookcase, shelf, small sculptures; the pots keep the
-# seer from sitting in front of or behind the ball; the seat side is fixed by the step `sends ... to sit on its east side`: east here, west in picture 2).
-# Nelim sits beside the ball, dressed as in the other pictures but as a mage: the leather robe under a violet cape (no hood this time: her `Flowy` hair
-# shows, lit violet by the ball; no staff: the carry step put it in her hands and the sitting job dropped it on the floor, run b029), her face turned dreamy: the
-# calm kit with sleepy lids (a mystic look, owner's suggestion 2026-10-08), the expression set to normal just before the shot. Closer (camera root size 5), as for picture 2.
-# The hour is set to 23 once. The room is roofed, so the daylight is out of it and the glow is the one thing that reads.
-# The story: the seer's torches have gone out one after the other, and she stays with the ball in the dark.
+# SHOOTING PLAN (shotlist v3, 2026-11-17). 3. `3-the-ball-glowing-in-the-dark`: hut, 23:00, Clear, no torch: the only light of the room is the ball's own faint
+# violet glow (radius 3, permanent), so that the picture says what the description promises, "glows faintly and permanently, a landmark at night". Close (zoom 4)
+# on (139, 74): Nelim sits on the east cell (141, 74) right of centre, the darkness to the west, the lit disc (ball, pots, Nelim) about half the frame, the unlit
+# torch (143, 76) in frame as a silhouette so that "the torches have died" reads. Same hut, same set as pictures 1 and 2 (feature 05). Nelim, in the robe of the
+# other pictures but as a mage for the night: a violet cape (no hood: her `Flowy` hair shows, lit violet by the ball; no staff, the sitting job drops it, run b029),
+# her canon eyes (no eye colour step), the calm kit with sleepy lids (a mystic look, owner's suggestion 2026-10-08), the expression set to normal just before the shot.
+# THE INSTANT: she came back to the ball after the torches died and has been gazing for 600 ticks of the joy job, paused there. The hour is set to 23 once; the room
+# is roofed, so the daylight is out of it and the glow is the one thing that reads. The story: the seer's torches have died, and she stays with the ball in the dark.
 #
 # Same rules as 05: only a pass of `-DepMap wsl-deps.sanctuary.map` plays it; a person opens the picture, a passing scenario says only that the route ran.
 @requires:nelim.pickletools.screenshotstudio @requires:nelim.pickletools.camerazoom @requires:nelim.pickletools.stagedecor @requires:nelim.pickletools.colonistrace
@@ -25,7 +24,6 @@ Feature: the glow of the crystal ball, in the dark
     And Nelim's Sanctuary: the animals are kept out of the sanctuary "hut"
     And Nelim's Sanctuary: the sanctuary "hut" is emptied
     And I destroy the gear of "Nelim"
-    And Nelim's Pickle Tools: "Nelim" eye colour is rgb (92, 58, 36)
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Flowy"
     And I dress "Nelim" in "Apparel_Robe" made of "Leather_Plain"
     And Nelim's Pickle Tools: "Nelim" wears "Apparel_Cape" dyed rgb (98, 52, 150)
@@ -51,8 +49,9 @@ Feature: the glow of the crystal ball, in the dark
     And "Nelim" needs "Joy" is set to 10 percent
     When Crystal Ball: the joy giver sends "Nelim" to the ball "Fourth" to sit on its east side
     Then Crystal Ball: "Nelim" sits beside the ball "Fourth"
-    When Nelim's Pickle Tools: "Nelim" facial expression is "normal"
-    And Nelim's Pickle Tools: I frame the cell (140, 74) at zoom 5
+    When Nelim's Pickle Tools: the game is advanced by 600 ticks
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
+    And Nelim's Pickle Tools: I frame the cell (139, 74) at zoom 4
     And Nelim's Pickle Tools: studio presentation mode is enabled
     And I wait 30 ticks
     Then I take a screenshot "workshop 3 - the ball glowing in the dark"
