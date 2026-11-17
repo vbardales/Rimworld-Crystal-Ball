@@ -5,7 +5,7 @@
 # At 17:00 the seer walks in through the east door and crosses the room toward her crystal ball while the first torch burns (picture 1, wide); at 18:00
 # all three torches are lit and she gazes into the ball (picture 2, medium); at 23:00 the torches have died and only the ball's own glow is left (picture 3,
 # feature 07, close). The cue that changes in the three pictures: torches lit 1, then 3, then 0, and a violet cape at night. The seer is Nelim, the protagonist
-# (GALLERY.md, 2026-10-14). What she carries is chosen: hairstyle `Flowy` (validated by Virginie 2026-11-17: "ok pour la coiffure (pour faire mage)"), a robe of
+# (GALLERY.md, 2026-10-14). What she carries is chosen: hairstyle `Roo_HD_Hair_Highpony` (her official canon hairstyle, Virginie 2026-11-17: "la coiffure officielle Nelim"; `Flowy` dropped) (validated by Virginie 2026-11-17: "ok pour la coiffure (pour faire mage)"), a robe of
 # plain leather (tan against the violet ball), her CANON eyes `Eyes_DarkBrown` (no eye colour step: Virginie 2026-11-17, "pas pour les yeux"), and a face that
 # changes from one picture to the next (her own canon smirk on arrival, a relaxed gaze while she looks, sleepy lids and a dreamy look at night). The hut (`hut`,
 # the tea room) is roofed, so its light is the torches' and the ball's. The room is emptied, the set laid inside it, and taken down with the scenario.
@@ -45,7 +45,7 @@ Feature: the pictures of the Workshop page
     And Nelim's Sanctuary: the animals are kept out of the sanctuary "hut"
     And Nelim's Sanctuary: the sanctuary "hut" is emptied
     And I destroy the gear of "Nelim"
-    And Nelim's Pickle Tools: "Nelim" hairstyle is "Flowy"
+    And Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Highpony"
     And I dress "Nelim" in "Apparel_Robe" made of "Leather_Plain"
     And Nelim's Pickle Tools: I place the decor "TorchLamp" at (137, 71)
     And Nelim's Pickle Tools: I place the decor "TorchLamp" at (144, 70)

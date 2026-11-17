@@ -4,7 +4,7 @@
 # violet glow (radius 3, permanent), so that the picture says what the description promises, "glows faintly and permanently, a landmark at night". Close (zoom 2.2, the ball about 35 px at 268 px)
 # on (139, 74): Nelim sits on the east cell (141, 74) right of centre, the darkness to the west, the lit disc (ball, pots, Nelim) about half the frame, the unlit
 # torches placed then put out (first take had none in frame, and a chicken walked in: animals removed again after the wait) so that "the torches have died" reads. Same hut, same set as pictures 1 and 2 (feature 05). Nelim, in the robe of the
-# other pictures but as a mage for the night: a violet cape (no hood: her `Flowy` hair shows, lit violet by the ball; no staff, the sitting job drops it, run b029),
+# other pictures but as a mage for the night: a violet cape (no hood: her `Roo_HD_Hair_Highpony` hair shows, lit violet by the ball; no staff, the sitting job drops it, run b029),
 # her canon eyes (no eye colour step), the calm kit with sleepy lids (a mystic look, owner's suggestion 2026-10-08), the expression set to normal just before the shot.
 # THE INSTANT: she came back to the ball after the torches died and has been gazing for 600 ticks of the joy job, paused there. The hour is set to 23 once; the room
 # is roofed, so the daylight is out of it and the glow is the one thing that reads. The story: the seer's torches have died, and she stays with the ball in the dark.
@@ -24,9 +24,10 @@ Feature: the glow of the crystal ball, in the dark
     And Nelim's Sanctuary: the animals are kept out of the sanctuary "hut"
     And Nelim's Sanctuary: the sanctuary "hut" is emptied
     And I destroy the gear of "Nelim"
-    And Nelim's Pickle Tools: "Nelim" hairstyle is "Flowy"
+    And Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Highpony"
     And I dress "Nelim" in "Apparel_Robe" made of "Leather_Plain"
     And Nelim's Pickle Tools: "Nelim" wears "Apparel_Cape" dyed rgb (98, 52, 150)
+    And Nelim's Pickle Tools: the "Apparel_Robe" worn by "Nelim" is dyed rgb (40, 28, 72)
     And Nelim's Pickle Tools: "Nelim" face kit is "calm"
     And Nelim's Pickle Tools: "Nelim" lids are "LidSleepy"
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
