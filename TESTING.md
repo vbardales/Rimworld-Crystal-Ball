@@ -246,8 +246,7 @@ with what each rule comes to here.
 - **No scenario left in `@wip`.** Scenario set aside either repaired and replayed, or deleted
   with reason. One left standing is scenario waiting, not one passed. Suite has none.
 - **Every conditional scenario has run.** Each `@requires:<packageId>` scenario, whether it needs
-  optional mod, DLC or companion tool, gets own pass on map that mounts it, report read: `setName`, suite and scenario names checked before cited, since report folder shared by whole machine. Scenario skipped for want of condition not passed scenario. Mod names no optional mod and no DLC, so suite has no `@requires`
-  scenario to run.
+  optional mod, DLC or companion tool, gets own pass on map that mounts it, report read: `setName`, suite and scenario names checked before cited, since report folder shared by whole machine. Scenario skipped for want of condition not passed scenario. Mod names no optional mod and no DLC, but companion tools are conditions too: the workshop captures (05, 06, 07) need the sanctuary pass, and scenarios 1 and 3 of `02-the-gaze.feature` (step `Nelim's Pickle Tools: the game is advanced by`) carry `@requires:nelim.pickletools.colonistrace`, so they skip on the minimal pass and run on the sanctuary and 1.7 passes.
 - **No manual test left to validate.** Each scenario written in Gherkin and green, or listed
   above as not applicable with reason. Nothing left to tick by hand. `@review` captures
   still have to be opened and looked at, but that is reading of image scenario already

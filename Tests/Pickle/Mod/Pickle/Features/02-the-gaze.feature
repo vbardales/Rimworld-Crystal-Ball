@@ -21,7 +21,7 @@ Feature: a colonist gazes into the ball
   Background:
     Given the save "test-colony" is loaded
 
-  @timeout:900
+  @requires:nelim.pickletools.colonistrace @timeout:900
   Scenario: a colonist with low joy is sent to the ball and sits beside it with no seat anywhere near
     Given a colonist "Gazer" exists
     And "Gazer" needs "Joy" is set to 10 percent
@@ -50,7 +50,7 @@ Feature: a colonist gazes into the ball
     And Crystal Ball: "Share-2" sits beside the ball "Pair"
     And Crystal Ball: the joy giver offers "Share-3" nothing
 
-  @timeout:900
+  @requires:nelim.pickletools.colonistrace @timeout:900
   Scenario: a sitting builds tolerance for divination and the recreation on the map lists it
     Given a colonist "Tired" exists
     And "Tired" needs "Joy" is set to 10 percent
