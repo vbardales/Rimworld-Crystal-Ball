@@ -1,7 +1,7 @@
 # Picture 3 of the Workshop page (PUBLICATION.md, section 2): the glow itself, in the dark. Staged, not found (PUBLISHING.md, "Images").
 #
 # SHOOTING PLAN (shotlist v3, 2026-11-17). 3. `3-the-ball-glowing-in-the-dark`: hut, 23:00, Clear, no torch: the only light of the room is the ball's own faint
-# violet glow (radius 3, permanent), so that the picture says what the description promises, "glows faintly and permanently, a landmark at night". Close (zoom 4)
+# violet glow (radius 3, permanent), so that the picture says what the description promises, "glows faintly and permanently, a landmark at night". Close (zoom 2.2, the ball about 35 px at 268 px)
 # on (139, 74): Nelim sits on the east cell (141, 74) right of centre, the darkness to the west, the lit disc (ball, pots, Nelim) about half the frame, the unlit
 # torches placed then put out (first take had none in frame, and a chicken walked in: animals removed again after the wait) so that "the torches have died" reads. Same hut, same set as pictures 1 and 2 (feature 05). Nelim, in the robe of the
 # other pictures but as a mage for the night: a violet cape (no hood: her `Flowy` hair shows, lit violet by the ball; no staff, the sitting job drops it, run b029),
@@ -58,7 +58,7 @@ Feature: the glow of the crystal ball, in the dark
     Then Crystal Ball: "Nelim" sits beside the ball "Fourth"
     When Nelim's Pickle Tools: the game is advanced by 600 ticks
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
-    And Nelim's Pickle Tools: I frame the cell (139, 74) at zoom 4
+    And Nelim's Pickle Tools: I frame the cell (139, 74) at zoom 2.2
     And Nelim's Pickle Tools: studio presentation mode is enabled
     And I wait 30 ticks
     Then I take a screenshot "workshop 3 - the ball glowing in the dark"
