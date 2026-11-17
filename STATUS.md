@@ -21,7 +21,7 @@ tested_on:    1.0.1 (published 2026-10-08), played in game through Pickle 2026-1
 tested_1_7:   yes
 workshop:     3806709786
 published_on: 2026-10-08, version 1.0.1 by the publish workflow (run 37839600085, SHA c090e2fa7a1cb64e7a19416e43e2e5443c0a333d, dry-run 37839358655), tag v1.0.1 and GitHub release by the CI. First publication 2026-09-26 (1.0.0, SHA 7d64a56491d7f131ec5770342f65875d993f8279), made public by Virginie the same day; gallery and subscriptions are hers, by hand.
-remaining: ["6.g open: French description changed 2026-11-13 (69e82ba, support a griffes) after Virginie review of 2026-10-08 (17678e8); run /review-translation (ChatGPT) on the current French, then Virginie reads TRANSLATION_REVIEW.md and its review line is filled", "6.h open: translation_fr stays complete only after 6.g; fix the Translation audit text that says French is unchanged since 17678e8", "6.i open: leave localize for writeTests[1.1.0] once 6.g is validated", "Replay 2026-11-17 (whole chain 1 to 6, stopped at 6.g): back from playTests[1.1.0] to localize[1.1.0]; 1.7 declared 2026-11-15, tested_1_7 yes, 8.m code_review_sha e48e3be and the 1.7 runs are kept (history in Docs/runs/status-journal.md)", "Check-ModBasics WARN, pre-existing: About description should end with the Source code on GitHub url form, left for Virginie or Audit"]
+remaining: ["6.g open: ChatGPT review done (3 rounds, clean at round 3, 2026-11-17); Virginie reads TRANSLATION_REVIEW.md (French changed 2026-11-13 and 2026-11-17 after her review of 2026-10-08) and the review line is filled", "6.i open: leave localize for writeTests[1.1.0] once 6.g is validated", "Replay 2026-11-17 (whole chain 1 to 6, stopped at 6.g): back from playTests[1.1.0] to localize[1.1.0]; 1.7 declared 2026-11-15, tested_1_7 yes, 8.m code_review_sha e48e3be and the 1.7 runs are kept (history in Docs/runs/status-journal.md)", "Check-ModBasics WARN, pre-existing: About description should end with the Source code on GitHub url form, left for Virginie or Audit"]
 session:      01a09736-2cfc-72d3-8b3c-4ffe79ef572c
 code_review_sha: e48e3be0b91e87993c3efd2908cb1c873cc0090f
 publication_changelog_review_sha: 6625b154c312ed5a8356cf6d6388b1496d41923a
@@ -78,7 +78,7 @@ shipped.
 French lives in `Mod/Languages/French/DefInjected/` only (`ThingDef/CrystalBall.xml`, `JobDef/CrystalBall.xml`,
 `JoyKindDef/CrystalBall.xml`); no Keyed file, no pawn token, no agreement left (description reworded with none).
 English is Def source text. Virginie validated French (`FRENCH_REVIEW.md`, revision `17678e8`, `devant elle`
-wording, 2026-10-08).
+wording, 2026-10-08). French changed twice since: `69e82ba` (2026-11-13, `support à griffes`) and 2026-11-17 (`qui diffuse de l’intérieur une faible lueur violette`, ChatGPT round 1). `/review-translation` page 1 of 1: three rounds on 2026-11-17 (1 applied French, 1 applied `PUBLICATION.md`, 0 applied), clean at round 3; one rejection (taste): `than when they sat down` in the English description. `TRANSLATION_REVIEW.md` regenerated; Virginie's reading of the current French is owed (6.g), `translation_fr` stays `complete` until she answers.
 
 ## Clean-up record (2026-10-10)
 
