@@ -39,6 +39,7 @@ Feature: the glow of the crystal ball, in the dark
     And Nelim's Pickle Tools: I place the decor "Bookcase" at (138, 77)
     And Nelim's Pickle Tools: I place the decor "SculptureSmall" at (136, 70)
     And Nelim's Pickle Tools: I place the decor "SculptureSmall" at (144, 77)
+    And Nelim's Pickle Tools: I place the decor "SculptureSmall" at (142, 72)
 
   # 3. The glow, at 23:00.
   @timeout:360
