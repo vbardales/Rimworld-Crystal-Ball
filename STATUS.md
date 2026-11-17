@@ -9,7 +9,7 @@ remote:       https://github.com/vbardales/Rimworld-Crystal-Ball.git
 local_path:   C:\Users\nelim\Documents\rimworld\CrystalBall
 visibility:   public
 detached:     yes
-workflow_stage: playTests[1.1.0]
+workflow_stage: localize[1.1.0]
 settings_audit: not_applicable
 licence:      original
 licence_at:   MIT; original mod according to repository provenance
@@ -21,17 +21,17 @@ tested_on:    1.0.1 (published 2026-10-08), played in game through Pickle 2026-1
 tested_1_7:   yes
 workshop:     3806709786
 published_on: 2026-10-08, version 1.0.1 by the publish workflow (run 37839600085, SHA c090e2fa7a1cb64e7a19416e43e2e5443c0a333d, dry-run 37839358655), tag v1.0.1 and GitHub release by the CI. First publication 2026-09-26 (1.0.0, SHA 7d64a56491d7f131ec5770342f65875d993f8279), made public by Virginie the same day; gallery and subscriptions are hers, by hand.
-remaining: ["2026-11-16: 8.m diff review DONE (inline, diff 73f8336..e48e3be of Mod/ is 3 text files + Preview.png: ATTRIBUTION path to Docs/CrystalBall.svg (identical copy in repo root, file exists), About.xml supportedVersions 1.7, French description `support à griffes`; Check-Translations PASS, Check-ModBasics PASS with one WARN: About description should end with the `[url=...]Source code on GitHub[/url]` form (pre-existing, not from this diff, shipped text unchanged: left for Virginie or Audit to decide); code_review_sha set. 2026-11-15 13:45: 1.7 DECLARED (Virginie said yes 2026-11-15): `<li>1.7</li>` added to Mod/About/About.xml supportedVersions, CHANGELOG [Unreleased] gets `### Added` RimWorld 1.7 support, Preview re-rendered (node ../scripts/Render-Preview.cjs, Preview.config.json unchanged, opened: badge 1.7, echo and title clear), Art/Gallery/0-preview.png and Art/Preview.ico regenerated (0- byte-identical to Mod/About/Preview.png, sha256 904e618d...); ONE commit. Mod/ changed (About.xml one line), so 8.m diff review is reopened at its next run (code_review_sha stale; diff is About.xml + Preview.png only); target version stays 1.1.0 (tag by the publish workflow); stage stays playTests[1.1.0]. Full history of the 1.7 diagnostic (bisects 429e, 2b7a, 68d8, 6043, 5348, 0b20, d7a9, 8fdc, 1690, 42ac) in Docs/runs/status-journal.md and docs/runs/README.md."]
+remaining: ["6.g open: French description changed 2026-11-13 (69e82ba, support a griffes) after Virginie review of 2026-10-08 (17678e8); run /review-translation (ChatGPT) on the current French, then Virginie reads TRANSLATION_REVIEW.md and its review line is filled", "6.h open: translation_fr stays complete only after 6.g; fix the Translation audit text that says French is unchanged since 17678e8", "6.i open: leave localize for writeTests[1.1.0] once 6.g is validated", "Replay 2026-11-17 (whole chain 1 to 6, stopped at 6.g): back from playTests[1.1.0] to localize[1.1.0]; 1.7 declared 2026-11-15, tested_1_7 yes, 8.m code_review_sha e48e3be and the 1.7 runs are kept (history in Docs/runs/status-journal.md)", "Check-ModBasics WARN, pre-existing: About description should end with the Source code on GitHub url form, left for Virginie or Audit", "Ecosystem report docs/inventory/ecosystem-steam/CrystalBall.md has no ecosystem-links block (rule of 2026-11-16, PiI to add it)"]
 session:      01a09736-2cfc-72d3-8b3c-4ffe79ef572c
 code_review_sha: e48e3be0b91e87993c3efd2908cb1c873cc0090f
 publication_changelog_review_sha: 6625b154c312ed5a8356cf6d6388b1496d41923a
 echo_review_sha: 78b73b79bb007ef9a3b8efe097bb8cf09defbd6c
-updated:      2026-11-13
+updated:      2026-11-17
 protocols_read_sha: b280e26f0f067af6990c3caa76409146c90395ac
 ---
 # Crystal Ball: status (2026-10-10)
 
-**`workflow_stage: playTests[1.1.0]`** (stage walked one by one from `code`, 2026-10-18, owner request: nothing coded for 1.1.0, `Mod/` unchanged since `v1.0.1` but the Preview; 3.a to 3.c checked: no feature open, no assembly, `[Unreleased]` present) (minor bump for RimWorld 1.7 line; `1.7` declared 2026-11-15 after the green 1.7 diagnostic, `tested_1_7: yes`). Version `1.0.1` public on Steam (item 3806709786), post-publication
+**`workflow_stage: localize[1.1.0]`** (replay 2026-11-17 moved it back from `playTests[1.1.0]`: 6.g, French changed 2026-11-13 after Virginie's review; earlier note: stage walked one by one from `code`, 2026-10-18, owner request: nothing coded for 1.1.0, `Mod/` unchanged since `v1.0.1` but the Preview; 3.a to 3.c checked: no feature open, no assembly, `[Unreleased]` present) (minor bump for RimWorld 1.7 line; `1.7` declared 2026-11-15 after the green 1.7 diagnostic, `tested_1_7: yes`). Version `1.0.1` public on Steam (item 3806709786), post-publication
 non-regression green. Dated sections that used to live here now one line each in `docs/runs/status-journal.md`
 (AUDIT.md 14.c); full text in git.
 
