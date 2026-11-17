@@ -6,7 +6,7 @@ repository, run by GitHub Actions: a dry-run of the exact commit first, then `pu
 Virginie alone. The workflow sends `Mod/` and the change note below; it sends the description only when
 `update_description` is on and the header image only when `update_preview` is on. **Both were enabled for `1.0.1`** (Virginie, 2026-10-07):
 the description carries the corrected texture provenance, and `Mod/About/Preview.png` carries the new ModIcon badge. They are set at the
-dry-run and again at the `publish`. For `1.0.0` only `update_description` was on. The item is public since 2026-09-26. The workflow never
+dry-run and again at the `publish`. For `1.0.0` only `update_description` was on. The item has been public since 2026-09-26. The workflow never
 sends the gallery or the visibility: both stay by hand, and Virginie's.
 
 ## 1. Steam description
