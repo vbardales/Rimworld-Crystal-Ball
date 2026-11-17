@@ -29,4 +29,4 @@ Languages: French (4 keys, 0 missing against English). English is the source sid
 
 | Reviewer | Date | Revision reviewed | Corrections requested |
 |---|---|---|---|
-| | | | |
+| Virginie | 2026-11-17 | 876a481 | ChatGPT review done first (3 rounds, applied: glow from inside the sphere); none requested by Virginie, validated |
