@@ -74,9 +74,10 @@ Feature: the pictures of the Workshop page
     And "Nelim" needs "Joy" is set to 10 percent
     When Nelim's Sanctuary: Nelim has her own face
     And Crystal Ball: the joy giver sends "Nelim" to the ball "First" to sit on its west side
-    And Nelim's Pickle Tools: "Nelim" face state is logged
+    And Nelim's Pickle Tools: the movement of "Nelim" is written to the log
+    And Nelim's Pickle Tools: the reach of "Nelim" to (139, 74) is written to the log
     And Nelim's Pickle Tools: the game is advanced by 140 ticks
-    And Nelim's Pickle Tools: "Nelim" face state is logged
+    And Nelim's Pickle Tools: the movement of "Nelim" is written to the log
     And Nelim's Pickle Tools: I frame the cell (143, 74) at zoom 3.0
     And Nelim's Pickle Tools: studio presentation mode is enabled
     And Nelim's Pickle Tools: the game is advanced by 6 ticks
