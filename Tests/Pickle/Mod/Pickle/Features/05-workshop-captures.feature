@@ -79,6 +79,7 @@ Feature: the pictures of the Workshop page
     And I wait 70 ticks
     And game speed is paused
     And Nelim's Pickle Tools: the movement of "Nelim" is written to the log
+    And Nelim's Pickle Tools: "Nelim" face kit is "calm"
     And Nelim's Pickle Tools: I frame the cell (143, 74) at zoom 3.0
     And Nelim's Pickle Tools: studio presentation mode is enabled
     And Nelim's Pickle Tools: the game is advanced by 6 ticks
@@ -95,7 +96,7 @@ Feature: the pictures of the Workshop page
     And game speed is ultrafast
     And Crystal Ball: a crystal ball "Third" stands at (140, 74)
     And I wait 60 ticks
-    And Nelim's Pickle Tools: "Nelim" stands at (143, 74) facing West
+    And Nelim's Pickle Tools: "Nelim" stands at (139, 74) facing East
     And "Nelim" needs "Joy" is set to 10 percent
     When Crystal Ball: the joy giver sends "Nelim" to the ball "Third" to sit on its west side
     Then Crystal Ball: "Nelim" sits beside the ball "Third"
