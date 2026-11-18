@@ -80,10 +80,11 @@ Feature: the pictures of the Workshop page
     And I wait 70 ticks
     And game speed is paused
     And Nelim's Pickle Tools: the movement of "Nelim" is written to the log
-    And Nelim's Pickle Tools: "Nelim" face kit is "calm"
     And Nelim's Pickle Tools: I frame the cell (143, 74) at zoom 3.0
     And Nelim's Pickle Tools: studio presentation mode is enabled
     And Nelim's Pickle Tools: the game is advanced by 6 ticks
+    And Nelim's Pickle Tools: "Nelim" face kit is "calm"
+    And Nelim's Pickle Tools: "Nelim" face is held neutral
     Then I take a screenshot "workshop 1 - the seer arrives"
 
   # 2. What it does, at 18:00: all torches lit, she gazes into the ball, no chair anywhere near (medium).
