@@ -25,7 +25,7 @@ remaining: ["9.a to 9.e bis done 2026-11-18: three gallery pictures validated by
 session:      01a09736-2cfc-72d3-8b3c-4ffe79ef572c
 code_review_sha: 6a2012f9ad0e2e66a9e8a29ac42b80f1628a2d3a
 publication_changelog_review_sha: 6625b154c312ed5a8356cf6d6388b1496d41923a
-echo_review_sha: 78b73b79bb007ef9a3b8efe097bb8cf09defbd6c
+echo_review_sha: f865d9e258c22504ad675ead07806f2893efd632
 updated:      2026-11-18
 protocols_read_sha: f8fee9ce3e84db4584ec0256dddb91ff50a3b435
 ---
