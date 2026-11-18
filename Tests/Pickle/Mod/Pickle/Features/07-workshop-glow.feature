@@ -25,9 +25,8 @@ Feature: the glow of the crystal ball, in the dark
     And Nelim's Sanctuary: the sanctuary "hut" is emptied
     And I destroy the gear of "Nelim"
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Highpony"
-    And I dress "Nelim" in "Apparel_Robe" made of "Leather_Plain"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (40, 28, 72)
     And Nelim's Pickle Tools: "Nelim" also wears "Apparel_Cape" dyed rgb (98, 52, 150)
-    And Nelim's Pickle Tools: the "Apparel_Robe" worn by "Nelim" is dyed rgb (40, 28, 72)
     And Nelim's Pickle Tools: "Nelim" face kit is "calm"
     And Nelim's Pickle Tools: "Nelim" lids are "LidSleepy"
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
