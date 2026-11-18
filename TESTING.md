@@ -327,4 +327,4 @@ optimized PNG, or JPEG for full-screen; compress log. Drop `messages.ndjson` onc
 mod's scenario files. Never delete report a `STATUS.md` field points to; repoint
 field first. Before deleting, list what goes and stays.
 
-**Kept on disk** (`Tests/Pickle/Evidence/`, 14 MB, trimmed 2026-10-09): `2026-10-08-final-english` (`8acb`), `2026-10-08-final-french` (`68c7`), `2026-10-09-final-sanctuary` (`c525`), latest run per pass on published `1.0.1`. Each: `summary.md`, `summary.json`, `junit.xml`, `evidence-complete.txt`, gzipped `Player.log`; `report.html` + `messages.ndjson` dropped. Captures kept: info card English + French; four `workshop` pictures in `sanctuary` pass. Earlier runs one line each in `docs/runs/README.md`.
+**Kept on disk** (`Tests/Pickle/Evidence/`, 0.3 MB, trimmed 2026-11-18): `noreg-110-french` (`0365`, published `1.1.0`, French, 7 of 7) and `2026-10-08-final-french` (`68c7`, `1.0.1`, kept as the sole French proof of the scenarios `0365` did not replay; `Mod/` unchanged since). English `8acb`, `c525` and `cef9`/`bc9b` evidence deleted after read, one line each in `docs/runs/README.md`.

@@ -121,33 +121,12 @@ RimLogging, whose pages already hold a posted thank-you in the global register (
 
 ## 6. Rollback
 
-Fail-fast policy (`PUBLISHING.md`, "À chaque mise à jour"; `AUDIT.md`, `prepublished → published`): `1.0.1` went out once no red is open, and the
-rest of the non-regression runs just after. **Rollback target, chosen before publishing: commit `7d64a56491d7f131ec5770342f65875d993f8279`, the published
-`1.0.0` (tag `v1.0.0`).** If the non-regression comes back red, the answer is a new publication, never a lower number: `ref` = that full SHA, the next patch
-number (`1.0.2`) and a note "Reverts to 1.0.0, because ...", then, apart, a fix. The item is public, so a red version reaches players until the rollback is
-published. As always: dry-run of the exact SHA first, `publish` with its 40 characters, `steam-production` approved by Virginie alone. The content of `0.1.0`, the
-prepublication, is commit `3d1243e`; it was never tested and is not a rollback target.
+Fail-fast policy (`PUBLISHING.md`, "À chaque mise à jour"; `AUDIT.md`, `prepublished → published`): the current version goes out once no red is open, and the non-regression runs just after. **Rollback target for the next publication: commit `c090e2fa7a1cb64e7a19416e43e2e5443c0a333d`, the published `1.0.1` (tag `v1.0.1`); `1.1.0` (tag `v1.1.0`, SHA `e3412bd`) is the current version, non-regression green 2026-11-18.** If a later version comes back red, the answer is a new publication, never a lower number: `ref` = the full SHA of the target, the next number and a note "Reverts to <version>, because ...", then, apart, a fix. As always: dry-run of the exact SHA first, `publish` with its 40 characters, `steam-production` approved by Virginie alone. The `0.1.0` prepublication (`3d1243e`) was never tested and is not a rollback target.
 
 ## 7. Update notes
 
-Steam change note for the `1.0.0`, uploaded by the manual workflow, which reads the fenced block under the `### <version>`
+Steam change note of the current version, uploaded by the manual workflow, which reads the fenced block under the `### <version>`
 heading below. It begins with the version, alone on its line, as the Workshop page shows no version otherwise.
-
-### 1.0.0
-
-```text
-[b]1.0.0[/b]
-
-First version for RimWorld 1.6: the crystal ball, a buildable recreation source (40 jade and 5 gold, neolithic, no research) with a recreation type of its own, Divination. English and French.
-```
-
-### 1.0.1
-
-```text
-[b]1.0.1[/b]
-
-New look for the crystal ball: redrawn in the style of the game's own buildings, with a dark outline and flat tones, so it reads at the size it is shown in game. The French description no longer uses masculine-only agreements. No gameplay change.
-```
 
 ### 1.1.0
 
