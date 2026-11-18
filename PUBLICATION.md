@@ -89,7 +89,7 @@ Steps of the feature, by owner. **SanctuaryBacklot (SB), prefix `Nelim's Sanctua
 | # | File | Shows |
 | --- | --- | --- |
 | 0 | `0-preview.png` | The finished vitrine: title, one-line summary, version badge, line-art echo, and ModIcon corner badge |
-| 1 | `1-the-ball-by-day.png` | 17:00, the seer arrives: the ball in the middle of the room, one torch lit, Nelim (flowing hair, her own smirk) beside the shelf, wide shot: what the mod adds |
+| 1 | `1-the-seer-arrives.png` | 17:00, the seer arrives: the ball in the middle of the room, one torch lit, Nelim (flowing hair, her own smirk) beside the shelf, wide shot: what the mod adds |
 | 2 | `2-a-colonist-gazing.png` | 18:00, the three torches lit: Nelim sitting on the cell beside the ball, gaze relaxed, no chair anywhere near, the room having been emptied |
 | 3 | `3-the-ball-glowing-in-the-dark.png` | The hut at 23:00 with no torch: the ball's own violet halo, Nelim as a mage (violet cape, hair uncovered) seated beside it, sleepy lids (feature `07-workshop-glow.feature`) |
 
