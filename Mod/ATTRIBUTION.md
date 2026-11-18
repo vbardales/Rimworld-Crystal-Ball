@@ -30,6 +30,23 @@ installation. This mod ships no game assembly, copied game implementation or
 third-party mod code. RimWorld and its content remain the work of Ludeon Studios;
 this document grants no rights to redistribute them.
 
+## Gallery set
+
+The Workshop gallery pictures show the seer, Nelim, in a staged hut. These mods were loaded for the captures and are credited here, one line each (name, author, Workshop id). None of them is a dependency of Crystal Ball and none is redistributed.
+
+- Female Body Variants Continued, DanZinagri and tiagocc0, 3798082132
+- Female Apparel Variants Continued, DanZinagri and tiagocc0, 3799726535
+- WDI's Realistic Bodies, Windonsi and Starkz, 3527486510
+- AB's Visible Pants, aedbia, 2986402536
+- Roo's HD Hairstyles (continued), Qux, after Rooboid, 3559870636
+- [NL] Facial Animation - WIP, Nals, 1635901197
+- [NL] Facial Animation - Experimentals, Nals, 2581693737
+- Vanilla Textures Expanded - Facial Animation, Oracle of Thessia, 2816938779
+- Akeron Extras - Facial Animations, Newton Zephyr, 2889716301
+- EyeGenes3, Lucius, 3745223213
+- Facial Animation Performance Patch, astryl, 3790129900
+- Vanilla Experimentals for Facial Animation, SunshineyDays, 3753978140
+
 ## Licence and continuation
 
 The repository's existing licence is MIT, copyright (c) 2026 Nelim. See `LICENSE`,

@@ -13,7 +13,8 @@ Next version `1.1.0`: minor bump for the RimWorld 1.7 line. `1.7` is declared in
 
 ### Changed
 
-- **Preview image**: the claw-footed ball line art in the corner was redrawn by hand (faceted sphere, claws, crystal point), matching the gallery. No def, text or texture changed.
+- **Preview image**: a new header illustration made from the gallery pictures (the seer gazing into the ball in her hut, lit by torches), with the claw-footed ball line art redrawn by hand in the text panel and the 1.7 badge. No def, text or texture changed.
+- **Gallery**: three new pictures of the seer's evening (she walks in, she gazes into the ball, the ball glows alone at night), each with a one-line caption. The mods used to stage them are credited in `ATTRIBUTION.md`.
 
 ## [1.0.1] — 2026-10-08
 

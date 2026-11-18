@@ -7,7 +7,7 @@ Virginie alone. The workflow sends `Mod/` and the change note below; it sends th
 `update_description` is on and the header image only when `update_preview` is on. **Both were enabled for `1.0.1`** (Virginie, 2026-10-07):
 the description carries the corrected texture provenance, and `Mod/About/Preview.png` carries the new ModIcon badge. They are set at the
 dry-run and again at the `publish`. For `1.0.0` only `update_description` was on. The item has been public since 2026-09-26. The workflow never
-sends the gallery or the visibility: both stay by hand, and Virginie's.
+sends the gallery or the visibility: both stay by hand, and Virginie's. **For `1.1.0`** (RimWorld 1.7 line, nothing changed in `Mod/`), `update_preview` is on (new header illustration) and `update_description` is off (the description is unchanged); the new gallery is uploaded by Virginie by hand.
 
 ## 1. Steam description
 
@@ -67,19 +67,12 @@ Full attribution: [url=https://github.com/vbardales/Rimworld-Crystal-Ball/blob/m
 The gallery is managed manually on the Steam page, in the order below. `Art/Gallery/` is uploaded as it is (nothing
 in it but the images, numbered `0-`, `1-`, `2-`, `3-` in upload order). The dry-run lists it as a reminder.
 
-Image `0`, new instruction from Virginie on 2026-09-29: the gallery now opens on a copy of `Mod/About/Preview.png`, the
-finished vitrine (title, summary, version badge), so a browser sees the same picture as the store header before
-scrolling. The shared `scripts/Render-Preview.cjs` renderer reads `Art/Preview.config.json`, then writes `Mod/About/Preview.png`. `Art/echo.png` is the final pre-sized transparent
-line-art mask: it is consumed unchanged, tinted with the accent colour, shown above the panel treatment, flipped
-horizontally, and limited to less than half of the text panel. `Art/ModIcon-source.png` is the high-resolution
-transparent badge source. It is placed bottom-left at +15 degrees, without outline, over its local radial veil.
-The placement is explicit in the config; it is not chosen from an "emptiest corner" rule. After rendering,
-`Art/Gallery/0-preview.png` is copied byte-for-byte from `Mod/About/Preview.png`.
+Image `0` is a byte copy of `Mod/About/Preview.png`, the finished vitrine (title, summary, version badge), so a browser sees the same picture as the store header before scrolling (Virginie, 2026-09-29). The shared `scripts/Render-Preview.cjs` renderer reads `Art/Preview.config.json` and writes `Mod/About/Preview.png`, then `Art/Gallery/0-preview.png`. Since 2026-11-18 the header illustration (`Art/Preview-source.png`) is made from the gallery captures with DALL-E (OpenAI), under human direction, and validated by Virginie; the text sits directly on its calm dark zone (`panelBare`), the hand-drawn line-art echo (`Art/echo-source.png`) is tinted with the accent, and the ModIcon badge goes bottom-left by the renderer's default. The palette (veil `#401F10`, ink `#F2ECE1`, secondary `#E6C9A8`, accent `#D2B4F7`) was taken from the image. The same image is the GitHub social preview (`social_preview_sha256` in `STATUS.md`).
 
 The three pictures come from the Pickle features `05-workshop-captures.feature` (1 and 2) and `07-workshop-glow.feature` (3), played on Nelim's Sanctuary (`-DepMap wsl-deps.sanctuary.map`,
 the Sanctuary now has its own repository, SanctuaryBacklot (`docs/GALERIE.md`, `SANCTUAIRE-LIEUX.md`, `SANCTUAIRE-CASES.md`, generated `docs/steps.md`)). They are staged photographs, not catalogue plates (`PUBLISHING.md`, "Images"): the story is **the seer's evening**, in the
 hut (`hut`, the tea room, emptied, roof kept: lit by torches in pictures 1 and 2, by the ball alone in picture 3), with Nelim, the map's one colonist, as the seer. A probe (`06-hut-probe.feature`)
-lists and photographs the empty hut first, so that the set is laid on known cells. The features were played in the hut and the three pictures below were qualified by Virginie on 2026-10-08 (runs `8d29` and `bd93`; the evidence folders are in `STATUS.md`). The earlier pictures (meadow studio with Miel, then the podium) are discarded: the podium showed a bright green marking square.
+lists and photographs the empty hut first, so that the set is laid on known cells. The three pictures below were reshot on 2026-11-18 (takes 11, 13 and 16 of the series, tickets `61da`, `0f52` and `3b65`) and accepted by Virginie the same day; the clean originals are in `Art/Gallery-clean/`. The earlier pictures (2026-10-08, meadow studio with Miel, then the podium) are discarded.
 A crop (the script that did it was removed from `Art/` on 2026-10-02; `git show 800b8aa:Art/Crop-WorkshopScreenshots.ps1`) and a re-compression keep each image
 under 2 MB and the folder under 8 MB. Each image is opened and read against the shooting plan in the feature's header before it goes to `Art/Gallery/`.
 
@@ -89,17 +82,15 @@ Steps of the feature, by owner. **SanctuaryBacklot (SB), prefix `Nelim's Sanctua
 | # | File | Shows |
 | --- | --- | --- |
 | 0 | `0-preview.png` | The finished vitrine: title, one-line summary, version badge, line-art echo, and ModIcon corner badge |
-| 1 | `1-the-seer-arrives.png` | 17:00, the seer arrives: the ball in the middle of the room, one torch lit, Nelim (flowing hair, her own smirk) beside the shelf, wide shot: what the mod adds |
-| 2 | `2-a-colonist-gazing.png` | 18:00, the three torches lit: Nelim sitting on the cell beside the ball, gaze relaxed, no chair anywhere near, the room having been emptied |
-| 3 | `3-the-ball-glowing-in-the-dark.png` | The hut at 23:00 with no torch: the ball's own violet halo, Nelim as a mage (violet cape, hair uncovered) seated beside it, sleepy lids (feature `07-workshop-glow.feature`) |
+| 1 | `1-the-seer-arrives.png` | Dusk, the seer walks in from the east door toward the ball: a torch lit, roses and daylilies, a wooden sculpture, Nelim in a brown robe with her ponytail, wide shot: what the mod adds |
+| 2 | `2-a-colonist-gazing.png` | The three torches lit: Nelim sitting beside the ball facing it, gaze relaxed, no chair anywhere near, the room having been emptied |
+| 3 | `3-the-ball-glowing-in-the-dark.png` | The hut at night with no torch: the ball's own violet halo, Nelim as a mage (violet cape over a dark violet shirt, ponytail) seated beside it, sleepy lids (feature `07-workshop-glow.feature`) |
 
-Known limits: the glow in picture 3 is discreet by nature (the ball's own light, radius 3); the colonist's name label is hidden
-by the presentation mode, which needs Harmony (loaded in the Sanctuary map). Pictures 1 to 3 were qualified by Virginie on 2026-10-08 and uploaded by her on the Steam page. Picture 0 (badge included) was qualified by Virginie on 2026-09-29; the Preview has
-been regenerated since from the new ModIcon source (2026-10-05), and `0-preview.png` is byte-identical to it.
+Known limits: the glow in picture 3 is discreet by nature (the ball's own light, radius 3); the colonist's name label is hidden by the presentation mode, which needs Harmony (loaded in the Sanctuary map). The cape and the robe share the Shell layer and cannot be worn together, so picture 3 uses a dark violet shirt under the cape. Pictures 1 to 3 and the Preview (picture 0) were accepted by Virginie on 2026-11-18; she uploads them on the Steam page by hand.
 
 ### Gallery subtitles
 
-Every scene without an interface window carries one line of English at the bottom of the image, like a film subtitle (`GALLERY.md`, "Sous-titres"; rule of 2026-10-15). Pictures 1 to 3 are scenes of the seer's hut, with no window: all three get a line. `0-preview.png` is exempt (byte copy of the Preview). The lines are drafted here; the clean originals go to `Art/Gallery-clean/` and the subtitled images to `Art/Gallery/` only when the series is next shot (`scripts/Add-Subtitle.ps1`), so nothing is burned into the published pictures yet.
+Every scene without an interface window carries one line of English at the bottom of the image, like a film subtitle (`GALLERY.md`, "Sous-titres"; rule of 2026-10-15). Pictures 1 to 3 are scenes of the seer's hut, with no window: all three get a line. `0-preview.png` is exempt (byte copy of the Preview). The clean originals are in `Art/Gallery-clean/` and the subtitled images, burned in with `scripts/Add-Subtitle.ps1` on 2026-11-18, are in `Art/Gallery/` (same names).
 
 | Index | File | Line |
 | --- | --- | --- |
@@ -116,7 +107,7 @@ Do not declare Pickle, RimLogging or Harmony: the first two are development tool
 
 None to prepare. The people and projects thanked are Ludeon Studios, who have no Workshop page to comment on, and Pickle and
 RimLogging, whose pages already hold a posted thank-you in the global register (`WORKSHOP_COMMENTS.md`, `posted` since
-2026-09-22); Crystal Ball is added to their `Covers`. Claude Code and DALL-E are tools with no page.
+2026-09-22); Crystal Ball is added to their `Covers`. The twelve mods used by the gallery (bodies, apparel variants, Visible Pants, hairstyle, Facial Animation set, EyeGenes3; list in `ATTRIBUTION.md`, "Gallery set") already hold a posted thank-you too: Crystal Ball was added to their `Covers` on 2026-11-18, no new message. Claude Code and DALL-E are tools with no page.
 
 ## 5. Other Steam fields
 
@@ -156,4 +147,18 @@ First version for RimWorld 1.6: the crystal ball, a buildable recreation source 
 [b]1.0.1[/b]
 
 New look for the crystal ball: redrawn in the style of the game's own buildings, with a dark outline and flat tones, so it reads at the size it is shown in game. The French description no longer uses masculine-only agreements. No gameplay change.
+```
+
+### 1.1.0
+
+```text
+[b]1.1.0[/b]
+
+[list]
+[*] Works on RimWorld 1.7 as well as 1.6: the diagnostic run (build, gaze, save) is green, and the mod itself is unchanged.
+[*] New header image and a new gallery of three pictures of the seer's evening, each with a short caption.
+[*] No gameplay change.
+[/list]
+
+[url=https://github.com/vbardales/Rimworld-Crystal-Ball/blob/main/CHANGELOG.md]Full changelog[/url]
 ```
