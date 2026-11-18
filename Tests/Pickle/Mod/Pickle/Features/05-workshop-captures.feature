@@ -85,6 +85,8 @@ Feature: the pictures of the Workshop page
     And Nelim's Pickle Tools: the game is advanced by 6 ticks
     And Nelim's Pickle Tools: "Nelim" face kit is "calm"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
+    And Nelim's Pickle Tools: the game is advanced by 4 ticks
     And Nelim's Pickle Tools: the thermal state and thoughts of "Nelim" are logged
     Then I take a screenshot "workshop 1 - the seer arrives"
 
