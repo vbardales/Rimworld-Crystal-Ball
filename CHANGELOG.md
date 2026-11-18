@@ -3,9 +3,9 @@
 Format inspired by [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 This file serves the repository and the writing of Steam patch notes; RimWorld does not display it in game.
 
-## [Unreleased]
+## [1.1.0] - 2026-11-18
 
-Next version `1.1.0`: minor bump for the RimWorld 1.7 line. `1.7` is declared in `supportedVersions` after the green 1.7 diagnostic of 2026-11-15.
+Version `1.1.0`: minor bump for the RimWorld 1.7 line. `1.7` is declared in `supportedVersions` after the green 1.7 diagnostic of 2026-11-15.
 
 ### Added
 
