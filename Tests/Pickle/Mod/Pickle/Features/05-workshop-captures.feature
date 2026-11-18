@@ -72,7 +72,8 @@ Feature: the pictures of the Workshop page
     And game speed is paused
     And Nelim's Pickle Tools: "Nelim" stands at (146, 73) facing West
     And "Nelim" needs "Joy" is set to 10 percent
-    When Nelim's Sanctuary: Nelim has her own face
+    When Nelim's Pickle Tools: "Nelim" face kit is "calm"
+    And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Crystal Ball: the joy giver sends "Nelim" to the ball "First" to sit on its west side
     And Nelim's Pickle Tools: the movement of "Nelim" is written to the log
     And game speed is normal
