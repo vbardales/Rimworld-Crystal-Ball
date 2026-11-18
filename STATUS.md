@@ -120,7 +120,7 @@ Open 2026-10-18: 1.7 diagnostic ticket `20261017-180855-702-bf2b` (PathProbe, fi
 
 ## NSB (sync 2026-11-17, writeShotlist[1.1.0])
 
-Places read: 2026-11-17 (hut only). Tribe read: 2026-11-17 (Nelim only). Steps read: 2026-11-17 (NPT steps and catalogues since 2026-10-15).
+Places read: 2026-11-17 (hut only). Tribe read: 2026-11-17 (Nelim only). Steps read: 2026-11-18 (NPT steps and catalogues since 2026-11-17: only `face-parts.md` vanilla face notes, nothing the gallery uses). NSB log since 2026-11-17 checked 2026-11-18 (Iori, Miel, Daichi, Dalia, BiB gene renames: no Nelim, no hut change), Places and Tribe dates unchanged.
 Since the last gallery run (2026-10-15) nothing in NSB or NPT breaks the plan: `Docs/steps.md` of NSB unchanged but a folder rename; NPT adds `the game is advanced by N ticks`, `the decor ... burns`, `the joy giver {string} job is forced on {string}`. Rules of the owner (2026-11-05) said back: everything in NSB is free; outside NSB needs express validation; a colonist's properties change only with her express validation; every outfit is free; every animal the mod adds must show (this mod adds none).
 
 | Place | Shots | Changes for the gallery | Last read |
