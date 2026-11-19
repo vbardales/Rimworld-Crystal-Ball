@@ -21,7 +21,7 @@ tested_on:    1.0.1 (published 2026-10-08), played in game through Pickle 2026-1
 tested_1_7:   yes
 workshop:     3806709786
 published_on: 2026-10-08, version 1.0.1 by the publish workflow (run 37839600085, SHA c090e2fa7a1cb64e7a19416e43e2e5443c0a333d, dry-run 37839358655), tag v1.0.1 and GitHub release by the CI. First publication 2026-09-26 (1.0.0, SHA 7d64a56491d7f131ec5770342f65875d993f8279), made public by Virginie the same day; gallery and subscriptions are hers, by hand.
-remaining: ["migration 2026-11-19 done: Docs/PROTOCOLS-READ.md and Docs/runs/{status-journal,publication-notes}.md deleted, Docs/runs/README.md renamed pickle.md", "14.c cleanUp 2026-11-18 done in this commit (STATUS folded, PUBLICATION notes 1.0.0 and 1.0.1 moved to docs/runs, evidence pruned), 14.d only branch main, WSL nothing removed; 14.e dormant[1.1.0] 2026-11-18", "Check-ModBasics WARN, pre-existing: About description should end with the Source code on GitHub url form, left for Virginie or Audit"]
+remaining: ["migration 2026-11-19 done: Docs/PROTOCOLS-READ.md and Docs/runs/{status-journal,publication-notes}.md deleted, Docs/runs/README.md renamed pickle.md", "14.c cleanUp 2026-11-18 done in this commit (STATUS folded, PUBLICATION notes 1.0.0 and 1.0.1 moved to docs/runs, evidence pruned), 14.d only branch main, WSL nothing removed; 14.e dormant[1.1.0] 2026-11-18"]
 session:      01a09736-2cfc-72d3-8b3c-4ffe79ef572c
 code_review_sha: 6a2012f9ad0e2e66a9e8a29ac42b80f1628a2d3a
 publication_changelog_review_sha: 5c694993b743883d7b2098292d9b5ed3ab394738
