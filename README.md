@@ -78,7 +78,7 @@ Pickle plays in a real game (the fifth takes the Workshop pictures): a colonist 
 near, the recreation type it feeds, a save taken mid-gaze, the mod's texts in each language.
 [TESTING.md](TESTING.md) says, for each of its fifteen scenarios, where it is settled, and why four
 are not applicable. The eleven scenarios have been played in a real game, headless in the WSL, in English and in
-French, and are green: the history is one line per run in [docs/runs/README.md](docs/runs/README.md).
+French, and are green: the history is one line per run in [docs/runs/pickle.md](docs/runs/pickle.md).
 
 ## Languages
 

@@ -99,7 +99,7 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File ..scriptsCheck-Steps.ps1
 
 Written on 2026-09-24 and played on 2026-09-25: eleven scenarios, English and French, all green (one scenario, the
 save, was corrected after both full passes had asked a full ball for a third colonist, then replayed green). Every run is
-one line of [docs/runs/README.md](../../docs/runs/README.md). The spots the suite guessed held, the ball at (146, 156),
+one line of [docs/runs/pickle.md](../../docs/runs/pickle.md). The spots the suite guessed held, the ball at (146, 156),
 the build at (146, 157) with its stockpile, and the build takes about 30 s. Not seen: the description on the game's info
 card, which the inspect capture does not show.
 

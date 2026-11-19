@@ -31,7 +31,7 @@ The publish workflow creates the `v1.0.1` tag and the matching GitHub release af
 The publish workflow creates the `v1.0.0` tag and the matching GitHub release after a successful upload.
 
 First version, for RimWorld 1.6. It has been played in a real game through Pickle, in English and in
-French, with every scenario green (`docs/runs/README.md`).
+French, with every scenario green (`docs/runs/pickle.md`).
 
 ### Added
 
