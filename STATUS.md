@@ -26,6 +26,7 @@ session:      01a09736-2cfc-72d3-8b3c-4ffe79ef572c
 code_review_sha: 6a2012f9ad0e2e66a9e8a29ac42b80f1628a2d3a
 publication_changelog_review_sha: 5c694993b743883d7b2098292d9b5ed3ab394738
 echo_review_sha: f865d9e258c22504ad675ead07806f2893efd632
+gallery_validated_sha: 569560799b4e8e233eac64391feb926a9a028b23  # 2026-11-23 oui de Virginie
 thanks_drafted_line: none
 ecosystem_line: 1.1
 social_preview_sha256: 342526c8c92ef6374e2ad75a1d26ace190e2d8352ec79f9352d40795e88a990c
