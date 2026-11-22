@@ -17,7 +17,7 @@ license_spdx: MIT
 upstream_mod_remotes: N/A
 dependencies: none
 showcase:     complete
-tested_on:    1.0.1 (published 2026-10-08), played in game through Pickle 2026-10-08 and 2026-10-09: French `68c7` and English `8acb` green (12 of 12 played, the 4 `workshop` captures skipped there); `sanctuary` `c525` 15 of 16, the four captures green, the save scenario red outside the scope of that pass (accepted by Virginie 2026-10-09, played green in the two minimal passes). Older runs: `docs/runs/pickle.md`.
+tested_on:    1.1.0 (published 2026-11-18, `e3412bd`, `Mod/` unchanged since), non-regression 2026-11-18: French `0365` 7 of 7, English `cef9` 121 of 129 with one red (build scenario), replayed alone `bc9b` green 1 of 1; 1.7 diagnostic 2026-11-15 `1690` and `42ac`. Earlier, on 1.0.1: French `68c7` and English `8acb` green (12 of 12 played), `sanctuary` `c525` 15 of 16 (save scenario accepted by Virginie 2026-10-09). All runs: `docs/runs/pickle.md`.
 tested_1_7:   yes
 workshop:     3806709786
 published_on: 2026-10-08, version 1.0.1 by the publish workflow (run 37839600085, SHA c090e2fa7a1cb64e7a19416e43e2e5443c0a333d, dry-run 37839358655), tag v1.0.1 and GitHub release by the CI. First publication 2026-09-26 (1.0.0, SHA 7d64a56491d7f131ec5770342f65875d993f8279), made public by Virginie the same day; gallery and subscriptions are hers, by hand.
