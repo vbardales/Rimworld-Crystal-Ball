@@ -9,7 +9,7 @@ remote:       https://github.com/vbardales/Rimworld-Crystal-Ball.git
 local_path:   C:\Users\nelim\Documents\rimworld\CrystalBall
 visibility:   public
 detached:     yes
-workflow_stage: dormant[1.1.0]
+workflow_stage: ecosystem[1.1.0]
 settings_audit: not_applicable
 licence:      original
 licence_at:   MIT; original mod according to repository provenance
@@ -21,19 +21,19 @@ tested_on:    1.0.1 (published 2026-10-08), played in game through Pickle 2026-1
 tested_1_7:   yes
 workshop:     3806709786
 published_on: 2026-10-08, version 1.0.1 by the publish workflow (run 37839600085, SHA c090e2fa7a1cb64e7a19416e43e2e5443c0a333d, dry-run 37839358655), tag v1.0.1 and GitHub release by the CI. First publication 2026-09-26 (1.0.0, SHA 7d64a56491d7f131ec5770342f65875d993f8279), made public by Virginie the same day; gallery and subscriptions are hers, by hand.
-remaining: ["migration 2026-11-19 done: Docs/PROTOCOLS-READ.md and Docs/runs/{status-journal,publication-notes}.md deleted, Docs/runs/README.md renamed pickle.md", "14.c cleanUp 2026-11-18 done in this commit (STATUS folded, PUBLICATION notes 1.0.0 and 1.0.1 moved to docs/runs, evidence pruned), 14.d only branch main, WSL nothing removed; 14.e dormant[1.1.0] 2026-11-18"]
+remaining: ["2.h ecosystem_line missing (rule 2026-11-19): ask PiI `ECOSYSTEM? CrystalBall | DELTA depuis 2026-11-13`, copy the answer, write ecosystem_line", "9.f gallery_validated_sha absent (rule 2026-11-20): needs Virginie's oui on the gallery, asked when the chain reaches shootGallery", "other missing records to check at replay: preview_source_decision (10.a bis), workshop_required_items (4.g, n/a: no dependency)", "replay 2026-11-22 stopped at 2.h; later sections not replayed"]
 session:      01a09736-2cfc-72d3-8b3c-4ffe79ef572c
 code_review_sha: 6a2012f9ad0e2e66a9e8a29ac42b80f1628a2d3a
 publication_changelog_review_sha: 5c694993b743883d7b2098292d9b5ed3ab394738
 echo_review_sha: f865d9e258c22504ad675ead07806f2893efd632
 thanks_drafted_line: none
 social_preview_sha256: 342526c8c92ef6374e2ad75a1d26ace190e2d8352ec79f9352d40795e88a990c
-updated:      2026-11-18
-protocols_read_sha: 9ab67bbe5cef96f01ec08a3967f60f36f78e0406
+updated:      2026-11-22
+protocols_read_sha: 588afcca9786e7da139bf5e009dab6cd5de1ba13
 ---
-# Crystal Ball: status (2026-11-18)
+# Crystal Ball: status (2026-11-22)
 
-**`workflow_stage: dormant[1.1.0]`**. `1.1.0` public on Steam (item 3806709786, tag `v1.1.0`, SHA `e3412bd`), tags Mod, 1.6, 1.7, `tested_1_7: yes`. Non-regression 1.1.0 closed 2026-11-18: French `0365` 7 of 7, English `cef9` 121 of 129 with one red (build scenario, colonists on horseshoes), replayed alone `bc9b` green 1 of 1 (not a mod defect, `Mod/` unchanged).
+**`workflow_stage: ecosystem[1.1.0]`** (replay 2026-11-22: `ecosystem_line` missing, 2.h open; was `dormant[1.1.0]`). `1.1.0` public on Steam (item 3806709786, tag `v1.1.0`, SHA `e3412bd`), tags Mod, 1.6, 1.7, `tested_1_7: yes`. Non-regression 1.1.0 closed 2026-11-18: French `0365` 7 of 7, English `cef9` 121 of 129 with one red (build scenario, colonists on horseshoes), replayed alone `bc9b` green 1 of 1 (not a mod defect, `Mod/` unchanged).
 
 | What | State | Where |
 | --- | --- | --- |
