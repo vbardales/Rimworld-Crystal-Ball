@@ -29,7 +29,7 @@ echo_review_sha: f865d9e258c22504ad675ead07806f2893efd632
 thanks_drafted_line: none
 social_preview_sha256: 342526c8c92ef6374e2ad75a1d26ace190e2d8352ec79f9352d40795e88a990c
 updated:      2026-11-18
-protocols_read_sha: d4d9358c61723fa9b658201b61648bb857a3a462
+protocols_read_sha: 9ab67bbe5cef96f01ec08a3967f60f36f78e0406
 ---
 # Crystal Ball: status (2026-11-18)
 
