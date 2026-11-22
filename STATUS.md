@@ -9,7 +9,7 @@ remote:       https://github.com/vbardales/Rimworld-Crystal-Ball.git
 local_path:   C:\Users\nelim\Documents\rimworld\CrystalBall
 visibility:   public
 detached:     yes
-workflow_stage: shootGallery[1.1.0]
+workflow_stage: dormant[1.1.0]
 settings_audit: not_applicable
 licence:      original
 licence_at:   MIT; original mod according to repository provenance
@@ -21,7 +21,7 @@ tested_on:    1.1.0 (published 2026-11-18, `e3412bd`, `Mod/` unchanged since), n
 tested_1_7:   yes
 workshop:     3806709786
 published_on: 2026-10-08, version 1.0.1 by the publish workflow (run 37839600085, SHA c090e2fa7a1cb64e7a19416e43e2e5443c0a333d, dry-run 37839358655), tag v1.0.1 and GitHub release by the CI. First publication 2026-09-26 (1.0.0, SHA 7d64a56491d7f131ec5770342f65875d993f8279), made public by Virginie the same day; gallery and subscriptions are hers, by hand.
-remaining: ["9.f gallery_validated_sha absent (rule 2026-11-20): needs Virginie's explicit oui on the gallery in the chat (gallery unchanged since her validation of 2026-11-18, commit 957b675; Get-GalleryHash 569560799b4e8e233eac64391feb926a9a028b23)", "replay 2026-11-23 (code..) sections 3 to 9.e done, 3.c n/a; sections 10 to 14 not replayed yet"]
+remaining: ["none: replay 2026-11-23 shootGallery.. found no open sub-step; ideas not started in BACKLOG.md; template drift: .github/publish.config.json lacks description.format so sync-about-description.mjs throws (reported to Audit, CI/CD owns it)"]
 session:      01a09736-2cfc-72d3-8b3c-4ffe79ef572c
 code_review_sha: 6a2012f9ad0e2e66a9e8a29ac42b80f1628a2d3a
 publication_changelog_review_sha: 5c694993b743883d7b2098292d9b5ed3ab394738
@@ -32,11 +32,11 @@ thanks_drafted_line: none
 ecosystem_line: 1.1
 social_preview_sha256: 342526c8c92ef6374e2ad75a1d26ace190e2d8352ec79f9352d40795e88a990c
 updated:      2026-11-23
-protocols_read_sha: 915243f7ea453fd9d266852de3b8b30ee6e03f24
+protocols_read_sha: 2e19f7f48d8dd909c707410d1e8cd4088405987e
 ---
 # Crystal Ball: status (2026-11-22)
 
-**`workflow_stage: shootGallery[1.1.0]`** (replay 2026-11-23 `code..`: 3.c n/a, first open 9.f, gallery not validated by the owner with the hash field; was `dormant[1.1.0]`, `ecosystem`, `code`). `1.1.0` public on Steam (item 3806709786, tag `v1.1.0`, SHA `e3412bd`), tags Mod, 1.6, 1.7, `tested_1_7: yes`. Non-regression 1.1.0 closed 2026-11-18: French `0365` 7 of 7, English `cef9` 121 of 129 with one red (build scenario, colonists on horseshoes), replayed alone `bc9b` green 1 of 1 (not a mod defect, `Mod/` unchanged).
+**`workflow_stage: dormant[1.1.0]`** (replay 2026-11-23 `shootGallery..`: no open sub-step; Virginie validated the gallery and kept the Preview illustration the same day). `1.1.0` public on Steam (item 3806709786, tag `v1.1.0`, SHA `e3412bd`), tags Mod, 1.6, 1.7, `tested_1_7: yes`. Non-regression 1.1.0 closed 2026-11-18: French `0365` 7 of 7, English `cef9` 121 of 129 with one red (build scenario, colonists on horseshoes), replayed alone `bc9b` green 1 of 1 (not a mod defect, `Mod/` unchanged).
 
 | What | State | Where |
 | --- | --- | --- |
