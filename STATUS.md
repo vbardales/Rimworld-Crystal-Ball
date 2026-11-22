@@ -30,7 +30,7 @@ thanks_drafted_line: none
 ecosystem_line: 1.1
 social_preview_sha256: 342526c8c92ef6374e2ad75a1d26ace190e2d8352ec79f9352d40795e88a990c
 updated:      2026-11-22
-protocols_read_sha: afdb4e16f82052526d32c25e2c8553b1c6a68628
+protocols_read_sha: d41f16042895ec5a4a18312bfb8c3091e322d89f
 ---
 # Crystal Ball: status (2026-11-22)
 
