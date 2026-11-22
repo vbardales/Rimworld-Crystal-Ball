@@ -72,6 +72,10 @@ Git root `C:\Users\nelim\Documents\rimworld\CrystalBall`, own `.git`, no superpr
 
 **MIT**, copyright (c) 2026 Nelim, in `LICENSE` and `Mod/LICENSE`. `licence: original` = catalogue provenance category. Credits: defs + code by Claude Code; texture AI-generated, cut out, outlined, resized under human direction (`ATTRIBUTION.md`); preview by Virginie. No game assembly or third-party mod code shipped.
 
+## Settings audit
+
+`settings_audit: not_applicable` (2026-11-23, revision `1db9765`, restored after `e97fd41` cut it). Checked in `Mod/`: no assembly (no `.dll`, no `.cs`, no `Source/`), so no `ModSettings` class, no `Mod` subclass, no `Scribe` of options; no `Keyed` file, so no settings key; no settings page and no MainButtons shortcut. Behaviour is fixed in `Mod/Defs/CrystalBall.xml` (defs and one `CompProperties_Glower`); no option is useful, none is invented. No in-game check owed.
+
 ## Translation audit
 
 French only in `Mod/Languages/French/DefInjected/` (`ThingDef`, `JobDef`, `JoyKindDef`); no Keyed, no pawn token. English = Def source text. French validated by Virginie at `876a481` (2026-11-17, after ChatGPT review round 3 clean); `TRANSLATION_REVIEW.md` current. One taste rejection kept: `than when they sat down` in the English description.
